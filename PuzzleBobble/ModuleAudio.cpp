@@ -12,7 +12,7 @@ ModuleAudio::~ModuleAudio(){}
 
 bool ModuleAudio::Init()
 {
-	LOG("Init Image library");
+	LOG("Init Audio Library");
 	bool ret = true;
 
 	// Initialize the audio library 
@@ -27,16 +27,12 @@ bool ModuleAudio::Init()
 		ret = false;
 	}
 
-	music = Mix_LoadMUS("music.ogg");
+	music = Mix_LoadMUS("SinglePlayerMusic.ogg");
 
-	if (Mix_PlayMusic(music, -1) == -1) 
-	{
-		LOG("Mix_PlayMusic: %s\n", Mix_GetError());
-		// well, there's no music, but most games don't break without music...
-	}
 
 	return ret;
 }
+
 
 
 bool ModuleAudio::CleanUp()

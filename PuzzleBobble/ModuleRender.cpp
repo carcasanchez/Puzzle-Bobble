@@ -35,8 +35,8 @@ bool ModuleRender::Init()
 	}
 
 	// TODO 9: load a texture "test.png" to test is everything works well
-	App->textures->Load("test.png");
-	App->textures->Load("haikyuu.png");
+	App->textures->Load("level1_3.png");
+	
 	return ret;
 }
 
