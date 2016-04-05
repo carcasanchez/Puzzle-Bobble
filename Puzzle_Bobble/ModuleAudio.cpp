@@ -43,6 +43,6 @@ bool ModuleAudio::CleanUp()
 	Mix_FreeChunk(effects);
 
 	Mix_Quit();// Close the audio library
-	
+
 	return true;
 }
