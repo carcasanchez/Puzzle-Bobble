@@ -54,13 +54,9 @@ update_status ModuleRender::PreUpdate()
 update_status ModuleRender::PostUpdate()
 {
 	// TODO 8: Switch buffers so we actually render
-	SDL_Rect target;
-	target.x = 0;
-	target.y = 0;
-	target.w = SCREEN_WIDTH;
-	target.h = SCREEN_HEIGHT;
 
-	SDL_RenderCopy(renderer,App->textures->textures[0], NULL, &target);
+
+	SDL_RenderCopy(renderer,App->textures->textures[0], NULL, NULL);
 	SDL_RenderPresent(renderer);
 
 	return update_status::UPDATE_CONTINUE;
