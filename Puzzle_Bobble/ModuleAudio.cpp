@@ -29,10 +29,8 @@ bool ModuleAudio::Init()
 
 	music = Mix_LoadMUS("SinglePlayerMusic.ogg");
 
-
 	return ret;
 }
-
 
 
 bool ModuleAudio::CleanUp()
@@ -40,8 +38,8 @@ bool ModuleAudio::CleanUp()
 	LOG("Freeing audio and and music library");
 
 	Mix_FreeMusic(music);
-	Mix_FreeChunk(effects);
-
+	//Mix_FreeChunk(effects);
+	Mix_CloseAudio();
 	Mix_Quit();// Close the audio library
 
 	return true;
