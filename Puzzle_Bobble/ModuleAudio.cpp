@@ -12,7 +12,7 @@ ModuleAudio::~ModuleAudio(){}
 
 bool ModuleAudio::Init()
 {
-	LOG("Init Audio Library");
+	LOG("Init Audio Library\n");
 	bool ret = true;
 
 	// Initialize the audio library 
@@ -23,19 +23,26 @@ bool ModuleAudio::Init()
 
 	if ((init & flags) != flags)
 	{
-		LOG("Could not initialize Audio lib. Mix_Init: %s", Mix_GetError());
+		LOG("Could not initialize Audio lib. Mix_Init: %s\n", Mix_GetError());
 		ret = false;
 	}
 
 	music = Mix_LoadMUS("SinglePlayerMusic.ogg");
 
+	LOG("Playing Music\n");
+	// play music forever
+	// Mix_Music *music; // I assume this has been loaded already
+	if (Mix_PlayMusic(music, -1) == -1) {
+		LOG("Mix_PlayMusic: %s\n", Mix_GetError());
+		// well, there's no music, but most games don't break without music...
+	}
 	return ret;
 }
 
 
 bool ModuleAudio::CleanUp()
 {
-	LOG("Freeing audio and and music library");
+	LOG("Freeing audio and and music library\n");
 
 	Mix_FreeMusic(music);
 	//Mix_FreeChunk(effects);
@@ -44,3 +51,4 @@ bool ModuleAudio::CleanUp()
 
 	return true;
 }
+

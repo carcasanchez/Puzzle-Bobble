@@ -14,8 +14,7 @@ public:
 	ModuleAudio();
 	~ModuleAudio();
 	Mix_Music *music;
-	Mix_Chunk *effects;
-
+	
 
 	bool Init();
 	bool CleanUp();
