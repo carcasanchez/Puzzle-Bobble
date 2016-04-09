@@ -5,11 +5,12 @@
 #include "Globals.h"
 
 struct SDL_Texture;
+struct Mix_Music;
 
 class ModuleStartScreen : public Module
 {
 public:
-	ModuleStartScreen();
+
 	~ModuleStartScreen();
 
 	bool Init();
@@ -19,7 +20,8 @@ public:
 public:
 
 	SDL_Texture* background = nullptr;
-	
+	Mix_Music* level_music = nullptr;
+
 };
 
 

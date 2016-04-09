@@ -7,6 +7,7 @@ void log(const char file[], int line, const char* format, ...);
 #define EXIT_FAILURE 1
 #define EXIT_SUCCESS 0
 
+
 enum update_status
 {
 	UPDATE_CONTINUE = 1,
@@ -14,16 +15,20 @@ enum update_status
 	UPDATE_ERROR
 };
 
-// Useful typedefs ---------
+
 typedef unsigned int uint;
 
 // Configuration -----------
 #define SCREEN_WIDTH 1024
 #define SCREEN_HEIGHT 896
+#define SCREEN_SIZE 2
 #define WIN_FULLSCREEN 0
 #define WIN_FULLSCREEN_DESKTOP 0
 #define WIN_BORDERLESS 0
 #define WIN_RESIZABLE 1
 #define REN_VSYNC 1
+
+#define MIN( a, b ) ( ((a) < (b)) ? (a) : (b) )
+#define MAX( a, b ) ( ((a) > (b)) ? (a) : (b) )
 
 #endif // __GLOBALS_H__

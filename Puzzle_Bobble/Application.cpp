@@ -12,6 +12,7 @@ Application::Application()
 	modules[2] = input = new ModuleInput();
 	modules[3] = textures = new ModuleTextures();
 	modules[4] = audio = new ModuleAudio();
+	modules[5] = fade = new ModuleFadeToBlack(); //TODO: Solve incomplete type
 }	
 
 Application::~Application()
@@ -35,12 +36,15 @@ update_status Application::Update()
 	update_status ret = UPDATE_CONTINUE;
 
 	for(int i = 0; i < NUM_MODULES && ret == UPDATE_CONTINUE; ++i)
+		if (modules[i]->IsEnabled())
 		ret = modules[i]->PreUpdate();
 
 	for(int i = 0; i < NUM_MODULES && ret == UPDATE_CONTINUE; ++i)
+		if (modules[i]->IsEnabled())
 		ret = modules[i]->Update();
 
 	for(int i = 0; i < NUM_MODULES && ret == UPDATE_CONTINUE; ++i)
+		if (modules[i]->IsEnabled())
 		ret = modules[i]->PostUpdate();
 
 	return ret;

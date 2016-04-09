@@ -3,7 +3,8 @@
 
 #include "SDL_mixer\include\SDL_mixer.h"
 #pragma comment( lib, "SDL_mixer/libx86/SDL2_mixer.lib" )
-#define NUM_MUSICS 1
+
+#define MAX_AUDIO 1
 
 #include "Module.h"
 #include "Globals.h"
@@ -13,12 +14,12 @@ class ModuleAudio : public Module
 public:
 	ModuleAudio();
 	~ModuleAudio();
-	Mix_Music* music[NUM_MUSICS];
-	
+	Mix_Music* audio[MAX_AUDIO];
+	uint last_audio = 0;
 
 	bool Init();
 	bool CleanUp();
-
+	Mix_Music* const Load(const char* path);
 };
 
 

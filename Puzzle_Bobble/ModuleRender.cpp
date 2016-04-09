@@ -35,7 +35,7 @@ bool ModuleRender::Init()
 	}
 
 	
-	App->textures->Load("level1_3.png");
+	
 	return ret;
 }
 
@@ -46,7 +46,7 @@ update_status ModuleRender::PreUpdate()
 	SDL_RenderClear(renderer);
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
 
-	Blit(App->textures->textures[0], 0, 0, NULL);
+	//Blit(App->textures->textures[0], 0, 0, NULL);
 
 	return update_status::UPDATE_CONTINUE;
 }

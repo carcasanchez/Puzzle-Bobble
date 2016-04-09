@@ -27,15 +27,7 @@ bool ModuleAudio::Init()
 		ret = false;
 	}
 
-	music[0] = Mix_LoadMUS("SinglePlayerMusic.ogg");
-
-	LOG("Playing Music\n");
-
-
-	if (Mix_PlayMusic(music[0], -1) == -1) {
-		LOG("Mix_PlayMusic: %s\n", Mix_GetError());
 	
-	}
 	return ret;
 }
 
@@ -44,8 +36,8 @@ bool ModuleAudio::CleanUp()
 {
 	LOG("Freeing audio and and music library\n");
 
-	for (int i = 0; i < NUM_MUSICS;i++)
-	Mix_FreeMusic(music[i]);
+	for (int i = 0; i < MAX_AUDIO; i++)
+	Mix_FreeMusic(audio[i]);
 
 	//Mix_FreeChunk(effects);
 	Mix_CloseAudio();
@@ -54,3 +46,16 @@ bool ModuleAudio::CleanUp()
 	return true;
 }
 
+Mix_Music* const ModuleAudio:: Load(const char *path)
+{
+	audio[last_audio] = Mix_LoadMUS(path);
+
+	LOG("Loading Music\n");
+
+
+	/*if (Mix_PlayMusic(audio[0], -1) == -1) {
+		LOG("Mix_PlayMusic: %s\n", Mix_GetError());
+
+	}*/
+	return nullptr;
+}

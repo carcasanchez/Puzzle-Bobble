@@ -4,7 +4,7 @@
 class Module
 {
 private:
-	bool enabled = false;
+	bool enabled = true;
 
 public:
 
