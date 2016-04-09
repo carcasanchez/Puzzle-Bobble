@@ -5,6 +5,8 @@
 #include "ModuleRender.h"
 #include "SDL/include/SDL_render.h"
 #include "SDL/include/SDL_timer.h"
+#include "ModuleStartScreen.h"
+#include "ModuleLevel_1.h"
 
 ModuleFadeToBlack::ModuleFadeToBlack()
 {
@@ -42,9 +44,6 @@ update_status ModuleFadeToBlack::Update()
 
 			if(now >= total_time)
 			{
-				
-				
-				// --
 				m_off->Disable();
 				m_on->Enable();
 

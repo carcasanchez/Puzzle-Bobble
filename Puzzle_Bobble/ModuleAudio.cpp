@@ -48,7 +48,8 @@ bool ModuleAudio::CleanUp()
 
 Mix_Music* const ModuleAudio:: Load(const char *path)
 {
-	audio[last_audio] = Mix_LoadMUS(path);
+	Mix_Music* music = Mix_LoadMUS(path);
+	audio[last_audio++] = music;
 
 	LOG("Loading Music\n");
 
@@ -57,5 +58,5 @@ Mix_Music* const ModuleAudio:: Load(const char *path)
 		LOG("Mix_PlayMusic: %s\n", Mix_GetError());
 
 	}*/
-	return nullptr;
+	return music;
 }

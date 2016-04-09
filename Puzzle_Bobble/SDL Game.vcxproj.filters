@@ -44,10 +44,10 @@
     <ClInclude Include="ModuleFadeToBlack.h">
       <Filter>Modules</Filter>
     </ClInclude>
-    <ClInclude Include="Level_1.h">
+    <ClInclude Include="ModuleStartScreen.h">
       <Filter>Levels</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleStartScreen.h">
+    <ClInclude Include="ModuleLevel_1.h">
       <Filter>Levels</Filter>
     </ClInclude>
   </ItemGroup>
@@ -79,10 +79,10 @@
     <ClCompile Include="ModuleFadeToBlack.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
-    <ClCompile Include="Level_1.cpp">
+    <ClCompile Include="ModuleStartScreen.cpp">
       <Filter>Levels</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleStartScreen.cpp">
+    <ClCompile Include="ModuleLevel_1.cpp">
       <Filter>Levels</Filter>
     </ClCompile>
   </ItemGroup>

@@ -7,34 +7,30 @@
 #include "ModuleAudio.h"
 #include "ModuleLevel_1.h"
 #include "ModuleStartScreen.h"
-#include "SDL/include/SDL.h"
 
-ModuleStartScreen::~ModuleStartScreen()
+ModuleLevel_1::~ModuleLevel_1()
 {}
 
-bool ModuleStartScreen::Start()
+bool ModuleLevel_1::Start()
 {
-
-	graphics = App->textures->Load("Start_Screen.png");
-	level_music = App->audio->Load("Title_Demonstration.ogg"); //TODO: Solve incomplete type 
+	graphics = App->textures->Load("Level1_3.png");
+	level_music = App->audio->Load("SinglePlayerMusic.ogg"); 
 	return true;
-
-
 }
 
-update_status ModuleStartScreen::Update()
+update_status ModuleLevel_1::Update()
 {
 	App->render->Blit(graphics, 0, 0, NULL);
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
 	{
 
-		App->fade->FadeToBlack(App->menu_screen, App->level_1, 1);
+		App->fade->FadeToBlack(App->level_1, App->menu_screen, 1);
 	}
 	return UPDATE_CONTINUE;
 }
 
-bool ModuleStartScreen::CleanUp()
+bool ModuleLevel_1::CleanUp()
 {
 	return true;
 }

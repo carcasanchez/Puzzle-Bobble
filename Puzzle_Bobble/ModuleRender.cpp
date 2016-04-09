@@ -8,7 +8,11 @@
 
 
 ModuleRender::ModuleRender() : Module()
-{}
+{
+	camera.x = camera.y = 0;
+	camera.w = SCREEN_WIDTH;
+	camera.h = SCREEN_HEIGHT;
+}
 
 // Destructor
 ModuleRender::~ModuleRender()
@@ -44,21 +48,14 @@ update_status ModuleRender::PreUpdate()
 {
 	
 	SDL_RenderClear(renderer);
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
-
-	//Blit(App->textures->textures[0], 0, 0, NULL);
 
 	return update_status::UPDATE_CONTINUE;
 }
 
 update_status ModuleRender::PostUpdate()
 {
-	
 
-
-	SDL_RenderCopy(renderer,App->textures->textures[0], NULL, NULL);
 	SDL_RenderPresent(renderer);
-
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -68,7 +65,7 @@ bool ModuleRender::CleanUp()
 	LOG("Destroying renderer\n");
 
 	//Destroy window
-	if(renderer != nullptr)
+	if(renderer != NULL)
 		SDL_DestroyRenderer(renderer);
 
 	return true;
@@ -82,15 +79,18 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section)
 	rect.x = x;
 	rect.y = y;
 
-	if(section != nullptr)
+	if(section != NULL)
 	{
 		rect.w = section->w;
 		rect.h = section->h;
 	}
 	else
 	{
-		SDL_QueryTexture(texture, nullptr, nullptr, &rect.w, &rect.h);
+		SDL_QueryTexture(texture, NULL, NULL, &rect.w, &rect.h);
 	}
+
+	rect.w *= SCREEN_SIZE;
+	rect.h *= SCREEN_SIZE;
 
 	if(SDL_RenderCopy(renderer, texture, section, &rect) != 0)
 	{

@@ -4,6 +4,9 @@
 #include "ModuleInput.h"
 #include "ModuleTextures.h"
 #include "ModuleAudio.h"
+#include "ModuleFadeToBlack.h"
+#include "ModuleLevel_1.h"
+#include "ModuleStartScreen.h"
 
 Application::Application()
 {
@@ -13,11 +16,13 @@ Application::Application()
 	modules[3] = textures = new ModuleTextures();
 	modules[4] = audio = new ModuleAudio();
 	modules[5] = fade = new ModuleFadeToBlack(); //TODO: Solve incomplete type
+	modules[6] = menu_screen = new ModuleStartScreen();
+	modules[7] = level_1 = new ModuleLevel_1();
 }	
 
 Application::~Application()
 {
-	for(int i = 0; i < NUM_MODULES; ++i)
+	for (int i = NUM_MODULES - 1; i >= 0; --i)
 		delete modules[i];
 }
 
@@ -25,8 +30,12 @@ bool Application::Init()
 {
 	bool ret = true;
 
+
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)
 		ret = modules[i]->Init();
+
+	for (int i = 0; i < NUM_MODULES && ret == true; ++i)
+		ret = modules[i]->IsEnabled() ? modules[i]->Start() : true;
 
 	return ret;
 }
@@ -38,14 +47,17 @@ update_status Application::Update()
 	for(int i = 0; i < NUM_MODULES && ret == UPDATE_CONTINUE; ++i)
 		if (modules[i]->IsEnabled())
 		ret = modules[i]->PreUpdate();
+		else{ UPDATE_CONTINUE; }
 
 	for(int i = 0; i < NUM_MODULES && ret == UPDATE_CONTINUE; ++i)
 		if (modules[i]->IsEnabled())
 		ret = modules[i]->Update();
+		else{ UPDATE_CONTINUE; }
 
 	for(int i = 0; i < NUM_MODULES && ret == UPDATE_CONTINUE; ++i)
 		if (modules[i]->IsEnabled())
 		ret = modules[i]->PostUpdate();
+		else{ UPDATE_CONTINUE; }
 
 	return ret;
 }

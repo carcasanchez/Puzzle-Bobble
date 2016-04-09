@@ -2,10 +2,10 @@
 #define __ModuleRenderer_H__
 
 #include "Module.h"
+#include "SDL\include\SDL_rect.h"
 
 struct SDL_Renderer;
 struct SDL_Texture;
-struct SDL_Rect;
 
 class ModuleRender : public Module
 {
@@ -22,7 +22,7 @@ public:
 
 public:
 	SDL_Renderer* renderer = nullptr;
-	SDL_Texture* tex;
+	SDL_Rect camera;
 };
 
 #endif //__ModuleRenderer_H__

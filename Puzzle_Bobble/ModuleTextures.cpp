@@ -47,7 +47,7 @@ bool ModuleTextures::CleanUp()
 	
 	for (int i = 0; i < MAX_TEXTURES; i++)
 	{
-		if (textures[i])
+		if (textures[i] != nullptr)
 		{
 			SDL_DestroyTexture(textures[i]);
 		}
@@ -59,26 +59,27 @@ bool ModuleTextures::CleanUp()
 // Load new texture from file path
 SDL_Texture* const ModuleTextures::Load(const char* path)
 {
-
-	SDL_Surface *image;
-	image = IMG_Load(path);
-	if (!image) 
+	SDL_Texture* texture = NULL;
+	SDL_Surface *surface = IMG_Load(path);
+	if (surface == NULL)
 	{
 		LOG("IMG_Load: %s\n", IMG_GetError());
-		// handle error
 	}
 
-
-	SDL_Texture* texture = SDL_CreateTextureFromSurface(App->render->renderer, image);
-	if (!texture)
+	else
 	{
-		LOG("SDL_CreateTextureFromSurface: %s\n", IMG_GetError());
-		// handle error
+		texture = SDL_CreateTextureFromSurface(App->render->renderer, surface);
+		if (texture == NULL)
+		{
+			LOG("SDL_CreateTextureFromSurface: %s\n", IMG_GetError());
+			// handle error
+		}
+		else
+		{
+			textures[last_texture++] = texture;
+		}
+		SDL_FreeSurface(surface);
 	}
-	
-	
-	SDL_FreeSurface(image);
-	textures[last_texture++] = texture;
-	
-	return nullptr;
+
+	return texture;
 }
