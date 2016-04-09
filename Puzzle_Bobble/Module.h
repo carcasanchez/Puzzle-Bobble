@@ -3,6 +3,9 @@
 
 class Module
 {
+private:
+	bool enabled = false;
+
 public:
 
 	virtual bool Init() { return true; }
@@ -10,6 +13,26 @@ public:
 	virtual update_status Update()		{ return update_status::UPDATE_CONTINUE; }
 	virtual update_status PostUpdate() 	{ return update_status::UPDATE_CONTINUE; }
 	virtual bool CleanUp() { return true; }
+
+	bool IsEnabled() const				{ return enabled; }
+
+	void Enable()
+	{
+		if (enabled == false)
+		{
+			enabled = true;
+			Init();
+		}
+	}
+
+	void Disable()
+	{
+		if (enabled == true)
+		{
+			enabled = false;
+			CleanUp();
+		}
+	}
 };
 
 #endif // __MODULE_H__
