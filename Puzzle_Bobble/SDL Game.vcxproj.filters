@@ -53,6 +53,9 @@
     <ClInclude Include="ModuleLevel_2.h">
       <Filter>Levels</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleCongrats.h">
+      <Filter>Levels</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -89,6 +92,9 @@
       <Filter>Levels</Filter>
     </ClCompile>
     <ClCompile Include="ModuleLevel_2.cpp">
+      <Filter>Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleCongrats.cpp">
       <Filter>Levels</Filter>
     </ClCompile>
   </ItemGroup>

@@ -38,8 +38,6 @@ update_status ModuleFadeToBlack::Update()
 	{
 		case fade_step::fade_to_black:
 		{								
-			
-
 			if(now >= total_time)
 			{
 				m_off->Disable();
@@ -78,10 +76,12 @@ bool ModuleFadeToBlack::FadeToBlack(Module* module_off, Module* module_on, float
 		start_time = SDL_GetTicks();
 		total_time = (Uint32)(time * 0.5f * 1000.0f);
 		ret = true;
+		m_off = module_off;
+		m_on = module_on;
+		
 	}
 
-	m_off = module_off;
-	m_on = module_on;
+	
 
 	return ret;
 }

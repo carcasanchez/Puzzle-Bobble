@@ -8,9 +8,13 @@
 #include "ModuleAudio.h"
 #include "ModuleLevel_2.h"
 #include "ModuleStartScreen.h"
+#include "ModuleCongrats.h"
 
 
-ModuleLevel_2::ModuleLevel_2(){}
+ModuleLevel_2::ModuleLevel_2()
+{
+	level2 = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
+}
 
 ModuleLevel_2::~ModuleLevel_2()
 {}
@@ -29,12 +33,12 @@ bool ModuleLevel_2::Start()
 
 update_status ModuleLevel_2::Update()
 {
-	App->render->Blit(graphics, 0, 0, NULL);
+	App->render->Blit(graphics, 0, 0, &level2);
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
 	{
 
-		App->fade->FadeToBlack(App->level_2, App->menu_screen, 1);
+		App->fade->FadeToBlack(App->level_2, App->congratulations, 1);
 	}
 	return UPDATE_CONTINUE;
 }

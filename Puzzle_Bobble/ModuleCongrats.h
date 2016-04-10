@@ -1,5 +1,5 @@
-#ifndef __LEVEL_1_H__
-#define __LEVEL_1_H__
+#ifndef __CONGRATS__
+#define __CONGRATS__
 
 #include "Module.h"
 #include "Globals.h"
@@ -7,11 +7,11 @@
 
 struct SDL_Texture;
 
-class ModuleLevel_1 : public Module
+class ModuleCongrats : public Module
 {
 public:
-	ModuleLevel_1();
-	~ModuleLevel_1();
+	ModuleCongrats();
+	~ModuleCongrats();
 
 	bool Start();
 	update_status Update();
@@ -20,10 +20,9 @@ public:
 public:
 	SDL_Texture* graphics = nullptr;
 	Mix_Music* level_music = nullptr;
-	SDL_Rect level1;
+	SDL_Rect congrats;
 
 };
 
 
 #endif //__LEVEL_1_H__
-
