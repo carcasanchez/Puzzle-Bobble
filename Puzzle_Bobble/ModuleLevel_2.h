@@ -1,5 +1,5 @@
-#ifndef __STARTSCREEN_H__
-#define __STARTSCREEN_H__
+#ifndef __LEVEL_2_H__
+#define __LEVEL_2_H__
 
 #include "Module.h"
 #include "Globals.h"
@@ -7,24 +7,21 @@
 
 struct SDL_Texture;
 
-
-class ModuleStartScreen : public Module
+class ModuleLevel_2 : public Module
 {
 public:
-	ModuleStartScreen();
-	~ModuleStartScreen();
+	ModuleLevel_2();
+	~ModuleLevel_2();
 
 	bool Start();
 	update_status Update();
 	bool CleanUp();
 
 public:
-
 	SDL_Texture* graphics = nullptr;
-	SDL_Rect background;
 	Mix_Music* level_music = nullptr;
 
 };
 
 
-#endif
+#endif //__LEVEL_2_H__

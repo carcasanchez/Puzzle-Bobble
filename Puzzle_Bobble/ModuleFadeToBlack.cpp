@@ -37,9 +37,7 @@ update_status ModuleFadeToBlack::Update()
 	switch(current_step)
 	{
 		case fade_step::fade_to_black:
-		{
-
-										
+		{								
 			
 
 			if(now >= total_time)

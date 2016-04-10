@@ -4,7 +4,7 @@
 #include "SDL_mixer\include\SDL_mixer.h"
 #pragma comment( lib, "SDL_mixer/libx86/SDL2_mixer.lib" )
 
-#define MAX_AUDIO 50
+#define MAX_AUDIO 20
 
 #include "Module.h"
 #include "Globals.h"

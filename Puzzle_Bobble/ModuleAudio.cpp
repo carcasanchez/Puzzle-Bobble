@@ -28,6 +28,8 @@ bool ModuleAudio::Init()
 	}
 
 	
+
+
 	return ret;
 }
 
@@ -36,7 +38,7 @@ bool ModuleAudio::CleanUp()
 {
 	LOG("Freeing audio and and music library\n");
 
-	for (int i = 0; i < MAX_AUDIO; i++)
+	for (int i = 0; i < last_audio; i++)
 	Mix_FreeMusic(audio[i]);
 
 	//Mix_FreeChunk(effects);
@@ -54,9 +56,6 @@ Mix_Music* const ModuleAudio:: Load(const char *path)
 	LOG("Loading Music\n");
 
 
-	/*if (Mix_PlayMusic(audio[0], -1) == -1) {
-		LOG("Mix_PlayMusic: %s\n", Mix_GetError());
 
-	}*/
 	return music;
 }
