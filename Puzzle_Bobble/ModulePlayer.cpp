@@ -93,10 +93,8 @@ update_status ModulePlayer::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN)
 	{
-		App->spheres->AddSphere(App->spheres->redSphere, position.x, position.y + 25);
-		App->spheres->AddSphere(App->spheres->redSphere, position.x - 25, position.y, 500);
-		App->spheres->AddSphere(App->spheres->redSphere, position.x, position.y - 25, 1000);
-		App->spheres->AddSphere(App->spheres->redSphere, position.x + 25, position.y, 1500);
+		App->spheres->AddSphere(App->spheres->redSphere, position.x, position.y);
+		
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE

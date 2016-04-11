@@ -20,6 +20,7 @@ ModuleSphere::~ModuleSphere()
 bool ModuleSphere::Start()
 {
 	LOG("Loading particles");
+	graphics = App->textures->Load("Sprites.png");
 
 	blueSphere.anim.PushBack({ 12, 260, 16, 16 });
 	blueSphere.anim.PushBack({ 32, 260, 16, 16 });
@@ -83,6 +84,8 @@ bool ModuleSphere::Start()
 	redSphere.anim.PushBack({ 193, 312, 16, 16 });
 	redSphere.anim.loop = true;
 	redSphere.anim.speed = 0.3f;
+	redSphere.life = 1000;
+	redSphere.speed.y -= 5;
 
 	orangeSphere.anim.PushBack({ 318, 312, 16, 16 });
 	orangeSphere.anim.PushBack({ 338, 312, 16, 16 });
