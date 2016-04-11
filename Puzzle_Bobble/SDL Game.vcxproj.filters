@@ -62,11 +62,11 @@
     <ClInclude Include="Animation.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="Point.h">
-      <Filter>Modules</Filter>
-    </ClInclude>
     <ClInclude Include="ModuleSphere.h">
       <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.h">
+      <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

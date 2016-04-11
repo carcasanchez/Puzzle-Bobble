@@ -22,7 +22,6 @@ ModuleCongrats::~ModuleCongrats()
 bool ModuleCongrats::Start()
 {
 	graphics = App->textures->Load("congrats.png");
-	level_music = App->audio->Load("SinglePlayerMusic.ogg");
 
 	if (Mix_PlayMusic(level_music, -1) == -1) {
 		LOG("Mix_PlayMusic: %s\n", Mix_GetError());
@@ -45,7 +44,5 @@ update_status ModuleCongrats::Update()
 
 bool ModuleCongrats::CleanUp()
 {
-	while (!Mix_FadeOutMusic(1000) && Mix_PlayingMusic())
-		SDL_Delay(1000);
 	return true;
 }
