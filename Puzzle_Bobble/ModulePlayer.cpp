@@ -2,10 +2,9 @@
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
-#include "ModuleParticles.h"
+#include "ModuleSphere.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
-
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
 ModulePlayer::ModulePlayer()
@@ -91,22 +90,13 @@ update_status ModulePlayer::Update()
 	}
 
 	// TODO 3: Shoot lasers when the player hits SPACE
-	if (App->input->keyboard[SDL_SCANCODE_M] == KEY_STATE::KEY_DOWN)
-	{
-		App->particles->AddParticle(App->particles->laser, position.x + 25, position.y);
-		App->particles->AddParticle(App->particles->laser, position.x + 25, position.y, 500);
-		App->particles->AddParticle(App->particles->laser2, position.x + 25, position.y + 25);
-		App->particles->AddParticle(App->particles->laser2, position.x + 25, position.y + 25, 500);
-		App->particles->AddParticle(App->particles->laser3, position.x + 25, position.y - 25);
-		App->particles->AddParticle(App->particles->laser3, position.x + 25, position.y - 25, 500);
-	}
 
 	if (App->input->keyboard[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN)
 	{
-		App->particles->AddParticle(App->particles->explosion, position.x, position.y + 25);
-		App->particles->AddParticle(App->particles->explosion, position.x - 25, position.y, 500);
-		App->particles->AddParticle(App->particles->explosion, position.x, position.y - 25, 1000);
-		App->particles->AddParticle(App->particles->explosion, position.x + 25, position.y, 1500);
+		App->spheres->AddSphere(App->spheres->redSphere, position.x, position.y + 25);
+		App->spheres->AddSphere(App->spheres->redSphere, position.x - 25, position.y, 500);
+		App->spheres->AddSphere(App->spheres->redSphere, position.x, position.y - 25, 1000);
+		App->spheres->AddSphere(App->spheres->redSphere, position.x + 25, position.y, 1500);
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE

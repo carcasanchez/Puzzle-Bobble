@@ -10,6 +10,7 @@
 #include "ModuleStartScreen.h"
 #include "ModuleCongrats.h"
 #include "ModulePlayer.h"
+#include "ModuleSphere.h"
 
 Application::Application()
 {
@@ -23,7 +24,8 @@ Application::Application()
 	modules[7] = level_2 = new ModuleLevel_2();
 	modules[8] = congratulations = new ModuleCongrats();
 	modules[9] = player = new ModulePlayer();
-	modules[10] = fade = new ModuleFadeToBlack();
+	modules[10] = spheres = new ModuleSphere();
+	modules[11] = fade = new ModuleFadeToBlack();
 }	
 
 Application::~Application()

@@ -8,6 +8,7 @@
 #include "ModuleAudio.h"
 #include "ModuleLevel_1.h"
 #include "ModuleLevel_2.h"
+#include "ModulePlayer.h"
 #include "ModuleStartScreen.h"
 
 
@@ -24,6 +25,7 @@ bool ModuleLevel_1::Start()
 {
 	graphics = App->textures->Load("Level1_3.png");
 	level_music = App->audio->Load("SinglePlayerMusic.ogg"); 
+	App->player->Enable();
 
 	if (Mix_PlayMusic(level_music, -1) == -1) {
 		LOG("Mix_PlayMusic: %s\n", Mix_GetError());
@@ -45,6 +47,9 @@ update_status ModuleLevel_1::Update()
 
 bool ModuleLevel_1::CleanUp()
 {
+
+	App->player->Disable();
+
 	while (!Mix_FadeOutMusic(1000) && Mix_PlayingMusic())
 		SDL_Delay(1000);
 

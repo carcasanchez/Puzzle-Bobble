@@ -65,6 +65,9 @@
     <ClInclude Include="Point.h">
       <Filter>Modules</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleSphere.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -107,6 +110,9 @@
       <Filter>Levels</Filter>
     </ClCompile>
     <ClCompile Include="ModulePlayer.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSphere.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>
