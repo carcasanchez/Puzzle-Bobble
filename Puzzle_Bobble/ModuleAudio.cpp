@@ -26,10 +26,6 @@ bool ModuleAudio::Init()
 		LOG("Could not initialize Audio lib. Mix_Init: %s\n", Mix_GetError());
 		ret = false;
 	}
-
-	
-
-
 	return ret;
 }
 

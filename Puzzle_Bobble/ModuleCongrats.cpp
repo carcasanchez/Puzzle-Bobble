@@ -47,6 +47,5 @@ bool ModuleCongrats::CleanUp()
 {
 	while (!Mix_FadeOutMusic(1000) && Mix_PlayingMusic())
 		SDL_Delay(1000);
-
 	return true;
 }
