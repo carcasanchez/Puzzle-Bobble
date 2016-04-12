@@ -84,7 +84,7 @@ ModulePlayer::ModulePlayer()
 	arrow_left.PushBack({ 83, 786, 54, 21 });
 	arrow_left.PushBack({ 148, 786, 53, 21 });
 	arrow_left.PushBack({ 212, 786, 53, 21 });
-	arrow_left.speed = 0.5f;
+	arrow_left.speed = 1.f;
 	
 	// idle left 
 	idle_left.PushBack({ 16, 17, 17, 19 });
@@ -175,6 +175,7 @@ update_status ModulePlayer::Update()
 		{
 			current_animation1 = &left;
 		}
+		
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
@@ -182,6 +183,10 @@ update_status ModulePlayer::Update()
 		if (current_animation1 != &right)
 		{
 			current_animation1 = &right;
+		}
+		if (current_animation_arrow != &arrow_left)
+		{
+			current_animation_arrow = &arrow_left;
 		}
 	}
 
@@ -204,15 +209,6 @@ update_status ModulePlayer::Update()
 		&& App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE)
 	current_animation1 = &idle_right;
 
-	current_animation_arrow = &arrow_init;
-	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
-	{
-		if (current_animation_arrow != &arrow_left)
-		{
-			current_animation_arrow = &arrow_left;
-	
-		}
-	}
 	
 	// Draw everything --------------------------------------
 	App->render->Blit(graphics, position.x, position.y, &(current_animation1->GetCurrentFrame()));
