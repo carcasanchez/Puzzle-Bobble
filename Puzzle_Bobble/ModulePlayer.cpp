@@ -15,7 +15,7 @@ ModulePlayer::ModulePlayer()
 	
 	position.x = 350;
 	position.y = 400;
-
+	/*
 	arrow_left.PushBack({ 15, 514, 22, 55 });
 	arrow_left.PushBack({ 49, 515, 21, 54 });
 	arrow_left.PushBack({ 83, 515, 21, 54 });
@@ -77,6 +77,7 @@ ModulePlayer::ModulePlayer()
 	arrow_left.PushBack({ 83, 786, 54, 21 });
 	arrow_left.PushBack({ 148, 786, 53, 21 });
 	arrow_left.PushBack({ 212, 786, 53, 21 });
+	*/
 	// idle left 
 	idle_left.PushBack({ 16, 17, 17, 19 });
 	idle_left.PushBack({ 50, 17, 17, 19 });
@@ -107,7 +108,7 @@ ModulePlayer::ModulePlayer()
 	right.PushBack({ 45, 54, 23, 18 });
 	right.PushBack({ 79, 54, 23, 18 });
 	right.loop = true;
-	right.speed = 0.5f;
+	right.speed = 0.1f;
 
 	//idle right
 	idle_right.PushBack({ 119, 53, 19, 19 });
@@ -161,7 +162,6 @@ update_status ModulePlayer::Update()
 	{
 		if (current_animation1 != &left)
 		{
-			left.Reset();
 			current_animation1 = &left;
 		}
 	}
@@ -170,7 +170,6 @@ update_status ModulePlayer::Update()
 	{
 		if (current_animation1 != &right)
 		{
-			right.Reset();
 			current_animation1 = &right;
 		}
 	}
