@@ -37,21 +37,32 @@ bool ModuleAudio::CleanUp()
 	for (int i = 0; i < last_audio; i++)
 	Mix_FreeMusic(audio[i]);
 
-	//Mix_FreeChunk(effects);
+	for (int i = 0; i < last_effect; i++)
+		Mix_FreeChunk(effects[i]);
+
 	Mix_CloseAudio();
 	Mix_Quit();// Close the audio library
 
 	return true;
 }
 
-Mix_Music* const ModuleAudio:: Load(const char *path)
+Mix_Music* const ModuleAudio:: Load_music(const char *path)
 {
 	Mix_Music* music = Mix_LoadMUS(path);
 	audio[last_audio++] = music;
 
 	LOG("Loading Music\n");
 
-
-
 	return music;
 }
+
+Mix_Chunk* const ModuleAudio::Load_effects(const char *path)
+{
+	Mix_Chunk* effect = Mix_LoadWAV(path);
+	effects[last_effect++] = effect;
+
+	LOG("Loading Music\n");
+
+	return effect;
+}
+

@@ -5,6 +5,7 @@
 #pragma comment( lib, "SDL_mixer/libx86/SDL2_mixer.lib" )
 
 #define MAX_AUDIO 20
+#define MAX_FX 20
 
 #include "Module.h"
 #include "Globals.h"
@@ -15,11 +16,14 @@ public:
 	ModuleAudio();
 	~ModuleAudio();
 	Mix_Music* audio[MAX_AUDIO];
+	Mix_Chunk* effects[MAX_FX];
 	uint last_audio = 0;
+	uint last_effect = 0;
 
 	bool Init();
 	bool CleanUp();
-	Mix_Music* const Load(const char* path);
+	Mix_Music* const Load_music(const char* path);
+	Mix_Chunk* const Load_effects(const char* path);
 };
 
 

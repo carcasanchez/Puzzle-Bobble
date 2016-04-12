@@ -5,6 +5,8 @@
 #include "ModuleSphere.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
+#include "ModuleAudio.h"
+
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
 ModulePlayer::ModulePlayer()
@@ -144,6 +146,7 @@ bool ModulePlayer::Start()
 	LOG("Loading player");
 
 	graphics = App->textures->Load("Sprites.png");
+	shoot = App->audio->Load_effects("BubbleShot.wav");
 
 	return true;
 }
@@ -194,6 +197,7 @@ update_status ModulePlayer::Update()
 			bobShot.Reset();
 			current_animation2 = &bobShot;
 		}
+		Mix_PlayChannel(-1, shoot, 0);
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE

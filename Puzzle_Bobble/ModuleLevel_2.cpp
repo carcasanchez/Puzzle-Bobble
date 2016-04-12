@@ -24,7 +24,9 @@ ModuleLevel_2::~ModuleLevel_2()
 bool ModuleLevel_2::Start()
 {
 	graphics = App->textures->Load("Level3_5.png");
-	level_music = App->audio->Load("SinglePlayerMusic.ogg");
+	level_music = App->audio->Load_music("SinglePlayerMusic.ogg");
+
+
 	App->player->Enable();
 
 	if (Mix_PlayMusic(level_music, -1) == -1) {
