@@ -22,12 +22,14 @@ public:
 	SDL_Texture* graphics = nullptr;
 	Animation* current_animation1 = nullptr;
 	Animation* current_animation2 = nullptr;
+	Animation* current_animation_arrow = nullptr;
 	Animation idle_left;
 	Animation idle_right;
 	Animation left;
 	Animation right;
 	Animation bobShot; 
 	Animation arrow_left;
+	Animation arrow_init;
 	iPoint position;
 
 

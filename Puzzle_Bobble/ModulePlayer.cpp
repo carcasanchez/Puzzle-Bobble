@@ -12,10 +12,15 @@ ModulePlayer::ModulePlayer()
 	graphics = NULL;
 	current_animation1 = NULL;
 	current_animation2 = NULL;
+	current_animation_arrow = NULL;
 	
 	position.x = 350;
 	position.y = 400;
-	/*
+
+	//initial position arrow
+	arrow_init.PushBack({ 15, 514, 22, 55 });
+	
+	//arrow left
 	arrow_left.PushBack({ 15, 514, 22, 55 });
 	arrow_left.PushBack({ 49, 515, 21, 54 });
 	arrow_left.PushBack({ 83, 515, 21, 54 });
@@ -77,7 +82,8 @@ ModulePlayer::ModulePlayer()
 	arrow_left.PushBack({ 83, 786, 54, 21 });
 	arrow_left.PushBack({ 148, 786, 53, 21 });
 	arrow_left.PushBack({ 212, 786, 53, 21 });
-	*/
+	arrow_left.speed = 0.5f;
+	
 	// idle left 
 	idle_left.PushBack({ 16, 17, 17, 19 });
 	idle_left.PushBack({ 50, 17, 17, 19 });
@@ -158,6 +164,8 @@ update_status ModulePlayer::Update()
 	int speed = 1;
 	current_animation1 = &idle_right;
 	current_animation2 = &idle_left;
+	current_animation_arrow = &arrow_init;
+
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 	{
 		if (current_animation1 != &left)
@@ -192,9 +200,20 @@ update_status ModulePlayer::Update()
 		&& App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE)
 	current_animation1 = &idle_right;
 
+	current_animation_arrow = &arrow_init;
+	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
+	{
+		if (current_animation_arrow != &arrow_left)
+		{
+			current_animation_arrow = &arrow_left;
+	
+		}
+	}
+	
 	// Draw everything --------------------------------------
 	App->render->Blit(graphics, position.x, position.y, &(current_animation1->GetCurrentFrame()));
 	App->render->Blit(graphics, position.x-100, position.y, &(current_animation2->GetCurrentFrame()));
+	App->render->Blit(graphics, position.x - 50, position.y - 80, &(current_animation_arrow->GetCurrentFrame()));
 
 
 	return UPDATE_CONTINUE;
