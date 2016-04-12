@@ -27,7 +27,7 @@ public:
 	Animation left;
 	Animation right;
 	Animation bobShot; 
-
+	Animation arrow_left;
 	iPoint position;
 
 
