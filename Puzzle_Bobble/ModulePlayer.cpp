@@ -130,6 +130,10 @@ ModulePlayer::ModulePlayer()
 	idle_right.loop = true;
 	idle_right.speed = 0.1f;
 
+	//Bags
+	bag_complete = { 358, 833, 56, 24 };
+	bag_incomplete = { 424, 834, 40, 23 };
+
 	//Bob Shot
 	bobShot.PushBack({ 254, 19, 17, 17 });
 	bobShot.PushBack({ 288, 18, 22, 18 });
@@ -211,6 +215,8 @@ update_status ModulePlayer::Update()
 
 	
 	// Draw everything --------------------------------------
+	App->render->Blit(graphics, position.x - 175, position.y - 10, &bag_complete);
+	App->render->Blit(graphics, position.x - 175, position.y - 10, &bag_incomplete);
 	App->render->Blit(graphics, position.x, position.y, &(current_animation1->GetCurrentFrame()));
 	App->render->Blit(graphics, position.x-100, position.y, &(current_animation2->GetCurrentFrame()));
 	App->render->Blit(graphics, position.x - 50, position.y - 80, &(current_animation_arrow->GetCurrentFrame()));

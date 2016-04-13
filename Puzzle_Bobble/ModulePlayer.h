@@ -5,6 +5,7 @@
 #include "Animation.h"
 #include "Point.h"
 #include "ModuleAudio.h"
+#include "SDL/include/SDL_rect.h"
 
 struct SDL_Texture;
 
@@ -33,6 +34,8 @@ public:
 	Animation arrow_init;
 	iPoint position;
 	Mix_Chunk* shoot = nullptr;
+	SDL_Rect bag_complete;
+	SDL_Rect bag_incomplete;
 
 
 };
