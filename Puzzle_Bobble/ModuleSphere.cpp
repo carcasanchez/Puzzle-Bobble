@@ -4,6 +4,7 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleSphere.h"
+#include "ModulePlayer.h"
 
 #include "SDL/include/SDL_timer.h"
 
@@ -85,7 +86,6 @@ bool ModuleSphere::Start()
 	redSphere.anim.loop = true;
 	redSphere.anim.speed = 0.3f;
 	redSphere.life = 1000;
-	redSphere.speed.y -= 5;
 
 	orangeSphere.anim.PushBack({ 318, 312, 16, 16 });
 	orangeSphere.anim.PushBack({ 338, 312, 16, 16 });
@@ -125,7 +125,7 @@ bool ModuleSphere::Start()
 	violetSphere.anim.PushBack({ 499, 338, 16, 16 });
 	violetSphere.anim.loop = true;
 	violetSphere.anim.speed = 0.3f;
-	// TODO 2: Create the template for a new particle "laser"
+	
 
 	return true;
 }
@@ -169,7 +169,7 @@ update_status ModuleSphere::Update()
 			if (s->fx_played == false)
 			{
 				s->fx_played = true;
-				// Play particle fx here
+			
 			}
 		}
 	}
@@ -183,6 +183,9 @@ void ModuleSphere::AddSphere(const Sphere& sphere, int x, int y, Uint32 delay)
 	s->born = SDL_GetTicks() + delay;
 	s->position.x = x;
 	s->position.y = y;
+	s->speed.y = App->player->orientationy;
+	s->speed.x = App->player->orientationx;
+
 
 	active[last_sphere++] = s;
 }
@@ -214,8 +217,8 @@ bool Sphere::Update()
 		if (anim.Finished())
 			ret = false;
 
-	position.x += speed.x;
-	position.y += speed.y;
+	position.x += speed.x*2;
+	position.y += speed.y * 2;
 
 	return ret;
 }

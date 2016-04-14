@@ -152,6 +152,9 @@ bool ModulePlayer::Start()
 	graphics = App->textures->Load("Sprites.png");
 	shoot = App->audio->Load_effects("BubbleShot.wav");
 
+	orientationy = -8;
+	orientationx = 0;
+
 	return true;
 }
 
@@ -180,6 +183,17 @@ update_status ModulePlayer::Update()
 			current_animation1 = &left;
 		}
 		
+		/*TODO: adjust speed
+		if (orientationx<0)
+		{ 
+		orientationx -= 0.1;
+		orientationy += 0.1;
+		}
+		else
+		{
+			orientationx += 0.1;
+			orientationy -= 0.1;
+		}*/
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
@@ -192,10 +206,24 @@ update_status ModulePlayer::Update()
 		{
 			current_animation_arrow = &arrow_left;
 		}
+	
+	/*TODO: adjust speed	
+		if (orientationx>=0)
+		{
+			orientationx -= 0.1;
+			orientationy += 0.1;
+		}
+		else
+		{
+			orientationx += 0.1;
+			orientationy -= 0.1;
+		}*/
+
+
 	}
 
 
-	// TODO 3: Shoot balls when the player hits SPACE
+	
 
 	if (App->input->keyboard[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN)
 	{

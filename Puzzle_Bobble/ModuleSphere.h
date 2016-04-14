@@ -15,7 +15,7 @@ struct Sphere
 	Animation anim;
 	uint fx = 0;
 	iPoint position;
-	iPoint speed;
+	fPoint speed;
 	Uint32 born = 0;
 	Uint32 life = 0;
 	bool fx_played = false;
