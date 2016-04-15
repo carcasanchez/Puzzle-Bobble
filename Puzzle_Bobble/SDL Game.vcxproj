@@ -72,6 +72,7 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Application.h" />
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="ModuleCollision.h" />
     <ClInclude Include="ModuleCongrats.h" />
     <ClInclude Include="ModuleLevel_1.h" />
     <ClInclude Include="MemLeaks.h" />
@@ -91,6 +92,7 @@
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Globals.cpp" />
+    <ClCompile Include="ModuleCollision.cpp" />
     <ClCompile Include="ModuleCongrats.cpp" />
     <ClCompile Include="ModuleLevel_2.cpp" />
     <ClCompile Include="ModuleLevel_1.cpp" />

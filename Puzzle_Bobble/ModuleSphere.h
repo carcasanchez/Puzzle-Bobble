@@ -54,6 +54,8 @@ public:
 	Sphere yellowSphere;
 	Sphere violetSphere;
 
+	void OnCollision(Collider* c1, Collider* c2);
+
 
 
 };

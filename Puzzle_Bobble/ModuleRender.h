@@ -18,6 +18,7 @@ public:
 	update_status PreUpdate();
 	bool CleanUp();
 
+	bool DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uint8 a, bool use_camera = true);
 	bool Blit(SDL_Texture* texture, int x, int y, SDL_Rect* section = nullptr);
 
 public:

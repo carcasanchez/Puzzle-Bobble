@@ -9,23 +9,26 @@
 #include "ModuleLevel_2.h"
 #include "ModuleStartScreen.h"
 #include "ModuleCongrats.h"
+#include "ModuleCollision.h"
 #include "ModulePlayer.h"
 #include "ModuleSphere.h"
 
 Application::Application()
 {
-	modules[0] = window = new ModuleWindow();
-	modules[1] = render = new ModuleRender();
-	modules[2] = input = new ModuleInput();
-	modules[3] = textures = new ModuleTextures();
-	modules[4] = audio = new ModuleAudio();
-	modules[5] = menu_screen = new ModuleStartScreen();
-	modules[6] = level_1 = new ModuleLevel_1();
-	modules[7] = level_2 = new ModuleLevel_2();
-	modules[8] = congratulations = new ModuleCongrats();
-	modules[9] = player = new ModulePlayer();
-	modules[10] = spheres = new ModuleSphere();
-	modules[11] = fade = new ModuleFadeToBlack();
+	int i = 0;
+	modules[i++] = window = new ModuleWindow();
+	modules[i++] = render = new ModuleRender();
+	modules[i++] = input = new ModuleInput();
+	modules[i++] = textures = new ModuleTextures();
+	modules[i++] = audio = new ModuleAudio();
+	modules[i++] = menu_screen = new ModuleStartScreen();
+	modules[i++] = level_1 = new ModuleLevel_1();
+	modules[i++] = level_2 = new ModuleLevel_2();
+	modules[i++] = congratulations = new ModuleCongrats();
+	modules[i++] = player = new ModulePlayer();
+	modules[i++] = spheres = new ModuleSphere();
+	modules[i++] = collision = new ModuleCollision();
+	modules[i++] = fade = new ModuleFadeToBlack();
 }	
 
 Application::~Application()

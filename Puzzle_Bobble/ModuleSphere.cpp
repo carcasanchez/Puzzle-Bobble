@@ -3,6 +3,8 @@
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
+#include "ModuleCollision.h"
+
 #include "ModuleSphere.h"
 #include "ModulePlayer.h"
 
@@ -221,4 +223,7 @@ bool Sphere::Update()
 	position.y += speed.y * 2;
 
 	return ret;
+}
+void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
+{
 }
