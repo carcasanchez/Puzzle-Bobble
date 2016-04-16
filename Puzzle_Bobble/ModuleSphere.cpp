@@ -183,8 +183,8 @@ void ModuleSphere::AddSphere(const Sphere& sphere, int x, int y, Uint32 delay)
 {
 	Sphere* s = new Sphere(sphere);
 	s->born = SDL_GetTicks() + delay;
-	s->position.x = x;
-	s->position.y = y;
+	s->position.x = 310;
+	s->position.y = 370;
 	s->speed.y = App->player->orientationy;
 	s->speed.x = App->player->orientationx;
 
@@ -219,7 +219,7 @@ bool Sphere::Update()
 		if (anim.Finished())
 			ret = false;
 
-	position.x += speed.x*2;
+	position.x += speed.x * 2;
 	position.y += speed.y * 2;
 
 	return ret;

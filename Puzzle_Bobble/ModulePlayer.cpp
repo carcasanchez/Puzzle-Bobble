@@ -183,17 +183,21 @@ update_status ModulePlayer::Update()
 			current_animation1 = &left;
 		}
 		
-		/*TODO: adjust speed
-		if (orientationx<0)
-		{ 
-		orientationx -= 0.1;
-		orientationy += 0.1;
-		}
-		else
+		if (orientationx > -6)
 		{
-			orientationx += 0.1;
-			orientationy -= 0.1;
-		}*/
+			if (orientationx <= 0)
+			{
+				orientationx -= 0.1;
+				orientationy += 0.1;
+			}
+			else
+			{
+				orientationx -= 0.1;
+				orientationy -= 0.1;
+			}
+
+		}
+		
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
@@ -207,17 +211,21 @@ update_status ModulePlayer::Update()
 			current_animation_arrow = &arrow_left;
 		}
 	
-	/*TODO: adjust speed	
-		if (orientationx>=0)
+		if (orientationx < 6)
 		{
-			orientationx -= 0.1;
-			orientationy += 0.1;
+			if (orientationx >= 0)
+			{
+				orientationx += 0.1;
+				orientationy += 0.1;
+			}
+			else
+			{
+				orientationx += 0.1;
+				orientationy -= 0.1;
+			}
+
 		}
-		else
-		{
-			orientationx += 0.1;
-			orientationy -= 0.1;
-		}*/
+		
 
 
 	}
