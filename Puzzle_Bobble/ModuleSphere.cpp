@@ -21,7 +21,111 @@ ModuleSphere::~ModuleSphere()
 
 // Load assets
 bool ModuleSphere::Start()
-{
+{//////////////////////////////////////Collision scenari/////////////////////////////////////////////
+	App->collision->AddCollider({ 224, 24, 8, 194 }, COLLIDER_LATERAL_WALL);//Left
+	App->collision->AddCollider({ 88, 24, 8, 194 }, COLLIDER_LATERAL_WALL);//Right
+	App->collision->AddCollider({ 88, 16, 144, 8 }, COLLIDER_WALL);//Top
+
+
+
+
+	////////////////////////////////////Collision sphere//////////////////////////////////////////
+	App->collision->AddCollider({ 96, 24, 16, 16 }, COLLIDER_SPHERE);//1
+	App->collision->AddCollider({ 112, 24, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 128, 24, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 144, 24, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 160, 24, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 176, 24, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 192, 24, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 208, 24, 16, 16 }, COLLIDER_SPHERE);
+	
+	App->collision->AddCollider({ 104, 38, 16, 16 }, COLLIDER_SPHERE);//2
+	App->collision->AddCollider({ 120, 38, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 136, 38, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 152, 38, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 168, 38, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 184, 38, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 200, 38, 16, 16 }, COLLIDER_SPHERE);
+
+	App->collision->AddCollider({ 96, 52, 16, 16 }, COLLIDER_SPHERE);//3
+	App->collision->AddCollider({ 112, 52, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 128, 52, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 144, 52, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 160, 52, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 176, 52, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 192, 52, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 208, 52, 16, 16 }, COLLIDER_SPHERE);
+
+	App->collision->AddCollider({ 104, 66, 16, 16 }, COLLIDER_SPHERE);//4
+	App->collision->AddCollider({ 120, 66, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 136, 66, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 152, 66, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 168, 66, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 184, 66, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 200, 66, 16, 16 }, COLLIDER_SPHERE);
+
+	App->collision->AddCollider({ 96, 80, 16, 16 }, COLLIDER_SPHERE);//5
+	App->collision->AddCollider({ 112, 80, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 128, 80, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 144, 80, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 160, 80, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 176, 80, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 192, 80, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 208, 80, 16, 16 }, COLLIDER_SPHERE);
+
+	App->collision->AddCollider({ 104, 94, 16, 16 }, COLLIDER_SPHERE);//6
+	App->collision->AddCollider({ 120, 94, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 136, 94, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 152, 94, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 168, 94, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 184, 94, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 200, 94, 16, 16 }, COLLIDER_SPHERE);
+
+	App->collision->AddCollider({ 96, 108, 16, 16 }, COLLIDER_SPHERE);//7
+	App->collision->AddCollider({ 112, 108, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 128, 108, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 144, 108, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 160, 108, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 176, 108, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 192, 108, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 208, 108, 16, 16 }, COLLIDER_SPHERE);
+
+	App->collision->AddCollider({ 104, 122, 16, 16 }, COLLIDER_SPHERE);//8
+	App->collision->AddCollider({ 120, 122, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 136, 122, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 152, 122, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 168, 122, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 184, 122, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 200, 122, 16, 16 }, COLLIDER_SPHERE);
+
+	App->collision->AddCollider({ 96, 136, 16, 16 }, COLLIDER_SPHERE);//9
+	App->collision->AddCollider({ 112, 136, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 128, 136, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 144, 136, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 160, 136, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 176, 136, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 192, 136, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 208, 136, 16, 16 }, COLLIDER_SPHERE);
+
+	App->collision->AddCollider({ 104, 150, 16, 16 }, COLLIDER_SPHERE);//10
+	App->collision->AddCollider({ 120, 150, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 136, 150, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 152, 150, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 168, 150, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 184, 150, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 200, 150, 16, 16 }, COLLIDER_SPHERE);
+
+	App->collision->AddCollider({ 96, 164, 16, 16 }, COLLIDER_SPHERE);//1
+	App->collision->AddCollider({ 112, 164, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 128, 164, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 144, 164, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 160, 164, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 176, 164, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 192, 164, 16, 16 }, COLLIDER_SPHERE);
+	App->collision->AddCollider({ 208, 164, 16, 16 }, COLLIDER_SPHERE);
+
+
+	///////////////////////////////////////////////////////////////////////////////////
 	LOG("Loading particles");
 	graphics = App->textures->Load("Sprites.png");
 
