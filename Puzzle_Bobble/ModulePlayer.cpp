@@ -6,6 +6,7 @@
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
 #include "ModuleAudio.h"
+#include "ModuleCollision.h"
 
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 

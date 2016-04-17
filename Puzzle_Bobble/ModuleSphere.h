@@ -5,10 +5,13 @@
 #include "Animation.h"
 #include "Globals.h"
 #include "Point.h"
+#include "ModuleCollision.h"
 
 #define MAX_ACTIVE_SPHERES 100
 
 struct SDL_Texture;
+struct Collider;
+enum COLLIDER_TYPE;
 
 struct Sphere
 {
@@ -19,6 +22,7 @@ struct Sphere
 	Uint32 born = 0;
 	Uint32 life = 0;
 	bool fx_played = false;
+	Collider* collider = nullptr;
 
 	Sphere();
 	Sphere(const Sphere& p);
@@ -35,13 +39,14 @@ public:
 	update_status Update();
 	bool CleanUp();
 
-	void AddSphere(const Sphere& particle, int x, int y, Uint32 delay = 0);
+	void AddSphere(const Sphere& particle, int x, int y, COLLIDER_TYPE col_type= COLLIDER_SPHERE,  Uint32 delay = 0);
 
 private:
 
 	SDL_Texture* graphics = nullptr;
 	Sphere* active[MAX_ACTIVE_SPHERES];
 	uint last_sphere = 0;
+	
 
 public:
 

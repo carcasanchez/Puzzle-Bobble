@@ -21,13 +21,13 @@ ModuleSphere::~ModuleSphere()
 
 // Load assets
 bool ModuleSphere::Start()
-{//////////////////////////////////////Collision scenari/////////////////////////////////////////////
+{//////////////////////////////////////Collision scenary/////////////////////////////////////////////
 	App->collision->AddCollider({ 224, 24, 8, 194 }, COLLIDER_LATERAL_WALL);//Left
 	App->collision->AddCollider({ 88, 24, 8, 194 }, COLLIDER_LATERAL_WALL);//Right
 	App->collision->AddCollider({ 88, 16, 144, 8 }, COLLIDER_WALL);//Top
+	
 
-
-
+	/*
 
 	////////////////////////////////////Collision sphere//////////////////////////////////////////
 	App->collision->AddCollider({ 96, 24, 16, 16 }, COLLIDER_SPHERE);//1
@@ -123,7 +123,7 @@ bool ModuleSphere::Start()
 	App->collision->AddCollider({ 176, 164, 16, 16 }, COLLIDER_SPHERE);
 	App->collision->AddCollider({ 192, 164, 16, 16 }, COLLIDER_SPHERE);
 	App->collision->AddCollider({ 208, 164, 16, 16 }, COLLIDER_SPHERE);
-
+	*/
 
 	///////////////////////////////////////////////////////////////////////////////////
 	LOG("Loading particles");
@@ -283,7 +283,7 @@ update_status ModuleSphere::Update()
 	return UPDATE_CONTINUE;
 }
 
-void ModuleSphere::AddSphere(const Sphere& sphere, int x, int y, Uint32 delay)
+void ModuleSphere::AddSphere(const Sphere& sphere, int x, int y, COLLIDER_TYPE col_type, Uint32 delay)
 {
 	Sphere* s = new Sphere(sphere);
 	s->born = SDL_GetTicks() + delay;
@@ -292,6 +292,8 @@ void ModuleSphere::AddSphere(const Sphere& sphere, int x, int y, Uint32 delay)
 	s->speed.y = App->player->orientationy;
 	s->speed.x = App->player->orientationx;
 
+	s->collider = App->collision->AddCollider(s->anim.GetCurrentFrame(), col_type, this);
+	s->collider->SetPos(310, 370);
 
 	active[last_sphere++] = s;
 }
@@ -326,8 +328,22 @@ bool Sphere::Update()
 	position.x += speed.x * 2;
 	position.y += speed.y * 2;
 
+	collider->SetPos(position.x, position.y);
+
+
 	return ret;
 }
 void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 {
+
+	for (uint i = 0; i < MAX_ACTIVE_SPHERES; ++i)
+	{
+		if (active[i] != nullptr && active[i]->collider == c1)
+		{
+
+			active[i]->speed.x = active[i]->speed.y= 0;
+
+		}
+	}
+
 }
