@@ -328,7 +328,7 @@ bool Sphere::Update()
 	position.x += speed.x * 2;
 	position.y += speed.y * 2;
 
-	collider->SetPos(position.x, position.y);
+	collider->SetPos(position.x/2, position.y/2);
 
 
 	return ret;
