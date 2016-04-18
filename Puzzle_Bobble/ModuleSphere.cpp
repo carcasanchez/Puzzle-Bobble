@@ -341,7 +341,8 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 		if (active[i] != nullptr && active[i]->collider == c1)
 		{
 
-			active[i]->speed.x = active[i]->speed.y= 0;
+			active[i]->speed.x *= -1;
+			active[i]->speed.y *= -1;
 
 		}
 	}

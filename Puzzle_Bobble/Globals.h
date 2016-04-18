@@ -1,6 +1,8 @@
 #ifndef __GLOBALS_H__
 #define __GLOBALS_H__
 #include "SDL\include\SDL_rect.h"
+#include <math.h>
+#include "Point.h"
 
 #define LOG(format, ...) log(__FILE__, __LINE__, format, __VA_ARGS__);
 void log(const char file[], int line, const char* format, ...);
@@ -15,6 +17,37 @@ enum update_status
 	UPDATE_STOP,
 	UPDATE_ERROR
 };
+
+class Circle
+{
+public:
+
+	iPoint origin;
+	iPoint center;
+	int radius;
+
+	Circle();
+	Circle(int or_x, int or_y, int center_x, int center_y)
+	{
+		origin.x = or_x;
+		origin.y = or_y;
+		center.x = center_x;
+		center.y = center_y;
+	}
+	~Circle();
+
+	float GetDistance(iPoint other) const
+	{
+		float x = center.x - other.x;
+		float y = center.y - other.x;
+
+		return sqrt(pow(x, 2) + pow(y, 2));
+	}
+
+
+
+};
+
 
 
 typedef unsigned int uint;

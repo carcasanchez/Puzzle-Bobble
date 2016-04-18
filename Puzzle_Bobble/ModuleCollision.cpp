@@ -137,7 +137,23 @@ Collider* ModuleCollision::AddCollider(SDL_Rect rect, COLLIDER_TYPE type, Module
 	{
 		if (colliders[i] == nullptr)
 		{
-			ret = colliders[i] = new Collider(rect, type, callback);
+			ret = colliders[i] = new ColliderRect(rect, type, callback);
+			break;
+		}
+	}
+
+	return ret;
+}
+
+Collider* ModuleCollision::AddCollider(Circle circ, COLLIDER_TYPE type, Module* callback)
+{
+	Collider* ret = nullptr;
+
+	for (uint i = 0; i < MAX_COLLIDERS; ++i)
+	{
+		if (colliders[i] == nullptr)
+		{
+			ret = colliders[i] = new ColliderCirc(circ, type, callback);
 			break;
 		}
 	}
@@ -162,10 +178,15 @@ bool ModuleCollision::EraseCollider(Collider* collider)
 
 // -----------------------------------------------------
 
-bool Collider::CheckCollision(const SDL_Rect& r) const
+bool ColliderRect::CheckCollision(const SDL_Rect& r) const
 {
 	return (rect.x < r.x + r.w &&
 		rect.x + rect.w > r.x &&
 		rect.y < r.y + r.h &&
 		rect.h + rect.y > r.y);
+}
+
+bool ColliderCirc::CheckCollision(const Circle& c) const
+{
+	return (circ.GetDistance(c.center));
 }
