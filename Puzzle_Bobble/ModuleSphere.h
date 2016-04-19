@@ -10,7 +10,7 @@
 #define MAX_ACTIVE_SPHERES 100
 
 struct SDL_Texture;
-struct Collider;
+struct ColliderRect;
 enum COLLIDER_TYPE;
 
 struct Sphere
@@ -59,7 +59,7 @@ public:
 	Sphere yellowSphere;
 	Sphere violetSphere;
 
-	void OnCollision(Collider* c1, Collider* c2);
+	void OnCollision(ColliderRect* c1, ColliderRect* c2);
 
 
 

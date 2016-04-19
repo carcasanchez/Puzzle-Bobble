@@ -5,9 +5,6 @@
 
 #include "Module.h"
 
-struct SDL_Rect;
-class Circle;
-
 enum COLLIDER_TYPE
 {
 	COLLIDER_NONE = -1,
@@ -20,35 +17,27 @@ enum COLLIDER_TYPE
 struct Collider
 {
 	SDL_Rect rect;
-
-
-	bool to_delete = false;
-	/*COLLIDER_TYPE type;
-	Module* callback = nullptr;*/
-		
-
-	virtual void SetPos(int x, int y);
-	virtual bool CheckCollision() const;
 	
+	bool to_delete = false;
+	COLLIDER_TYPE type;
+	Module* callback = nullptr;
+
+	Collider(COLLIDER_TYPE type, Module* callback = nullptr) :
+		type(type),
+		callback(callback)
+	{}
+
+	
+	virtual bool CheckCollision() const;
 	virtual void SetPos();
 };
 
 
-
 struct ColliderRect : public Collider
 {
-public:
-
 	
 
-	
-	COLLIDER_TYPE type;
-	Module* callback = nullptr;
-
-	ColliderRect(SDL_Rect rectangle, COLLIDER_TYPE type, Module* callback = nullptr) :
-		rect(rectangle),
-		type(type),
-		callback(callback)
+	ColliderRect(SDL_Rect rectangle, COLLIDER_TYPE type, Module* callback = nullptr) : Collider(type, callback)
 	{}
 
 	void SetPos(int x, int y)
@@ -56,28 +45,16 @@ public:
 		rect.x = x;
 		rect.y = y;
 	}
-
-	
-
 	bool CheckCollision(const SDL_Rect& r) const;
+
 
 };
 
-struct ColliderCirc : public Collider
+struct ColliderCircle : public Collider
 {
-
-public:
-
 	Circle circ;
-
-
-	COLLIDER_TYPE type;
-	Module* callback = nullptr;
-
-	ColliderCirc(Circle circle, COLLIDER_TYPE type, Module* callback = nullptr) :
-		circ(circle),
-		type(type),
-		callback(callback)
+	
+	ColliderCircle(Circle circle, COLLIDER_TYPE type, Module* callback = nullptr) : Collider(type, callback)
 	{}
 
 	void SetPos(int x, int y)
@@ -86,12 +63,9 @@ public:
 		circ.center.y = y;
 	}
 
-
-
 	bool CheckCollision(const Circle& c) const;
 
 };
-
 
 class ModuleCollision : public Module
 {
@@ -103,23 +77,18 @@ public:
 	update_status PreUpdate();
 	update_status Update();
 	//update_status PostUpdate();
-	 bool CleanUp();
+	bool CleanUp();
 
-	
-	bool EraseCollider(Collider* collider);
+	Collider* AddCollider(SDL_Rect rect, COLLIDER_TYPE type, Module* callback = nullptr);
+	Collider* AddCollider(Circle circ, COLLIDER_TYPE type, Module*callback = nullptr);
+	bool EraseCollider(ColliderRect* collider);
 	void DebugDraw();
-
-	Collider* AddCollider(SDL_Rect rect, COLLIDER_TYPE type, Module* callback);
-	Collider* AddCollider(Circle circ, COLLIDER_TYPE type, Module* callback);
 
 private:
 
 	Collider* colliders[MAX_COLLIDERS];
 	bool matrix[COLLIDER_MAX][COLLIDER_MAX];
 	bool debug = true;
-
-
-
 };
 
 #endif // __ModuleCollision_H__

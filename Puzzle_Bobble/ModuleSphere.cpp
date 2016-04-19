@@ -333,7 +333,7 @@ bool Sphere::Update()
 
 	return ret;
 }
-void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
+void ModuleSphere::OnCollision(ColliderRect* c1, ColliderRect* c2)
 {
 
 	for (uint i = 0; i < MAX_ACTIVE_SPHERES; ++i)

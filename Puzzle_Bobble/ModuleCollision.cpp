@@ -15,11 +15,11 @@ ModuleCollision::ModuleCollision()
 	matrix[COLLIDER_SPHERE][COLLIDER_WALL] = true;
 	matrix[COLLIDER_SPHERE][COLLIDER_SPHERE] = true;
 	matrix[COLLIDER_SPHERE][COLLIDER_LATERAL_WALL] = true;
-	
+
 	matrix[COLLIDER_LATERAL_WALL][COLLIDER_WALL] = true;
 	matrix[COLLIDER_LATERAL_WALL][COLLIDER_SPHERE] = true;
 	matrix[COLLIDER_LATERAL_WALL][COLLIDER_LATERAL_WALL] = false;
-	
+
 }
 
 // Destructor
@@ -153,7 +153,7 @@ Collider* ModuleCollision::AddCollider(Circle circ, COLLIDER_TYPE type, Module* 
 	{
 		if (colliders[i] == nullptr)
 		{
-			ret = colliders[i] = new ColliderCirc(circ, type, callback);
+			ret = colliders[i] = new ColliderCircle(circ, type, callback);
 			break;
 		}
 	}
@@ -161,7 +161,8 @@ Collider* ModuleCollision::AddCollider(Circle circ, COLLIDER_TYPE type, Module* 
 	return ret;
 }
 
-bool ModuleCollision::EraseCollider(Collider* collider)
+
+bool ModuleCollision::EraseCollider(ColliderRect* collider)
 {
 	for (uint i = 0; i < MAX_COLLIDERS; ++i)
 	{
@@ -186,7 +187,7 @@ bool ColliderRect::CheckCollision(const SDL_Rect& r) const
 		rect.h + rect.y > r.y);
 }
 
-bool ColliderCirc::CheckCollision(const Circle& c) const
+bool ColliderCircle::CheckCollision(const Circle& c) const
 {
-	return (circ.GetDistance(c.center));
+	return (circ.GetDistance(c.center)< circ.radius+c.radius);
 }
