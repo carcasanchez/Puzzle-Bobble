@@ -24,6 +24,7 @@ struct Sphere
 	fPoint speed;
 	Uint32 born = 0;
 	bool life = true;
+	
 	bool fx_played = false;
 	Collider* collider = nullptr;
 	Color sphere_color;
@@ -35,6 +36,9 @@ struct Sphere
 class ModuleSphere : public Module
 {
 public:
+
+	bool next_sphere = true;
+
 	ModuleSphere();
 	~ModuleSphere();
 
@@ -55,7 +59,7 @@ public:
 
 	Sphere spheres[NUMBERS_OF_SPHERES];
 
-	void OnCollision(ColliderRect* c1, ColliderRect* c2);
+	void OnCollision(Collider* c1, Collider* c2);
 
 
 

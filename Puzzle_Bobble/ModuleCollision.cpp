@@ -195,5 +195,9 @@ bool ColliderCircle::CheckCollision(const Collider* c) const
 	if (c->type==COLLIDER_SPHERE)
 		return (circ.GetDistance(c->circ.center) < circ.radius + c->circ.radius);
 
-
+	else return (rect.x < c->rect.x + c->rect.w &&
+		rect.x + rect.w > c->rect.x &&
+		rect.y < c->rect.y + c->rect.h &&
+		rect.h + rect.y > c->rect.y);
+	
 }

@@ -107,6 +107,7 @@ bool ModulePlayer::Start()
 bool ModulePlayer::CleanUp()
 {
 	LOG("Unloading player");
+
 	angle = 0;
 	App->textures->Unload(graphics);
 	
@@ -182,7 +183,7 @@ update_status ModulePlayer::Update()
 
 
 
-	if (App->input->keyboard[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN)
+	if (App->input->keyboard[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN && App->spheres->next_sphere==true)
 	{
 		int Random = rand() % 8;
 		App->spheres->AddSphere(App->spheres->spheres[Random], position.x, position.y);
@@ -193,6 +194,7 @@ update_status ModulePlayer::Update()
 			current_animation2 = &bobShot;
 		}
 		Mix_PlayChannel(-1, shoot, 0);
+		App->spheres->next_sphere = false;
 	}
 
 

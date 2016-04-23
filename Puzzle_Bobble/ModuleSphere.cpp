@@ -322,7 +322,7 @@ Sphere::Sphere()
 
 Sphere::Sphere(const Sphere& s) :
 anim(s.anim), position(s.position), speed(s.speed),
-fx(s.fx), born(s.born), life(s.life)
+fx(s.fx), born(s.born)
 {}
 
 bool Sphere::Update()
@@ -346,7 +346,7 @@ bool Sphere::Update()
 
 	return ret;
 }
-void ModuleSphere::OnCollision(ColliderRect* c1, ColliderRect* c2)
+void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 {
 
 	for (uint i = 0; i < MAX_ACTIVE_SPHERES; ++i)
@@ -354,8 +354,18 @@ void ModuleSphere::OnCollision(ColliderRect* c1, ColliderRect* c2)
 		if (active[i] != nullptr && active[i]->collider == c1)
 		{
 
-			active[i]->speed.x *= -1;
-			active[i]->speed.y *= -1;
+
+			
+			if (c2->type == COLLIDER_LATERAL_WALL)
+				active[i]->speed.x *= -1;
+
+			else if ((c2->type == COLLIDER_WALL || c2->type == COLLIDER_SPHERE) && active[i]->speed.x != 0)
+			{
+				active[i]->speed.x = 0;
+				active[i]->speed.y = 0;
+				next_sphere = true;
+			}
+					
 
 		}
 	}
