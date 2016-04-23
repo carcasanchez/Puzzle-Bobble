@@ -26,7 +26,7 @@ public:
 	iPoint center;
 	int radius;
 
-	Circle();
+	Circle(){};
 	Circle(int or_x, int or_y, int center_x, int center_y, int radius)
 	{
 		origin.x = or_x;
@@ -35,7 +35,8 @@ public:
 		center.y = center_y;
 		this->radius = radius;
 	}
-	~Circle();
+
+	~Circle(){};
 
 	float GetDistance(iPoint other) const
 	{
