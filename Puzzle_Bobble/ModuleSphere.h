@@ -32,6 +32,9 @@ struct Sphere
 class ModuleSphere : public Module
 {
 public:
+
+	bool next_sphere = true;
+
 	ModuleSphere();
 	~ModuleSphere();
 

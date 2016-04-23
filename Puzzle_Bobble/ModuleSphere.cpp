@@ -339,11 +339,11 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 			if (c2->type == COLLIDER_LATERAL_WALL)
 				active[i]->speed.x *= -1;
 
-			else if (c2->type == COLLIDER_WALL || c2->type == COLLIDER_SPHERE)
-
+			else if ((c2->type == COLLIDER_WALL || c2->type == COLLIDER_SPHERE) && active[i]->speed.x != 0)
 			{
 				active[i]->speed.x = 0;
 				active[i]->speed.y = 0;
+				next_sphere = true;
 			}
 					
 
