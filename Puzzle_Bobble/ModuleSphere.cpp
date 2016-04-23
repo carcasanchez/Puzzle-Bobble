@@ -129,110 +129,122 @@ bool ModuleSphere::Start()
 	///////////////////////////////////////////////////////////////////////////////////
 	LOG("Loading particles");
 	graphics = App->textures->Load("Sprites.png");
+	//blueSphere
+	spheres[0].anim.PushBack({ 12, 260, 16, 16 });
+	spheres[0].anim.PushBack({ 32, 260, 16, 16 });
+	spheres[0].anim.PushBack({ 52, 260, 16, 16 });
+	spheres[0].anim.PushBack({ 72, 260, 16, 16 });
+	spheres[0].anim.PushBack({ 92, 260, 16, 16 });
+	spheres[0].anim.PushBack({ 113, 260, 16, 16 });
+	spheres[0].anim.PushBack({ 133, 260, 16, 16 });
+	spheres[0].anim.PushBack({ 153, 260, 16, 16 });
+	spheres[0].anim.PushBack({ 173, 260, 16, 16 });
+	spheres[0].anim.PushBack({ 193, 260, 16, 16 });
+	spheres[0].anim.loop = true;
+	spheres[0].anim.speed = 0.3f;
+	spheres[0].sphere_color = BLUE;
 
-	blueSphere.anim.PushBack({ 12, 260, 16, 16 });
-	blueSphere.anim.PushBack({ 32, 260, 16, 16 });
-	blueSphere.anim.PushBack({ 52, 260, 16, 16 });
-	blueSphere.anim.PushBack({ 72, 260, 16, 16 });
-	blueSphere.anim.PushBack({ 92, 260, 16, 16 });
-	blueSphere.anim.PushBack({ 113, 260, 16, 16 });
-	blueSphere.anim.PushBack({ 133, 260, 16, 16 });
-	blueSphere.anim.PushBack({ 153, 260, 16, 16 });
-	blueSphere.anim.PushBack({ 173, 260, 16, 16 });
-	blueSphere.anim.PushBack({ 193, 260, 16, 16 });
-	blueSphere.anim.loop = true;
-	blueSphere.anim.speed = 0.3f;
+	spheres[1].anim.PushBack({ 318, 260, 16, 16 });
+	spheres[1].anim.PushBack({ 338, 260, 16, 16 });
+	spheres[1].anim.PushBack({ 358, 260, 16, 16 });
+	spheres[1].anim.PushBack({ 378, 260, 16, 16 });
+	spheres[1].anim.PushBack({ 398, 260, 16, 16 });
+	spheres[1].anim.PushBack({ 419, 260, 16, 16 });
+	spheres[1].anim.PushBack({ 439, 260, 16, 16 });
+	spheres[1].anim.PushBack({ 459, 260, 16, 16 });
+	spheres[1].anim.PushBack({ 479, 260, 16, 16 });
+	spheres[1].anim.PushBack({ 499, 260, 16, 16 });
+	spheres[1].anim.loop = true;
+	spheres[1].anim.speed = 0.3f;
+	spheres[1].sphere_color = GREEN;
 
-	greenSphere.anim.PushBack({ 318, 260, 16, 16 });
-	greenSphere.anim.PushBack({ 338, 260, 16, 16 });
-	greenSphere.anim.PushBack({ 358, 260, 16, 16 });
-	greenSphere.anim.PushBack({ 378, 260, 16, 16 });
-	greenSphere.anim.PushBack({ 398, 260, 16, 16 });
-	greenSphere.anim.PushBack({ 419, 260, 16, 16 });
-	greenSphere.anim.PushBack({ 439, 260, 16, 16 });
-	greenSphere.anim.PushBack({ 459, 260, 16, 16 });
-	greenSphere.anim.PushBack({ 479, 260, 16, 16 });
-	greenSphere.anim.PushBack({ 499, 260, 16, 16 });
-	blueSphere.anim.loop = true;
-	blueSphere.anim.speed = 0.3f;
 
-	graySphere.anim.PushBack({ 12, 286, 16, 16 });
-	graySphere.anim.PushBack({ 32, 286, 16, 16 });
-	graySphere.anim.PushBack({ 52, 286, 16, 16 });
-	graySphere.anim.PushBack({ 72, 286, 16, 16 });
-	graySphere.anim.PushBack({ 92, 286, 16, 16 });
-	graySphere.anim.PushBack({ 113, 286, 16, 16 });
-	graySphere.anim.PushBack({ 133, 286, 16, 16 });
-	graySphere.anim.PushBack({ 153, 286, 16, 16 });
-	graySphere.anim.PushBack({ 173, 286, 16, 16 });
-	graySphere.anim.PushBack({ 193, 286, 16, 16 });
-	graySphere.anim.loop = true;
-	graySphere.anim.speed = 0.3f;
+	spheres[2].anim.PushBack({ 12, 286, 16, 16 });
+	spheres[2].anim.PushBack({ 32, 286, 16, 16 });
+	spheres[2].anim.PushBack({ 52, 286, 16, 16 });
+	spheres[2].anim.PushBack({ 72, 286, 16, 16 });
+	spheres[2].anim.PushBack({ 92, 286, 16, 16 });
+	spheres[2].anim.PushBack({ 113, 286, 16, 16 });
+	spheres[2].anim.PushBack({ 133, 286, 16, 16 });
+	spheres[2].anim.PushBack({ 153, 286, 16, 16 });
+	spheres[2].anim.PushBack({ 173, 286, 16, 16 });
+	spheres[2].anim.PushBack({ 193, 286, 16, 16 });
+	spheres[2].anim.loop = true;
+	spheres[2].anim.speed = 0.3f;
+	spheres[2].sphere_color = GRAY;
 
-	blackSphere.anim.PushBack({ 318, 286, 16, 16 });
-	blackSphere.anim.PushBack({ 338, 286, 16, 16 });
-	blackSphere.anim.PushBack({ 358, 286, 16, 16 });
-	blackSphere.anim.PushBack({ 378, 286, 16, 16 });
-	blackSphere.anim.PushBack({ 398, 286, 16, 16 });
-	blackSphere.anim.PushBack({ 419, 286, 16, 16 });
-	blackSphere.anim.PushBack({ 439, 286, 16, 16 });
-	blackSphere.anim.PushBack({ 459, 286, 16, 16 });
-	blackSphere.anim.PushBack({ 479, 286, 16, 16 });
-	blackSphere.anim.PushBack({ 499, 286, 16, 16 });
-	blackSphere.anim.loop = true;
-	blackSphere.anim.speed = 0.3f;
 
-	redSphere.anim.PushBack({ 12, 312, 16, 16 });
-	redSphere.anim.PushBack({ 32, 312, 16, 16 });
-	redSphere.anim.PushBack({ 92, 312, 16, 16 });
-	redSphere.anim.PushBack({ 113, 312, 16, 16 });
-	redSphere.anim.PushBack({ 133, 312, 16, 16 });
-	redSphere.anim.PushBack({ 153, 312, 16, 16 });
-	redSphere.anim.PushBack({ 173, 312, 16, 16 });
-	redSphere.anim.PushBack({ 193, 312, 16, 16 });
-	redSphere.anim.loop = true;
-	redSphere.anim.speed = 0.3f;
-	redSphere.life = 1000;
+	spheres[3].anim.PushBack({ 318, 286, 16, 16 });
+	spheres[3].anim.PushBack({ 338, 286, 16, 16 });
+	spheres[3].anim.PushBack({ 358, 286, 16, 16 });
+	spheres[3].anim.PushBack({ 378, 286, 16, 16 });
+	spheres[3].anim.PushBack({ 398, 286, 16, 16 });
+	spheres[3].anim.PushBack({ 419, 286, 16, 16 });
+	spheres[3].anim.PushBack({ 439, 286, 16, 16 });
+	spheres[3].anim.PushBack({ 459, 286, 16, 16 });
+	spheres[3].anim.PushBack({ 479, 286, 16, 16 });
+	spheres[3].anim.PushBack({ 499, 286, 16, 16 });
+	spheres[3].anim.loop = true;
+	spheres[3].anim.speed = 0.3f;
+	spheres[3].sphere_color = BLACK;
 
-	orangeSphere.anim.PushBack({ 318, 312, 16, 16 });
-	orangeSphere.anim.PushBack({ 338, 312, 16, 16 });
-	orangeSphere.anim.PushBack({ 358, 312, 16, 16 });
-	orangeSphere.anim.PushBack({ 378, 312, 16, 16 });
-	orangeSphere.anim.PushBack({ 398, 312, 16, 16 });
-	orangeSphere.anim.PushBack({ 419, 312, 16, 16 });
-	orangeSphere.anim.PushBack({ 439, 312, 16, 16 });
-	orangeSphere.anim.PushBack({ 459, 312, 16, 16 });
-	orangeSphere.anim.PushBack({ 479, 312, 16, 16 });
-	orangeSphere.anim.PushBack({ 499, 312, 16, 16 });
-	orangeSphere.anim.loop = true;
-	orangeSphere.anim.speed = 0.3f;
 
-	yellowSphere.anim.PushBack({ 12, 338, 16, 16 });
-	yellowSphere.anim.PushBack({ 32, 338, 16, 16 });
-	yellowSphere.anim.PushBack({ 52, 338, 16, 16 });
-	yellowSphere.anim.PushBack({ 72, 338, 16, 16 });
-	yellowSphere.anim.PushBack({ 92, 338, 16, 16 });
-	yellowSphere.anim.PushBack({ 113, 338, 16, 16 });
-	yellowSphere.anim.PushBack({ 133, 338, 16, 16 });
-	yellowSphere.anim.PushBack({ 153, 338, 16, 16 });
-	yellowSphere.anim.PushBack({ 173, 338, 16, 16 });
-	yellowSphere.anim.PushBack({ 193, 338, 16, 16 });
-	yellowSphere.anim.loop = true;
-	yellowSphere.anim.speed = 0.3f;
+	spheres[4].anim.PushBack({ 12, 312, 16, 16 });
+	spheres[4].anim.PushBack({ 32, 312, 16, 16 });
+	spheres[4].anim.PushBack({ 92, 312, 16, 16 });
+	spheres[4].anim.PushBack({ 113, 312, 16, 16 });
+	spheres[4].anim.PushBack({ 133, 312, 16, 16 });
+	spheres[4].anim.PushBack({ 153, 312, 16, 16 });
+	spheres[4].anim.PushBack({ 173, 312, 16, 16 });
+	spheres[4].anim.PushBack({ 193, 312, 16, 16 });
+	spheres[4].anim.loop = true;
+	spheres[4].anim.speed = 0.3f;
+	spheres[4].sphere_color = RED;
 
-	violetSphere.anim.PushBack({ 318, 338, 16, 16 });
-	violetSphere.anim.PushBack({ 338, 338, 16, 16 });
-	violetSphere.anim.PushBack({ 358, 338, 16, 16 });
-	violetSphere.anim.PushBack({ 378, 338, 16, 16 });
-	violetSphere.anim.PushBack({ 398, 338, 16, 16 });
-	violetSphere.anim.PushBack({ 419, 338, 16, 16 });
-	violetSphere.anim.PushBack({ 439, 338, 16, 16 });
-	violetSphere.anim.PushBack({ 459, 338, 16, 16 });
-	violetSphere.anim.PushBack({ 479, 338, 16, 16 });
-	violetSphere.anim.PushBack({ 499, 338, 16, 16 });
-	violetSphere.anim.loop = true;
-	violetSphere.anim.speed = 0.3f;
-	
+
+	spheres[5].anim.PushBack({ 318, 312, 16, 16 });
+	spheres[5].anim.PushBack({ 338, 312, 16, 16 });
+	spheres[5].anim.PushBack({ 358, 312, 16, 16 });
+	spheres[5].anim.PushBack({ 378, 312, 16, 16 });
+	spheres[5].anim.PushBack({ 398, 312, 16, 16 });
+	spheres[5].anim.PushBack({ 419, 312, 16, 16 });
+	spheres[5].anim.PushBack({ 439, 312, 16, 16 });
+	spheres[5].anim.PushBack({ 459, 312, 16, 16 });
+	spheres[5].anim.PushBack({ 479, 312, 16, 16 });
+	spheres[5].anim.PushBack({ 499, 312, 16, 16 });
+	spheres[5].anim.loop = true;
+	spheres[5].anim.speed = 0.3f;
+	spheres[5].sphere_color = ORANGE;
+
+
+	spheres[6].anim.PushBack({ 12, 338, 16, 16 });
+	spheres[6].anim.PushBack({ 32, 338, 16, 16 });
+	spheres[6].anim.PushBack({ 52, 338, 16, 16 });
+	spheres[6].anim.PushBack({ 72, 338, 16, 16 });
+	spheres[6].anim.PushBack({ 92, 338, 16, 16 });
+	spheres[6].anim.PushBack({ 113, 338, 16, 16 });
+	spheres[6].anim.PushBack({ 133, 338, 16, 16 });
+	spheres[6].anim.PushBack({ 153, 338, 16, 16 });
+	spheres[6].anim.PushBack({ 173, 338, 16, 16 });
+	spheres[6].anim.PushBack({ 193, 338, 16, 16 });
+	spheres[6].anim.loop = true;
+	spheres[6].anim.speed = 0.3f;
+	spheres[6].sphere_color = YELLOW;
+
+	spheres[7].anim.PushBack({ 318, 338, 16, 16 });
+	spheres[7].anim.PushBack({ 338, 338, 16, 16 });
+	spheres[7].anim.PushBack({ 358, 338, 16, 16 });
+	spheres[7].anim.PushBack({ 378, 338, 16, 16 });
+	spheres[7].anim.PushBack({ 398, 338, 16, 16 });
+	spheres[7].anim.PushBack({ 419, 338, 16, 16 });
+	spheres[7].anim.PushBack({ 439, 338, 16, 16 });
+	spheres[7].anim.PushBack({ 459, 338, 16, 16 });
+	spheres[7].anim.PushBack({ 479, 338, 16, 16 });
+	spheres[7].anim.PushBack({ 499, 338, 16, 16 });
+	spheres[7].anim.loop = true;
+	spheres[7].anim.speed = 0.3f;
+	spheres[7].sphere_color = VIOLET;
+
 
 	return true;
 }
@@ -317,7 +329,7 @@ bool Sphere::Update()
 {
 	bool ret = true;
 
-	if (life > 0)
+	if (life == false)
 	{
 		if ((SDL_GetTicks() - born) > life)
 			ret = false;
