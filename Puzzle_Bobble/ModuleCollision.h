@@ -29,7 +29,7 @@ struct Collider
 
 	
 	virtual bool CheckCollision() const;
-	virtual void SetPos();
+	virtual void SetPos(int x, int y)=0;
 };
 
 
