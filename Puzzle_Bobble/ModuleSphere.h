@@ -20,7 +20,7 @@ struct Sphere
 	iPoint position;
 	fPoint speed;
 	Uint32 born = 0;
-	Uint32 life = 0;
+	
 	bool fx_played = false;
 	Collider* collider = nullptr;
 
@@ -59,7 +59,7 @@ public:
 	Sphere yellowSphere;
 	Sphere violetSphere;
 
-	void OnCollision(ColliderRect* c1, ColliderRect* c2);
+	void OnCollision(Collider* c1, Collider* c2);
 
 
 

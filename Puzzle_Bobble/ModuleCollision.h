@@ -66,6 +66,7 @@ struct ColliderCircle : public Collider
 	{
 		circ = circle;
 		rect.h = rect.w = circle.radius*2;
+
 	}
 
 	void SetPos(int x, int y)

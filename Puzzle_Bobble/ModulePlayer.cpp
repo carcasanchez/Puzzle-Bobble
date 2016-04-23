@@ -106,6 +106,7 @@ bool ModulePlayer::CleanUp()
 {
 	LOG("Unloading player");
 
+	angle = 0;
 	App->textures->Unload(graphics);
 
 	return true;
