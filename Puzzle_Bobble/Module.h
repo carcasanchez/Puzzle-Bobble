@@ -2,7 +2,7 @@
 #define __MODULE_H__
 #include "Globals.h"
 struct Collider;
-struct ColliderRect;
+
 
 class Module
 {

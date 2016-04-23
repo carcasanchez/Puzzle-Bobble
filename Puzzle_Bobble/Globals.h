@@ -27,12 +27,13 @@ public:
 	int radius;
 
 	Circle();
-	Circle(int or_x, int or_y, int center_x, int center_y)
+	Circle(int or_x, int or_y, int center_x, int center_y, int radius)
 	{
 		origin.x = or_x;
 		origin.y = or_y;
 		center.x = center_x;
 		center.y = center_y;
+		this->radius = radius;
 	}
 	~Circle();
 

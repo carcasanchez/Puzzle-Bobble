@@ -14,10 +14,14 @@ enum COLLIDER_TYPE
 	COLLIDER_MAX
 };
 
+
+
+
 struct Collider
 {
 	SDL_Rect rect;
-	
+	Circle circ;
+
 	bool to_delete = false;
 	COLLIDER_TYPE type;
 	Module* callback = nullptr;
@@ -28,8 +32,8 @@ struct Collider
 	{}
 
 	
-	virtual bool CheckCollision() const;
-	virtual void SetPos();
+	virtual bool CheckCollision(const Collider* c) const = 0;
+	virtual void SetPos(int x, int y) = 0;
 };
 
 
@@ -38,24 +42,29 @@ struct ColliderRect : public Collider
 	
 
 	ColliderRect(SDL_Rect rectangle, COLLIDER_TYPE type, Module* callback = nullptr) : Collider(type, callback)
-	{}
+	{
+		rect = rectangle;
+	}
 
 	void SetPos(int x, int y)
 	{
 		rect.x = x;
 		rect.y = y;
 	}
-	bool CheckCollision(const SDL_Rect& r) const;
+	bool CheckCollision(const Collider* c) const;
 
 
 };
 
 struct ColliderCircle : public Collider
 {
-	Circle circ;
+	
 	
 	ColliderCircle(Circle circle, COLLIDER_TYPE type, Module* callback = nullptr) : Collider(type, callback)
-	{}
+	{
+		circ = circle;
+		rect.h = rect.w = circle.radius*2;
+	}
 
 	void SetPos(int x, int y)
 	{
@@ -63,7 +72,7 @@ struct ColliderCircle : public Collider
 		circ.center.y = y;
 	}
 
-	bool CheckCollision(const Circle& c) const;
+	bool CheckCollision(const Collider* c) const;
 
 };
 

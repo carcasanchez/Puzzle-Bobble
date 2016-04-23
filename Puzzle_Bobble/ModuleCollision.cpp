@@ -64,7 +64,7 @@ update_status ModuleCollision::Update()
 
 			c2 = colliders[k];
 
-			if (c1->CheckCollision(c2->rect) == true)
+			if (c1->CheckCollision(c2) == true)
 			{
 				if (matrix[c1->type][c2->type] && c1->callback)
 					c1->callback->OnCollision(c1, c2);
@@ -179,15 +179,21 @@ bool ModuleCollision::EraseCollider(ColliderRect* collider)
 
 // -----------------------------------------------------
 
-bool ColliderRect::CheckCollision(const SDL_Rect& r) const
+bool ColliderRect::CheckCollision(const Collider* c) const
 {
-	return (rect.x < r.x + r.w &&
-		rect.x + rect.w > r.x &&
-		rect.y < r.y + r.h &&
-		rect.h + rect.y > r.y);
+	
+	return (rect.x < c->rect.x + c->rect.w &&
+		rect.x + rect.w > c->rect.x &&
+		rect.y < c->rect.y + c->rect.h &&
+		rect.h + rect.y > c->rect.y);
+			
 }
 
-bool ColliderCircle::CheckCollision(const Circle& c) const
+bool ColliderCircle::CheckCollision(const Collider* c) const
 {
-	return (circ.GetDistance(c.center)< circ.radius+c.radius);
+
+	if (c->type==COLLIDER_SPHERE)
+		return (circ.GetDistance(c->circ.center) < circ.radius + c->circ.radius);
+
+
 }
