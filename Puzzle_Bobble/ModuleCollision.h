@@ -32,8 +32,10 @@ struct Collider
 	{}
 
 	
+
 	virtual bool CheckCollision(const Collider* c) const = 0;
 	virtual void SetPos(int x, int y) = 0;
+
 };
 
 
