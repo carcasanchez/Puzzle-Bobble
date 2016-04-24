@@ -16,7 +16,7 @@ public:
 	~ModuleBoard();
 
 	bool Start();
-	void CheckPosition( Sphere& actual_sphere);
+	void CheckPosition(Sphere* actual_sphere);
 	bool CleanUp();
 
 public:

@@ -4,6 +4,7 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleCollision.h"
+#include "ModuleBoard.h"
 
 #include "ModuleSphere.h"
 #include "ModulePlayer.h"
@@ -258,7 +259,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 			{
 				active[i]->speed.x = 0;
 				active[i]->speed.y = 0;
-
+				App->board->CheckPosition(active[last_sphere-1]);
 				next_sphere = true;
 			}
 					

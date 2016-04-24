@@ -48,12 +48,25 @@ bool ModuleBoard::CleanUp()
 	return true;
 }
 
-void CheckPosition(const Sphere& actual_sphere)
+void ModuleBoard::CheckPosition(Sphere* actual_sphere)
 {
 	int i = 0;
-	for (i = 0; NUMBER_OF_SPHERES; i++)
-	{
-		
-	}
+	int min_distance;
+	int square_index;
+	
+	min_distance = board[0].DistanceTo(actual_sphere->position);
 
+	for (i = 0;i< NUM_SQUARES; i++)
+	{
+		if (board[i].Empty == true)
+		{
+			if (board[i].DistanceTo(actual_sphere->position) < min_distance)
+			{
+				min_distance = board[i].DistanceTo(actual_sphere->position);
+				square_index = i;
+			}
+		}
+	}
+	actual_sphere->position = board[square_index];
+	board[square_index].Empty = false;
 }
