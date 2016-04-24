@@ -8,10 +8,13 @@
 #include "ModuleCollision.h"
 
 #define MAX_ACTIVE_SPHERES 100
+#define NUMBER_OF_SPHERES 8
 
 struct SDL_Texture;
 struct ColliderRect;
 enum COLLIDER_TYPE;
+
+enum Color { BLUE, GREEN, GRAY, BLACK, RED, ORANGE, YELLOW, VIOLET };
 
 struct Sphere
 {
@@ -20,9 +23,12 @@ struct Sphere
 	iPoint position;
 	fPoint speed;
 	Uint32 born = 0;
-	
+	//bool life=true;
+
 	bool fx_played = false;
 	Collider* collider = nullptr;
+
+	Color sphere_color;
 
 	Sphere();
 	Sphere(const Sphere& p);
@@ -53,19 +59,8 @@ private:
 
 public:
 
-	Sphere blueSphere;
-	Sphere greenSphere;
-	Sphere graySphere;
-	Sphere blackSphere;
-	Sphere redSphere;
-	Sphere orangeSphere;
-	Sphere yellowSphere;
-	Sphere violetSphere;
-
+	Sphere spheres[NUMBER_OF_SPHERES];
 	void OnCollision(Collider* c1, Collider* c2);
-
-
-
 };
 
 #endif // __MODULEPARTICLES_H__

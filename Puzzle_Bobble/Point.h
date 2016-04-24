@@ -11,6 +11,8 @@ public:
 
 	TYPE x, y;
 
+	bool Empty = true;
+
 	p2Point()
 	{}
 

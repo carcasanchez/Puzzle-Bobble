@@ -21,219 +21,131 @@ ModuleSphere::~ModuleSphere()
 
 // Load assets
 bool ModuleSphere::Start()
-{//////////////////////////////////////Collision scenary/////////////////////////////////////////////
+{
+	//////////////////////////////////////Collision scenary/////////////////////////////////////////////
 
 	App->collision->AddCollider(SDL_Rect{ 224, 24, 8, 194 }, COLLIDER_LATERAL_WALL);//Left
 	App->collision->AddCollider(SDL_Rect{ 88, 24, 8, 194 }, COLLIDER_LATERAL_WALL);//Right
 	App->collision->AddCollider(SDL_Rect{ 88, 16, 144, 8 }, COLLIDER_WALL);//Top
 	
-	//App->collision->AddCollider(Circle{ 150, 150, 8, 8, 8 }, COLLIDER_SPHERE);
-
-	/*
-
-	////////////////////////////////////Collision sphere//////////////////////////////////////////
-	App->collision->AddCollider({ 96, 24, 16, 16 }, COLLIDER_SPHERE);//1
-	App->collision->AddCollider({ 112, 24, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 128, 24, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 144, 24, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 160, 24, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 176, 24, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 192, 24, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 208, 24, 16, 16 }, COLLIDER_SPHERE);
-	
-	App->collision->AddCollider({ 104, 38, 16, 16 }, COLLIDER_SPHERE);//2
-	App->collision->AddCollider({ 120, 38, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 136, 38, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 152, 38, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 168, 38, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 184, 38, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 200, 38, 16, 16 }, COLLIDER_SPHERE);
-
-	App->collision->AddCollider({ 96, 52, 16, 16 }, COLLIDER_SPHERE);//3
-	App->collision->AddCollider({ 112, 52, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 128, 52, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 144, 52, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 160, 52, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 176, 52, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 192, 52, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 208, 52, 16, 16 }, COLLIDER_SPHERE);
-
-	App->collision->AddCollider({ 104, 66, 16, 16 }, COLLIDER_SPHERE);//4
-	App->collision->AddCollider({ 120, 66, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 136, 66, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 152, 66, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 168, 66, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 184, 66, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 200, 66, 16, 16 }, COLLIDER_SPHERE);
-
-	App->collision->AddCollider({ 96, 80, 16, 16 }, COLLIDER_SPHERE);//5
-	App->collision->AddCollider({ 112, 80, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 128, 80, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 144, 80, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 160, 80, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 176, 80, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 192, 80, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 208, 80, 16, 16 }, COLLIDER_SPHERE);
-
-	App->collision->AddCollider({ 104, 94, 16, 16 }, COLLIDER_SPHERE);//6
-	App->collision->AddCollider({ 120, 94, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 136, 94, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 152, 94, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 168, 94, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 184, 94, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 200, 94, 16, 16 }, COLLIDER_SPHERE);
-
-	App->collision->AddCollider({ 96, 108, 16, 16 }, COLLIDER_SPHERE);//7
-	App->collision->AddCollider({ 112, 108, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 128, 108, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 144, 108, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 160, 108, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 176, 108, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 192, 108, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 208, 108, 16, 16 }, COLLIDER_SPHERE);
-
-	App->collision->AddCollider({ 104, 122, 16, 16 }, COLLIDER_SPHERE);//8
-	App->collision->AddCollider({ 120, 122, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 136, 122, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 152, 122, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 168, 122, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 184, 122, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 200, 122, 16, 16 }, COLLIDER_SPHERE);
-
-	App->collision->AddCollider({ 96, 136, 16, 16 }, COLLIDER_SPHERE);//9
-	App->collision->AddCollider({ 112, 136, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 128, 136, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 144, 136, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 160, 136, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 176, 136, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 192, 136, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 208, 136, 16, 16 }, COLLIDER_SPHERE);
-
-	App->collision->AddCollider({ 104, 150, 16, 16 }, COLLIDER_SPHERE);//10
-	App->collision->AddCollider({ 120, 150, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 136, 150, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 152, 150, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 168, 150, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 184, 150, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 200, 150, 16, 16 }, COLLIDER_SPHERE);
-
-	App->collision->AddCollider({ 96, 164, 16, 16 }, COLLIDER_SPHERE);//1
-	App->collision->AddCollider({ 112, 164, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 128, 164, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 144, 164, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 160, 164, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 176, 164, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 192, 164, 16, 16 }, COLLIDER_SPHERE);
-	App->collision->AddCollider({ 208, 164, 16, 16 }, COLLIDER_SPHERE);
-	*/
-
 	///////////////////////////////////////////////////////////////////////////////////
 	LOG("Loading particles");
 	graphics = App->textures->Load("Sprites.png");
 
-	blueSphere.anim.PushBack({ 12, 260, 16, 16 });
-	blueSphere.anim.PushBack({ 32, 260, 16, 16 });
-	blueSphere.anim.PushBack({ 52, 260, 16, 16 });
-	blueSphere.anim.PushBack({ 72, 260, 16, 16 });
-	blueSphere.anim.PushBack({ 92, 260, 16, 16 });
-	blueSphere.anim.PushBack({ 113, 260, 16, 16 });
-	blueSphere.anim.PushBack({ 133, 260, 16, 16 });
-	blueSphere.anim.PushBack({ 153, 260, 16, 16 });
-	blueSphere.anim.PushBack({ 173, 260, 16, 16 });
-	blueSphere.anim.PushBack({ 193, 260, 16, 16 });
-	blueSphere.anim.loop = true;
-	blueSphere.anim.speed = 0.3f;
+	spheres[0].anim.PushBack({ 12, 260, 16, 16 });
+	spheres[0].anim.PushBack({ 32, 260, 16, 16 });
+	spheres[0].anim.PushBack({ 52, 260, 16, 16 });
+	spheres[0].anim.PushBack({ 72, 260, 16, 16 });
+	spheres[0].anim.PushBack({ 92, 260, 16, 16 });
+	spheres[0].anim.PushBack({ 113, 260, 16, 16 });
+	spheres[0].anim.PushBack({ 133, 260, 16, 16 });
+	spheres[0].anim.PushBack({ 153, 260, 16, 16 });
+	spheres[0].anim.PushBack({ 173, 260, 16, 16 });
+	spheres[0].anim.PushBack({ 193, 260, 16, 16 });
+	spheres[0].anim.loop = false;
+	spheres[0].anim.speed = 0.3f;
+	spheres[0].sphere_color = BLUE;
 
-	greenSphere.anim.PushBack({ 318, 260, 16, 16 });
-	greenSphere.anim.PushBack({ 338, 260, 16, 16 });
-	greenSphere.anim.PushBack({ 358, 260, 16, 16 });
-	greenSphere.anim.PushBack({ 378, 260, 16, 16 });
-	greenSphere.anim.PushBack({ 398, 260, 16, 16 });
-	greenSphere.anim.PushBack({ 419, 260, 16, 16 });
-	greenSphere.anim.PushBack({ 439, 260, 16, 16 });
-	greenSphere.anim.PushBack({ 459, 260, 16, 16 });
-	greenSphere.anim.PushBack({ 479, 260, 16, 16 });
-	greenSphere.anim.PushBack({ 499, 260, 16, 16 });
-	blueSphere.anim.loop = true;
-	blueSphere.anim.speed = 0.3f;
-
-	graySphere.anim.PushBack({ 12, 286, 16, 16 });
-	graySphere.anim.PushBack({ 32, 286, 16, 16 });
-	graySphere.anim.PushBack({ 52, 286, 16, 16 });
-	graySphere.anim.PushBack({ 72, 286, 16, 16 });
-	graySphere.anim.PushBack({ 92, 286, 16, 16 });
-	graySphere.anim.PushBack({ 113, 286, 16, 16 });
-	graySphere.anim.PushBack({ 133, 286, 16, 16 });
-	graySphere.anim.PushBack({ 153, 286, 16, 16 });
-	graySphere.anim.PushBack({ 173, 286, 16, 16 });
-	graySphere.anim.PushBack({ 193, 286, 16, 16 });
-	graySphere.anim.loop = true;
-	graySphere.anim.speed = 0.3f;
-
-	blackSphere.anim.PushBack({ 318, 286, 16, 16 });
-	blackSphere.anim.PushBack({ 338, 286, 16, 16 });
-	blackSphere.anim.PushBack({ 358, 286, 16, 16 });
-	blackSphere.anim.PushBack({ 378, 286, 16, 16 });
-	blackSphere.anim.PushBack({ 398, 286, 16, 16 });
-	blackSphere.anim.PushBack({ 419, 286, 16, 16 });
-	blackSphere.anim.PushBack({ 439, 286, 16, 16 });
-	blackSphere.anim.PushBack({ 459, 286, 16, 16 });
-	blackSphere.anim.PushBack({ 479, 286, 16, 16 });
-	blackSphere.anim.PushBack({ 499, 286, 16, 16 });
-	blackSphere.anim.loop = true;
-	blackSphere.anim.speed = 0.3f;
-
-	redSphere.anim.PushBack({ 12, 312, 16, 16 });
-	redSphere.anim.PushBack({ 32, 312, 16, 16 });
-	redSphere.anim.PushBack({ 92, 312, 16, 16 });
-	redSphere.anim.PushBack({ 113, 312, 16, 16 });
-	redSphere.anim.PushBack({ 133, 312, 16, 16 });
-	redSphere.anim.PushBack({ 153, 312, 16, 16 });
-	redSphere.anim.PushBack({ 173, 312, 16, 16 });
-	redSphere.anim.PushBack({ 193, 312, 16, 16 });
-	redSphere.anim.loop = true;
-	redSphere.anim.speed = 0.00f;
+	spheres[1].anim.PushBack({ 318, 260, 16, 16 });
+	spheres[1].anim.PushBack({ 338, 260, 16, 16 });
+	spheres[1].anim.PushBack({ 358, 260, 16, 16 });
+	spheres[1].anim.PushBack({ 378, 260, 16, 16 });
+	spheres[1].anim.PushBack({ 398, 260, 16, 16 });
+	spheres[1].anim.PushBack({ 419, 260, 16, 16 });
+	spheres[1].anim.PushBack({ 439, 260, 16, 16 });
+	spheres[1].anim.PushBack({ 459, 260, 16, 16 });
+	spheres[1].anim.PushBack({ 479, 260, 16, 16 });
+	spheres[1].anim.PushBack({ 499, 260, 16, 16 });
+	spheres[1].anim.loop = false;
+	spheres[1].anim.speed = 0.3f;
+	spheres[1].sphere_color = GREEN;
 
 
-	orangeSphere.anim.PushBack({ 318, 312, 16, 16 });
-	orangeSphere.anim.PushBack({ 338, 312, 16, 16 });
-	orangeSphere.anim.PushBack({ 358, 312, 16, 16 });
-	orangeSphere.anim.PushBack({ 378, 312, 16, 16 });
-	orangeSphere.anim.PushBack({ 398, 312, 16, 16 });
-	orangeSphere.anim.PushBack({ 419, 312, 16, 16 });
-	orangeSphere.anim.PushBack({ 439, 312, 16, 16 });
-	orangeSphere.anim.PushBack({ 459, 312, 16, 16 });
-	orangeSphere.anim.PushBack({ 479, 312, 16, 16 });
-	orangeSphere.anim.PushBack({ 499, 312, 16, 16 });
-	orangeSphere.anim.loop = true;
-	orangeSphere.anim.speed = 0.3f;
+	spheres[2].anim.PushBack({ 12, 286, 16, 16 });
+	spheres[2].anim.PushBack({ 32, 286, 16, 16 });
+	spheres[2].anim.PushBack({ 52, 286, 16, 16 });
+	spheres[2].anim.PushBack({ 72, 286, 16, 16 });
+	spheres[2].anim.PushBack({ 92, 286, 16, 16 });
+	spheres[2].anim.PushBack({ 113, 286, 16, 16 });
+	spheres[2].anim.PushBack({ 133, 286, 16, 16 });
+	spheres[2].anim.PushBack({ 153, 286, 16, 16 });
+	spheres[2].anim.PushBack({ 173, 286, 16, 16 });
+	spheres[2].anim.PushBack({ 193, 286, 16, 16 });
+	spheres[2].anim.loop = false;
+	spheres[2].anim.speed = 0.3f;
+	spheres[2].sphere_color = GRAY;
 
-	yellowSphere.anim.PushBack({ 12, 338, 16, 16 });
-	yellowSphere.anim.PushBack({ 32, 338, 16, 16 });
-	yellowSphere.anim.PushBack({ 52, 338, 16, 16 });
-	yellowSphere.anim.PushBack({ 72, 338, 16, 16 });
-	yellowSphere.anim.PushBack({ 92, 338, 16, 16 });
-	yellowSphere.anim.PushBack({ 113, 338, 16, 16 });
-	yellowSphere.anim.PushBack({ 133, 338, 16, 16 });
-	yellowSphere.anim.PushBack({ 153, 338, 16, 16 });
-	yellowSphere.anim.PushBack({ 173, 338, 16, 16 });
-	yellowSphere.anim.PushBack({ 193, 338, 16, 16 });
-	yellowSphere.anim.loop = true;
-	yellowSphere.anim.speed = 0.3f;
 
-	violetSphere.anim.PushBack({ 318, 338, 16, 16 });
-	violetSphere.anim.PushBack({ 338, 338, 16, 16 });
-	violetSphere.anim.PushBack({ 358, 338, 16, 16 });
-	violetSphere.anim.PushBack({ 378, 338, 16, 16 });
-	violetSphere.anim.PushBack({ 398, 338, 16, 16 });
-	violetSphere.anim.PushBack({ 419, 338, 16, 16 });
-	violetSphere.anim.PushBack({ 439, 338, 16, 16 });
-	violetSphere.anim.PushBack({ 459, 338, 16, 16 });
-	violetSphere.anim.PushBack({ 479, 338, 16, 16 });
-	violetSphere.anim.PushBack({ 499, 338, 16, 16 });
-	violetSphere.anim.loop = true;
-	violetSphere.anim.speed = 0.3f;
-	
+	spheres[3].anim.PushBack({ 318, 286, 16, 16 });
+	spheres[3].anim.PushBack({ 338, 286, 16, 16 });
+	spheres[3].anim.PushBack({ 358, 286, 16, 16 });
+	spheres[3].anim.PushBack({ 378, 286, 16, 16 });
+	spheres[3].anim.PushBack({ 398, 286, 16, 16 });
+	spheres[3].anim.PushBack({ 419, 286, 16, 16 });
+	spheres[3].anim.PushBack({ 439, 286, 16, 16 });
+	spheres[3].anim.PushBack({ 459, 286, 16, 16 });
+	spheres[3].anim.PushBack({ 479, 286, 16, 16 });
+	spheres[3].anim.PushBack({ 499, 286, 16, 16 });
+	spheres[3].anim.loop = false;
+	spheres[3].anim.speed = 0.3f;
+	spheres[3].sphere_color = BLACK;
+
+
+	spheres[4].anim.PushBack({ 12, 312, 16, 16 });
+	spheres[4].anim.PushBack({ 32, 312, 16, 16 });
+	spheres[4].anim.PushBack({ 92, 312, 16, 16 });
+	spheres[4].anim.PushBack({ 113, 312, 16, 16 });
+	spheres[4].anim.PushBack({ 133, 312, 16, 16 });
+	spheres[4].anim.PushBack({ 153, 312, 16, 16 });
+	spheres[4].anim.PushBack({ 173, 312, 16, 16 });
+	spheres[4].anim.PushBack({ 193, 312, 16, 16 });
+	spheres[4].anim.loop = false;
+	spheres[4].anim.speed = 0.3f;
+	spheres[4].sphere_color = RED;
+
+
+	spheres[5].anim.PushBack({ 318, 312, 16, 16 });
+	spheres[5].anim.PushBack({ 338, 312, 16, 16 });
+	spheres[5].anim.PushBack({ 358, 312, 16, 16 });
+	spheres[5].anim.PushBack({ 378, 312, 16, 16 });
+	spheres[5].anim.PushBack({ 398, 312, 16, 16 });
+	spheres[5].anim.PushBack({ 419, 312, 16, 16 });
+	spheres[5].anim.PushBack({ 439, 312, 16, 16 });
+	spheres[5].anim.PushBack({ 459, 312, 16, 16 });
+	spheres[5].anim.PushBack({ 479, 312, 16, 16 });
+	spheres[5].anim.PushBack({ 499, 312, 16, 16 });
+	spheres[5].anim.loop = false;
+	spheres[5].anim.speed = 0.3f;
+	spheres[5].sphere_color = ORANGE;
+
+
+	spheres[6].anim.PushBack({ 12, 338, 16, 16 });
+	spheres[6].anim.PushBack({ 32, 338, 16, 16 });
+	spheres[6].anim.PushBack({ 52, 338, 16, 16 });
+	spheres[6].anim.PushBack({ 72, 338, 16, 16 });
+	spheres[6].anim.PushBack({ 92, 338, 16, 16 });
+	spheres[6].anim.PushBack({ 113, 338, 16, 16 });
+	spheres[6].anim.PushBack({ 133, 338, 16, 16 });
+	spheres[6].anim.PushBack({ 153, 338, 16, 16 });
+	spheres[6].anim.PushBack({ 173, 338, 16, 16 });
+	spheres[6].anim.PushBack({ 193, 338, 16, 16 });
+	spheres[6].anim.loop = false;
+	spheres[6].anim.speed = 0.3f;
+	spheres[6].sphere_color = YELLOW;
+
+	spheres[7].anim.PushBack({ 318, 338, 16, 16 });
+	spheres[7].anim.PushBack({ 338, 338, 16, 16 });
+	spheres[7].anim.PushBack({ 358, 338, 16, 16 });
+	spheres[7].anim.PushBack({ 378, 338, 16, 16 });
+	spheres[7].anim.PushBack({ 398, 338, 16, 16 });
+	spheres[7].anim.PushBack({ 419, 338, 16, 16 });
+	spheres[7].anim.PushBack({ 439, 338, 16, 16 });
+	spheres[7].anim.PushBack({ 459, 338, 16, 16 });
+	spheres[7].anim.PushBack({ 479, 338, 16, 16 });
+	spheres[7].anim.PushBack({ 499, 338, 16, 16 });
+	spheres[7].anim.loop = false;
+	spheres[7].anim.speed = 0.3f;
+	spheres[7].sphere_color = VIOLET;
 
 	return true;
 
@@ -346,6 +258,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 			{
 				active[i]->speed.x = 0;
 				active[i]->speed.y = 0;
+
 				next_sphere = true;
 			}
 					
