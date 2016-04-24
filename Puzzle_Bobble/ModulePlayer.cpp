@@ -8,8 +8,7 @@
 #include "ModuleAudio.h"
 #include "ModuleCollision.h"
 #include "SDL\include\SDL_render.h"
-#include <time.h>
-#include <stdlib.h> 
+
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
 ModulePlayer::ModulePlayer()
@@ -91,7 +90,6 @@ ModulePlayer::~ModulePlayer()
 // Load assets
 bool ModulePlayer::Start()
 {
-	srand(time(NULL));
 	LOG("Loading player");
 
 	graphics = App->textures->Load("Sprites.png");
@@ -110,7 +108,7 @@ bool ModulePlayer::CleanUp()
 
 	angle = 0;
 	App->textures->Unload(graphics);
-	
+
 	return true;
 }
 
@@ -185,9 +183,8 @@ update_status ModulePlayer::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN && App->spheres->next_sphere==true)
 	{
-		int Random = rand() % 8;
-		App->spheres->AddSphere(App->spheres->spheres[Random], position.x, position.y);
-	
+		App->spheres->AddSphere(App->spheres->redSphere, position.x, position.y);
+
 		if (current_animation2 != &bobShot)
 		{
 			bobShot.Reset();
