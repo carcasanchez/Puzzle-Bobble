@@ -4,15 +4,16 @@ ModuleBoard::ModuleBoard()
 {
 	int x, y;
 	int i = 0;
-	for (y = 32 * SCREEN_SIZE - 16; i < NUM_SQUARES; y += 14 * SCREEN_SIZE)
+	int j = 0;
+	for (y = 32 * SCREEN_SIZE - 16; j < NUM_SQUARES; y += 14 * SCREEN_SIZE)
 	{
 		if (i % 2 == 0)
 		{
 			for (x = 104 * SCREEN_SIZE - 16; x < 216 * SCREEN_SIZE; x += 16 * SCREEN_SIZE)
 			{
-				board[i].x = x;
-				board[i].y = y;
-
+				board[j].x = x;
+				board[j].y = y;
+				j++;
 			}
 		}
 
@@ -20,8 +21,9 @@ ModuleBoard::ModuleBoard()
 		{
 			for (x = 112 * SCREEN_SIZE - 16; x < 208 * SCREEN_SIZE; x += 16 * SCREEN_SIZE)
 			{
-				board[i].x = x;
-				board[i].y = y;
+				board[j].x = x;
+				board[j].y = y;
+				j++;
 			}
 		}
 		i++;
@@ -52,7 +54,7 @@ void ModuleBoard::CheckPosition(Sphere* actual_sphere)
 {
 	int i = 0;
 	int min_distance;
-	int square_index;
+	int square_index = 0;
 	
 	min_distance = board[0].DistanceTo(actual_sphere->position);
 
