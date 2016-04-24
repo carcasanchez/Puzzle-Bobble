@@ -30,7 +30,6 @@ bool ModuleLevel_1::Start()
 
 	if (Mix_PlayMusic(level_music, -1) == -1) {
 		LOG("Mix_PlayMusic: %s\n", Mix_GetError());
-
 	}
 	return true;
 }

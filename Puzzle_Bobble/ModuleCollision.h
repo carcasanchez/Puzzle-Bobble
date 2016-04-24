@@ -65,6 +65,8 @@ struct ColliderCircle : public Collider
 	ColliderCircle(Circle circle, COLLIDER_TYPE type, Module* callback = nullptr) : Collider(type, callback)
 	{
 		circ = circle;
+		rect.x = circle.origin.x;
+		rect.y = circle.origin.y;
 		rect.h = rect.w = circle.radius*2;
 
 	}

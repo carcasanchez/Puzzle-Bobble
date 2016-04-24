@@ -23,7 +23,7 @@ bool ModuleStartScreen::Start()
 	graphics = App->textures->Load("Start_Screen.png");
 	level_music = App->audio->Load_music("TitleDemonstration.ogg");
 	
-	if (Mix_PlayMusic(level_music, -1) == -1) {
+	if (Mix_PlayMusic(level_music, 0) == -1) {
 		LOG("Mix_PlayMusic: %s\n", Mix_GetError());
 
 	}
