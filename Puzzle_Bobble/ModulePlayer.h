@@ -43,6 +43,8 @@ public:
 	Mix_Chunk* shoot = nullptr;
 	SDL_Rect bag_complete;
 	SDL_Rect bag_incomplete;
+	SDL_Rect top_base;
+	SDL_Rect blow;
 	float orientationx, orientationy;
 
 };

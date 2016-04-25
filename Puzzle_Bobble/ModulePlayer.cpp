@@ -51,7 +51,7 @@ ModulePlayer::ModulePlayer()
 	right.PushBack({ 41, 56, 34, 20 });
 	right.PushBack({ 75, 56, 34, 20 });
 	right.loop = true;
-	right.speed = 0.1f;
+	right.speed = 0.5f;
 
 	//idle right
 	idle_right.PushBack({ 114, 55, 34, 20 });
@@ -101,6 +101,13 @@ ModulePlayer::ModulePlayer()
 	lever.PushBack({ 420, 789, 16, 16 });
 	lever.speed = 0.0f;
 
+	//Top base
+	top_base = { 27, 820, 34, 16 };
+
+	//Blow tube
+	blow = { 37, 869, 13, 11 };
+
+
 
 }
 
@@ -148,27 +155,27 @@ update_status ModulePlayer::Update()
 	{
 		if (current_animation1 != &right)
 		{
-			lever.speed = -0.1f;
-			base_left.speed = -0.1f;
-			right.speed=-0.1f;
+			lever.speed = -0.4f;
+			base_left.speed = -0.4f;
+			right.speed=-0.4f;
 			current_animation1 = &right;
 		}
 
 		if (angle>-70)
-			angle -= 1;
+			angle -= 2;
 
 
 		if (orientationx > -6)
 		{
 			if (orientationx <= 0)
 			{
-				orientationx -= 0.1;
-				orientationy += 0.1;
+				orientationx -= 0.18;
+				orientationy += 0.18;
 			}
 			else
 			{
-				orientationx -= 0.1;
-				orientationy -= 0.1;
+				orientationx -= 0.18;
+				orientationy -= 0.18;
 			}
 
 		}
@@ -179,26 +186,27 @@ update_status ModulePlayer::Update()
 	{
 		if (current_animation1 != &right)
 		{
-			lever.speed = 0.1f;
-			base_left.speed = 0.1f;
-			right.speed = 0.1f;
+			lever.speed = 0.4f;
+			base_left.speed = 0.4f;
+			right.speed = 0.4f;
 			current_animation1 = &right;
 		}
 
+
 		if (angle<70)
-			angle += 1;
+			angle += 2;
 
 		if (orientationx < 6)
 		{
 			if (orientationx >= 0)
 			{
-				orientationx += 0.1;
-				orientationy += 0.1;
+				orientationx += 0.18;
+				orientationy += 0.18;
 			}
 			else
 			{
-				orientationx += 0.1;
-				orientationy -= 0.1;
+				orientationx += 0.18;
+				orientationy -= 0.18;
 			}
 		}
 	}
@@ -232,11 +240,13 @@ update_status ModulePlayer::Update()
 	// Draw everything --------------------------------------
 	App->render->Blit(graphics, position.x - 185, position.y - 14, &bag_complete);
 	App->render->Blit(graphics, position.x - 185, position.y - 14, &bag_incomplete);
+	App->render->Blit(graphics, position.x - 62, position.y - 46, &top_base);
 	App->render->Blit(graphics, position.x - 92, position.y - 14, &(current_animation_BaseLeft->GetCurrentFrame()));
 	App->render->Blit(graphics, position.x - 3, position.y + 2, &(current_animation_lever->GetCurrentFrame()));
-	App->render->Blit(graphics, position.x, position.y, &(current_animation1->GetCurrentFrame()));
-	App->render->Blit(graphics, position.x - 80, position.y - 5, &(current_animation2->GetCurrentFrame()));
 	SDL_RenderCopyEx(App->render->renderer, graphics, p_arrow_src, p_arrow_dst, angle, p_center, SDL_FLIP_NONE);
+	App->render->Blit(graphics, position.x - 44, position.y, &blow);
+	App->render->Blit(graphics, position.x, position.y, &(current_animation1->GetCurrentFrame()));
+	App->render->Blit(graphics, position.x - 78, position.y - 5, &(current_animation2->GetCurrentFrame()));
 	//	App->render->Blit(graphics, position.x - 50, position.y - 80, &(current_animation_arrow->GetCurrentFrame()));
 
 
