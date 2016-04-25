@@ -6,6 +6,7 @@
 #include "Globals.h"
 #include "Point.h"
 #include "ModuleCollision.h"
+#include "Vector.h"
 
 #define MAX_ACTIVE_SPHERES 100
 #define NUMBER_OF_SPHERES 8
@@ -23,7 +24,7 @@ struct Sphere
 	iPoint position;
 	fPoint speed;
 	Uint32 born = 0;
-	//bool life=true;
+	bool checked = false;
 
 	bool fx_played = false;
 	Collider* collider = nullptr;
@@ -33,13 +34,15 @@ struct Sphere
 	Sphere();
 	Sphere(const Sphere& p);
 	bool Update();
+	void CheckBobble();
 };
 
 class ModuleSphere : public Module
 {
 public:
-
+	uint last_sphere = 0;
 	bool next_sphere = true;
+	Vector <Sphere*> allahu_list;
 
 	ModuleSphere();
 	~ModuleSphere();
@@ -49,12 +52,12 @@ public:
 	bool CleanUp();
 
 	void AddSphere(const Sphere& particle, int x, int y, COLLIDER_TYPE col_type= COLLIDER_SPHERE,  Uint32 delay = 0);
+	
 
-private:
 
 	SDL_Texture* graphics = nullptr;
 	Sphere* active[MAX_ACTIVE_SPHERES];
-	uint last_sphere = 0;
+	
 	
 
 public:
