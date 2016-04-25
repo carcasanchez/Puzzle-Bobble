@@ -24,10 +24,12 @@ public:
 	SDL_Texture* graphics = nullptr;
 	Animation* current_animation1 = nullptr;
 	Animation* current_animation2 = nullptr;
+	Animation* current_animation_BaseLeft = nullptr;
 	Animation idle_left;
 	Animation idle_right;
 	Animation right;
 	Animation bobShot;
+	Animation base_left;
 	SDL_Rect arrow_src;
 	SDL_Rect* p_arrow_src = nullptr;
 	SDL_Rect arrow_dst;

@@ -74,6 +74,22 @@ ModulePlayer::ModulePlayer()
 	bobShot.PushBack({ 288, 18, 22, 18 });
 	bobShot.PushBack({ 322, 18, 22, 18 });
 	bobShot.speed = 0.05f;
+
+	//Base Mecanism Left
+	base_left.PushBack({ 87, 813, 56, 24 });
+	base_left.PushBack({ 153, 813, 56, 24 });
+	base_left.PushBack({ 219, 813, 56, 24 });
+	base_left.PushBack({ 285, 813, 56, 24 });
+	base_left.PushBack({ 87, 843, 56, 24 });
+	base_left.PushBack({ 153, 843, 56, 24 });
+	base_left.PushBack({ 219, 843, 56, 24 });
+	base_left.PushBack({ 285, 843, 56, 24 });
+	base_left.PushBack({ 87, 874, 56, 24 });
+	base_left.PushBack({ 153, 874, 56, 24 });
+	base_left.PushBack({ 219, 874, 56, 24 });
+	base_left.PushBack({ 285, 874, 56, 24 });
+	base_left.speed = 0.1f;
+
 }
 
 ModulePlayer::~ModulePlayer()
@@ -112,6 +128,7 @@ update_status ModulePlayer::Update()
 	int speed = 1;
 	current_animation1 = &idle_right;
 	current_animation2 = &idle_left;
+	current_animation_BaseLeft = &base_left;
 
 
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
@@ -194,6 +211,7 @@ update_status ModulePlayer::Update()
 	// Draw everything --------------------------------------
 	App->render->Blit(graphics, position.x - 175, position.y - 10, &bag_complete);
 	App->render->Blit(graphics, position.x - 175, position.y - 10, &bag_incomplete);
+	App->render->Blit(graphics, position.x - 85, position.y - 14, &(current_animation_BaseLeft->GetCurrentFrame()));
 	App->render->Blit(graphics, position.x, position.y, &(current_animation1->GetCurrentFrame()));
 	App->render->Blit(graphics, position.x - 100, position.y, &(current_animation2->GetCurrentFrame()));
 	SDL_RenderCopyEx(App->render->renderer, graphics, p_arrow_src, p_arrow_dst, angle, p_center, SDL_FLIP_NONE);
