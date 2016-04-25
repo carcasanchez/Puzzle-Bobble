@@ -42,26 +42,26 @@ ModulePlayer::ModulePlayer()
 
 
 	// Move right
-	right.PushBack({ 419, 19, 21, 17 });
-	right.PushBack({ 455, 19, 20, 17 });
-	right.PushBack({ 490, 18, 21, 18 });
-	right.PushBack({ 524, 17, 21, 19 });
-	right.PushBack({ 556, 18, 20, 18 });
-	right.PushBack({ 13, 54, 23, 18 });
-	right.PushBack({ 45, 54, 23, 18 });
-	right.PushBack({ 79, 54, 23, 18 });
+	right.PushBack({ 415, 20, 27, 19 });
+	right.PushBack({ 451, 20, 27, 19 });
+	right.PushBack({ 486, 20, 27, 19 });
+	right.PushBack({ 520, 20, 27, 19 });
+	right.PushBack({ 552, 20, 27, 19 });
+	right.PushBack({ 9, 56, 27, 19 });
+	right.PushBack({ 41, 56, 27, 19 });
+	right.PushBack({ 75, 56, 27, 19 });
 	right.loop = true;
 	right.speed = 0.1f;
 
 	//idle right
-	idle_right.PushBack({ 119, 53, 19, 19 });
-	idle_right.PushBack({ 153, 53, 18, 19 });
-	idle_right.PushBack({ 220, 53, 20, 19 });
-	idle_right.PushBack({ 187, 53, 19, 19 });
-	idle_right.PushBack({ 252, 54, 21, 18 });
-	idle_right.PushBack({ 283, 55, 24, 17 });
-	idle_right.PushBack({ 252, 54, 21, 18 });
-	idle_right.PushBack({ 283, 55, 24, 17 });
+	idle_right.PushBack({ 114, 55, 25, 19 });
+	idle_right.PushBack({ 148, 55, 25, 19 });
+	idle_right.PushBack({ 215, 55, 25, 19 });
+	idle_right.PushBack({ 182, 55, 25, 19 });
+	idle_right.PushBack({ 249, 55, 25, 19 });
+	idle_right.PushBack({ 283, 55, 24, 19 });//
+	idle_right.PushBack({ 249, 55, 25, 19 });
+	idle_right.PushBack({ 283, 55, 24, 19 });//
 	idle_right.loop = true;
 	idle_right.speed = 0.1f;
 
@@ -209,11 +209,11 @@ update_status ModulePlayer::Update()
 
 
 	// Draw everything --------------------------------------
-	App->render->Blit(graphics, position.x - 175, position.y - 10, &bag_complete);
-	App->render->Blit(graphics, position.x - 175, position.y - 10, &bag_incomplete);
+	App->render->Blit(graphics, position.x - 185, position.y - 14, &bag_complete);
+	App->render->Blit(graphics, position.x - 185, position.y - 14, &bag_incomplete);
 	App->render->Blit(graphics, position.x - 85, position.y - 14, &(current_animation_BaseLeft->GetCurrentFrame()));
 	App->render->Blit(graphics, position.x, position.y, &(current_animation1->GetCurrentFrame()));
-	App->render->Blit(graphics, position.x - 100, position.y, &(current_animation2->GetCurrentFrame()));
+	App->render->Blit(graphics, position.x - 80, position.y - 5, &(current_animation2->GetCurrentFrame()));
 	SDL_RenderCopyEx(App->render->renderer, graphics, p_arrow_src, p_arrow_dst, angle, p_center, SDL_FLIP_NONE);
 	//	App->render->Blit(graphics, position.x - 50, position.y - 80, &(current_animation_arrow->GetCurrentFrame()));
 
