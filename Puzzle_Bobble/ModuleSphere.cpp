@@ -272,6 +272,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 					{
 						allahu_list[i]->position.x = 0;
 						allahu_list[i]->position.y = 0;
+						allahu_list[i]->pos_board->Empty = true;
 					}
 				}
 
@@ -292,7 +293,7 @@ void Sphere::CheckBobble(){
 
 	for (i = 0; i < App->spheres->last_sphere; i++)
 	{
-		if (/*position.DistanceTo(App->spheres->active[i]->position)<= 18  &&*/ sphere_color == App->spheres->active[i]->sphere_color && App->spheres->active[i]->checked == false)
+		if (position.DistanceTo(App->spheres->active[i]->position)<= 18*SCREEN_SIZE  && /*sphere_color == App->spheres->active[i]->sphere_color &&*/ App->spheres->active[i]->checked == false)
 		{
 			App->spheres->active[i]->checked = true;
 			App->spheres->allahu_list.push_back(App->spheres->active[i]);

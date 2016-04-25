@@ -13,6 +13,7 @@ ModuleBoard::ModuleBoard()
 			{
 				board[j].x = x;
 				board[j].y = y;
+				
 				j++;
 			}
 		}
@@ -70,5 +71,6 @@ void ModuleBoard::CheckPosition(Sphere* actual_sphere)
 		}
 	}
 	actual_sphere->position = board[square_index];
+	actual_sphere->pos_board = &board[square_index];
 	board[square_index].Empty = false;
 }
