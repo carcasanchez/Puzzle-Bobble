@@ -262,7 +262,8 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 				App->board->CheckPosition(active[last_sphere-1]);
 				//todo
 
-			
+				App->spheres->allahu_list.push_back(active[i]);
+				active[i]->checked = true;
 				active[i]->CheckBobble();
 				
 				if (allahu_list.n_elements >= 3)
@@ -274,7 +275,11 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 					}
 				}
 
-				
+				for (int i = 0; i < last_sphere; i++)
+				{
+					if (active[i]->checked == true){ active[i]->checked = false; }
+				}
+				allahu_list.clear();
 				next_sphere = true;
 			}
 		}
@@ -284,16 +289,13 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 void Sphere::CheckBobble(){
 
 	int i;
-	if (checked == false)
-	{
-		App->spheres->allahu_list.push_back(this);
-		this->checked = true;
-	}
 
 	for (i = 0; i < App->spheres->last_sphere; i++)
 	{
-		if (position.DistanceTo(App->spheres->active[i]->position) <= 18 && sphere_color == App->spheres->active[i]->sphere_color && App->spheres->active[i]->checked == false)
+		if (/*position.DistanceTo(App->spheres->active[i]->position)<= 18  &&*/ sphere_color == App->spheres->active[i]->sphere_color && App->spheres->active[i]->checked == false)
 		{
+			App->spheres->active[i]->checked = true;
+			App->spheres->allahu_list.push_back(App->spheres->active[i]);
 			App->spheres->active[i]->CheckBobble();
 		}
 	}
