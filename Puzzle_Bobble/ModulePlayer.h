@@ -26,6 +26,7 @@ public:
 	Animation* current_animation2 = nullptr;
 	Animation idle_left;
 	Animation idle_right;
+	Animation left;
 	Animation right;
 	Animation bobShot;
 	SDL_Rect arrow_src;

@@ -40,6 +40,17 @@ ModulePlayer::ModulePlayer()
 	idle_left.loop = true;
 	idle_left.speed = 0.1f;
 
+	// move left
+	left.PushBack({ 79, 54, 23, 18 });
+	left.PushBack({ 45, 54, 23, 18 });
+	left.PushBack({ 13, 54, 23, 18 });
+	left.PushBack({ 556, 18, 20, 18 });
+	left.PushBack({ 524, 17, 21, 19 });
+	left.PushBack({ 490, 18, 21, 18 });
+	left.PushBack({ 455, 19, 20, 17 });
+	left.PushBack({ 419, 19, 21, 17 });
+	left.loop = true;
+	left.speed = 0.1f;
 
 	// Move right
 	right.PushBack({ 419, 19, 21, 17 });
@@ -116,11 +127,11 @@ update_status ModulePlayer::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 	{
-		if (current_animation1 != &right)
+		if (current_animation1 != &left)
 		{
-			right.speed=-0.1f;
-			current_animation1 = &right;
+			current_animation1 = &left;
 		}
+
 
 		if (angle>-70)
 			angle -= 1;
@@ -147,7 +158,6 @@ update_status ModulePlayer::Update()
 	{
 		if (current_animation1 != &right)
 		{
-			right.speed = 0.1f;
 			current_animation1 = &right;
 		}
 

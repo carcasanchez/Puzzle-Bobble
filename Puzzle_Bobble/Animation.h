@@ -31,10 +31,7 @@ public:
 			current_frame = (loop) ? 0.0f : last_frame - 1;
 			loops++;
 		}
-		else if(current_frame < 0)
-		{
-			current_frame = last_frame - 1;
-		}
+
 		return frames[(int)current_frame];
 	}
 
