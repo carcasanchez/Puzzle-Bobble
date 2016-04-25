@@ -25,11 +25,13 @@ public:
 	Animation* current_animation1 = nullptr;
 	Animation* current_animation2 = nullptr;
 	Animation* current_animation_BaseLeft = nullptr;
+	Animation* current_animation_lever = nullptr;
 	Animation idle_left;
 	Animation idle_right;
 	Animation right;
 	Animation bobShot;
 	Animation base_left;
+	Animation lever;
 	SDL_Rect arrow_src;
 	SDL_Rect* p_arrow_src = nullptr;
 	SDL_Rect arrow_dst;

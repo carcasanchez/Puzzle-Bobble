@@ -42,26 +42,26 @@ ModulePlayer::ModulePlayer()
 
 
 	// Move right
-	right.PushBack({ 415, 20, 27, 19 });
-	right.PushBack({ 451, 20, 27, 19 });
-	right.PushBack({ 486, 20, 27, 19 });
-	right.PushBack({ 520, 20, 27, 19 });
-	right.PushBack({ 552, 20, 27, 19 });
-	right.PushBack({ 9, 56, 27, 19 });
-	right.PushBack({ 41, 56, 27, 19 });
-	right.PushBack({ 75, 56, 27, 19 });
+	right.PushBack({ 415, 20, 34, 20 });
+	right.PushBack({ 451, 20, 34, 20 });
+	right.PushBack({ 486, 20, 34, 20 });
+	right.PushBack({ 520, 20, 34, 20 });
+	right.PushBack({ 552, 20, 34, 20 });
+	right.PushBack({ 9, 56, 34, 20 });
+	right.PushBack({ 41, 56, 34, 20 });
+	right.PushBack({ 75, 56, 34, 20 });
 	right.loop = true;
 	right.speed = 0.1f;
 
 	//idle right
-	idle_right.PushBack({ 114, 55, 25, 19 });
-	idle_right.PushBack({ 148, 55, 25, 19 });
-	idle_right.PushBack({ 215, 55, 25, 19 });
-	idle_right.PushBack({ 182, 55, 25, 19 });
-	idle_right.PushBack({ 249, 55, 25, 19 });
-	idle_right.PushBack({ 283, 55, 24, 19 });//
-	idle_right.PushBack({ 249, 55, 25, 19 });
-	idle_right.PushBack({ 283, 55, 24, 19 });//
+	idle_right.PushBack({ 114, 55, 34, 20 });
+	idle_right.PushBack({ 148, 55, 34, 20 });
+	idle_right.PushBack({ 215, 55, 34, 20 });
+	idle_right.PushBack({ 182, 55, 34, 20 });
+	idle_right.PushBack({ 249, 55, 34, 20 });
+	idle_right.PushBack({ 285, 55, 29, 20 });//
+	idle_right.PushBack({ 249, 55, 34, 20 });
+	idle_right.PushBack({ 285, 55, 29, 20 });//
 	idle_right.loop = true;
 	idle_right.speed = 0.1f;
 
@@ -88,7 +88,19 @@ ModulePlayer::ModulePlayer()
 	base_left.PushBack({ 153, 874, 56, 24 });
 	base_left.PushBack({ 219, 874, 56, 24 });
 	base_left.PushBack({ 285, 874, 56, 24 });
-	base_left.speed = 0.1f;
+	base_left.speed = 0.0f;
+
+	//Lever
+	lever.PushBack({ 280, 789, 16, 16 });
+	lever.PushBack({ 300, 789, 16, 16 });
+	lever.PushBack({ 320, 789, 16, 16 });
+	lever.PushBack({ 340, 789, 16, 16 });
+	lever.PushBack({ 360, 789, 16, 16 });
+	lever.PushBack({ 380, 789, 16, 16 });
+	lever.PushBack({ 400, 789, 16, 16 });
+	lever.PushBack({ 420, 789, 16, 16 });
+	lever.speed = 0.0f;
+
 
 }
 
@@ -129,12 +141,15 @@ update_status ModulePlayer::Update()
 	current_animation1 = &idle_right;
 	current_animation2 = &idle_left;
 	current_animation_BaseLeft = &base_left;
+	current_animation_lever = &lever;
 
 
 	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 	{
 		if (current_animation1 != &right)
 		{
+			lever.speed = -0.1f;
+			base_left.speed = -0.1f;
 			right.speed=-0.1f;
 			current_animation1 = &right;
 		}
@@ -164,6 +179,8 @@ update_status ModulePlayer::Update()
 	{
 		if (current_animation1 != &right)
 		{
+			lever.speed = 0.1f;
+			base_left.speed = 0.1f;
 			right.speed = 0.1f;
 			current_animation1 = &right;
 		}
@@ -204,14 +221,19 @@ update_status ModulePlayer::Update()
 
 
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE
-		&& App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE)
+		&& App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE){
+
 		current_animation1 = &idle_right;
+		base_left.speed = 0.0f;
+		lever.speed = 0.0f;
+	}
 
 
 	// Draw everything --------------------------------------
 	App->render->Blit(graphics, position.x - 185, position.y - 14, &bag_complete);
 	App->render->Blit(graphics, position.x - 185, position.y - 14, &bag_incomplete);
-	App->render->Blit(graphics, position.x - 85, position.y - 14, &(current_animation_BaseLeft->GetCurrentFrame()));
+	App->render->Blit(graphics, position.x - 92, position.y - 14, &(current_animation_BaseLeft->GetCurrentFrame()));
+	App->render->Blit(graphics, position.x - 3, position.y + 2, &(current_animation_lever->GetCurrentFrame()));
 	App->render->Blit(graphics, position.x, position.y, &(current_animation1->GetCurrentFrame()));
 	App->render->Blit(graphics, position.x - 80, position.y - 5, &(current_animation2->GetCurrentFrame()));
 	SDL_RenderCopyEx(App->render->renderer, graphics, p_arrow_src, p_arrow_dst, angle, p_center, SDL_FLIP_NONE);
