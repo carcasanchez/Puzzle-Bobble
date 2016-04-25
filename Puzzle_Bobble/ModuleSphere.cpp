@@ -204,12 +204,12 @@ void ModuleSphere::AddSphere(const Sphere& sphere, int x, int y, COLLIDER_TYPE c
 {
 	Sphere* s = new Sphere(sphere);
 	s->born = SDL_GetTicks() + delay;
-	s->position.x = 310;
-	s->position.y = 370;
+	s->position.x = x;
+	s->position.y = y;
 	s->speed.y = App->player->orientationy;
 	s->speed.x = App->player->orientationx;
 	s->sphere_color = sphere.sphere_color;
-	s->collider = App->collision->AddCollider(s->anim.GetCurrentFrame(), col_type, this);
+	s->collider = App->collision->AddCollider(SDL_Rect{0, 0, 12, 12 }, col_type, this);
 	s->collider->SetPos(310, 370);
 
 	active[last_sphere++] = s;
@@ -237,7 +237,7 @@ bool Sphere::Update()
 	position.x += speed.x * 2;
 	position.y += speed.y * 2;
 
-	collider->SetPos(position.x/2, position.y/2);
+	collider->SetPos(position.x/2 +2 , position.y/2 +2);
 
 
 	return ret;
