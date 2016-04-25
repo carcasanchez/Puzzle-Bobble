@@ -8,7 +8,7 @@
 #include "ModuleCollision.h"
 #include "Vector.h"
 
-#define MAX_ACTIVE_SPHERES 100
+#define MAX_ACTIVE_SPHERES 1000
 #define NUMBER_OF_SPHERES 8
 
 struct SDL_Texture;

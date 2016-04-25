@@ -208,7 +208,7 @@ void ModuleSphere::AddSphere(const Sphere& sphere, int x, int y, COLLIDER_TYPE c
 	s->position.y = 370;
 	s->speed.y = App->player->orientationy;
 	s->speed.x = App->player->orientationx;
-
+	s->sphere_color = sphere.sphere_color;
 	s->collider = App->collision->AddCollider(s->anim.GetCurrentFrame(), col_type, this);
 	s->collider->SetPos(310, 370);
 
@@ -293,7 +293,7 @@ void Sphere::CheckBobble(){
 
 	for (i = 0; i < App->spheres->last_sphere; i++)
 	{
-		if (position.DistanceTo(App->spheres->active[i]->position)<= 18*SCREEN_SIZE  && /*sphere_color == App->spheres->active[i]->sphere_color &&*/ App->spheres->active[i]->checked == false)
+		if (position.DistanceTo(App->spheres->active[i]->position)<= 18*SCREEN_SIZE  && sphere_color == App->spheres->active[i]->sphere_color && App->spheres->active[i]->checked == false)
 		{
 			App->spheres->active[i]->checked = true;
 			App->spheres->allahu_list.push_back(App->spheres->active[i]);

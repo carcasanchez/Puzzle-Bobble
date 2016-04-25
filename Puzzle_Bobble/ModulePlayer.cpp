@@ -214,7 +214,7 @@ update_status ModulePlayer::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN && App->spheres->next_sphere==true)
 	{
-		int Random = rand() % 8;
+		int Random = rand() % 2;
 		App->spheres->AddSphere(App->spheres->spheres[Random], position.x, position.y);
 
 		if (current_animation2 != &bobShot)
