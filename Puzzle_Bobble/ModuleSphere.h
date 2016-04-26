@@ -26,7 +26,7 @@ struct Sphere
 	fPoint speed;
 	Uint32 born = 0;
 	bool checked = false;
-
+	bool shoted = false;
 	bool fx_played = false;
 	Collider* collider = nullptr;
 

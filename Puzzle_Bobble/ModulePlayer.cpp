@@ -107,6 +107,7 @@ ModulePlayer::ModulePlayer()
 	//Blow tube
 	blow = { 37, 869, 13, 11 };
 
+	mystate = PREUPDATE;
 
 
 }
@@ -119,7 +120,6 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player");
 
-	srand(time(NULL));
 
 	graphics = App->textures->Load("Sprites.png");
 	shoot = App->audio->Load_effects("BubbleShot.wav");
@@ -142,8 +142,29 @@ bool ModulePlayer::CleanUp()
 }
 
 // Update: draw background
+update_status ModulePlayer::PreUpdate(){
+	srand(time(NULL));
+	bool succes = false;
+	if (mystate == PREUPDATE){
+	while (succes != true){
+		Random = rand() % 8;
+		for (int i = 0; i < App->spheres->last_sphere; i++){
+			if (App->spheres->spheres[Random].sphere_color == App->spheres->active[i]->sphere_color){
+				succes = true;
+			}
+		}
+	}	
+		App->spheres->AddSphere(App->spheres->spheres[Random], 310, 370);
+	}
+	mystate = UPDATE;
+	succes = false;
+
+	return update_status::UPDATE_CONTINUE;
+}
+
 update_status ModulePlayer::Update()
 {
+	
 	int speed = 1;
 	current_animation1 = &idle_right;
 	current_animation2 = &idle_left;
@@ -214,8 +235,9 @@ update_status ModulePlayer::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN && App->spheres->next_sphere==true)
 	{
-		int Random = rand() % 8;
-		App->spheres->AddSphere(App->spheres->spheres[Random], 310, 370);
+		//App->spheres->AddSphere(App->spheres->spheres[Random], 310, 370);
+		App->spheres->active[App->spheres->last_sphere-1]->speed.x = orientationx;
+		App->spheres->active[App->spheres->last_sphere-1]->speed.y = orientationy;
 
 		if (current_animation2 != &bobShot)
 		{
@@ -224,6 +246,7 @@ update_status ModulePlayer::Update()
 		}
 		Mix_PlayChannel(-1, shoot, 0);
 		App->spheres->next_sphere = false;
+
 	}
 
 
@@ -250,5 +273,5 @@ update_status ModulePlayer::Update()
 	//	App->render->Blit(graphics, position.x - 50, position.y - 80, &(current_animation_arrow->GetCurrentFrame()));
 
 
-	return UPDATE_CONTINUE;
+	return update_status::UPDATE_CONTINUE;
 }

@@ -25,9 +25,10 @@ bool ModuleLevel_2::Start()
 {
 	graphics = App->textures->Load("Level3_5.png");
 	level_music = App->audio->Load_music("SinglePlayerMusic.ogg");
-
+	int map[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
 	App->player->Enable();
+	App->board->CreateMap(map);
 
 	if (Mix_PlayMusic(level_music, -1) == -1) {
 		LOG("Mix_PlayMusic: %s\n", Mix_GetError());

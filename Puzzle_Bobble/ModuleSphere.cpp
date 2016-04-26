@@ -207,9 +207,10 @@ void ModuleSphere::AddSphere(const Sphere& sphere, int x, int y, COLLIDER_TYPE c
 	s->born = SDL_GetTicks() + delay;
 	s->position.x = x;
 	s->position.y = y;
-	s->speed.y = App->player->orientationy;
-	s->speed.x = App->player->orientationx;
+	s->speed.y = 0;// App->player->orientationy;
+	s->speed.x = 0;// App->player->orientationx;
 	s->sphere_color = sphere.sphere_color;
+	s->shoted = false;
 	s->collider = App->collision->AddCollider(SDL_Rect{0, 0, 12, 12 }, col_type, this);
 	s->collider->SetPos(310, 370);
 	active[last_sphere++] = s;
@@ -296,8 +297,10 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 				}
 				allahu_list.clear();
 				next_sphere = true;
+				App->player->mystate = PREUPDATE;
+
 			}
-			if (c2->type == COLLIDER_LOSE &&c1->type == COLLIDER_SPHERE && active[i]->speed.y == 0){
+			if (c2->type == COLLIDER_LOSE &&c1->type == COLLIDER_SPHERE && active[i]->speed.y == 0&&active[i]->shoted==true){
 				LoseCondition = true;
 			}
 		}

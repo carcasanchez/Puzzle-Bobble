@@ -8,7 +8,7 @@
 #include "SDL/include/SDL_rect.h"
 
 struct SDL_Texture;
-
+enum States { PREUPDATE, UPDATE };
 class ModulePlayer : public Module
 {
 public:
@@ -16,7 +16,9 @@ public:
 	~ModulePlayer();
 
 	bool Start();
+//	update_status PostUpdate();
 	update_status Update();
+	update_status PreUpdate();
 	bool CleanUp();
 
 public:
@@ -46,7 +48,8 @@ public:
 	SDL_Rect top_base;
 	SDL_Rect blow;
 	float orientationx, orientationy;
-
+	int Random;
+	States mystate;
 };
 
 #endif
