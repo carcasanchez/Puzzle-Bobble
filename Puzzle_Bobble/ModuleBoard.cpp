@@ -13,7 +13,6 @@ ModuleBoard::ModuleBoard()
 			{
 				board[j].x = x;
 				board[j].y = y;
-				
 				j++;
 			}
 		}
@@ -57,7 +56,7 @@ void ModuleBoard::CheckPosition(Sphere* actual_sphere)
 	int min_distance;
 	int square_index = 0;
 	
-	min_distance = board[0].DistanceTo(actual_sphere->position);
+	min_distance = 100;//esto soluciona el bug de la esquina
 
 	for (i = 0;i< NUM_SQUARES; i++)
 	{
@@ -74,3 +73,14 @@ void ModuleBoard::CheckPosition(Sphere* actual_sphere)
 	actual_sphere->pos_board = &board[square_index];
 	board[square_index].Empty = false;
 }
+void ModuleBoard::CreateMap(int number[]){
+
+	int j = 0;
+	for (j= 0 ; j < NUM_SQUARES;j++)
+	{
+		if (number[j] >= 0&&number[j] < 8){
+			App->spheres->SetSphere(App->spheres->spheres[number[j]], board[j].x, board[j].y);
+			}				
+		}
+	}
+

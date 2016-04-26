@@ -211,7 +211,18 @@ void ModuleSphere::AddSphere(const Sphere& sphere, int x, int y, COLLIDER_TYPE c
 	s->sphere_color = sphere.sphere_color;
 	s->collider = App->collision->AddCollider(SDL_Rect{0, 0, 12, 12 }, col_type, this);
 	s->collider->SetPos(310, 370);
-
+	active[last_sphere++] = s;
+}
+void ModuleSphere::SetSphere(const Sphere& sphere, int x, int y, COLLIDER_TYPE col_type, Uint32 delay)
+{
+	Sphere* s = new Sphere(sphere);
+	s->born = SDL_GetTicks() + delay;
+	s->position.x = x;
+	s->position.y = y;
+	s->sphere_color = sphere.sphere_color;
+	s->collider = App->collision->AddCollider(SDL_Rect{ 0, 0, 12, 12 }, col_type, this);
+	s->collider->SetPos(x, y);
+	s->pos_board->Empty = false;
 	active[last_sphere++] = s;
 }
 

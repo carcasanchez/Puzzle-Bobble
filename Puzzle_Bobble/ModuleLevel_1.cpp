@@ -10,7 +10,7 @@
 #include "ModuleLevel_2.h"
 #include "ModulePlayer.h"
 #include "ModuleStartScreen.h"
-
+#include "ModuleBoard.h"
 
 ModuleLevel_1::ModuleLevel_1()
 {
@@ -23,11 +23,22 @@ ModuleLevel_1::~ModuleLevel_1()
 
 bool ModuleLevel_1::Start()
 {
+	/*
+	0 Blue
+	1 Green
+	2 Gray
+	3 Black
+	4 Red
+	5 Orange
+	6 Yellow
+	7 Violet
+	*/
+	int map[] = {4,4,6,6,0,0,1,1,4,4,6,6,0,0,1,0,0,1,1,4,4,6,6,0,1,1,4,4,6,6};
 	graphics = App->textures->Load("Level1_3.png");
 	level_music = App->audio->Load_music("SinglePlayerMusic.ogg"); 
 	
 	App->player->Enable();
-
+	App->board->CreateMap(map);
 	if (Mix_PlayMusic(level_music, -1) == -1) {
 		LOG("Mix_PlayMusic: %s\n", Mix_GetError());
 	}

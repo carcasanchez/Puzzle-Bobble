@@ -53,7 +53,8 @@ public:
 	bool CleanUp();
 
 	void AddSphere(const Sphere& particle, int x, int y, COLLIDER_TYPE col_type= COLLIDER_SPHERE,  Uint32 delay = 0);
-	
+	void SetSphere(const Sphere& particle, int x, int y, COLLIDER_TYPE col_type = COLLIDER_SPHERE, Uint32 delay = 0);
+
 
 
 	SDL_Texture* graphics = nullptr;
