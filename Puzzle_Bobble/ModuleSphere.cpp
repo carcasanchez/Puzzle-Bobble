@@ -222,7 +222,7 @@ void ModuleSphere::SetSphere(const Sphere& sphere, int x, int y, COLLIDER_TYPE c
 	s->sphere_color = sphere.sphere_color;
 	s->collider = App->collision->AddCollider(SDL_Rect{ 0, 0, 12, 12 }, col_type, this);
 	s->collider->SetPos(x, y);
-	s->pos_board->Empty = false;
+	s->pos_board.Empty = false;
 	active[last_sphere++] = s;
 }
 
@@ -283,7 +283,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 					{
 						allahu_list[i]->position.x = 0;
 						allahu_list[i]->position.y = 0;
-						allahu_list[i]->pos_board->Empty = true;
+						allahu_list[i]->pos_board.Empty = true;
 					}
 				}
 

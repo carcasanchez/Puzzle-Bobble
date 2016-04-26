@@ -70,7 +70,7 @@ void ModuleBoard::CheckPosition(Sphere* actual_sphere)
 		}
 	}
 	actual_sphere->position = board[square_index];
-	actual_sphere->pos_board = &board[square_index];
+	actual_sphere->pos_board = board[square_index];
 	board[square_index].Empty = false;
 }
 void ModuleBoard::CreateMap(int number[]){
@@ -80,6 +80,7 @@ void ModuleBoard::CreateMap(int number[]){
 	{
 		if (number[j] >= 0&&number[j] < 8){
 			App->spheres->SetSphere(App->spheres->spheres[number[j]], board[j].x, board[j].y);
+			board[j].Empty = false;
 			}				
 		}
 	}

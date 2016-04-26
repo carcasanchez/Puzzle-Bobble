@@ -22,7 +22,7 @@ struct Sphere
 	Animation anim;
 	uint fx = 0;
 	iPoint position;
-	iPoint* pos_board;
+	iPoint pos_board;
 	fPoint speed;
 	Uint32 born = 0;
 	bool checked = false;
