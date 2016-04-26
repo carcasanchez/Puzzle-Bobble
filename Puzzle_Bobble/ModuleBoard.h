@@ -20,6 +20,7 @@ public:
 	void CheckPosition(Sphere* actual_sphere);
 	void CreateMap(int number[]);
 	bool CleanUp();
+	bool CheckWin();
 
 public:
 	iPoint board[NUM_SQUARES];

@@ -76,13 +76,25 @@ void ModuleBoard::CheckPosition(Sphere* actual_sphere)
 }
 void ModuleBoard::CreateMap(int number[]){
 
-	int j = 0;
-	for (j= 0 ; j < NUM_SQUARES;j++)
+	int i = 0;
+	for (i= 0 ; i < NUM_SQUARES;i++)
 	{
-		if (number[j] >= 0 && number[j] < 8){
-			App->spheres->SetSphere(App->spheres->spheres[number[j]], board[j].x, board[j].y, j);
-			board[j].Empty = false;
+		if (number[i] >= 0 && number[i] < 8){
+			App->spheres->SetSphere(App->spheres->spheres[number[i]], board[i].x, board[i].y, i);
+			board[i].Empty = false;
 			}				
 		}
+}
+
+
+bool ModuleBoard::CheckWin()
+{
+	int i = 0;
+	for (i = 0; i < NUM_SQUARES; i++)
+	{
+		if (board[i].Empty != true)
+			return false;
 	}
 
+	return true;
+}

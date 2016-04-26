@@ -33,7 +33,9 @@ bool ModuleLevel_1::Start()
 	6 Yellow
 	7 Violet
 	*/
-	int map[] = {4,4,6,6,0,0,1,1,4,4,6,6,0,0,1,0,0,1,1,4,4,6,6,0,1,1,4,4,6,6};
+	//int map[] = {4,4,6,6,0,0,1,1,4,4,6,6,0,0,1,0,0,1,1,4,4,6,6,0,1,1,4,4,6,6};
+
+	int map[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	graphics = App->textures->Load("Level1_3.png");
 	level_music = App->audio->Load_music("SinglePlayerMusic.ogg"); 
 	
@@ -49,7 +51,7 @@ update_status ModuleLevel_1::Update()
 {
 	App->render->Blit(graphics, 0, 0, &level1);
 
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
+	if (App->board->CheckWin())
 	{
 		App->fade->FadeToBlack(App->level_1, App->level_2, 1);
 	}

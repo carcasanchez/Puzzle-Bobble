@@ -9,7 +9,7 @@
 #include "ModuleLevel_2.h"
 #include "ModuleStartScreen.h"
 #include "ModulePlayer.h"
-
+#include "ModuleBoard.h"
 #include "ModuleCongrats.h"
 
 
@@ -40,7 +40,7 @@ update_status ModuleLevel_2::Update()
 {
 	App->render->Blit(graphics, 0, 0, &level2);
 
-	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
+	if (App->board->CheckWin())
 	{
 
 		App->fade->FadeToBlack(App->level_2, App->congratulations, 1);
