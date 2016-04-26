@@ -21,6 +21,7 @@ public:
 	void CreateMap(int number[]);
 	bool CleanUp();
 	bool CheckWin();
+	
 
 public:
 	iPoint board[NUM_SQUARES];

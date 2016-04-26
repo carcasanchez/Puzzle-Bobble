@@ -35,7 +35,11 @@ bool ModuleLevel_1::Start()
 	*/
 	//int map[] = {4,4,6,6,0,0,1,1,4,4,6,6,0,0,1,0,0,1,1,4,4,6,6,0,1,1,4,4,6,6};
 
-	int map[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+	//int map[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+	int map[] = { 0, 0, 0, 0, 0, 0, 0, 0,
+					0, 0, 0, 0, 0, 0, 0,
+				  0, 0, 1, 1, 1, 0, 0, 0 };
+
 	graphics = App->textures->Load("Level1_3.png");
 	level_music = App->audio->Load_music("SinglePlayerMusic.ogg"); 
 	
@@ -54,6 +58,10 @@ update_status ModuleLevel_1::Update()
 	if (App->board->CheckWin())
 	{
 		App->fade->FadeToBlack(App->level_1, App->level_2, 1);
+	}
+	if (App->spheres->LoseCondition == true)
+	{
+		App->fade->FadeToBlack(App->level_1, App->menu_screen, 1);
 	}
 	return UPDATE_CONTINUE;
 }

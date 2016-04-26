@@ -42,9 +42,14 @@ update_status ModuleLevel_2::Update()
 
 	if (App->board->CheckWin())
 	{
-
 		App->fade->FadeToBlack(App->level_2, App->congratulations, 1);
 	}
+
+	if (App->spheres->LoseCondition == true)
+	{
+		App->fade->FadeToBlack(App->level_2, App->menu_screen, 1);
+	}
+
 	return UPDATE_CONTINUE;
 }
 

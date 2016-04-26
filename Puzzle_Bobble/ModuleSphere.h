@@ -67,6 +67,7 @@ public:
 
 	Sphere spheres[NUMBER_OF_SPHERES];
 	void OnCollision(Collider* c1, Collider* c2);
+	bool LoseCondition = false;
 };
 
 #endif // __MODULEPARTICLES_H__
