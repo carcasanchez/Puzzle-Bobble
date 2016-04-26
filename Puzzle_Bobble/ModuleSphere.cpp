@@ -213,7 +213,7 @@ void ModuleSphere::AddSphere(const Sphere& sphere, int x, int y, COLLIDER_TYPE c
 	s->collider->SetPos(310, 370);
 	active[last_sphere++] = s;
 }
-void ModuleSphere::SetSphere(const Sphere& sphere, int x, int y, COLLIDER_TYPE col_type, Uint32 delay)
+void ModuleSphere::SetSphere(const Sphere& sphere, int x, int y, int b_index, COLLIDER_TYPE col_type, Uint32 delay)
 {
 	Sphere* s = new Sphere(sphere);
 	s->born = SDL_GetTicks() + delay;
@@ -224,6 +224,7 @@ void ModuleSphere::SetSphere(const Sphere& sphere, int x, int y, COLLIDER_TYPE c
 	s->collider->SetPos(x, y);
 	s->pos_board.Empty = false;
 	active[last_sphere++] = s;
+	s->board_index = b_index;
 }
 
 // -------------------------------------------------------------
@@ -284,6 +285,8 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 						allahu_list[i]->position.x = 0;
 						allahu_list[i]->position.y = 0;
 						allahu_list[i]->pos_board.Empty = true;
+						App->board->board[allahu_list[i]->board_index].Empty = true;
+						
 					}
 				}
 

@@ -36,6 +36,7 @@ struct Sphere
 	Sphere(const Sphere& p);
 	bool Update();
 	void CheckBobble();
+	int board_index;
 };
 
 class ModuleSphere : public Module
@@ -53,7 +54,7 @@ public:
 	bool CleanUp();
 
 	void AddSphere(const Sphere& particle, int x, int y, COLLIDER_TYPE col_type= COLLIDER_SPHERE,  Uint32 delay = 0);
-	void SetSphere(const Sphere& particle, int x, int y, COLLIDER_TYPE col_type = COLLIDER_SPHERE, Uint32 delay = 0);
+	void SetSphere(const Sphere& particle, int x, int y, int b_index, COLLIDER_TYPE col_type = COLLIDER_SPHERE, Uint32 delay = 0);
 
 
 
