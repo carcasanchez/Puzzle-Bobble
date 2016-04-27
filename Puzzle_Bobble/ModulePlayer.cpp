@@ -73,7 +73,8 @@ ModulePlayer::ModulePlayer()
 	bobShot.PushBack({ 254, 19, 17, 17 });
 	bobShot.PushBack({ 288, 18, 22, 18 });
 	bobShot.PushBack({ 322, 18, 22, 18 });
-	bobShot.speed = 0.05f;
+	bobShot.speed = 0.1f;
+	bobShot.loop = false;
 
 	//Base Mecanism Left
 	base_left.PushBack({ 87, 813, 56, 24 });
@@ -167,7 +168,15 @@ update_status ModulePlayer::Update()
 	
 	int speed = 1;
 	current_animation1 = &idle_right;
-	current_animation2 = &idle_left;
+	if (current_animation2 == &bobShot){
+		if (bobShot.Finished()){
+			current_animation2 = &idle_left;
+			bobShot.Reset();
+		}
+	}
+	else{
+		current_animation2 = &idle_left;
+	}
 	current_animation_BaseLeft = &base_left;
 	current_animation_lever = &lever;
 
@@ -241,7 +250,6 @@ update_status ModulePlayer::Update()
 
 		if (current_animation2 != &bobShot)
 		{
-			bobShot.Reset();
 			current_animation2 = &bobShot;
 		}
 		Mix_PlayChannel(-1, shoot, 0);
