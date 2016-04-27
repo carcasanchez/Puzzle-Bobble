@@ -32,7 +32,7 @@ bool ModuleSphere::Start()
 	
 	///////////////////////////////////////////////////////////////////////////////////
 	LOG("Loading particles");
-	graphics = App->textures->Load("Sprites.png");
+	graphics = App->textures->Load("Game/Sprites.png");
 
 	spheres[0].anim.PushBack({ 12, 260, 16, 16 });
 	spheres[0].anim.PushBack({ 32, 260, 16, 16 });

@@ -134,7 +134,7 @@
       <Filter>Modules</Filter>
     </ClCompile>
     <ClCompile Include="ModuleGameOver.cpp">
-      <Filter>Core</Filter>
+      <Filter>Levels</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
