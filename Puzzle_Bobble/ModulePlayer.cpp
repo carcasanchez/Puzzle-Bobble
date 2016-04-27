@@ -73,7 +73,7 @@ ModulePlayer::ModulePlayer()
 	bobShot.PushBack({ 254, 19, 17, 17 });
 	bobShot.PushBack({ 288, 18, 22, 18 });
 	bobShot.PushBack({ 322, 18, 22, 18 });
-	bobShot.speed = 0.1f;
+	bobShot.speed = 0.4f;
 	bobShot.loop = false;
 
 	//Base Mecanism Left

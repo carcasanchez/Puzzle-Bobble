@@ -23,9 +23,30 @@ ModuleLevel_2::~ModuleLevel_2()
 
 bool ModuleLevel_2::Start()
 {
+	/*
+	0 Blue
+	1 Green
+	2 Gray
+	3 Black
+	4 Red
+	5 Orange
+	6 Yellow
+	7 Violet
+	*/
 	graphics = App->textures->Load("Level3_5.png");
 	level_music = App->audio->Load_music("SinglePlayerMusic.ogg");
-	int map[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+	int map[] = { 9, 9, 9, 3, 3, 9, 9, 9,
+					9, 9, 9, 0, 9, 9, 9,
+					9, 9, 9, 4, 9, 9, 9, 9,
+					9, 9, 9, 0, 9, 9, 9,
+					9, 9, 9, 1, 9, 9, 9, 9,
+					9, 9, 9, 7, 9, 9, 9,
+					9, 9, 9, 1, 9, 9, 9, 9,
+					9, 9, 9, 0, 9, 9, 9,
+					9, 9, 9, 9, 9, 9, 9, 9,
+					9, 9, 9, 9, 9, 9, 9,
+					9, 9, 9, 9, 9, 9, 9, 9,
+					9, 9, 9, 9, 9, 9, 9 };
 
 	App->player->Enable();
 	App->board->CreateMap(map);
@@ -57,6 +78,26 @@ update_status ModuleLevel_2::Update()
 bool ModuleLevel_2::CleanUp()
 {
 	App->player->Disable();
+
+	for (int i = 0; i < App->spheres->last_sphere; i++)
+	{
+		if (App->spheres->active[i] == nullptr)
+			continue;
+
+		App->collision->EraseCollider(App->spheres->active[i]->collider);
+
+		App->spheres->active[i]->collider = nullptr;
+		App->spheres->active[i] = nullptr;
+
+
+	}
+
+	for (int i = 0; i < NUM_SQUARES; i++)
+	{
+
+		App->board->board[i].Empty = true;
+
+	}
 
 	while (!Mix_FadeOutMusic(1000) && Mix_PlayingMusic())
 		SDL_Delay(1000);
