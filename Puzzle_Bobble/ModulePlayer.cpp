@@ -154,7 +154,7 @@ update_status ModulePlayer::PreUpdate(){
 			}
 		}
 	}	
-		App->spheres->AddSphere(App->spheres->spheres[Random], 310, 370);
+		App->spheres->AddSphere(App->spheres->spheres[Random], 306, 368);
 	}
 	mystate = UPDATE;
 	succes = false;
@@ -269,7 +269,7 @@ update_status ModulePlayer::Update()
 	SDL_RenderCopyEx(App->render->renderer, graphics, p_arrow_src, p_arrow_dst, angle, p_center, SDL_FLIP_NONE);
 	App->render->Blit(graphics, position.x - 44, position.y, &blow);
 	App->render->Blit(graphics, position.x, position.y, &(current_animation1->GetCurrentFrame()));
-	App->render->Blit(graphics, position.x - 78, position.y - 5, &(current_animation2->GetCurrentFrame()));
+	App->render->Blit(graphics, position.x - 78, position.y - 4, &(current_animation2->GetCurrentFrame()));
 	//	App->render->Blit(graphics, position.x - 50, position.y - 80, &(current_animation_arrow->GetCurrentFrame()));
 
 
