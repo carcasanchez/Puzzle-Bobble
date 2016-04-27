@@ -34,8 +34,8 @@ bool ModuleLevel_2::Start()
 	6 Yellow
 	7 Violet
 	*/
-	graphics = App->textures->Load("Level3_5.png");
-	level_music = App->audio->Load_music("SinglePlayerMusic.ogg");
+	graphics = App->textures->Load("Game/Level3_5.png");
+	level_music = App->audio->Load_music("Game/SinglePlayerMusic.ogg");
 	int map[] = { 9, 9, 9, 3, 3, 9, 9, 9,
 					9, 9, 9, 0, 9, 9, 9,
 					9, 9, 9, 4, 9, 9, 9, 9,

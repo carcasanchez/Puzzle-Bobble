@@ -21,7 +21,7 @@ ModuleCongrats::~ModuleCongrats()
 
 bool ModuleCongrats::Start()
 {
-	graphics = App->textures->Load("congrats.png");
+	graphics = App->textures->Load("Game/congrats.png");
 
 	if (Mix_PlayMusic(level_music, -1) == -1) {
 		LOG("Mix_PlayMusic: %s\n", Mix_GetError());

@@ -23,8 +23,8 @@ ModuleGameOver::~ModuleGameOver()
 
 bool ModuleGameOver::Start()
 {
-	graphics = App->textures->Load("Game_Over.png");
-	level_music = App->audio->Load_music("Game_Over.ogg");
+	graphics = App->textures->Load("Game/Game_Over.png");
+	level_music = App->audio->Load_music("Game/Game_Over.ogg");
 
 	if (Mix_PlayMusic(level_music, 1) == -1) {
 		LOG("Mix_PlayMusic: %s\n", Mix_GetError());
