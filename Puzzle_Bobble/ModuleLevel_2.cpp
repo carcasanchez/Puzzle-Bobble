@@ -11,6 +11,7 @@
 #include "ModulePlayer.h"
 #include "ModuleBoard.h"
 #include "ModuleCongrats.h"
+#include "ModuleGameOver.h"
 
 
 ModuleLevel_2::ModuleLevel_2()
@@ -69,7 +70,7 @@ update_status ModuleLevel_2::Update()
 
 	if (App->spheres->LoseCondition == true)
 	{
-		App->fade->FadeToBlack(App->level_2, App->menu_screen, 1);
+		App->fade->FadeToBlack(App->level_2, App->game_over, 1);
 	}
 
 	return UPDATE_CONTINUE;

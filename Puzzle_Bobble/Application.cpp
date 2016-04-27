@@ -13,6 +13,7 @@
 #include "ModulePlayer.h"
 #include "ModuleSphere.h"
 #include "ModuleBoard.h"
+#include "ModuleGameOver.h"
 
 Application::Application()
 {
@@ -26,6 +27,7 @@ Application::Application()
 	modules[i++] = level_1 = new ModuleLevel_1();
 	modules[i++] = level_2 = new ModuleLevel_2();
 	modules[i++] = congratulations = new ModuleCongrats();
+	modules[i++] = game_over = new ModuleGameOver();
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = spheres = new ModuleSphere();
 	modules[i++] = collision = new ModuleCollision();
@@ -47,6 +49,7 @@ bool Application::Init()
 	App->level_2->Disable();
 	App->congratulations->Disable();
 	App->player->Disable();
+	App->game_over->Disable();
 
 
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)

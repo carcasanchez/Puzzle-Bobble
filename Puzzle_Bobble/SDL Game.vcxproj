@@ -75,6 +75,7 @@
     <ClInclude Include="ModuleBoard.h" />
     <ClInclude Include="ModuleCollision.h" />
     <ClInclude Include="ModuleCongrats.h" />
+    <ClInclude Include="ModuleGameOver.h" />
     <ClInclude Include="ModuleLevel_1.h" />
     <ClInclude Include="MemLeaks.h" />
     <ClInclude Include="Module.h" />
@@ -97,6 +98,7 @@
     <ClCompile Include="ModuleBoard.cpp" />
     <ClCompile Include="ModuleCollision.cpp" />
     <ClCompile Include="ModuleCongrats.cpp" />
+    <ClCompile Include="ModuleGameOver.cpp" />
     <ClCompile Include="ModuleLevel_2.cpp" />
     <ClCompile Include="ModuleLevel_1.cpp" />
     <ClCompile Include="Main.cpp" />
