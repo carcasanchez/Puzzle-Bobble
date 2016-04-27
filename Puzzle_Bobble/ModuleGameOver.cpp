@@ -15,6 +15,7 @@
 ModuleGameOver::ModuleGameOver()
 {
 	gameover = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
+	
 }
 
 ModuleGameOver::~ModuleGameOver()
@@ -22,9 +23,10 @@ ModuleGameOver::~ModuleGameOver()
 
 bool ModuleGameOver::Start()
 {
-	graphics = App->textures->Load("Game/Game_Over.png");
+	graphics = App->textures->Load("Game_Over.png");
+	level_music = App->audio->Load_music("Game_Over.ogg");
 
-	if (Mix_PlayMusic(level_music, -1) == -1) {
+	if (Mix_PlayMusic(level_music, 1) == -1) {
 		LOG("Mix_PlayMusic: %s\n", Mix_GetError());
 
 	}
@@ -45,5 +47,7 @@ update_status ModuleGameOver::Update()
 
 bool ModuleGameOver::CleanUp()
 {
+	while (!Mix_FadeOutMusic(1000) && Mix_PlayingMusic())
+		SDL_Delay(1000);
 	return true;
 }

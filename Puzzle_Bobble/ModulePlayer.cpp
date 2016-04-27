@@ -124,8 +124,8 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player");
 	mystate = FIRST;
-	graphics = App->textures->Load("Game/Sprites.png");
-	shoot = App->audio->Load_effects("Game/BubbleShot.wav");
+	graphics = App->textures->Load("Sprites.png");
+	shoot = App->audio->Load_effects("BubbleShot.wav");
 
 	orientationy = -8;
 	orientationx = 0;

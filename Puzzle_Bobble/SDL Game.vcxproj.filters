@@ -78,7 +78,7 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="ModuleGameOver.h">
-      <Filter>Modules</Filter>
+      <Filter>Levels</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
