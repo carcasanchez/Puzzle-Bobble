@@ -229,6 +229,8 @@ void ModuleSphere::SetSphere(const Sphere& sphere, int x, int y, int b_index, CO
 	s->board_index = b_index;
 }
 
+
+
 // -------------------------------------------------------------
 // -------------------------------------------------------------
 
@@ -284,16 +286,25 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 				{
 					for (i = 0; i < allahu_list.n_elements; i++)
 					{
-						allahu_list[i]->position.x = 0;
-						allahu_list[i]->position.y = 0;
-						allahu_list[i]->pos_board.Empty = true;
+						allahu_list[i]->doomed = true;
 						App->board->board[allahu_list[i]->board_index].Empty = true;	
 					}
 				}
 
 				for (int i = 0; i < last_sphere; i++)
 				{
+					if (active[i] == nullptr)
+						continue;
 					if (active[i]->checked == true){ active[i]->checked = false; }
+					
+					if (active[i]->doomed == true)
+					{
+
+					//	App->collision->EraseCollider(active[i]->collider);
+						
+						active[i]->collider = nullptr;
+						active[i]=nullptr;
+					}
 				}
 				allahu_list.clear();
 				next_sphere = true;
@@ -313,6 +324,8 @@ void Sphere::CheckBobble(){
 
 	for (i = 0; i < App->spheres->last_sphere; i++)
 	{
+		if (App->spheres->active[i] == nullptr)
+			continue;
 		if (position.DistanceTo(App->spheres->active[i]->position)<= 18*SCREEN_SIZE  && sphere_color == App->spheres->active[i]->sphere_color && App->spheres->active[i]->checked == false)
 		{
 			App->spheres->active[i]->checked = true;

@@ -96,7 +96,7 @@ public:
 
 	Collider* AddCollider(SDL_Rect rect, COLLIDER_TYPE type, Module* callback = nullptr);
 	Collider* AddCollider(Circle circ, COLLIDER_TYPE type, Module*callback = nullptr);
-	bool EraseCollider(ColliderRect* collider);
+	bool EraseCollider(Collider* collider);
 	void DebugDraw();
 
 private:

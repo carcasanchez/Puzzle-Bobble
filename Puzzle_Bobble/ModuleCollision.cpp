@@ -173,7 +173,7 @@ Collider* ModuleCollision::AddCollider(Circle circ, COLLIDER_TYPE type, Module* 
 }
 
 
-bool ModuleCollision::EraseCollider(ColliderRect* collider)
+bool ModuleCollision::EraseCollider(Collider* collider)
 {
 	for (uint i = 0; i < MAX_COLLIDERS; ++i)
 	{

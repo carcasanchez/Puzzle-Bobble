@@ -29,7 +29,7 @@ struct Sphere
 	bool shoted = false;
 	bool fx_played = false;
 	Collider* collider = nullptr;
-
+	bool doomed = false;
 	Color sphere_color;
 
 	Sphere();

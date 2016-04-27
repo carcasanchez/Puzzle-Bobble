@@ -69,6 +69,19 @@ bool ModuleLevel_1::CleanUp()
 
 	App->player->Disable();
 
+	for (int i = 0; i < App->spheres->last_sphere; i++)
+	{
+		if (App->spheres->active[i] == nullptr)
+			continue;
+
+		App->collision->EraseCollider(App->spheres->active[i]->collider);
+
+		App->spheres->active[i]->collider = nullptr;
+		App->spheres->active[i] = nullptr;
+
+
+	}
+
 	while (!Mix_FadeOutMusic(1000) && Mix_PlayingMusic())
 		SDL_Delay(1000);
 
