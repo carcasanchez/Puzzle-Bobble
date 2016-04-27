@@ -72,7 +72,7 @@ update_status ModuleLevel_2::Update()
 	{
 		App->fade->FadeToBlack(App->level_2, App->game_over, 1);
 	}
-
+	
 	return UPDATE_CONTINUE;
 }
 
@@ -89,9 +89,11 @@ bool ModuleLevel_2::CleanUp()
 
 		App->spheres->active[i]->collider = nullptr;
 		App->spheres->active[i] = nullptr;
-
+		
 
 	}
+
+	App->spheres->last_sphere = 0;
 
 	for (int i = 0; i < NUM_SQUARES; i++)
 	{

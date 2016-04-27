@@ -91,9 +91,11 @@ bool ModuleLevel_1::CleanUp()
 
 		App->spheres->active[i]->collider = nullptr;
 		App->spheres->active[i] = nullptr;
-
+		
 
 	}
+
+   App->spheres->last_sphere = 0;
 
 	for (int i = 0; i < NUM_SQUARES; i++)
 	{
