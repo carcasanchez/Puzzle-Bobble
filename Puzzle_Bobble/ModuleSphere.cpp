@@ -300,7 +300,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 					if (active[i]->doomed == true)
 					{
 
-					//	App->collision->EraseCollider(active[i]->collider);
+						active[i]->collider->to_delete=true;
 						
 						active[i]->collider = nullptr;
 						active[i]=nullptr;

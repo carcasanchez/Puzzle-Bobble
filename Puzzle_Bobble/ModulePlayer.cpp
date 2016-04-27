@@ -152,7 +152,7 @@ update_status ModulePlayer::PreUpdate(){
 		for (int i = 0; i < App->spheres->last_sphere; i++){
 			if (App->spheres->active[i] == nullptr)
 				continue;
-			if (App->spheres->spheres[Random].sphere_color == App->spheres->active[i]->sphere_color){
+			else if (App->spheres->spheres[Random].sphere_color == App->spheres->active[i]->sphere_color){
 				succes = true;
 			}
 		}
