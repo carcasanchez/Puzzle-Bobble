@@ -308,7 +308,9 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 				}
 				allahu_list.clear();
 				next_sphere = true;
-				App->player->mystate = PREUPDATE;
+				if (App->player->mystate ==POSTUPDATE ){
+					App->player->mystate = PREUPDATE;
+				}
 
 			}
 			if (c2->type == COLLIDER_LOSE &&c1->type == COLLIDER_SPHERE && active[i]->speed.y == 0&&active[i]->shoted==true){
@@ -317,6 +319,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 		}
 	}
 }
+
 
 void Sphere::CheckBobble(){
 

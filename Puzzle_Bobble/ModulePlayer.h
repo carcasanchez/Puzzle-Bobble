@@ -8,7 +8,7 @@
 #include "SDL/include/SDL_rect.h"
 
 struct SDL_Texture;
-enum States { PREUPDATE, UPDATE };
+enum States { FIRST,PREUPDATE, UPDATE,POSTUPDATE };
 class ModulePlayer : public Module
 {
 public:
@@ -16,7 +16,7 @@ public:
 	~ModulePlayer();
 
 	bool Start();
-//	update_status PostUpdate();
+	update_status PostUpdate();
 	update_status Update();
 	update_status PreUpdate();
 	bool CleanUp();

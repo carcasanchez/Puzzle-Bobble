@@ -114,14 +114,16 @@ ModulePlayer::ModulePlayer()
 }
 
 ModulePlayer::~ModulePlayer()
-{}
+{
+	App->textures->Unload(graphics);
+
+}
 
 // Load assets
 bool ModulePlayer::Start()
 {
 	LOG("Loading player");
-
-
+	mystate = FIRST;
 	graphics = App->textures->Load("Sprites.png");
 	shoot = App->audio->Load_effects("BubbleShot.wav");
 
@@ -135,7 +137,6 @@ bool ModulePlayer::Start()
 bool ModulePlayer::CleanUp()
 {
 	LOG("Unloading player");
-
 	angle = 0;
 	App->textures->Unload(graphics);
 
@@ -144,23 +145,11 @@ bool ModulePlayer::CleanUp()
 
 // Update: draw background
 update_status ModulePlayer::PreUpdate(){
-	srand(time(NULL));
-	bool succes = false;
-	if (mystate == PREUPDATE){
-	while (succes != true){
-		Random = rand() % 8;
-		for (int i = 0; i < App->spheres->last_sphere; i++){
-			if (App->spheres->active[i] == nullptr)
-				continue;
-			else if (App->spheres->spheres[Random].sphere_color == App->spheres->active[i]->sphere_color){
-				succes = true;
-			}
-		}
-	}	
+
+	if (mystate == PREUPDATE){	
 		App->spheres->AddSphere(App->spheres->spheres[Random], 306, 368);
+		mystate = UPDATE;
 	}
-	mystate = UPDATE;
-	succes = false;
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -282,6 +271,42 @@ update_status ModulePlayer::Update()
 	App->render->Blit(graphics, position.x - 78, position.y - 4, &(current_animation2->GetCurrentFrame()));
 	//	App->render->Blit(graphics, position.x - 50, position.y - 80, &(current_animation_arrow->GetCurrentFrame()));
 
+
+	return update_status::UPDATE_CONTINUE;
+}
+
+update_status ModulePlayer::PostUpdate(){
+	srand(time(NULL));
+	bool succes = false;
+	if (mystate == FIRST){
+		while (succes != true){
+			Random = rand() % 8;
+			for (int i = 0; i < App->spheres->last_sphere; i++){
+				if (App->spheres->active[i] == nullptr){
+					continue;
+				}
+				else if (App->spheres->spheres[Random].sphere_color == App->spheres->active[i]->sphere_color){
+					succes = true;
+				}
+			}
+		}
+		mystate = PREUPDATE;
+
+	}
+	else if (mystate == UPDATE){
+		while (succes != true){
+			Random = rand() % 8;
+			for (int i = 0; i < App->spheres->last_sphere; i++){
+				if (App->spheres->active[i] == nullptr){
+					continue;
+				}
+				else if (App->spheres->spheres[Random].sphere_color == App->spheres->active[i]->sphere_color){
+					succes = true;
+				}
+			}
+		}
+		mystate = POSTUPDATE;
+	}
 
 	return update_status::UPDATE_CONTINUE;
 }

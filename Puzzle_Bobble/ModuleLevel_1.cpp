@@ -59,6 +59,7 @@ update_status ModuleLevel_1::Update()
 	}
 	if (App->spheres->LoseCondition == true)
 	{
+		App->spheres->LoseCondition = false;
 		App->fade->FadeToBlack(App->level_1, App->menu_screen, 1);
 	}
 	return UPDATE_CONTINUE;
