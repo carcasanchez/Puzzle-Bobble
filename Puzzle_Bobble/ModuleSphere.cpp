@@ -207,8 +207,8 @@ void ModuleSphere::AddSphere(const Sphere& sphere, int x, int y, COLLIDER_TYPE c
 	s->born = SDL_GetTicks() + delay;
 	s->position.x = x;
 	s->position.y = y;
-	s->speed.y = 0;// App->player->orientationy;
-	s->speed.x = 0;// App->player->orientationx;
+	s->speed.y = 0;
+	s->speed.x = 0;
 	s->sphere_color = sphere.sphere_color;
 	s->shoted = false;
 	s->collider = App->collision->AddCollider(SDL_Rect{0, 0, 12, 12 }, col_type, this);

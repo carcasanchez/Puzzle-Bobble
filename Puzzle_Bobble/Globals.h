@@ -63,6 +63,7 @@ typedef unsigned int uint;
 #define WIN_BORDERLESS 0
 #define WIN_RESIZABLE 0
 #define REN_VSYNC 1
+#define SPEED 5;
 
 #define MIN( a, b ) ( ((a) < (b)) ? (a) : (b) )
 #define MAX( a, b ) ( ((a) > (b)) ? (a) : (b) )

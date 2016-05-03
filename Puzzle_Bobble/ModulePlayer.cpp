@@ -11,7 +11,9 @@
 
 #include <time.h>
 #include <stdlib.h> 
+#include <math.h>
 
+#define PI 3.14159265
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
 ModulePlayer::ModulePlayer()
@@ -127,8 +129,7 @@ bool ModulePlayer::Start()
 	graphics = App->textures->Load("Game/Sprites.png");
 	shoot = App->audio->Load_effects("Game/BubbleShot.wav");
 
-	orientationy = -8;
-	orientationx = 0;
+	
 
 	return true;
 }
@@ -182,24 +183,12 @@ update_status ModulePlayer::Update()
 			current_animation1 = &right;
 		}
 
-		if (angle>-70)
-			angle -= 2;
+		if (angle>-70.0)
+			angle -= 2.0;
 
 
-		if (orientationx > -6)
-		{
-			if (orientationx <= 0)
-			{
-				orientationx -= 0.18;
-				orientationy += 0.18;
-			}
-			else
-			{
-				orientationx -= 0.18;
-				orientationy -= 0.18;
-			}
+		/////
 
-		}
 
 	}
 
@@ -214,30 +203,18 @@ update_status ModulePlayer::Update()
 		}
 
 
-		if (angle<70)
-			angle += 2;
+		if (angle<70.0)
+			angle += 2.0;
 
-		if (orientationx < 6)
-		{
-			if (orientationx >= 0)
-			{
-				orientationx += 0.18;
-				orientationy += 0.18;
-			}
-			else
-			{
-				orientationx += 0.18;
-				orientationy -= 0.18;
-			}
-		}
+		//////
 	}
 
 
 	if (App->input->keyboard[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN && App->spheres->next_sphere==true)
 	{
-		//App->spheres->AddSphere(App->spheres->spheres[Random], 310, 370);
-		App->spheres->active[App->spheres->last_sphere-1]->speed.x = orientationx;
-		App->spheres->active[App->spheres->last_sphere-1]->speed.y = orientationy;
+
+		App->spheres->active[App->spheres->last_sphere - 1]->speed.x = (sin(angle*PI / 180)) * SPEED;
+		App->spheres->active[App->spheres->last_sphere - 1]->speed.y = -(cos(angle*PI / 180)) * SPEED;
 
 		if (current_animation2 != &bobShot)
 		{

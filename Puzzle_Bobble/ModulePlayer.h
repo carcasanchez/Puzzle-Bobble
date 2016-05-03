@@ -38,11 +38,12 @@ public:
 	SDL_Rect* p_arrow_src = nullptr;
 	SDL_Rect arrow_dst;
 	SDL_Rect* p_arrow_dst = nullptr;
-	double angle = 0;
+	double angle = 0.0;
 	SDL_Point* p_center = nullptr;
 	SDL_Point center;
 	iPoint position;
 	Mix_Chunk* shoot = nullptr;
+
 	SDL_Rect bag_complete;
 	SDL_Rect bag_incomplete;
 	SDL_Rect top_base;
