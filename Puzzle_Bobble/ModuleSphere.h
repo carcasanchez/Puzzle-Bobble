@@ -20,6 +20,8 @@ enum Color { BLUE, GREEN, GRAY, BLACK, RED, ORANGE, YELLOW, VIOLET };
 struct Sphere
 {
 	Animation anim;
+	Animation idle;
+
 	uint fx = 0;
 	iPoint position;
 	iPoint pos_board;

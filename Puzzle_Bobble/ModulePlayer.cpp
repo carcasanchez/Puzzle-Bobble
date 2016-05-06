@@ -35,35 +35,35 @@ ModulePlayer::ModulePlayer()
 	p_center = &center;
 
 	// idle left 
-	idle_left.PushBack({ 16, 17, 17, 19 });
-	idle_left.PushBack({ 50, 17, 17, 19 });
-	idle_left.PushBack({ 84, 17, 17, 19 });
-	idle_left.PushBack({ 118, 17, 17, 19 });
+	idle_left.PushBack({ 11, 42, 26, 28 });
+	idle_left.PushBack({ 38, 42, 26, 28 });
+	idle_left.PushBack({ 65, 42, 26, 28 });
+	idle_left.PushBack({ 92, 42, 26, 28 });
 	idle_left.loop = true;
 	idle_left.speed = 0.1f;
 
 
 	// Move right
-	right.PushBack({ 415, 20, 34, 20 });
-	right.PushBack({ 451, 20, 34, 20 });
-	right.PushBack({ 486, 20, 34, 20 });
-	right.PushBack({ 520, 20, 34, 20 });
-	right.PushBack({ 552, 20, 34, 20 });
-	right.PushBack({ 9, 56, 34, 20 });
-	right.PushBack({ 41, 56, 34, 20 });
-	right.PushBack({ 75, 56, 34, 20 });
+	right.PushBack({ 8, 18, 29, 19 });
+	right.PushBack({ 38, 18, 29, 19 });
+	right.PushBack({ 68, 18, 29, 19 });
+	right.PushBack({ 98, 18, 29, 19 });
+	right.PushBack({ 128, 18, 29, 19 });
+	right.PushBack({ 158, 18, 29, 19 });
+	right.PushBack({ 188, 18, 29, 19 });
+	right.PushBack({ 218, 18, 29, 19 });
 	right.loop = true;
 	right.speed = 0.5f;
 
 	//idle right
-	idle_right.PushBack({ 114, 55, 34, 20 });
-	idle_right.PushBack({ 148, 55, 34, 20 });
-	idle_right.PushBack({ 215, 55, 34, 20 });
-	idle_right.PushBack({ 182, 55, 34, 20 });
-	idle_right.PushBack({ 249, 55, 34, 20 });
-	idle_right.PushBack({ 285, 55, 29, 20 });//
-	idle_right.PushBack({ 249, 55, 34, 20 });
-	idle_right.PushBack({ 285, 55, 29, 20 });//
+	idle_right.PushBack({ 248, 18, 29, 19 });
+	idle_right.PushBack({ 278, 18, 29, 19 });
+	idle_right.PushBack({ 308, 18, 29, 19 });
+	idle_right.PushBack({ 338, 18, 29, 19 });
+	idle_right.PushBack({ 368, 18, 29, 19 });
+	idle_right.PushBack({ 398, 18, 29, 19 });//
+	idle_right.PushBack({ 368, 18, 29, 19 });
+	idle_right.PushBack({ 398, 18, 29, 19 });//
 	idle_right.loop = true;
 	idle_right.speed = 0.1f;
 
@@ -72,9 +72,9 @@ ModulePlayer::ModulePlayer()
 	bag_incomplete = { 424, 834, 40, 23 };
 
 	//Bob Shot
-	bobShot.PushBack({ 254, 19, 17, 17 });
-	bobShot.PushBack({ 288, 18, 22, 18 });
-	bobShot.PushBack({ 322, 18, 22, 18 });
+	bobShot.PushBack({ 200, 42, 26, 28 });
+	bobShot.PushBack({ 227, 42, 26, 28 });
+	bobShot.PushBack({ 254, 42, 26, 28 });
 	bobShot.speed = 0.4f;
 	bobShot.loop = false;
 
@@ -244,8 +244,8 @@ update_status ModulePlayer::Update()
 	App->render->Blit(graphics, position.x - 3, position.y + 2, &(current_animation_lever->GetCurrentFrame()));
 	SDL_RenderCopyEx(App->render->renderer, graphics, p_arrow_src, p_arrow_dst, angle, p_center, SDL_FLIP_NONE);
 	App->render->Blit(graphics, position.x - 44, position.y, &blow);
-	App->render->Blit(graphics, position.x, position.y, &(current_animation1->GetCurrentFrame()));
-	App->render->Blit(graphics, position.x - 78, position.y - 4, &(current_animation2->GetCurrentFrame()));
+	App->render->Blit(graphics, position.x, position.y-4, &(current_animation1->GetCurrentFrame()));
+	App->render->Blit(graphics, position.x - 95, position.y - 20, &(current_animation2->GetCurrentFrame()));
 	//	App->render->Blit(graphics, position.x - 50, position.y - 80, &(current_animation_arrow->GetCurrentFrame()));
 
 

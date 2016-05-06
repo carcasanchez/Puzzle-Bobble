@@ -35,10 +35,16 @@ bool ModuleSphere::Start()
 	graphics = App->textures->Load("Game/Sprites.png");
 
 	spheres[0].anim.PushBack({ 12, 260, 16, 16 });
-	spheres[0].anim.PushBack({ 32, 260, 16, 16 });
-	spheres[0].anim.PushBack({ 52, 260, 16, 16 });
-	spheres[0].anim.PushBack({ 72, 260, 16, 16 });
-	spheres[0].anim.PushBack({ 92, 260, 16, 16 });
+
+	spheres[0].idle.PushBack({ 32, 260, 16, 16 });
+	spheres[0].idle.PushBack({ 52, 260, 16, 16 });
+	spheres[0].idle.PushBack({ 72, 260, 16, 16 });
+	spheres[0].idle.PushBack({ 92, 260, 16, 16 });
+	spheres[0].idle.PushBack({ 32, 260, 16, 16 });
+
+	spheres[0].idle.loop = false;
+	spheres[0].idle.speed = 0.3f;
+
 	spheres[0].anim.PushBack({ 113, 260, 16, 16 });
 	spheres[0].anim.PushBack({ 133, 260, 16, 16 });
 	spheres[0].anim.PushBack({ 153, 260, 16, 16 });
@@ -47,12 +53,18 @@ bool ModuleSphere::Start()
 	spheres[0].anim.loop = false;
 	spheres[0].anim.speed = 0.3f;
 	spheres[0].sphere_color = BLUE;
-
+///////////////////////////////////////////
 	spheres[1].anim.PushBack({ 318, 260, 16, 16 });
-	spheres[1].anim.PushBack({ 338, 260, 16, 16 });
-	spheres[1].anim.PushBack({ 358, 260, 16, 16 });
-	spheres[1].anim.PushBack({ 378, 260, 16, 16 });
-	spheres[1].anim.PushBack({ 398, 260, 16, 16 });
+
+	spheres[1].idle.PushBack({ 338, 260, 16, 16 });
+	spheres[1].idle.PushBack({ 358, 260, 16, 16 });
+	spheres[1].idle.PushBack({ 378, 260, 16, 16 });
+	spheres[1].idle.PushBack({ 398, 260, 16, 16 });
+	spheres[1].idle.PushBack({ 338, 260, 16, 16 });
+
+	spheres[1].idle.loop = false;
+	spheres[1].idle.speed = 0.3f;
+
 	spheres[1].anim.PushBack({ 419, 260, 16, 16 });
 	spheres[1].anim.PushBack({ 439, 260, 16, 16 });
 	spheres[1].anim.PushBack({ 459, 260, 16, 16 });
@@ -62,12 +74,18 @@ bool ModuleSphere::Start()
 	spheres[1].anim.speed = 0.3f;
 	spheres[1].sphere_color = GREEN;
 
-
+/////////////////////////////
 	spheres[2].anim.PushBack({ 12, 286, 16, 16 });
-	spheres[2].anim.PushBack({ 32, 286, 16, 16 });
-	spheres[2].anim.PushBack({ 52, 286, 16, 16 });
-	spheres[2].anim.PushBack({ 72, 286, 16, 16 });
-	spheres[2].anim.PushBack({ 92, 286, 16, 16 });
+
+	spheres[2].idle.PushBack({ 32, 286, 16, 16 });
+	spheres[2].idle.PushBack({ 52, 286, 16, 16 });
+	spheres[2].idle.PushBack({ 72, 286, 16, 16 });
+	spheres[2].idle.PushBack({ 92, 286, 16, 16 });
+	spheres[2].idle.PushBack({ 32, 286, 16, 16 });
+
+	spheres[2].idle.loop = false;
+	spheres[2].idle.speed = 0.3f;
+
 	spheres[2].anim.PushBack({ 113, 286, 16, 16 });
 	spheres[2].anim.PushBack({ 133, 286, 16, 16 });
 	spheres[2].anim.PushBack({ 153, 286, 16, 16 });
@@ -77,12 +95,18 @@ bool ModuleSphere::Start()
 	spheres[2].anim.speed = 0.3f;
 	spheres[2].sphere_color = GRAY;
 
-
+/////////////////////////////////
 	spheres[3].anim.PushBack({ 318, 286, 16, 16 });
-	spheres[3].anim.PushBack({ 338, 286, 16, 16 });
-	spheres[3].anim.PushBack({ 358, 286, 16, 16 });
-	spheres[3].anim.PushBack({ 378, 286, 16, 16 });
-	spheres[3].anim.PushBack({ 398, 286, 16, 16 });
+
+	spheres[3].idle.PushBack({ 338, 286, 16, 16 });
+	spheres[3].idle.PushBack({ 358, 286, 16, 16 });
+	spheres[3].idle.PushBack({ 378, 286, 16, 16 });
+	spheres[3].idle.PushBack({ 398, 286, 16, 16 });
+	spheres[3].idle.PushBack({ 338, 286, 16, 16 });
+
+	spheres[4].idle.loop = true;
+	spheres[4].idle.speed = 0.3f;
+
 	spheres[3].anim.PushBack({ 419, 286, 16, 16 });
 	spheres[3].anim.PushBack({ 439, 286, 16, 16 });
 	spheres[3].anim.PushBack({ 459, 286, 16, 16 });
@@ -92,10 +116,15 @@ bool ModuleSphere::Start()
 	spheres[3].anim.speed = 0.3f;
 	spheres[3].sphere_color = BLACK;
 
+	//////////////////////////////
+	spheres[4].idle.PushBack({ 12, 312, 16, 16 });
+	spheres[4].idle.PushBack({ 32, 312, 16, 16 });
+	spheres[4].idle.PushBack({ 92, 312, 16, 16 });
+	spheres[4].idle.PushBack({ 12, 312, 16, 16 });
 
-	spheres[4].anim.PushBack({ 12, 312, 16, 16 });
-	spheres[4].anim.PushBack({ 32, 312, 16, 16 });
-	spheres[4].anim.PushBack({ 92, 312, 16, 16 });
+	spheres[4].idle.loop = false;
+	spheres[4].idle.speed = 0.3f;
+
 	spheres[4].anim.PushBack({ 113, 312, 16, 16 });
 	spheres[4].anim.PushBack({ 133, 312, 16, 16 });
 	spheres[4].anim.PushBack({ 153, 312, 16, 16 });
@@ -105,12 +134,18 @@ bool ModuleSphere::Start()
 	spheres[4].anim.speed = 0.3f;
 	spheres[4].sphere_color = RED;
 
-
+	/////////////////////
 	spheres[5].anim.PushBack({ 318, 312, 16, 16 });
-	spheres[5].anim.PushBack({ 338, 312, 16, 16 });
-	spheres[5].anim.PushBack({ 358, 312, 16, 16 });
-	spheres[5].anim.PushBack({ 378, 312, 16, 16 });
-	spheres[5].anim.PushBack({ 398, 312, 16, 16 });
+
+	spheres[5].idle.PushBack({ 338, 312, 16, 16 });
+	spheres[5].idle.PushBack({ 358, 312, 16, 16 });
+	spheres[5].idle.PushBack({ 378, 312, 16, 16 });
+	spheres[5].idle.PushBack({ 398, 312, 16, 16 });
+	spheres[5].idle.PushBack({ 338, 312, 16, 16 });
+
+	spheres[5].idle.loop = false;
+	spheres[5].idle.speed = 0.3f;
+
 	spheres[5].anim.PushBack({ 419, 312, 16, 16 });
 	spheres[5].anim.PushBack({ 439, 312, 16, 16 });
 	spheres[5].anim.PushBack({ 459, 312, 16, 16 });
@@ -120,12 +155,17 @@ bool ModuleSphere::Start()
 	spheres[5].anim.speed = 0.3f;
 	spheres[5].sphere_color = ORANGE;
 
-
+	////////////////////
 	spheres[6].anim.PushBack({ 12, 338, 16, 16 });
-	spheres[6].anim.PushBack({ 32, 338, 16, 16 });
-	spheres[6].anim.PushBack({ 52, 338, 16, 16 });
-	spheres[6].anim.PushBack({ 72, 338, 16, 16 });
-	spheres[6].anim.PushBack({ 92, 338, 16, 16 });
+
+	spheres[6].idle.PushBack({ 32, 338, 16, 16 });
+	spheres[6].idle.PushBack({ 52, 338, 16, 16 });
+	spheres[6].idle.PushBack({ 72, 338, 16, 16 });
+	spheres[6].idle.PushBack({ 92, 338, 16, 16 });
+	spheres[6].idle.PushBack({ 32, 338, 16, 16 });
+	spheres[6].idle.loop = false;
+	spheres[6].idle.speed = 0.3f;
+
 	spheres[6].anim.PushBack({ 113, 338, 16, 16 });
 	spheres[6].anim.PushBack({ 133, 338, 16, 16 });
 	spheres[6].anim.PushBack({ 153, 338, 16, 16 });
@@ -134,12 +174,17 @@ bool ModuleSphere::Start()
 	spheres[6].anim.loop = false;
 	spheres[6].anim.speed = 0.3f;
 	spheres[6].sphere_color = YELLOW;
-
+	///////////////////////
 	spheres[7].anim.PushBack({ 318, 338, 16, 16 });
-	spheres[7].anim.PushBack({ 338, 338, 16, 16 });
-	spheres[7].anim.PushBack({ 358, 338, 16, 16 });
-	spheres[7].anim.PushBack({ 378, 338, 16, 16 });
-	spheres[7].anim.PushBack({ 398, 338, 16, 16 });
+
+	spheres[7].idle.PushBack({ 338, 338, 16, 16 });
+	spheres[7].idle.PushBack({ 358, 338, 16, 16 });
+	spheres[7].idle.PushBack({ 378, 338, 16, 16 });
+	spheres[7].idle.PushBack({ 398, 338, 16, 16 });
+	spheres[7].idle.PushBack({ 338, 338, 16, 16 });
+	spheres[7].idle.loop = false;
+	spheres[7].idle.speed = 0.3f;
+
 	spheres[7].anim.PushBack({ 419, 338, 16, 16 });
 	spheres[7].anim.PushBack({ 439, 338, 16, 16 });
 	spheres[7].anim.PushBack({ 459, 338, 16, 16 });
@@ -189,7 +234,7 @@ update_status ModuleSphere::Update()
 		}
 		else if (SDL_GetTicks() >= s->born)
 		{
-			App->render->Blit(graphics, s->position.x, s->position.y, &(s->anim.GetCurrentFrame()));
+			App->render->Blit(graphics, s->position.x, s->position.y, &(s->idle.GetCurrentFrame()));
 			if (s->fx_played == false)
 			{
 				s->fx_played = true;
@@ -241,7 +286,7 @@ Sphere::Sphere()
 }
 
 Sphere::Sphere(const Sphere& s) :
-anim(s.anim), position(s.position), speed(s.speed),
+idle(s.idle), position(s.position), speed(s.speed),
 fx(s.fx), born(s.born)
 {}
 
