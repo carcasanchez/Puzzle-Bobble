@@ -21,7 +21,8 @@ struct Sphere
 {
 	Animation anim;
 	Animation idle;
-
+	Animation explosion;
+	Animation monster;
 	uint fx = 0;
 	iPoint position;
 	iPoint pos_board;
