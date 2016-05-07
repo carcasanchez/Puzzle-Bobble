@@ -162,7 +162,7 @@ bool ModulePlayer::CheckLose(){
 	for (unsigned int i = App->spheres->last_sphere; i > 0; i--){
 		if (App->spheres->active[i] == nullptr)
 			continue;
-		if (App->spheres->active[i]->position.y > 170 * SCREEN_SIZE)
+		if (App->spheres->active[i]->position.y > 170 * SCREEN_SIZE && App->spheres->active[i]->speed.y==0)
 		{
 			return true;
 		}

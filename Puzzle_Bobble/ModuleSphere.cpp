@@ -346,7 +346,7 @@ update_status ModuleSphere::Update()
 		if (s == nullptr)
 			continue;
 
-		if (s->Update() == false)
+		if (s->Update() == false  || (s->speed.y>0 && s->position.y>190*SCREEN_SIZE))
 		{
 			delete s;
 			active[i] = nullptr;
@@ -416,7 +416,8 @@ bool Sphere::Update()
 	position.x += speed.x * 2;
 	position.y += speed.y * 2;
 
-	collider->SetPos(position.x/2 +2 , position.y/2 +2);
+	if (collider!=nullptr)
+		collider->SetPos(position.x/2 +2 , position.y/2 +2);
 
 
 	return ret;
@@ -474,7 +475,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 					}
 				}
 				allahu_list.clear();
-
+				
 				if (check_down == true){
 					for (int i = 0; i < App->spheres->last_sphere; i++){
 						if (active[i] == nullptr)
@@ -492,12 +493,14 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 						}
 					}
 					for (int i = App->spheres->last_sphere; i > 0; i--){
-						if (active[i] == nullptr)
+						if (active[i] == nullptr || active[i]->collider == nullptr)
 							continue;
 						if (App->spheres->active[i]->checked == false){
-							active[i]->collider->to_delete = true;
-							active[i]->speed.y = 5.0f;
+							active[i]->collider->to_delete = true; 
 							active[i]->collider = nullptr;
+							active[i]->speed.y = 5.0f;
+							App->board->board[active[i]->board_index].Empty = true;
+							
 						}
 					}
 					for (unsigned int i = 0; i < App->spheres->last_sphere; i++)
