@@ -179,7 +179,6 @@ update_status ModulePlayer::PreUpdate(){
 		App->spheres->AddSphere(App->spheres->spheres[Random], 306, 368);
 		mystate = UPDATE;
 	}
-
 	return update_status::UPDATE_CONTINUE;
 }
 

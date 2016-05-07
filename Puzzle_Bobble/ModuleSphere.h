@@ -29,7 +29,6 @@ struct Sphere
 	fPoint speed;
 	Uint32 born = 0;
 	bool checked = false;
-	bool shoted = false;
 	bool fx_played = false;
 	Collider* collider = nullptr;
 	bool doomed = false;
@@ -39,6 +38,8 @@ struct Sphere
 	Sphere(const Sphere& p);
 	bool Update();
 	void CheckBobble();
+	void CheckBobbleDown();
+
 	int board_index;
 };
 
@@ -47,7 +48,9 @@ class ModuleSphere : public Module
 public:
 	uint last_sphere = 0;
 	bool next_sphere = true;
+	bool check_down = false;
 	Vector <Sphere*> allahu_list;
+	Vector <Sphere*> bobble_down;
 
 	ModuleSphere();
 	~ModuleSphere();

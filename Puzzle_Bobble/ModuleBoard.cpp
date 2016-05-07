@@ -71,7 +71,6 @@ void ModuleBoard::CheckPosition(Sphere* actual_sphere)
 	}
 	actual_sphere->position = board[square_index];
 	actual_sphere->pos_board = board[square_index];
-	actual_sphere->shoted = true;
 	board[square_index].Empty = false;
 	actual_sphere->board_index = square_index;
 	

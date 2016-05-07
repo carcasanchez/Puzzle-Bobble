@@ -374,7 +374,6 @@ void ModuleSphere::AddSphere(const Sphere& sphere, int x, int y, COLLIDER_TYPE c
 	s->speed.y = 0;
 	s->speed.x = 0;
 	s->sphere_color = sphere.sphere_color;
-	s->shoted = false;
 	s->collider = App->collision->AddCollider(SDL_Rect{0, 0, 12, 12 }, col_type, this);
 	s->collider->SetPos(310, 370);
 	active[last_sphere++] = s;
@@ -448,18 +447,22 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 				
 				if (allahu_list.n_elements >= 3)
 				{
+					check_down = true;
 					for (i = 0; i < allahu_list.n_elements; i++)
 					{
 						allahu_list[i]->doomed = true;
 						App->board->board[allahu_list[i]->board_index].Empty = true;	
 					}
+
 				}
 
 				for (unsigned int i = 0; i < last_sphere; i++)
 				{
 					if (active[i] == nullptr)
 						continue;
-					if (active[i]->checked == true){ active[i]->checked = false; }
+					if (active[i]->checked == true){
+						active[i]->checked = false;
+					}
 					
 					if (active[i]->doomed == true)
 					{
@@ -471,6 +474,43 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 					}
 				}
 				allahu_list.clear();
+
+				if (check_down == true){
+					for (int i = 0; i < App->spheres->last_sphere; i++){
+						if (active[i] == nullptr)
+							continue;
+						if (App->spheres->active[i]->board_index < 8){
+							allahu_list.push_back(active[i]);
+						}
+					}
+
+					for (int i = 0; i < allahu_list.size(); i++){
+						if (allahu_list[i]->checked == false){
+							allahu_list[i]->checked = true;
+							allahu_list[i]->CheckBobbleDown();
+
+						}
+					}
+					for (int i = App->spheres->last_sphere; i > 0; i--){
+						if (active[i] == nullptr)
+							continue;
+						if (App->spheres->active[i]->checked == false){
+							active[i]->collider->to_delete = true;
+							active[i]->speed.y = 5.0f;
+							active[i]->collider = nullptr;
+						}
+					}
+					for (unsigned int i = 0; i < App->spheres->last_sphere; i++)
+					{
+						if (active[i] == nullptr)
+							continue;
+						if (active[i]->checked == true){
+							active[i]->checked = false;
+						}
+					}
+					allahu_list.clear();
+					check_down = false;
+				}
 
 				if (App->player->mystate ==POSTUPDATE ){
 					App->player->mystate = PREUPDATE;
@@ -502,4 +542,20 @@ void Sphere::CheckBobble(){
 	}
 
 
+}
+void Sphere::CheckBobbleDown(){
+	unsigned int i;
+
+	for (i = 0; i < App->spheres->last_sphere; i++){
+		if (App->spheres->active[i] == nullptr)
+			continue;
+		if (position.DistanceTo(App->spheres->active[i]->position) <= 18 * SCREEN_SIZE  && App->spheres->active[i]->checked == false)
+		{
+			App->spheres->active[i]->checked = true;
+			App->spheres->bobble_down.push_back(App->spheres->active[i]);
+			App->spheres->active[i]->CheckBobbleDown();
+
+
+		}
+	}
 }
