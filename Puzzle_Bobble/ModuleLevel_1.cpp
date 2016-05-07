@@ -69,9 +69,9 @@ update_status ModuleLevel_1::Update()
 	{
 		App->fade->FadeToBlack(App->level_1, App->level_2, 1);
 	}
-	if (App->spheres->LoseCondition == true)
+	if (App->player->LoseCondition == true)
 	{
-		App->spheres->LoseCondition = false;
+		App->player->LoseCondition = false;
 		App->fade->FadeToBlack(App->level_1, App->game_over, 1);
 	}
 	return UPDATE_CONTINUE;
@@ -82,7 +82,7 @@ bool ModuleLevel_1::CleanUp()
 
 	App->player->Disable();
 
-	for (int i = 0; i < App->spheres->last_sphere; i++)
+	for (unsigned int i = 0; i < App->spheres->last_sphere; i++)
 	{
 		if (App->spheres->active[i] == nullptr)
 			continue;
@@ -97,7 +97,7 @@ bool ModuleLevel_1::CleanUp()
 
    App->spheres->last_sphere = 0;
 
-	for (int i = 0; i < NUM_SQUARES; i++)
+   for (unsigned int i = 0; i < NUM_SQUARES; i++)
 	{
 
 		App->board->board[i].Empty = true;

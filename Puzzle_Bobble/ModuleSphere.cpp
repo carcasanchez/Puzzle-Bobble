@@ -442,7 +442,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 				App->board->CheckPosition(active[last_sphere-1]);
 				//todo
 
-				App->spheres->allahu_list.push_back(active[i]);
+				allahu_list.push_back(active[i]);
 				active[i]->checked = true;
 				active[i]->CheckBobble();
 				
@@ -455,7 +455,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 					}
 				}
 
-				for (int i = 0; i < last_sphere; i++)
+				for (unsigned int i = 0; i < last_sphere; i++)
 				{
 					if (active[i] == nullptr)
 						continue;
@@ -471,23 +471,23 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 					}
 				}
 				allahu_list.clear();
-				next_sphere = true;
+
 				if (App->player->mystate ==POSTUPDATE ){
 					App->player->mystate = PREUPDATE;
+					next_sphere = true;
 				}
 
 			}
-			if (c2->type == COLLIDER_LOSE &&c1->type == COLLIDER_SPHERE && active[i]->speed.y == 0&&active[i]->shoted==true){
-				LoseCondition = true;
-			}
+			
+			
 		}
 	}
 }
 
-
 void Sphere::CheckBobble(){
+	
 
-	int i;
+	unsigned int i;
 
 	for (i = 0; i < App->spheres->last_sphere; i++)
 	{

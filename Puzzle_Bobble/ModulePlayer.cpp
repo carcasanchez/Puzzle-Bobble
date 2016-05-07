@@ -29,7 +29,7 @@ ModulePlayer::ModulePlayer()
 
 	arrow_src = { 15, 514, 22, 55 };
 	p_arrow_src = &arrow_src;
-	arrow_dst = { position.x - 49.69, position.y - 80.3, 22 * 2, 55 * 2 };
+	arrow_dst = { position.x - 49.69f, position.y - 80.3f, 22 * 2, 55 * 2 };
 	p_arrow_dst = &arrow_dst;
 	center = { 20, 64 };
 	p_center = &center;
@@ -110,6 +110,20 @@ ModulePlayer::ModulePlayer()
 	//Blow tube
 	blow = { 37, 869, 13, 11 };
 
+	//hurry up
+	hurry_up.PushBack({ 212, 1439, 32, 28 });
+	hurry_up.PushBack({ 248, 1439, 32, 28 });
+	hurry_up.PushBack({ 212, 1439, 32, 28 });
+	hurry_up.PushBack({ 284, 1439, 32, 28 });
+	hurry_up.PushBack({ 212, 1439, 32, 28 });
+	hurry_up.PushBack({ 320, 1439, 32, 28 });
+	hurry_up.PushBack({ 212, 1439, 32, 28 });
+	hurry_up.PushBack({ 356, 1439, 32, 28 });
+	hurry_up.PushBack({ 212, 1439, 32, 28 });
+	hurry_up.PushBack({ 392, 1439, 32, 28 });
+	hurry_up.PushBack({ 212, 1439, 32, 28 });
+	hurry_up.PushBack({ 428, 1439, 32, 28 });
+
 	mystate = PREUPDATE;
 
 
@@ -144,10 +158,24 @@ bool ModulePlayer::CleanUp()
 	return true;
 }
 
+bool ModulePlayer::CheckLose(){
+	for (unsigned int i = App->spheres->last_sphere; i > 0; i--){
+		if (App->spheres->active[i] == nullptr)
+			continue;
+		if (App->spheres->active[i]->position.y > 170 * SCREEN_SIZE)
+		{
+			return true;
+		}
+
+	}
+	return false;
+}
+
 // Update: draw background
 update_status ModulePlayer::PreUpdate(){
 
 	if (mystate == PREUPDATE){	
+		LoseCondition = CheckLose();
 		App->spheres->AddSphere(App->spheres->spheres[Random], 306, 368);
 		mystate = UPDATE;
 	}
@@ -258,7 +286,7 @@ update_status ModulePlayer::PostUpdate(){
 	if (mystate == FIRST){
 		while (succes != true){
 			Random = rand() % 8;
-			for (int i = 0; i < App->spheres->last_sphere; i++){
+			for (unsigned int i = 0; i < App->spheres->last_sphere; i++){
 				if (App->spheres->active[i] == nullptr){
 					continue;
 				}
@@ -273,7 +301,7 @@ update_status ModulePlayer::PostUpdate(){
 	else if (mystate == UPDATE){
 		while (succes != true){
 			Random = rand() % 8;
-			for (int i = 0; i < App->spheres->last_sphere; i++){
+			for (unsigned int i = 0; i < App->spheres->last_sphere; i++){
 				if (App->spheres->active[i] == nullptr){
 					continue;
 				}

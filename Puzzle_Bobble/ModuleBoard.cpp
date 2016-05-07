@@ -44,7 +44,7 @@ bool ModuleBoard::CleanUp()
 	{
 		if (board[i].Empty == false)
 		{
-			board[i].Empty == true;
+			board[i].Empty = true;
 		}
 	}
 	return true;

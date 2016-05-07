@@ -19,6 +19,7 @@ public:
 	update_status PostUpdate();
 	update_status Update();
 	update_status PreUpdate();
+	bool CheckLose();
 	bool CleanUp();
 
 public:
@@ -51,6 +52,7 @@ public:
 	SDL_Rect blow;
 	float orientationx, orientationy;
 	int Random;
+	bool LoseCondition = false;
 	States mystate;
 };
 

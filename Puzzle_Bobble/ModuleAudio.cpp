@@ -34,10 +34,10 @@ bool ModuleAudio::CleanUp()
 {
 	LOG("Freeing audio and and music library\n");
 
-	for (int i = 0; i < last_audio; i++)
+	for (unsigned int i = 0; i < last_audio; i++)
 	Mix_FreeMusic(audio[i]);
 
-	for (int i = 0; i < last_effect; i++)
+	for (unsigned int i = 0; i < last_effect; i++)
 		Mix_FreeChunk(effects[i]);
 
 	Mix_CloseAudio();
