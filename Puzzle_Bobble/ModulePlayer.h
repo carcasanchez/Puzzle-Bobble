@@ -34,6 +34,7 @@ public:
 	Animation bobShot;
 	Animation base_left;
 	Animation lever;
+	Animation hurry_up;
 	SDL_Rect arrow_src;
 	SDL_Rect* p_arrow_src = nullptr;
 	SDL_Rect arrow_dst;
