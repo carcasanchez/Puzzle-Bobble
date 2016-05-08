@@ -143,7 +143,8 @@ bool ModulePlayer::Start()
 	graphics = App->textures->Load("Game/Sprites.png");
 	shoot = App->audio->Load_effects("Game/BubbleShot.wav");
 
-	
+	//App->spheres->AddSphere(App->spheres->spheres[Random], 306, 368);
+
 
 	return true;
 }
@@ -176,7 +177,10 @@ update_status ModulePlayer::PreUpdate(){
 
 	if (mystate == PREUPDATE){	
 		LoseCondition = CheckLose();
+		
 		App->spheres->AddSphere(App->spheres->spheres[Random], 306, 368);
+		//App->spheres->AddSphere(App->spheres->spheres[Random], 120 * SCREEN_SIZE, 200 * SCREEN_SIZE);
+		
 		mystate = UPDATE;
 	}
 	return update_status::UPDATE_CONTINUE;
@@ -272,7 +276,7 @@ update_status ModulePlayer::Update()
 	SDL_RenderCopyEx(App->render->renderer, graphics, p_arrow_src, p_arrow_dst, angle, p_center, SDL_FLIP_NONE);
 	App->render->Blit(graphics, position.x - 44, position.y, &blow);
 	App->render->Blit(graphics, position.x, position.y-4, &(current_animation1->GetCurrentFrame()));
-	App->render->Blit(graphics, position.x - 95, position.y - 20, &(current_animation2->GetCurrentFrame()));
+	App->render->Blit(graphics, position.x - 84, position.y - 20, &(current_animation2->GetCurrentFrame()));
 	//	App->render->Blit(graphics, position.x - 50, position.y - 80, &(current_animation_arrow->GetCurrentFrame()));
 
 
@@ -282,6 +286,8 @@ update_status ModulePlayer::Update()
 update_status ModulePlayer::PostUpdate(){
 	srand(time(NULL));
 	bool succes = false;
+
+
 	if (mystate == FIRST){
 		while (succes != true){
 			Random = rand() % 8;
@@ -297,7 +303,8 @@ update_status ModulePlayer::PostUpdate(){
 		mystate = PREUPDATE;
 
 	}
-	else if (mystate == UPDATE){
+
+	 if (mystate == UPDATE){
 		while (succes != true){
 			Random = rand() % 8;
 			for (unsigned int i = 0; i < App->spheres->last_sphere; i++){

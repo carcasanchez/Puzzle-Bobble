@@ -11,6 +11,11 @@
 
 #include "SDL/include/SDL_timer.h"
 
+Particle::Particle()
+{
+
+};
+
 ModuleSphere::ModuleSphere()
 {
 	for (uint i = 0; i < MAX_ACTIVE_SPHERES; ++i)
@@ -23,6 +28,11 @@ ModuleSphere::~ModuleSphere()
 // Load assets
 bool ModuleSphere::Start()
 {
+
+	for (uint i = 0; i < MAX_EXPLOSIONS; ++i)
+		active_explosion[i] = nullptr;
+
+	
 	//////////////////////////////////////Collision scenary/////////////////////////////////////////////
 
 	App->collision->AddCollider(SDL_Rect{ 224, 24, 8, 194 }, COLLIDER_LATERAL_WALL);	//Right
@@ -52,21 +62,21 @@ bool ModuleSphere::Start()
 	spheres[0].anim.loop = false;
 	spheres[0].anim.speed = 0.3f;
 
-	spheres[0].explosion.PushBack({ 198, 188, 32, 31 });
-	spheres[0].explosion.PushBack({ 231, 188, 32, 31 });
-	spheres[0].explosion.PushBack({ 264, 188, 32, 31 });
-	spheres[0].explosion.PushBack({ 297, 188, 32, 31 });
-	spheres[0].explosion.PushBack({ 330, 188, 32, 31 });
-	spheres[0].explosion.PushBack({ 363, 188, 32, 31 });
-	spheres[0].explosion.PushBack({ 396, 188, 32, 31 });
-	spheres[0].explosion.speed = 0.3f;
-
 	spheres[0].monster.PushBack({ 462, 195, 20, 19 });
 	spheres[0].monster.PushBack({ 486, 195, 20, 19 });
 	spheres[0].monster.PushBack({ 510, 195, 20, 19 });
 	spheres[0].monster.PushBack({ 534, 195, 20, 19 });
 	spheres[0].monster.PushBack({ 534, 195, 20, 19 });
 	spheres[0].monster.speed = 0.3f;
+
+	explosion_blue.anim.PushBack({ 198, 188, 32, 31 });
+	explosion_blue.anim.PushBack({ 231, 188, 32, 31 });
+	explosion_blue.anim.PushBack({ 264, 188, 32, 31 });
+	explosion_blue.anim.PushBack({ 297, 188, 32, 31 });
+	explosion_blue.anim.PushBack({ 330, 188, 32, 31 });
+	explosion_blue.anim.PushBack({ 363, 188, 32, 31 });
+	explosion_blue.anim.PushBack({ 396, 188, 32, 31 });
+	explosion_blue.anim.speed = 0.3f;
 
 	spheres[0].sphere_color = BLUE;
 
@@ -88,14 +98,14 @@ bool ModuleSphere::Start()
 	spheres[1].anim.loop = false;
 	spheres[1].anim.speed = 0.3f;
 
-	spheres[1].explosion.PushBack({ 198, 220, 32, 31 });
-	spheres[1].explosion.PushBack({ 231, 220, 32, 31 });
-	spheres[1].explosion.PushBack({ 264, 220, 32, 31 });
-	spheres[1].explosion.PushBack({ 297, 220, 32, 31 });
-	spheres[1].explosion.PushBack({ 330, 220, 32, 31 });
-	spheres[1].explosion.PushBack({ 363, 220, 32, 31 });
-	spheres[1].explosion.PushBack({ 396, 220, 32, 31 });
-	spheres[1].explosion.speed = 0.3f;
+	explosion_gray.anim.PushBack({ 198, 220, 32, 31 });
+	explosion_gray.anim.PushBack({ 231, 220, 32, 31 });
+	explosion_gray.anim.PushBack({ 264, 220, 32, 31 });
+	explosion_gray.anim.PushBack({ 297, 220, 32, 31 });
+	explosion_gray.anim.PushBack({ 330, 220, 32, 31 });
+	explosion_gray.anim.PushBack({ 363, 220, 32, 31 });
+	explosion_gray.anim.PushBack({ 396, 220, 32, 31 });
+	explosion_gray.anim.speed = 0.3f;
 
 	spheres[1].monster.PushBack({ 462, 226, 20, 19 });
 	spheres[1].monster.PushBack({ 486, 226, 20, 19 });
@@ -121,14 +131,14 @@ bool ModuleSphere::Start()
 	spheres[2].anim.loop = false;
 	spheres[2].anim.speed = 0.3f;
 
-	spheres[2].explosion.PushBack({ 198, 252, 32, 31 });
-	spheres[2].explosion.PushBack({ 231, 252, 32, 31 });
-	spheres[2].explosion.PushBack({ 264, 252, 32, 31 });
-	spheres[2].explosion.PushBack({ 297, 252, 32, 31 });
-	spheres[2].explosion.PushBack({ 330, 252, 32, 31 });
-	spheres[2].explosion.PushBack({ 363, 252, 32, 31 });
-	spheres[2].explosion.PushBack({ 396, 252, 32, 31 });
-	spheres[2].explosion.speed = 0.3f;
+	explosion_red.anim.PushBack({ 198, 252, 32, 31 });
+	explosion_red.anim.PushBack({ 231, 252, 32, 31 });
+	explosion_red.anim.PushBack({ 264, 252, 32, 31 });
+	explosion_red.anim.PushBack({ 297, 252, 32, 31 });
+	explosion_red.anim.PushBack({ 330, 252, 32, 31 });
+	explosion_red.anim.PushBack({ 363, 252, 32, 31 });
+	explosion_red.anim.PushBack({ 396, 252, 32, 31 });
+	explosion_red.anim.speed = 0.3f;
 
 	spheres[2].monster.PushBack({ 462, 256, 20, 19 });
 	spheres[2].monster.PushBack({ 486, 256, 20, 19 });
@@ -155,14 +165,14 @@ bool ModuleSphere::Start()
 	spheres[3].anim.loop = false;
 	spheres[3].anim.speed = 0.3f;
 
-	spheres[3].explosion.PushBack({ 198, 284, 32, 31 });
-	spheres[3].explosion.PushBack({ 231, 284, 32, 31 });
-	spheres[3].explosion.PushBack({ 264, 284, 32, 31 });
-	spheres[3].explosion.PushBack({ 297, 284, 32, 31 });
-	spheres[3].explosion.PushBack({ 330, 284, 32, 31 });
-	spheres[3].explosion.PushBack({ 363, 284, 32, 31 });
-	spheres[3].explosion.PushBack({ 396, 284, 32, 31 });
-	spheres[3].explosion.speed = 0.3f;
+	explosion_yellow.anim.PushBack({ 198, 284, 32, 31 });
+	explosion_yellow.anim.PushBack({ 231, 284, 32, 31 });
+	explosion_yellow.anim.PushBack({ 264, 284, 32, 31 });
+	explosion_yellow.anim.PushBack({ 297, 284, 32, 31 });
+	explosion_yellow.anim.PushBack({ 330, 284, 32, 31 });
+	explosion_yellow.anim.PushBack({ 363, 284, 32, 31 });
+	explosion_yellow.anim.PushBack({ 396, 284, 32, 31 });
+	explosion_yellow.anim.speed = 0.3f;
 
 	spheres[3].monster.PushBack({ 462, 286, 20, 19 });
 	spheres[3].monster.PushBack({ 486, 286, 20, 19 });
@@ -190,14 +200,14 @@ bool ModuleSphere::Start()
 	spheres[4].anim.loop = false;
 	spheres[4].anim.speed = 0.3f;
 
-	spheres[4].explosion.PushBack({ 198, 316, 32, 31 });
-	spheres[4].explosion.PushBack({ 231, 316, 32, 31 });
-	spheres[4].explosion.PushBack({ 264, 316, 32, 31 });
-	spheres[4].explosion.PushBack({ 297, 316, 32, 31 });
-	spheres[4].explosion.PushBack({ 330, 316, 32, 31 });
-	spheres[4].explosion.PushBack({ 363, 316, 32, 31 });
-	spheres[4].explosion.PushBack({ 396, 316, 32, 31 });
-	spheres[4].explosion.speed = 0.3f;
+	explosion_green.anim.PushBack({ 198, 316, 32, 31 });
+	explosion_green.anim.PushBack({ 231, 316, 32, 31 });
+	explosion_green.anim.PushBack({ 264, 316, 32, 31 });
+	explosion_green.anim.PushBack({ 297, 316, 32, 31 });
+	explosion_green.anim.PushBack({ 330, 316, 32, 31 });
+	explosion_green.anim.PushBack({ 363, 316, 32, 31 });
+	explosion_green.anim.PushBack({ 396, 316, 32, 31 });
+	explosion_green.anim.speed = 0.3f;
 
 	spheres[4].monster.PushBack({ 462, 317, 20, 19 });
 	spheres[4].monster.PushBack({ 486, 317, 20, 19 });
@@ -226,14 +236,14 @@ bool ModuleSphere::Start()
 	spheres[5].anim.loop = false;
 	spheres[5].anim.speed = 0.3f;
 
-	spheres[5].explosion.PushBack({ 198, 348, 32, 31 });
-	spheres[5].explosion.PushBack({ 231, 348, 32, 31 });
-	spheres[5].explosion.PushBack({ 264, 348, 32, 31 });
-	spheres[5].explosion.PushBack({ 297, 348, 32, 31 });
-	spheres[5].explosion.PushBack({ 330, 348, 32, 31 });
-	spheres[5].explosion.PushBack({ 363, 348, 32, 31 });
-	spheres[5].explosion.PushBack({ 396, 348, 32, 31 });
-	spheres[5].explosion.speed = 0.3f;
+	explosion_black.anim.PushBack({ 198, 348, 32, 31 });
+	explosion_black.anim.PushBack({ 231, 348, 32, 31 });
+	explosion_black.anim.PushBack({ 264, 348, 32, 31 });
+	explosion_black.anim.PushBack({ 297, 348, 32, 31 });
+	explosion_black.anim.PushBack({ 330, 348, 32, 31 });
+	explosion_black.anim.PushBack({ 363, 348, 32, 31 });
+	explosion_black.anim.PushBack({ 396, 348, 32, 31 });
+	explosion_black.anim.speed = 0.3f;
 
 	spheres[5].monster.PushBack({ 462, 349, 20, 19 });
 	spheres[5].monster.PushBack({ 486, 349, 20, 19 });
@@ -261,14 +271,14 @@ bool ModuleSphere::Start()
 	spheres[6].anim.loop = false;
 	spheres[6].anim.speed = 0.3f;
 
-	spheres[6].explosion.PushBack({ 198, 380, 32, 31 });
-	spheres[6].explosion.PushBack({ 231, 380, 32, 31 });
-	spheres[6].explosion.PushBack({ 264, 380, 32, 31 });
-	spheres[6].explosion.PushBack({ 297, 380, 32, 31 });
-	spheres[6].explosion.PushBack({ 330, 380, 32, 31 });
-	spheres[6].explosion.PushBack({ 363, 380, 32, 31 });
-	spheres[6].explosion.PushBack({ 396, 380, 32, 31 });
-	spheres[6].explosion.speed = 0.3f;
+	explosion_orange.anim.PushBack({ 198, 380, 32, 31 });
+	explosion_orange.anim.PushBack({ 231, 380, 32, 31 });
+	explosion_orange.anim.PushBack({ 264, 380, 32, 31 });
+	explosion_orange.anim.PushBack({ 297, 380, 32, 31 });
+	explosion_orange.anim.PushBack({ 330, 380, 32, 31 });
+	explosion_orange.anim.PushBack({ 363, 380, 32, 31 });
+	explosion_orange.anim.PushBack({ 396, 380, 32, 31 });
+	explosion_orange.anim.speed = 0.3f;
 
 	spheres[6].monster.PushBack({ 462, 380, 20, 19 });
 	spheres[6].monster.PushBack({ 486, 380, 20, 19 });
@@ -296,14 +306,14 @@ bool ModuleSphere::Start()
 	spheres[7].anim.loop = false;
 	spheres[7].anim.speed = 0.3f;
 
-	spheres[7].explosion.PushBack({ 198, 412, 32, 31 });
-	spheres[7].explosion.PushBack({ 231, 412, 32, 31 });
-	spheres[7].explosion.PushBack({ 264, 412, 32, 31 });
-	spheres[7].explosion.PushBack({ 297, 412, 32, 31 });
-	spheres[7].explosion.PushBack({ 330, 412, 32, 31 });
-	spheres[7].explosion.PushBack({ 363, 412, 32, 31 });
-	spheres[7].explosion.PushBack({ 396, 412, 32, 31 });
-	spheres[7].explosion.speed = 0.3f;
+	explosion_violet.anim.PushBack({ 198, 412, 32, 31 });
+	explosion_violet.anim.PushBack({ 231, 412, 32, 31 });
+	explosion_violet.anim.PushBack({ 264, 412, 32, 31 });
+	explosion_violet.anim.PushBack({ 297, 412, 32, 31 });
+	explosion_violet.anim.PushBack({ 330, 412, 32, 31 });
+	explosion_violet.anim.PushBack({ 363, 412, 32, 31 });
+	explosion_violet.anim.PushBack({ 396, 412, 32, 31 });
+	explosion_violet.anim.speed = 0.3f;
 
 	spheres[7].monster.PushBack({ 462, 410, 20, 19 });
 	spheres[7].monster.PushBack({ 486, 410, 20, 19 });
@@ -392,7 +402,59 @@ void ModuleSphere::SetSphere(const Sphere& sphere, int x, int y, int b_index, CO
 	s->board_index = b_index;
 }
 
+void ModuleSphere::AddExplosion(const Sphere* sphere)
+{
+	for (uint i = 0; i < MAX_EXPLOSIONS; ++i)
+	{
+		if (active_explosion[i] == nullptr)
+		{
+			Particle* p = nullptr;
 
+			switch (sphere->sphere_color)
+			{				
+			case BLUE:
+				p = new Particle(explosion_blue);
+				break;
+
+			case RED:
+				 p = new Particle(explosion_red);
+				break;
+
+			case GREEN:
+				 p = new Particle(explosion_green);
+				break;
+
+			case ORANGE:
+				 p = new Particle(explosion_orange);
+				break;
+
+			case VIOLET:
+				 p = new Particle(explosion_violet);
+				break;
+
+			case BLACK:
+				 p = new Particle(explosion_black);
+				break;
+
+			case GRAY:
+				 p = new Particle(explosion_gray);
+				break;
+
+			case YELLOW:
+				 p = new Particle(explosion_yellow);
+				break;
+			}
+			
+			
+			p->position.x = sphere->position.x;
+			p->position.y = sphere->position.y;
+			
+			active_explosion[i] = p;
+			break;
+		}
+	}
+
+}
 
 // -------------------------------------------------------------
 // -------------------------------------------------------------
@@ -452,6 +514,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 					for (i = 0; i < allahu_list.n_elements; i++)
 					{
 						allahu_list[i]->doomed = true;
+					
 						App->board->board[allahu_list[i]->board_index].Empty = true;	
 					}
 
@@ -469,7 +532,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 					{
 
 						active[i]->collider->to_delete=true;
-						
+						AddExplosion(active[i]);
 						active[i]->collider = nullptr;
 						active[i]=nullptr;
 					}

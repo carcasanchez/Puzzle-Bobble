@@ -21,7 +21,6 @@ struct Sphere
 {
 	Animation anim;
 	Animation idle;
-	Animation explosion;
 	Animation monster;
 	uint fx = 0;
 	iPoint position;
@@ -43,6 +42,26 @@ struct Sphere
 	int board_index;
 };
 
+/*
+0 Blue
+1 Gray
+2 Red
+3 Yellow
+4 Green
+5 Black
+6 Orange
+7 Violet
+*/
+
+struct Particle
+{
+	Animation anim;
+	iPoint position;
+
+	Particle();
+	~Particle(){};
+};
+
 class ModuleSphere : public Module
 {
 public:
@@ -61,7 +80,8 @@ public:
 
 	void AddSphere(const Sphere& particle, int x, int y, COLLIDER_TYPE col_type= COLLIDER_SPHERE,  Uint32 delay = 0);
 	void SetSphere(const Sphere& particle, int x, int y, int b_index, COLLIDER_TYPE col_type = COLLIDER_SPHERE, Uint32 delay = 0);
-
+	
+	void AddExplosion(const Sphere* sphere);
 
 
 	SDL_Texture* graphics = nullptr;
@@ -71,7 +91,18 @@ public:
 
 public:
 
+	Particle explosion_blue;
+	Particle explosion_gray;
+	Particle explosion_red;
+	Particle explosion_yellow;
+	Particle explosion_green;
+	Particle explosion_black;
+	Particle explosion_orange;
+	Particle explosion_violet;
+
 	Sphere spheres[NUMBER_OF_SPHERES];
+	Particle* active_explosion[MAX_EXPLOSIONS];
+	
 	void OnCollision(Collider* c1, Collider* c2);
 };
 
