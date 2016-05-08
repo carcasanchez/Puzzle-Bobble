@@ -346,7 +346,7 @@ update_status ModuleSphere::Update()
 		if (s == nullptr)
 			continue;
 
-		if (s->Update() == false  || (s->speed.y>0 && s->position.y>190*SCREEN_SIZE))
+		if (s->Update() == false  || (s->speed.y>0 && s->position.y>SCREEN_HEIGHT*SCREEN_SIZE))
 		{
 			delete s;
 			active[i] = nullptr;
@@ -498,7 +498,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 						if (App->spheres->active[i]->checked == false){
 							active[i]->collider->to_delete = true; 
 							active[i]->collider = nullptr;
-							active[i]->speed.y = 5.0f;
+							active[i]->speed.y = 7.0f;
 							App->board->board[active[i]->board_index].Empty = true;
 							
 						}
