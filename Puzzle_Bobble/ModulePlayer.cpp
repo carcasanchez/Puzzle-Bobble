@@ -8,6 +8,9 @@
 #include "ModuleAudio.h"
 #include "ModuleCollision.h"
 #include "SDL\include\SDL_render.h"
+#include "SDL\include\SDL_timer.h"
+
+
 
 #include <time.h>
 #include <stdlib.h> 
@@ -142,7 +145,6 @@ bool ModulePlayer::Start()
 	mystate = FIRST;
 	graphics = App->textures->Load("Game/Sprites.png");
 	shoot = App->audio->Load_effects("Game/BubbleShot.wav");
-
 	//App->spheres->AddSphere(App->spheres->spheres[Random], 306, 368);
 
 
@@ -240,8 +242,12 @@ update_status ModulePlayer::Update()
 		//////
 	}
 
+	
 
-	if (App->input->keyboard[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN && App->spheres->next_sphere==true)
+	currentTime = SDL_GetTicks();
+
+	
+	if (App->input->keyboard[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN && App->spheres->next_sphere == true || currentTime - lastTime > 8000)
 	{
 
 		App->spheres->active[App->spheres->last_sphere - 1]->speed.x = (sin(angle*PI / 180)) * SPEED;
@@ -253,6 +259,7 @@ update_status ModulePlayer::Update()
 		}
 		Mix_PlayChannel(-1, shoot, 0);
 		App->spheres->next_sphere = false;
+		lastTime = currentTime;
 
 	}
 

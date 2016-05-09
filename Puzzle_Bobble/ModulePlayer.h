@@ -53,6 +53,8 @@ public:
 	float orientationx, orientationy;
 	int Random;
 	bool LoseCondition = false;
+	unsigned int lastTime = 0, currentTime;
+
 	States mystate;
 };
 

@@ -492,8 +492,6 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 		if (active[i] != nullptr && active[i]->collider == c1)
 		{
 
-
-			
 			if (c2->type == COLLIDER_LATERAL_WALL)
 				active[i]->speed.x *= -1;
 
@@ -578,21 +576,17 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 					check_down = false;
 				}
 
-				if (App->player->mystate ==POSTUPDATE ){
+				if (App->player->mystate == POSTUPDATE){
 					App->player->mystate = PREUPDATE;
 					next_sphere = true;
 				}
-
-			}
-			
-			
+			}	
 		}
 	}
 }
 
 void Sphere::CheckBobble(){
 	
-
 	unsigned int i;
 
 	for (i = 0; i < App->spheres->last_sphere; i++)
@@ -606,9 +600,9 @@ void Sphere::CheckBobble(){
 			App->spheres->active[i]->CheckBobble();
 		}
 	}
-
-
 }
+
+
 void Sphere::CheckBobbleDown(){
 	unsigned int i;
 
@@ -620,8 +614,6 @@ void Sphere::CheckBobbleDown(){
 			App->spheres->active[i]->checked = true;
 			App->spheres->bobble_down.push_back(App->spheres->active[i]);
 			App->spheres->active[i]->CheckBobbleDown();
-
-
 		}
 	}
 }
