@@ -24,7 +24,7 @@ public:
 	
 
 public:
-	iPoint board[NUM_SQUARES];
+	Vector<iPoint*> board;
 
 };
 

@@ -100,7 +100,7 @@ bool ModuleLevel_1::CleanUp()
    for (unsigned int i = 0; i < NUM_SQUARES; i++)
 	{
 
-		App->board->board[i].Empty = true;
+		App->board->board[i]->Empty = true;
 
 	}
 

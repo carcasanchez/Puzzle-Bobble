@@ -536,7 +536,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 					{
 						allahu_list[i]->doomed = true;
 					
-						App->board->board[allahu_list[i]->board_index].Empty = true;	
+						App->board->board[allahu_list[i]->board_index]->Empty = true;	
 					}
 
 				}
@@ -583,7 +583,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 							active[i]->collider->to_delete = true; 
 							active[i]->collider = nullptr;
 							active[i]->speed.y = 7.0f;
-							App->board->board[active[i]->board_index].Empty = true;
+							App->board->board[active[i]->board_index]->Empty = true;
 							
 						}
 					}
