@@ -25,14 +25,14 @@ ModulePlayer::ModulePlayer()
 	current_animation1 = NULL;
 	current_animation2 = NULL;
 
-	position.x = 350;
-	position.y = 400;
+	position.x = 175 * SCREEN_SIZE;
+	position.y = 200 * SCREEN_SIZE;
 
 	//initial position arrow
 
 	arrow_src = { 15, 514, 22, 55 };
 	p_arrow_src = &arrow_src;
-	arrow_dst = { position.x - 49.69f, position.y - 80.3f, 22 * 2, 55 * 2 };
+	arrow_dst = { position.x - 104.845f*SCREEN_SIZE, position.y - 40.15f*SCREEN_SIZE, 22 * 2, 55 * 2 };
 	p_arrow_dst = &arrow_dst;
 	center = { 20, 64 };
 	p_center = &center;
@@ -180,7 +180,7 @@ update_status ModulePlayer::PreUpdate(){
 	if (mystate == PREUPDATE){	
 		LoseCondition = CheckLose();
 		
-		App->spheres->AddSphere(App->spheres->spheres[Random], 306, 368);
+		App->spheres->AddSphere(App->spheres->spheres[Random], 73 * SCREEN_SIZE, 184 * SCREEN_SIZE);
 		//App->spheres->AddSphere(App->spheres->spheres[Random], 120 * SCREEN_SIZE, 200 * SCREEN_SIZE);
 		
 		mystate = UPDATE;
@@ -275,15 +275,15 @@ update_status ModulePlayer::Update()
 
 
 	// Draw everything --------------------------------------
-	App->render->Blit(graphics, position.x - 185, position.y - 14, &bag_complete);
-	App->render->Blit(graphics, position.x - 185, position.y - 14, &bag_incomplete);
-	App->render->Blit(graphics, position.x - 62, position.y - 46, &top_base);
-	App->render->Blit(graphics, position.x - 92, position.y - 14, &(current_animation_BaseLeft->GetCurrentFrame()));
-	App->render->Blit(graphics, position.x - 3, position.y + 2, &(current_animation_lever->GetCurrentFrame()));
+	App->render->Blit(graphics, position.x - 172*SCREEN_SIZE, position.y - 7*SCREEN_SIZE, &bag_complete);
+	App->render->Blit(graphics, position.x - 172 * SCREEN_SIZE, position.y - 7 * SCREEN_SIZE, &bag_incomplete);
+	App->render->Blit(graphics, position.x - 111 * SCREEN_SIZE, position.y - 23 * SCREEN_SIZE, &top_base);
+	App->render->Blit(graphics, position.x - 126 * SCREEN_SIZE, position.y - 7 * SCREEN_SIZE, &(current_animation_BaseLeft->GetCurrentFrame()));
+	App->render->Blit(graphics, position.x - 82 * SCREEN_SIZE, position.y + 1 * SCREEN_SIZE, &(current_animation_lever->GetCurrentFrame()));
 	SDL_RenderCopyEx(App->render->renderer, graphics, p_arrow_src, p_arrow_dst, angle, p_center, SDL_FLIP_NONE);
-	App->render->Blit(graphics, position.x - 44, position.y, &blow);
-	App->render->Blit(graphics, position.x, position.y-4, &(current_animation1->GetCurrentFrame()));
-	App->render->Blit(graphics, position.x - 84, position.y - 20, &(current_animation2->GetCurrentFrame()));
+	App->render->Blit(graphics, position.x - 102 * SCREEN_SIZE, position.y, &blow);
+	App->render->Blit(graphics, position.x - 80 * SCREEN_SIZE, position.y - 2 * SCREEN_SIZE, &(current_animation1->GetCurrentFrame()));
+	App->render->Blit(graphics, position.x - 122 * SCREEN_SIZE, position.y - 10 * SCREEN_SIZE, &(current_animation2->GetCurrentFrame()));
 	//	App->render->Blit(graphics, position.x - 50, position.y - 80, &(current_animation_arrow->GetCurrentFrame()));
 
 

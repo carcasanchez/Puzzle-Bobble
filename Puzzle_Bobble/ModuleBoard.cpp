@@ -9,7 +9,7 @@ ModuleBoard::ModuleBoard()
 	{
 		if (i % 2 == 0)
 		{
-			for (x = 104 * SCREEN_SIZE - 16; x < 216 * SCREEN_SIZE; x += 16 * SCREEN_SIZE)
+			for (x = 24 * SCREEN_SIZE - 16; x < 136 * SCREEN_SIZE; x += 16 * SCREEN_SIZE)//112
 			{
 				board[j].x = x;
 				board[j].y = y;
@@ -19,7 +19,7 @@ ModuleBoard::ModuleBoard()
 
 		else
 		{
-			for (x = 112 * SCREEN_SIZE - 16; x < 208 * SCREEN_SIZE; x += 16 * SCREEN_SIZE)
+			for (x = 32 * SCREEN_SIZE - 16; x < 128 * SCREEN_SIZE; x += 16 * SCREEN_SIZE)//96
 			{
 				board[j].x = x;
 				board[j].y = y;

@@ -50,7 +50,7 @@ bool ModuleLevel_1::Start()
 	//int map[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 
-	graphics = App->textures->Load("Game/Level1_3.png");
+	graphics = App->textures->Load("Game/two_player_background.png");
 	level_music = App->audio->Load_music("Game/SinglePlayerMusic.ogg"); 
 	
 	App->player->Enable();

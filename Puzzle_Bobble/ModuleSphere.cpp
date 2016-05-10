@@ -35,10 +35,9 @@ bool ModuleSphere::Start()
 	
 	//////////////////////////////////////Collision scenary/////////////////////////////////////////////
 
-	App->collision->AddCollider(SDL_Rect{ 224, 24, 8, 194 }, COLLIDER_LATERAL_WALL);	//Right
-	App->collision->AddCollider(SDL_Rect{ 88, 24, 8, 194 }, COLLIDER_LATERAL_WALL);		//Left
-	App->collision->AddCollider(SDL_Rect{ 88, 16, 144, 8 }, COLLIDER_WALL);				//Top
-	App->collision->AddCollider(SDL_Rect{ 88, 183, 144, 30 }, COLLIDER_LOSE);			//Lose
+	App->collision->AddCollider(SDL_Rect{ 144, 24, 8, 194 }, COLLIDER_LATERAL_WALL);	//Right 136
+	App->collision->AddCollider(SDL_Rect{ 7, 24, 8, 194 }, COLLIDER_LATERAL_WALL);		//Left
+	App->collision->AddCollider(SDL_Rect{ 7, 16, 144, 8 }, COLLIDER_WALL);				//Top
 	
 	///////////////////////////////////////////////////////////////////////////////////
 	LOG("Loading particles");
