@@ -388,7 +388,7 @@ update_status ModuleSphere::Update()
 		if (p->Update() == false)
 		{
 			delete p;
-			active[i] = nullptr;
+			active_explosion[i] = nullptr;
 			continue;
 		}
 
@@ -469,8 +469,8 @@ void ModuleSphere::AddExplosion(const Sphere* sphere)
 			}
 			
 			
-			p->position.x = sphere->position.x;
-			p->position.y = sphere->position.y;
+			p->position.x = sphere->position.x-9;
+			p->position.y = sphere->position.y-9;
 			p->to_sphere = sphere;
 			active_explosion[i] = p;
 			break;
@@ -553,7 +553,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 					{
 
 						active[i]->collider->to_delete=true;
-	  //DISCOMENT THIS  AddExplosion(active[i]);
+					    AddExplosion(active[i]);
 						active[i]->collider = nullptr;
 						active[i]=nullptr;
 					}
