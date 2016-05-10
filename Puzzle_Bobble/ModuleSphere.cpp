@@ -12,9 +12,7 @@
 #include "SDL/include/SDL_timer.h"
 
 Particle::Particle()
-{
-
-};
+{};
 
 ModuleSphere::ModuleSphere()
 {
@@ -75,6 +73,7 @@ bool ModuleSphere::Start()
 	explosion_blue.anim.PushBack({ 330, 188, 32, 31 });
 	explosion_blue.anim.PushBack({ 363, 188, 32, 31 });
 	explosion_blue.anim.PushBack({ 396, 188, 32, 31 });
+	explosion_blue.anim.loop = false;
 	explosion_blue.anim.speed = 0.3f;
 
 	spheres[0].sphere_color = BLUE;
@@ -105,6 +104,7 @@ bool ModuleSphere::Start()
 	explosion_gray.anim.PushBack({ 363, 220, 32, 31 });
 	explosion_gray.anim.PushBack({ 396, 220, 32, 31 });
 	explosion_gray.anim.speed = 0.3f;
+	explosion_gray.anim.loop = false;
 
 	spheres[1].monster.PushBack({ 462, 226, 20, 19 });
 	spheres[1].monster.PushBack({ 486, 226, 20, 19 });
@@ -138,6 +138,7 @@ bool ModuleSphere::Start()
 	explosion_red.anim.PushBack({ 363, 252, 32, 31 });
 	explosion_red.anim.PushBack({ 396, 252, 32, 31 });
 	explosion_red.anim.speed = 0.3f;
+	explosion_red.anim.loop = false;
 
 	spheres[2].monster.PushBack({ 462, 256, 20, 19 });
 	spheres[2].monster.PushBack({ 486, 256, 20, 19 });
@@ -172,6 +173,7 @@ bool ModuleSphere::Start()
 	explosion_yellow.anim.PushBack({ 363, 284, 32, 31 });
 	explosion_yellow.anim.PushBack({ 396, 284, 32, 31 });
 	explosion_yellow.anim.speed = 0.3f;
+	explosion_yellow.anim.loop = false;
 
 	spheres[3].monster.PushBack({ 462, 286, 20, 19 });
 	spheres[3].monster.PushBack({ 486, 286, 20, 19 });
@@ -206,6 +208,7 @@ bool ModuleSphere::Start()
 	explosion_green.anim.PushBack({ 330, 316, 32, 31 });
 	explosion_green.anim.PushBack({ 363, 316, 32, 31 });
 	explosion_green.anim.PushBack({ 396, 316, 32, 31 });
+	explosion_green.anim.loop = false;
 	explosion_green.anim.speed = 0.3f;
 
 	spheres[4].monster.PushBack({ 462, 317, 20, 19 });
@@ -242,6 +245,7 @@ bool ModuleSphere::Start()
 	explosion_black.anim.PushBack({ 330, 348, 32, 31 });
 	explosion_black.anim.PushBack({ 363, 348, 32, 31 });
 	explosion_black.anim.PushBack({ 396, 348, 32, 31 });
+	explosion_black.anim.loop = false;
 	explosion_black.anim.speed = 0.3f;
 
 	spheres[5].monster.PushBack({ 462, 349, 20, 19 });
@@ -278,6 +282,7 @@ bool ModuleSphere::Start()
 	explosion_orange.anim.PushBack({ 363, 380, 32, 31 });
 	explosion_orange.anim.PushBack({ 396, 380, 32, 31 });
 	explosion_orange.anim.speed = 0.3f;
+	explosion_orange.anim.loop = false;
 
 	spheres[6].monster.PushBack({ 462, 380, 20, 19 });
 	spheres[6].monster.PushBack({ 486, 380, 20, 19 });
@@ -313,6 +318,7 @@ bool ModuleSphere::Start()
 	explosion_violet.anim.PushBack({ 363, 412, 32, 31 });
 	explosion_violet.anim.PushBack({ 396, 412, 32, 31 });
 	explosion_violet.anim.speed = 0.3f;
+	explosion_violet.anim.loop = false;
 
 	spheres[7].monster.PushBack({ 462, 410, 20, 19 });
 	spheres[7].monster.PushBack({ 486, 410, 20, 19 });
@@ -369,6 +375,24 @@ update_status ModuleSphere::Update()
 			
 			}
 		}
+	}
+
+
+	for (uint i = 0; i < MAX_EXPLOSIONS; ++i)
+	{
+		Particle* p = active_explosion[i];
+
+ 		if (p == nullptr)
+			continue;
+
+		if (p->Update() == false)
+		{
+			delete p;
+			active[i] = nullptr;
+			continue;
+		}
+
+		 App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
 	}
 
 	return UPDATE_CONTINUE;
@@ -447,7 +471,7 @@ void ModuleSphere::AddExplosion(const Sphere* sphere)
 			
 			p->position.x = sphere->position.x;
 			p->position.y = sphere->position.y;
-			
+			p->to_sphere = sphere;
 			active_explosion[i] = p;
 			break;
 		}
@@ -529,7 +553,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 					{
 
 						active[i]->collider->to_delete=true;
-						AddExplosion(active[i]);
+	  //DISCOMENT THIS  AddExplosion(active[i]);
 						active[i]->collider = nullptr;
 						active[i]=nullptr;
 					}
@@ -615,4 +639,18 @@ void Sphere::CheckBobbleDown(){
 			App->spheres->active[i]->CheckBobbleDown();
 		}
 	}
+}
+
+bool Particle::Update()
+{
+	bool ret = true;
+
+	if (anim.Finished())
+		ret = false;
+	
+	
+
+	return ret;
+
+
 }

@@ -57,9 +57,19 @@ struct Particle
 {
 	Animation anim;
 	iPoint position;
+	Uint32 born = 0;
+	Uint32 life = 0;
+	const Sphere* to_sphere=nullptr;
 
 	Particle();
+	Particle(const Particle& other)
+	{
+		anim = other.anim;
+	}
+
 	~Particle(){};
+
+	bool Update();
 };
 
 class ModuleSphere : public Module
