@@ -27,6 +27,7 @@ public:
 	SDL_Texture* graphics = nullptr;
 	Animation* current_animation1 = nullptr;
 	Animation* current_animation2 = nullptr;
+	Animation* current_animation3 = nullptr;
 	Animation* current_animation_BaseLeft = nullptr;
 	Animation* current_animation_lever = nullptr;
 	Animation idle_left;
@@ -36,6 +37,7 @@ public:
 	Animation base_left;
 	Animation lever;
 	Animation hurry_up;
+	Animation hurry_up_dragon;
 	SDL_Rect arrow_src;
 	SDL_Rect* p_arrow_src = nullptr;
 	SDL_Rect arrow_dst;
@@ -53,7 +55,7 @@ public:
 	float orientationx, orientationy;
 	int Random;
 	bool LoseCondition = false;
-	unsigned int lastTime = 0, currentTime;
+	unsigned int lastTime, currentTime;
 
 	States mystate;
 };

@@ -24,6 +24,7 @@ ModulePlayer::ModulePlayer()
 	graphics = NULL;
 	current_animation1 = NULL;
 	current_animation2 = NULL;
+	current_animation3 = NULL;
 
 	position.x = 175 * SCREEN_SIZE;
 	position.y = 200 * SCREEN_SIZE;
@@ -81,6 +82,11 @@ ModulePlayer::ModulePlayer()
 	bobShot.speed = 0.4f;
 	bobShot.loop = false;
 
+	//Dragon Hurry Up
+	hurry_up_dragon.PushBack({ 281, 42, 26, 28 });
+	hurry_up_dragon.PushBack({ 308, 42, 26, 28 });
+	hurry_up_dragon.speed = 0.2f;
+
 	//Base Mecanism Left
 	base_left.PushBack({ 87, 813, 56, 24 });
 	base_left.PushBack({ 153, 813, 56, 24 });
@@ -127,6 +133,9 @@ ModulePlayer::ModulePlayer()
 	hurry_up.PushBack({ 212, 1439, 32, 28 });
 	hurry_up.PushBack({ 428, 1439, 32, 28 });
 
+	hurry_up.loop = false;
+	hurry_up.speed = 0.04f;
+
 	mystate = PREUPDATE;
 
 
@@ -146,7 +155,7 @@ bool ModulePlayer::Start()
 	graphics = App->textures->Load("Game/Sprites.png");
 	shoot = App->audio->Load_effects("Game/BubbleShot.wav");
 	//App->spheres->AddSphere(App->spheres->spheres[Random], 306, 368);
-
+	lastTime = SDL_GetTicks();
 
 	return true;
 }
@@ -260,9 +269,16 @@ update_status ModulePlayer::Update()
 		Mix_PlayChannel(-1, shoot, 0);
 		App->spheres->next_sphere = false;
 		lastTime = currentTime;
-
+		hurry_up.Reset();
 	}
 
+	if (currentTime - lastTime > 3000)
+	{
+
+		current_animation3 = &hurry_up;
+		current_animation2 = &hurry_up_dragon;
+		App->render->Blit(graphics, position.x - 170 * SCREEN_SIZE, position.y - 35 * SCREEN_SIZE, &(current_animation3->GetCurrentFrame()));
+	}
 
 
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE
