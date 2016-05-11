@@ -77,6 +77,9 @@
     <ClInclude Include="ModuleGameOver.h">
       <Filter>Levels</Filter>
     </ClInclude>
+    <ClInclude Include="ModulePlayer2.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -129,6 +132,9 @@
     </ClCompile>
     <ClCompile Include="ModuleGameOver.cpp">
       <Filter>Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="ModulePlayer2.cpp">
+      <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -9,6 +9,7 @@
 #include "ModuleLevel_1.h"
 #include "ModuleCongrats.h"
 #include "ModulePlayer.h"
+#include "ModulePlayer2.h"
 #include "ModuleStartScreen.h"
 #include "ModuleBoard.h"
 #include "ModuleGameOver.h"
@@ -54,6 +55,7 @@ bool ModuleLevel_1::Start()
 	level_music = App->audio->Load_music("Game/SinglePlayerMusic.ogg"); 
 	
 	App->player->Enable();
+	App->player2->Enable();
 	App->board->CreateMap(map);
 	if (Mix_PlayMusic(level_music, -1) == -1) {
 		LOG("Mix_PlayMusic: %s\n", Mix_GetError());
@@ -81,6 +83,7 @@ bool ModuleLevel_1::CleanUp()
 {
 
 	App->player->Disable();
+	App->player2->Disable();
 
 	//LEFT
 	for (unsigned int i = 0; i < App->spheres->last_sphere_left; i++)
