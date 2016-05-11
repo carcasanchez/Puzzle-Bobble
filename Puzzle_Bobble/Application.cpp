@@ -6,7 +6,6 @@
 #include "ModuleAudio.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleLevel_1.h"
-#include "ModuleLevel_2.h"
 #include "ModuleStartScreen.h"
 #include "ModuleCongrats.h"
 #include "ModuleCollision.h"
@@ -25,7 +24,6 @@ Application::Application()
 	modules[i++] = audio = new ModuleAudio();
 	modules[i++] = menu_screen = new ModuleStartScreen();
 	modules[i++] = level_1 = new ModuleLevel_1();
-	modules[i++] = level_2 = new ModuleLevel_2();
 	modules[i++] = congratulations = new ModuleCongrats();
 	modules[i++] = game_over = new ModuleGameOver();
 	modules[i++] = player = new ModulePlayer();
@@ -46,7 +44,6 @@ bool Application::Init()
 	bool ret = true;
 
 	App->level_1->Disable();
-	App->level_2->Disable();
 	App->congratulations->Disable();
 	App->player->Disable();
 	App->game_over->Disable();

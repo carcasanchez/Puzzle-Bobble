@@ -36,8 +36,10 @@ struct Sphere
 	Sphere();
 	Sphere(const Sphere& p);
 	bool Update();
-	void CheckBobble();
-	void CheckBobbleDown();
+	void CheckBobbleLeft();
+	void CheckBobbleRight();
+	void CheckBobbleDownLeft();
+	void CheckBobbleDownRight();
 
 	int board_index;
 };
@@ -75,10 +77,13 @@ struct Particle
 class ModuleSphere : public Module
 {
 public:
-	uint last_sphere = 0;
-	bool next_sphere = true;
+	uint last_sphere_right = 0;
+	uint last_sphere_left = 0;
+	bool next_sphere_right = true;
+	bool next_sphere_left = true;
 	bool check_down = false;
-	Vector <Sphere*> allahu_list;
+	Vector <Sphere*> allahu_list_left;
+	Vector <Sphere*> allahu_list_right;
 	Vector <Sphere*> bobble_down;
 
 	ModuleSphere();
@@ -95,7 +100,8 @@ public:
 
 
 	SDL_Texture* graphics = nullptr;
-	Sphere* active[MAX_ACTIVE_SPHERES];
+	Sphere* active_right[MAX_ACTIVE_SPHERES];
+	Sphere* active_left[MAX_ACTIVE_SPHERES];
 	
 	
 

@@ -7,7 +7,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleAudio.h"
 #include "ModuleLevel_1.h"
-#include "ModuleLevel_2.h"
+#include "ModuleCongrats.h"
 #include "ModulePlayer.h"
 #include "ModuleStartScreen.h"
 #include "ModuleBoard.h"
@@ -67,7 +67,7 @@ update_status ModuleLevel_1::Update()
 
 	if (App->board->CheckWin())
 	{
-		App->fade->FadeToBlack(App->level_1, App->level_2, 1);
+		App->fade->FadeToBlack(App->level_1, App->congratulations, 1);
 	}
 	if (App->player->LoseCondition == true)
 	{
@@ -82,26 +82,36 @@ bool ModuleLevel_1::CleanUp()
 
 	App->player->Disable();
 
-	for (unsigned int i = 0; i < App->spheres->last_sphere; i++)
+	//LEFT
+	for (unsigned int i = 0; i < App->spheres->last_sphere_left; i++)
 	{
-		if (App->spheres->active[i] == nullptr)
+		if (App->spheres->active_left[i] == nullptr)
 			continue;
 
-		App->collision->EraseCollider(App->spheres->active[i]->collider);
+		App->collision->EraseCollider(App->spheres->active_left[i]->collider);
 
-		App->spheres->active[i]->collider = nullptr;
-		App->spheres->active[i] = nullptr;
-		
-
+		App->spheres->active_left[i]->collider = nullptr;
+		App->spheres->active_left[i] = nullptr;
 	}
 
-   App->spheres->last_sphere = 0;
+	//RIGHT
+	for (unsigned int i = 0; i < App->spheres->last_sphere_right; i++)
+	{
+		if (App->spheres->active_right[i] == nullptr)
+			continue;
+
+		App->collision->EraseCollider(App->spheres->active_right[i]->collider);
+
+		App->spheres->active_right[i]->collider = nullptr;
+		App->spheres->active_right[i] = nullptr;
+	}
+
+	App->spheres->last_sphere_left = 0;
+	App->spheres->last_sphere_right = 0;
 
    for (unsigned int i = 0; i < NUM_SQUARES; i++)
 	{
-
 		App->board->board[i]->Empty = true;
-
 	}
 
 	while (!Mix_FadeOutMusic(1000) && Mix_PlayingMusic())

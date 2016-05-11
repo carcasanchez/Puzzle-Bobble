@@ -17,7 +17,10 @@ Particle::Particle()
 ModuleSphere::ModuleSphere()
 {
 	for (uint i = 0; i < MAX_ACTIVE_SPHERES; ++i)
-		active[i] = nullptr;
+	{
+		active_right[i] = nullptr;
+		active_left[i] = nullptr;
+	}
 }
 
 ModuleSphere::~ModuleSphere()
@@ -339,15 +342,25 @@ bool ModuleSphere::CleanUp()
 	LOG("Unloading particles");
 	App->textures->Unload(graphics);
 
+	//LEFT
 	for (uint i = 0; i < MAX_ACTIVE_SPHERES; ++i)
 	{
-		if (active[i] != nullptr)
+		if (active_left[i] != nullptr)
 		{
-			delete active[i];
-			active[i] = nullptr;
+			delete active_left[i];
+			active_left[i] = nullptr;
 		}
 	}
 
+	//RIGHT
+	for (uint i = 0; i < MAX_ACTIVE_SPHERES; ++i)
+	{
+		if (active_right[i] != nullptr)
+		{
+			delete active_right[i];
+			active_right[i] = nullptr;
+		}
+	}
 	return true;
 }
 
@@ -356,50 +369,71 @@ update_status ModuleSphere::Update()
 {
 	for (uint i = 0; i < MAX_ACTIVE_SPHERES; ++i)
 	{
-		Sphere* s = active[i];
-
-		if (s == nullptr)
-			continue;
-
-		if (s->Update() == false  || (s->speed.y>0 && s->position.y>SCREEN_HEIGHT*SCREEN_SIZE))
+		for (uint i = 0; i < MAX_ACTIVE_SPHERES; ++i)
 		{
-			delete s;
-			active[i] = nullptr;
-		}
-		else if (SDL_GetTicks() >= s->born)
-		{
-			App->render->Blit(graphics, s->position.x, s->position.y, &(s->idle.GetCurrentFrame()));
-			if (s->fx_played == false)
+			Sphere* s_l = active_left[i];
+			Sphere* s_r = active_right[i];
+
+			if (s_l == nullptr)
+				continue;
+
+			if (s_l->Update() == false || (s_l->speed.y>0 && s_l->position.y>SCREEN_HEIGHT*SCREEN_SIZE))
 			{
-				s->fx_played = true;
-			
+				delete s_l;
+				active_left[i] = nullptr;
+			}
+			else if (SDL_GetTicks() >= s_l->born)
+			{
+				App->render->Blit(graphics, s_l->position.x, s_l->position.y, &(s_l->idle.GetCurrentFrame()));
+				if (s_l->fx_played == false)
+				{
+					s_l->fx_played = true;
+				}
+			}
+
+			if (s_r == nullptr)
+				continue;
+
+			if (s_r->Update() == false || (s_r->speed.y > 0 && s_r->position.y > SCREEN_HEIGHT*SCREEN_SIZE))
+			{
+				delete s_r;
+				active_left[i] = nullptr;
+			}
+			else if (SDL_GetTicks() >= s_r->born)
+			{
+				App->render->Blit(graphics, s_r->position.x, s_r->position.y, &(s_r->idle.GetCurrentFrame()));
+				if (s_r->fx_played == false)
+				{
+					s_r->fx_played = true;
+				}
 			}
 		}
-	}
 
 
-	for (uint i = 0; i < MAX_EXPLOSIONS; ++i)
-	{
-		Particle* p = active_explosion[i];
-
- 		if (p == nullptr)
-			continue;
-
-		if (p->Update() == false)
+		for (uint i = 0; i < MAX_EXPLOSIONS; ++i)
 		{
-			delete p;
-			active_explosion[i] = nullptr;
-			continue;
+			Particle* p = active_explosion[i];
+
+			if (p == nullptr)
+				continue;
+
+			if (p->Update() == false)
+			{
+				delete p;
+				active_explosion[i] = nullptr;
+				continue;
+			}
+
+			App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
 		}
 
-		 App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
+		return UPDATE_CONTINUE;
 	}
-
-	return UPDATE_CONTINUE;
 }
 
 void ModuleSphere::AddSphere(const Sphere& sphere, int x, int y, COLLIDER_TYPE col_type, Uint32 delay)
 {
+	//LEFT
 	Sphere* s = new Sphere(sphere);
 	s->born = SDL_GetTicks() + delay;
 	s->position.x = x;
@@ -407,9 +441,11 @@ void ModuleSphere::AddSphere(const Sphere& sphere, int x, int y, COLLIDER_TYPE c
 	s->speed.y = 0;
 	s->speed.x = 0;
 	s->sphere_color = sphere.sphere_color;
-	s->collider = App->collision->AddCollider(SDL_Rect{0, 0, 12, 12 }, col_type, this);
-	s->collider->SetPos(310, 370);
-	active[last_sphere++] = s;
+	s->collider = App->collision->AddCollider(SDL_Rect{ 0, 0, 12, 12 }, col_type, this);
+	s->collider->SetPos(s->position.x / 2 + 2, s->position.y / 2 + 2);
+	if (s->position.x >= 160 * SCREEN_SIZE){ active_right[last_sphere_right++] = s; }
+	else{ active_left[last_sphere_left++] = s; }
+
 }
 void ModuleSphere::SetSphere(const Sphere& sphere, int x, int y, int b_index, COLLIDER_TYPE col_type, Uint32 delay)
 {
@@ -421,8 +457,15 @@ void ModuleSphere::SetSphere(const Sphere& sphere, int x, int y, int b_index, CO
 	s->collider = App->collision->AddCollider(SDL_Rect{ 0, 0, 12, 12 }, col_type, this);
 	s->collider->SetPos(x, y);
 	s->pos_board.Empty = false;
-	active[last_sphere++] = s;
 	s->board_index = b_index;
+	if (s->position.x >= 160 * SCREEN_SIZE)
+	{
+		active_right[last_sphere_right++] = s;
+	}
+	else
+	{
+		active_left[last_sphere_left++] = s;	
+	}
 }
 
 void ModuleSphere::AddExplosion(const Sphere* sphere)
@@ -509,134 +552,264 @@ bool Sphere::Update()
 }
 void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 {
-
+	//LEFT
 	for (uint i = 0; i < MAX_ACTIVE_SPHERES; ++i)
 	{
-		if (active[i] != nullptr && active[i]->collider == c1)
+		if (active_left[i] != nullptr && active_left[i]->collider == c1)
 		{
 
 			if (c2->type == COLLIDER_LATERAL_WALL)
-				active[i]->speed.x *= -1;
+				active_left[i]->speed.x *= -1;
 
-			else if ((c2->type == COLLIDER_WALL || c2->type == COLLIDER_SPHERE) && active[i]->speed.y != 0)
+			else if ((c2->type == COLLIDER_WALL || c2->type == COLLIDER_SPHERE) && active_left[i]->speed.y != 0)
 			{
-				active[i]->speed.x = 0;
-				active[i]->speed.y = 0;
-				App->board->CheckPosition(active[last_sphere-1]);
+				active_left[i]->speed.x = 0;
+				active_left[i]->speed.y = 0;
+				App->board->CheckPosition(active_left[last_sphere_left - 1]);
 				//todo
 
-				allahu_list.push_back(active[i]);
-				active[i]->checked = true;
-				active[i]->CheckBobble();
-				
-				if (allahu_list.n_elements >= 3)
+				allahu_list_left.push_back(active_left[i]);
+				active_left[i]->checked = true;
+				active_left[i]->CheckBobbleLeft();
+
+				if (allahu_list_left.n_elements >= 3)
 				{
 					check_down = true;
-					for (i = 0; i < allahu_list.n_elements; i++)
+					for (i = 0; i < allahu_list_left.n_elements; i++)
 					{
-						allahu_list[i]->doomed = true;
-					
-						App->board->board[allahu_list[i]->board_index]->Empty = true;	
+						allahu_list_left[i]->doomed = true;
+
+						App->board->board[allahu_list_left[i]->board_index]->Empty = true;
 					}
 
 				}
 
-				for (unsigned int i = 0; i < last_sphere; i++)
+				for (unsigned int i = 0; i < last_sphere_left; i++)
 				{
-					if (active[i] == nullptr)
+					if (active_left[i] == nullptr)
 						continue;
-					if (active[i]->checked == true){
-						active[i]->checked = false;
+					if (active_left[i]->checked == true){
+						active_left[i]->checked = false;
 					}
-					
-					if (active[i]->doomed == true)
+
+					if (active_left[i]->doomed == true)
 					{
 
-						active[i]->collider->to_delete=true;
-					    AddExplosion(active[i]);
-						active[i]->collider = nullptr;
-						active[i]=nullptr;
+						active_left[i]->collider->to_delete = true;
+						AddExplosion(active_left[i]);
+						active_left[i]->collider = nullptr;
+						active_left[i] = nullptr;
 					}
 				}
-				allahu_list.clear();
-				
+				allahu_list_left.clear();
+
 				if (check_down == true){
-					for (int i = 0; i < App->spheres->last_sphere; i++){
-						if (active[i] == nullptr)
+					for (int i = 0; i < App->spheres->last_sphere_left; i++){
+						if (active_left[i] == nullptr)
 							continue;
-						if (App->spheres->active[i]->board_index < 8){
-							allahu_list.push_back(active[i]);
+						if (App->spheres->active_left[i]->board_index < 8){
+							allahu_list_left.push_back(active_left[i]);
 						}
 					}
 
-					for (int i = 0; i < allahu_list.size(); i++){
-						if (allahu_list[i]->checked == false){
-							allahu_list[i]->checked = true;
-							allahu_list[i]->CheckBobbleDown();
+					for (int i = 0; i < allahu_list_left.size(); i++){
+						if (allahu_list_left[i]->checked == false){
+							allahu_list_left[i]->checked = true;
+							allahu_list_left[i]->CheckBobbleDownLeft();
 
 						}
 					}
-					for (int i = App->spheres->last_sphere; i > 0; i--){
-						if (active[i] == nullptr || active[i]->collider == nullptr)
+					for (int i = App->spheres->last_sphere_left; i > 0; i--){
+						if (active_left[i] == nullptr || active_left[i]->collider == nullptr)
 							continue;
-						if (App->spheres->active[i]->checked == false){
-							active[i]->collider->to_delete = true; 
-							active[i]->collider = nullptr;
-							active[i]->speed.y = 7.0f;
-							App->board->board[active[i]->board_index]->Empty = true;
-							
+						if (App->spheres->active_left[i]->checked == false){
+							active_left[i]->collider->to_delete = true;
+							active_left[i]->collider = nullptr;
+							active_left[i]->speed.y = 7.0f;
+							App->board->board[active_left[i]->board_index]->Empty = true;
+
 						}
 					}
-					for (unsigned int i = 0; i < App->spheres->last_sphere; i++)
+					for (unsigned int i = 0; i < App->spheres->last_sphere_left; i++)
 					{
-						if (active[i] == nullptr)
+						if (active_left[i] == nullptr)
 							continue;
-						if (active[i]->checked == true){
-							active[i]->checked = false;
+						if (active_left[i]->checked == true){
+							active_left[i]->checked = false;
 						}
 					}
-					allahu_list.clear();
+					allahu_list_left.clear();
 					check_down = false;
 				}
 
 				if (App->player->mystate == POSTUPDATE){
 					App->player->mystate = PREUPDATE;
-					next_sphere = true;
+					next_sphere_left = true;
 				}
-			}	
+			}
 		}
 	}
-}
 
-void Sphere::CheckBobble(){
-	
-	unsigned int i;
-
-	for (i = 0; i < App->spheres->last_sphere; i++)
+	//RIGHT
+	for (uint i = 0; i < MAX_ACTIVE_SPHERES; ++i)
 	{
-		if (App->spheres->active[i] == nullptr)
-			continue;
-		if (position.DistanceTo(App->spheres->active[i]->position)<= 18*SCREEN_SIZE  && sphere_color == App->spheres->active[i]->sphere_color && App->spheres->active[i]->checked == false)
+		if (active_right[i] != nullptr && active_right[i]->collider == c1)
 		{
-			App->spheres->active[i]->checked = true;
-			App->spheres->allahu_list.push_back(App->spheres->active[i]);
-			App->spheres->active[i]->CheckBobble();
+
+			if (c2->type == COLLIDER_LATERAL_WALL)
+				active_right[i]->speed.x *= -1;
+
+			else if ((c2->type == COLLIDER_WALL || c2->type == COLLIDER_SPHERE) && active_right[i]->speed.y != 0)
+			{
+				active_right[i]->speed.x = 0;
+				active_right[i]->speed.y = 0;
+				App->board->CheckPosition(active_right[last_sphere_right - 1]);
+				//todo
+
+				allahu_list_right.push_back(active_right[i]);
+				active_right[i]->checked = true;
+				active_right[i]->CheckBobbleRight();
+
+				if (allahu_list_right.n_elements >= 3)
+				{
+					check_down = true;
+					for (i = 0; i < allahu_list_right.n_elements; i++)
+					{
+						allahu_list_right[i]->doomed = true;
+
+						App->board->board[allahu_list_right[i]->board_index]->Empty = true;
+					}
+
+				}
+
+				for (unsigned int i = 0; i < last_sphere_right; i++)
+				{
+					if (active_right[i] == nullptr)
+						continue;
+					if (active_right[i]->checked == true){
+						active_right[i]->checked = false;
+					}
+
+					if (active_right[i]->doomed == true)
+					{
+
+						active_right[i]->collider->to_delete = true;
+						AddExplosion(active_right[i]);
+						active_right[i]->collider = nullptr;
+						active_right[i] = nullptr;
+					}
+				}
+				allahu_list_right.clear();
+
+				if (check_down == true){
+					for (int i = 0; i < App->spheres->last_sphere_right; i++){
+						if (active_right[i] == nullptr)
+							continue;
+						if (App->spheres->active_right[i]->board_index < 8){
+							allahu_list_right.push_back(active_right[i]);
+						}
+					}
+
+					for (int i = 0; i < allahu_list_right.size(); i++){
+						if (allahu_list_right[i]->checked == false){
+							allahu_list_right[i]->checked = true;
+							allahu_list_right[i]->CheckBobbleDownRight();
+
+						}
+					}
+					for (int i = App->spheres->last_sphere_right; i > 0; i--){
+						if (active_right[i] == nullptr || active_right[i]->collider == nullptr)
+							continue;
+						if (App->spheres->active_right[i]->checked == false){
+							active_right[i]->collider->to_delete = true;
+							active_right[i]->collider = nullptr;
+							active_right[i]->speed.y = 7.0f;
+							App->board->board[active_right[i]->board_index]->Empty = true;
+
+						}
+					}
+					for (unsigned int i = 0; i < App->spheres->last_sphere_right; i++)
+					{
+						if (active_right[i] == nullptr)
+							continue;
+						if (active_right[i]->checked == true){
+							active_right[i]->checked = false;
+						}
+					}
+					allahu_list_right.clear();
+					check_down = false;
+				}
+
+				if (App->player->mystate == POSTUPDATE){
+					App->player->mystate = PREUPDATE;
+					next_sphere_right = true;
+				}
+			}
+		}
+	}
+}
+
+void Sphere::CheckBobbleLeft(){
+
+	unsigned int i;
+
+	for (i = 0; i < App->spheres->last_sphere_left; i++)
+	{
+		if (App->spheres->active_left[i] == nullptr)
+			continue;
+		if (position.DistanceTo(App->spheres->active_left[i]->position) <= 18 * SCREEN_SIZE  && sphere_color == App->spheres->active_left[i]->sphere_color && App->spheres->active_left[i]->checked == false)
+		{
+			App->spheres->active_left[i]->checked = true;
+			App->spheres->allahu_list_left.push_back(App->spheres->active_left[i]);
+			App->spheres->active_left[i]->CheckBobbleLeft();
+		}
+	}
+}
+
+void Sphere::CheckBobbleRight(){
+
+	unsigned int i;
+
+	for (i = 0; i < App->spheres->last_sphere_right; i++)
+	{
+		if (App->spheres->active_right[i] == nullptr)
+			continue;
+		if (position.DistanceTo(App->spheres->active_right[i]->position) <= 18 * SCREEN_SIZE  && sphere_color == App->spheres->active_right[i]->sphere_color && App->spheres->active_right[i]->checked == false)
+		{
+			App->spheres->active_right[i]->checked = true;
+			App->spheres->allahu_list_right.push_back(App->spheres->active_right[i]);
+			App->spheres->active_right[i]->CheckBobbleRight();
 		}
 	}
 }
 
 
-void Sphere::CheckBobbleDown(){
+void Sphere::CheckBobbleDownLeft(){
 	unsigned int i;
 
-	for (i = 0; i < App->spheres->last_sphere; i++){
-		if (App->spheres->active[i] == nullptr)
+	for (i = 0; i < App->spheres->last_sphere_left; i++){
+		if (App->spheres->active_left[i] == nullptr)
 			continue;
-		if (position.DistanceTo(App->spheres->active[i]->position) <= 18 * SCREEN_SIZE  && App->spheres->active[i]->checked == false)
+		if (position.DistanceTo(App->spheres->active_left[i]->position) <= 18 * SCREEN_SIZE  && App->spheres->active_left[i]->checked == false)
 		{
-			App->spheres->active[i]->checked = true;
-			App->spheres->bobble_down.push_back(App->spheres->active[i]);
-			App->spheres->active[i]->CheckBobbleDown();
+			App->spheres->active_left[i]->checked = true;
+			App->spheres->bobble_down.push_back(App->spheres->active_left[i]);
+			App->spheres->active_left[i]->CheckBobbleDownLeft();
+		}
+	}
+}
+
+void Sphere::CheckBobbleDownRight(){
+	unsigned int i;
+
+	for (i = 0; i < App->spheres->last_sphere_right; i++){
+		if (App->spheres->active_right[i] == nullptr)
+			continue;
+		if (position.DistanceTo(App->spheres->active_right[i]->position) <= 18 * SCREEN_SIZE  && App->spheres->active_right[i]->checked == false)
+		{
+			App->spheres->active_right[i]->checked = true;
+			App->spheres->bobble_down.push_back(App->spheres->active_right[i]);
+			App->spheres->active_right[i]->CheckBobbleDownRight();
 		}
 	}
 }
@@ -644,13 +817,8 @@ void Sphere::CheckBobbleDown(){
 bool Particle::Update()
 {
 	bool ret = true;
-
 	if (anim.Finished())
 		ret = false;
-	
-	
 
 	return ret;
-
-
 }

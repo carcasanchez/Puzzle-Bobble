@@ -171,19 +171,26 @@ bool ModulePlayer::CleanUp()
 }
 
 bool ModulePlayer::CheckLose(){
-	for (unsigned int i = App->spheres->last_sphere; i > 0; i--){
-		if (App->spheres->active[i] == nullptr)
+	for (unsigned int i = App->spheres->last_sphere_left; i > 0; i--){
+		if (App->spheres->active_left[i] == nullptr)
 			continue;
-		if (App->spheres->active[i]->position.y > 170 * SCREEN_SIZE && App->spheres->active[i]->speed.y==0)
+		if (App->spheres->active_left[i]->position.y > 170 * SCREEN_SIZE && App->spheres->active_left[i]->speed.y == 0)
 		{
 			return true;
 		}
-
 	}
+	/*for (unsigned int i = App->spheres->last_sphere_right; i > 0; i--){
+	if (App->spheres->active_right[i] == nullptr)
+	continue;
+	if (App->spheres->active_right[i]->position.y > 170 * SCREEN_SIZE && App->spheres->active_right[i]->speed.y == 0)
+	{
+	return true;
+	}
+	}TODO PLAYER 2 LOSE*/
 	return false;
 }
 
-// Update: draw background
+
 update_status ModulePlayer::PreUpdate(){
 
 	if (mystate == PREUPDATE){	
@@ -256,18 +263,18 @@ update_status ModulePlayer::Update()
 	currentTime = SDL_GetTicks();
 
 	
-	if (App->input->keyboard[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN && App->spheres->next_sphere == true || currentTime - lastTime > 8000)
+	if (App->input->keyboard[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN && App->spheres->next_sphere_left == true || currentTime - lastTime > 8000)
 	{
 
-		App->spheres->active[App->spheres->last_sphere - 1]->speed.x = (sin(angle*PI / 180)) * SPEED;
-		App->spheres->active[App->spheres->last_sphere - 1]->speed.y = -(cos(angle*PI / 180)) * SPEED;
+		App->spheres->active_left[App->spheres->last_sphere_left - 1]->speed.x = (sin(angle*PI / 180)) * SPEED;
+		App->spheres->active_left[App->spheres->last_sphere_left - 1]->speed.y = -(cos(angle*PI / 180)) * SPEED;
 
 		if (current_animation2 != &bobShot)
 		{
 			current_animation2 = &bobShot;
 		}
 		Mix_PlayChannel(-1, shoot, 0);
-		App->spheres->next_sphere = false;
+		App->spheres->next_sphere_left = false;
 		lastTime = currentTime;
 		hurry_up.Reset();
 	}
@@ -314,11 +321,11 @@ update_status ModulePlayer::PostUpdate(){
 	if (mystate == FIRST){
 		while (succes != true){
 			Random = rand() % 8;
-			for (unsigned int i = 0; i < App->spheres->last_sphere; i++){
-				if (App->spheres->active[i] == nullptr){
+			for (unsigned int i = 0; i < App->spheres->last_sphere_left; i++){
+				if (App->spheres->active_left[i] == nullptr){
 					continue;
 				}
-				else if (App->spheres->spheres[Random].sphere_color == App->spheres->active[i]->sphere_color){
+				else if (App->spheres->spheres[Random].sphere_color == App->spheres->active_left[i]->sphere_color){
 					succes = true;
 				}
 			}
@@ -330,11 +337,11 @@ update_status ModulePlayer::PostUpdate(){
 	 if (mystate == UPDATE){
 		while (succes != true){
 			Random = rand() % 8;
-			for (unsigned int i = 0; i < App->spheres->last_sphere; i++){
-				if (App->spheres->active[i] == nullptr){
+			for (unsigned int i = 0; i < App->spheres->last_sphere_left; i++){
+				if (App->spheres->active_left[i] == nullptr){
 					continue;
 				}
-				else if (App->spheres->spheres[Random].sphere_color == App->spheres->active[i]->sphere_color){
+				else if (App->spheres->spheres[Random].sphere_color == App->spheres->active_left[i]->sphere_color){
 					succes = true;
 				}
 			}
