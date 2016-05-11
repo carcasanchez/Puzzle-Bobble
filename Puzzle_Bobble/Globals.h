@@ -10,6 +10,7 @@ void log(const char file[], int line, const char* format, ...);
 #define EXIT_FAILURE 1
 #define EXIT_SUCCESS 0
 
+enum States { FIRST, PREUPDATE, UPDATE, POSTUPDATE };
 
 enum update_status
 {

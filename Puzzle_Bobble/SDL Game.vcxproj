@@ -82,8 +82,8 @@
     <ClInclude Include="ModuleAudio.h" />
     <ClInclude Include="ModuleFadeToBlack.h" />
     <ClInclude Include="ModuleInput.h" />
-    <ClInclude Include="ModuleLevel_2.h" />
     <ClInclude Include="ModulePlayer.h" />
+    <ClInclude Include="ModulePlayer2.h" />
     <ClInclude Include="ModuleRender.h" />
     <ClInclude Include="ModuleSphere.h" />
     <ClInclude Include="ModuleStartScreen.h" />
@@ -99,13 +99,13 @@
     <ClCompile Include="ModuleCollision.cpp" />
     <ClCompile Include="ModuleCongrats.cpp" />
     <ClCompile Include="ModuleGameOver.cpp" />
-    <ClCompile Include="ModuleLevel_2.cpp" />
     <ClCompile Include="ModuleLevel_1.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />
     <ClCompile Include="ModuleFadeToBlack.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
     <ClCompile Include="ModulePlayer.cpp" />
+    <ClCompile Include="ModulePlayer2.cpp" />
     <ClCompile Include="ModuleRender.cpp" />
     <ClCompile Include="ModuleSphere.cpp" />
     <ClCompile Include="ModuleStartScreen.cpp" />

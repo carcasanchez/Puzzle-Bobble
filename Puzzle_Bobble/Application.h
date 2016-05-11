@@ -13,9 +13,9 @@ class ModuleAudio;
 class ModuleFadeToBlack;
 class ModuleStartScreen;
 class ModuleLevel_1;
-class ModuleLevel_2;
 class ModuleCongrats;
 class ModulePlayer;
+class ModulePlayer2;
 class ModuleSphere;
 class ModuleCollision;
 class ModuleBoard;
@@ -36,11 +36,11 @@ public:
 	ModuleFadeToBlack* fade;
 	ModuleStartScreen* menu_screen;
 	ModuleLevel_1* level_1;
-	ModuleLevel_2* level_2;
 	ModuleCongrats* congratulations;
 	ModuleGameOver* game_over;
 	ModuleCollision* collision;
 	ModulePlayer* player;
+	ModulePlayer2* player2;
 	ModuleSphere* spheres;
 	ModuleBoard* board;
 

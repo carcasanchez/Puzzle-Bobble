@@ -4,13 +4,11 @@
 #include "ModuleInput.h"
 #include "ModuleSphere.h"
 #include "ModuleRender.h"
-#include "ModulePlayer.h"
+#include "ModulePlayer2.h"
 #include "ModuleAudio.h"
 #include "ModuleCollision.h"
 #include "SDL\include\SDL_render.h"
 #include "SDL\include\SDL_timer.h"
-
-
 
 #include <time.h>
 #include <stdlib.h> 
@@ -19,14 +17,14 @@
 #define PI 3.14159265
 // Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
 
-ModulePlayer::ModulePlayer()
+ModulePlayer2::ModulePlayer2()
 {
 	graphics = NULL;
 	current_animation1 = NULL;
 	current_animation2 = NULL;
 	current_animation3 = NULL;
 
-	position.x = 175 * SCREEN_SIZE;
+	position.x = 335 * SCREEN_SIZE;
 	position.y = 200 * SCREEN_SIZE;
 
 	//initial position arrow
@@ -141,14 +139,14 @@ ModulePlayer::ModulePlayer()
 
 }
 
-ModulePlayer::~ModulePlayer()
+ModulePlayer2::~ModulePlayer2()
 {
 	App->textures->Unload(graphics);
 
 }
 
 // Load assets
-bool ModulePlayer::Start()
+bool ModulePlayer2::Start()
 {
 	LOG("Loading player");
 	mystate = FIRST;
@@ -161,7 +159,7 @@ bool ModulePlayer::Start()
 }
 
 // Unload assets
-bool ModulePlayer::CleanUp()
+bool ModulePlayer2::CleanUp()
 {
 	LOG("Unloading player");
 	angle = 0;
@@ -170,7 +168,7 @@ bool ModulePlayer::CleanUp()
 	return true;
 }
 
-bool ModulePlayer::CheckLose(){
+bool ModulePlayer2::CheckLose(){
 	for (unsigned int i = App->spheres->last_sphere_left; i > 0; i--){
 		if (App->spheres->active_left[i] == nullptr)
 			continue;
@@ -191,12 +189,13 @@ bool ModulePlayer::CheckLose(){
 }
 
 
-update_status ModulePlayer::PreUpdate(){
+update_status ModulePlayer2::PreUpdate(){
 
 	if (mystate == PREUPDATE){	
 		LoseCondition = CheckLose();
 		
-		App->spheres->AddSphere(App->spheres->spheres[Random], 73 * SCREEN_SIZE, 184 * SCREEN_SIZE);
+		App->spheres->AddSphere(App->spheres->spheres[Random], 73 + 197 * SCREEN_SIZE, 184
+			* SCREEN_SIZE);
 		//App->spheres->AddSphere(App->spheres->spheres[Random], 120 * SCREEN_SIZE, 200 * SCREEN_SIZE);
 		
 		mystate = UPDATE;
@@ -204,7 +203,7 @@ update_status ModulePlayer::PreUpdate(){
 	return update_status::UPDATE_CONTINUE;
 }
 
-update_status ModulePlayer::Update()
+update_status ModulePlayer2::Update()
 {
 	
 	int speed = 1;
@@ -222,7 +221,7 @@ update_status ModulePlayer::Update()
 	current_animation_lever = &lever;
 
 
-	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT)
 	{
 		if (current_animation1 != &right)
 		{
@@ -241,7 +240,7 @@ update_status ModulePlayer::Update()
 
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT)
 	{
 		if (current_animation1 != &right)
 		{
@@ -263,18 +262,18 @@ update_status ModulePlayer::Update()
 	currentTime = SDL_GetTicks();
 
 	
-	if (App->input->keyboard[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN && App->spheres->next_sphere_left == true || currentTime - lastTime > 8000)
+	if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_DOWN && App->spheres->next_sphere_left == true || currentTime - lastTime > 8000)
 	{
 
-		App->spheres->active_left[App->spheres->last_sphere_left - 1]->speed.x = (sin(angle*PI / 180)) * SPEED;
-		App->spheres->active_left[App->spheres->last_sphere_left - 1]->speed.y = -(cos(angle*PI / 180)) * SPEED;
+		App->spheres->active_right[App->spheres->last_sphere_right - 1]->speed.x = (sin(angle*PI / 180)) * SPEED;
+		App->spheres->active_right[App->spheres->last_sphere_right - 1]->speed.y = -(cos(angle*PI / 180)) * SPEED;
 
 		if (current_animation2 != &bobShot)
 		{
 			current_animation2 = &bobShot;
 		}
 		Mix_PlayChannel(-1, shoot, 0);
-		App->spheres->next_sphere_left = false;
+		App->spheres->next_sphere_right = false;
 		lastTime = currentTime;
 		hurry_up.Reset();
 	}
@@ -288,8 +287,8 @@ update_status ModulePlayer::Update()
 	}
 
 
-	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE
-		&& App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE){
+	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_IDLE
+		&& App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_IDLE){
 
 		current_animation1 = &idle_right;
 		base_left.speed = 0.0f;
@@ -313,7 +312,7 @@ update_status ModulePlayer::Update()
 	return update_status::UPDATE_CONTINUE;
 }
 
-update_status ModulePlayer::PostUpdate(){
+update_status ModulePlayer2::PostUpdate(){
 	srand(time(NULL));
 	bool succes = false;
 
