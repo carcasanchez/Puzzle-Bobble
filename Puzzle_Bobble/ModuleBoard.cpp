@@ -99,9 +99,9 @@ void ModuleBoard::BoardDown(int &counter){
 	for (i = 0; i < board.size(); i++){
 		board[i]->y += 14*SCREEN_SIZE;
 	}
-	for (i = 0; i < App->spheres->last_sphere; i++){
-		if (App->spheres->active[i] != nullptr){
-			App->spheres->active[i]->position.y += 14*SCREEN_SIZE;
+	for (i = 0; i < App->spheres->last_sphere_left; i++){
+		if (App->spheres->active_left[i] != nullptr){
+			App->spheres->active_left[i]->position.y += 14 * SCREEN_SIZE;
 		}
 	}
 	if (counter % 2 == 0){
