@@ -602,6 +602,8 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 				if (App->player->mystate == POSTUPDATE){
 					App->player->mystate = PREUPDATE;
 					next_sphere = true;
+					App->board->BoardDown(App->board->counter);
+
 				}
 			}	
 		}

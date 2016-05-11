@@ -26,6 +26,7 @@ ModuleBoard::ModuleBoard()
 				//board[j]->x = x;
 				//board[j]->y = y;
 				j++;
+				
 			}
 		}
 		i++;
@@ -91,7 +92,47 @@ void ModuleBoard::CreateMap(int number[]){
 		}
 }
 
+void ModuleBoard::BoardDown(int &counter){
+	int i;
+	int x, y;
+	y = 32 * SCREEN_SIZE - 16;
+	for (i = 0; i < board.size(); i++){
+		board[i]->y += 14*SCREEN_SIZE;
+	}
+	for (i = 0; i < App->spheres->last_sphere; i++){
+		if (App->spheres->active[i] != nullptr){
+			App->spheres->active[i]->position.y += 14*SCREEN_SIZE;
+		}
+	}
+	if (counter % 2 == 0){
+		x = 32 * SCREEN_SIZE - 16;
+		for (i = 0; i < 7; i++){
+			board.push_front(new iPoint(x, y));
+			x += 16 * SCREEN_SIZE;
+		}
+		for (i = 0; i < 7; i++)
+		{
+			
+		App->spheres->SetSphere(App->spheres->spheres[5], board[i]->x, board[i]->y, i);
+		board[i]->Empty = false;
+		}
+	}
+	else{
+		x = 24 * SCREEN_SIZE - 16;
+		for (i = 0; i < 8; i++){
+			board.push_front(new iPoint(x, y));
+			x += 16 * SCREEN_SIZE;
+		}
+		for (i = 0; i < 8; i++)
+		{
 
+			App->spheres->SetSphere(App->spheres->spheres[5], board[i]->x, board[i]->y, i);
+			board[i]->Empty = false;
+		}
+	}
+	counter++;
+
+}
 bool ModuleBoard::CheckWin()
 {
 	int i = 0;
