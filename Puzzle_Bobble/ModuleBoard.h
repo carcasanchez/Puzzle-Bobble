@@ -17,15 +17,16 @@ public:
 	~ModuleBoard();
 	
 	bool Start();
-	void CheckPosition(Sphere* actual_sphere);
+	void CheckPositionLeft(Sphere* actual_sphere);
+	void CheckPositionRight(Sphere* actual_sphere);
 	void CreateMap(int number[]);
 	bool CleanUp();
 	bool CheckWin();
 	void BoardDown(int &counter);
 	int counter = 0;
 public:
-	Vector<iPoint*> board;
-
+	Vector<iPoint*> board_left;
+	Vector<iPoint*> board_right;
 };
 
 #endif

@@ -35,11 +35,11 @@ bool ModuleLevel_1::Start()
 	6 Orange
 	7 Violet
 	*/
-	int map[] = {0,2,3,3,3,6,7,4,
-			     7,2,3,5,7,7,4,
-			 	 2,6,3,6,7,3,2,2,
-				 3,5,4,4,7,7,2,
-				 3, 5, 5, 7, 6, 0, 7, 7,
+	int map[] = { 0, 2, 3, 3, 3, 6, 7, 4,
+				 9, 9, 9, 9, 9, 9, 9,
+				 9, 9, 9, 9, 9, 9, 9, 9,
+				 9, 9, 9, 9, 9, 9, 9,
+				 9, 9, 9, 9, 9, 9, 9, 9,
 				 9, 9, 9, 9, 9, 9, 9, 
 				 9, 9, 9, 9, 9, 9, 9, 9,
 				 9, 9, 9, 9, 9, 9, 9, 
@@ -114,7 +114,8 @@ bool ModuleLevel_1::CleanUp()
 
    for (unsigned int i = 0; i < NUM_SQUARES; i++)
 	{
-		App->board->board[i]->Empty = true;
+	   App->board->board_left[i]->Empty = true;
+	   App->board->board_right[i]->Empty = true;
 	}
 
 	while (!Mix_FadeOutMusic(1000) && Mix_PlayingMusic())

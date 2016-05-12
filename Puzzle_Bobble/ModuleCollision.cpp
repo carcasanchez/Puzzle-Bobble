@@ -23,10 +23,6 @@ ModuleCollision::ModuleCollision()
 	matrix[COLLIDER_LATERAL_WALL][COLLIDER_LATERAL_WALL] = false;
 	matrix[COLLIDER_LATERAL_WALL][COLLIDER_SPHERE] = false;
 
-	matrix[COLLIDER_LOSE][COLLIDER_LOSE] = false;
-	matrix[COLLIDER_LOSE][COLLIDER_SPHERE] = true;
-	matrix[COLLIDER_LOSE][COLLIDER_WALL] = false;
-	matrix[COLLIDER_LOSE][COLLIDER_SPHERE] = false;
 
 }
 
@@ -116,9 +112,6 @@ void ModuleCollision::DebugDraw()
 			break;
 		case COLLIDER_SPHERE: // red
 			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
-			break;
-		case COLLIDER_LOSE: // asuliyo secsy
-			App->render->DrawQuad(colliders[i]->rect, 0, 255, 255, alpha);
 			break;
 		}
 	}

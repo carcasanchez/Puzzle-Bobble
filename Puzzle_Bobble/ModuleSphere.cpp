@@ -36,6 +36,12 @@ bool ModuleSphere::Start()
 
 	//////////////////////////////////////Collision scenary/////////////////////////////////////////////
 
+	//RIGHT PLAYER
+	App->collision->AddCollider(SDL_Rect{ 160, 15, 8, 194 }, COLLIDER_LATERAL_WALL);	//Right
+	App->collision->AddCollider(SDL_Rect{ 304, 16, 8, 194 }, COLLIDER_LATERAL_WALL);	//Left
+	App->collision->AddCollider(SDL_Rect{ 165, 16, 144, 8 }, COLLIDER_WALL);			//Top
+
+	//LEFT PLAYER
 	App->collision->AddCollider(SDL_Rect{ 144, 24, 8, 194 }, COLLIDER_LATERAL_WALL);	//Right 136
 	App->collision->AddCollider(SDL_Rect{ 7, 24, 8, 194 }, COLLIDER_LATERAL_WALL);		//Left
 	App->collision->AddCollider(SDL_Rect{ 7, 16, 144, 8 }, COLLIDER_WALL);				//Top
@@ -565,7 +571,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 			{
 				active_left[i]->speed.x = 0;
 				active_left[i]->speed.y = 0;
-				App->board->CheckPosition(active_left[last_sphere_left - 1]);
+				App->board->CheckPositionLeft(active_left[last_sphere_left - 1]);
 				//todo
 
 				allahu_list_left.push_back(active_left[i]);
@@ -579,7 +585,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 					{
 						allahu_list_left[i]->doomed = true;
 
-						App->board->board[allahu_list_left[i]->board_index]->Empty = true;
+						App->board->board_left[allahu_list_left[i]->board_index]->Empty = true;
 					}
 
 				}
@@ -626,7 +632,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 							active_left[i]->collider->to_delete = true;
 							active_left[i]->collider = nullptr;
 							active_left[i]->speed.y = 7.0f;
-							App->board->board[active_left[i]->board_index]->Empty = true;
+							App->board->board_left[active_left[i]->board_index]->Empty = true;
 
 						}
 					}
@@ -663,7 +669,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 			{
 				active_right[i]->speed.x = 0;
 				active_right[i]->speed.y = 0;
-				App->board->CheckPosition(active_right[last_sphere_right - 1]);
+				App->board->CheckPositionRight(active_right[last_sphere_right - 1]);
 				//todo
 
 				allahu_list_right.push_back(active_right[i]);
@@ -677,7 +683,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 					{
 						allahu_list_right[i]->doomed = true;
 
-						App->board->board[allahu_list_right[i]->board_index]->Empty = true;
+						App->board->board_right[allahu_list_right[i]->board_index]->Empty = true;
 					}
 
 				}
@@ -724,7 +730,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 							active_right[i]->collider->to_delete = true;
 							active_right[i]->collider = nullptr;
 							active_right[i]->speed.y = 7.0f;
-							App->board->board[active_right[i]->board_index]->Empty = true;
+							App->board->board_right[active_right[i]->board_index]->Empty = true;
 
 						}
 					}
