@@ -5,7 +5,7 @@ ModuleBoard::ModuleBoard()
 	int x, y;
 	int i = 0;
 	int j = 0;
-
+	counter = 0; 
 	//LEFT
 	for (y = 32 * SCREEN_SIZE - 16; j < NUM_SQUARES; y += 14 * SCREEN_SIZE)
 	{
@@ -74,15 +74,27 @@ bool ModuleBoard::CleanUp()
 	int i;
 	for (i = 0; i < NUM_SQUARES; i++)
 	{
-		if (board_left[i]->Empty == false)
+		if (board_left[i] != nullptr){
+			delete board_left[i];
+			board_left[i] = nullptr;
+
+		}
+
+		if (board_right[i] != nullptr){
+			delete board_right[i];
+			board_right[i] = nullptr;
+
+		}
+		/*if (board_left[i]->Empty == false)
 		{
 			board_left[i]->Empty = true;
 		}
 		if (board_right[i]->Empty == false)
 		{
 			board_right[i]->Empty == true;
-		}
+		}*/
 	}
+	
 	return true;
 }
 

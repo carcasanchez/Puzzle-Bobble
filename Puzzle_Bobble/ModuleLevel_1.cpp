@@ -36,13 +36,13 @@ bool ModuleLevel_1::Start()
 	7 Violet
 	*/
 	int map[] = { 0, 2, 3, 3, 3, 6, 7, 4,
-				 9, 9, 9, 9, 9, 9, 9,
-				 9, 9, 9, 9, 9, 9, 9, 9,
-				 9, 9, 9, 9, 9, 9, 9,
-				 9, 9, 9, 9, 9, 9, 9, 9,
-				 9, 9, 9, 9, 9, 9, 9, 
-				 9, 9, 9, 9, 9, 9, 9, 9,
-				 9, 9, 9, 9, 9, 9, 9, 
+		0, 2, 3, 3, 3, 6, 7, 4,
+		0, 2, 3, 3, 3, 6, 7, 4,
+		0, 2, 3, 3, 3, 6, 7, 4,
+		9, 9, 9, 9, 9, 9, 9, 9,
+		9, 9, 9, 9, 9, 9, 9, 9,
+		9, 9, 9, 9, 9, 9, 9, 9,
+		9, 9, 9, 9, 9, 9, 9,
 				 9, 9, 9, 9, 9, 9, 9, 9,
 				 9, 9, 9, 9, 9, 9, 9, 
 				 9, 9, 9, 9, 9, 9, 9, 9,
@@ -114,8 +114,12 @@ bool ModuleLevel_1::CleanUp()
 
    for (unsigned int i = 0; i < NUM_SQUARES; i++)
 	{
-	   App->board->board_left[i]->Empty = true;
-	   App->board->board_right[i]->Empty = true;
+	   if (App->board->board_left[i] != nullptr){
+		   App->board->board_left[i]->Empty = true;
+	   }
+	   if (App->board->board_right[i] != nullptr){
+		   App->board->board_right[i]->Empty = true;
+	   }
 	}
 
 	while (!Mix_FadeOutMusic(1000) && Mix_PlayingMusic())

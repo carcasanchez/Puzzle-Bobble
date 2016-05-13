@@ -81,11 +81,10 @@ public:
 	uint last_sphere_left = 0;
 	bool next_sphere_right = true;
 	bool next_sphere_left = true;
-	bool check_down = false;
+	bool check_down_right, check_down_left = false;
 	Vector <Sphere*> allahu_list_left;
 	Vector <Sphere*> allahu_list_right;
 	Vector <Sphere*> bobble_down;
-
 	ModuleSphere();
 	~ModuleSphere();
 
@@ -95,7 +94,10 @@ public:
 
 	void AddSphere(const Sphere& particle, int x, int y, COLLIDER_TYPE col_type= COLLIDER_SPHERE,  Uint32 delay = 0);
 	void SetSphere(const Sphere& particle, int x, int y, int b_index, COLLIDER_TYPE col_type = COLLIDER_SPHERE, Uint32 delay = 0);
-	
+	bool allahu_bobble_left(int bobbleNumber);
+	bool allahu_bobble_right(int bobbleNumber);
+	void boobbledown_left();
+	void boobbledown_right();
 	void AddExplosion(const Sphere* sphere);
 
 

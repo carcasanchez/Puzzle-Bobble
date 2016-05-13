@@ -8,7 +8,7 @@
 
 #include "ModuleSphere.h"
 #include "ModulePlayer.h"
-
+#include "ModulePlayer2.h"
 #include "SDL/include/SDL_timer.h"
 
 Particle::Particle()
@@ -573,85 +573,19 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 				active_left[i]->speed.y = 0;
 				App->board->CheckPositionLeft(active_left[last_sphere_left - 1]);
 				//todo
+				check_down_left = allahu_bobble_left(i);
 
-				allahu_list_left.push_back(active_left[i]);
-				active_left[i]->checked = true;
-				active_left[i]->CheckBobbleLeft();
-				App->board->BoardDown(App->board->counter);
-				if (allahu_list_left.n_elements >= 3)
-				{
-					check_down = true;
-					for (i = 0; i < allahu_list_left.n_elements; i++)
-					{
-						allahu_list_left[i]->doomed = true;
+				if (check_down_left == true){
+					boobbledown_left();
 
-						App->board->board_left[allahu_list_left[i]->board_index]->Empty = true;
-					}
-
-				}
-
-				for (unsigned int i = 0; i < last_sphere_left; i++)
-				{
-					if (active_left[i] == nullptr)
-						continue;
-					if (active_left[i]->checked == true){
-						active_left[i]->checked = false;
-					}
-
-					if (active_left[i]->doomed == true)
-					{
-
-						active_left[i]->collider->to_delete = true;
-						AddExplosion(active_left[i]);
-						active_left[i]->collider = nullptr;
-						active_left[i] = nullptr;
-					}
-				}
-				allahu_list_left.clear();
-
-				if (check_down == true){
-					for (int i = 0; i < App->spheres->last_sphere_left; i++){
-						if (active_left[i] == nullptr)
-							continue;
-						if (App->spheres->active_left[i]->board_index < 8){
-							allahu_list_left.push_back(active_left[i]);
-						}
-					}
-
-					for (int i = 0; i < allahu_list_left.size(); i++){
-						if (allahu_list_left[i]->checked == false){
-							allahu_list_left[i]->checked = true;
-							allahu_list_left[i]->CheckBobbleDownLeft();
-
-						}
-					}
-					for (int i = App->spheres->last_sphere_left; i > 0; i--){
-						if (active_left[i] == nullptr || active_left[i]->collider == nullptr)
-							continue;
-						if (App->spheres->active_left[i]->checked == false){
-							active_left[i]->collider->to_delete = true;
-							active_left[i]->collider = nullptr;
-							active_left[i]->speed.y = 7.0f;
-							App->board->board_left[active_left[i]->board_index]->Empty = true;
-
-						}
-					}
-					for (unsigned int i = 0; i < App->spheres->last_sphere_left; i++)
-					{
-						if (active_left[i] == nullptr)
-							continue;
-						if (active_left[i]->checked == true){
-							active_left[i]->checked = false;
-						}
-					}
-					allahu_list_left.clear();
-					check_down = false;
 				}
 
 				if (App->player->mystate == POSTUPDATE){
 					App->player->mystate = PREUPDATE;
 					next_sphere_left = true;
 				}
+				App->board->BoardDown(App->board->counter);
+
 			}
 		}
 	}
@@ -671,90 +605,185 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 				active_right[i]->speed.y = 0;
 				App->board->CheckPositionRight(active_right[last_sphere_right - 1]);
 				//todo
-
 				allahu_list_right.push_back(active_right[i]);
 				active_right[i]->checked = true;
 				active_right[i]->CheckBobbleRight();
-
-				if (allahu_list_right.n_elements >= 3)
-				{
-					check_down = true;
-					for (i = 0; i < allahu_list_right.n_elements; i++)
-					{
-						allahu_list_right[i]->doomed = true;
-
-						App->board->board_right[allahu_list_right[i]->board_index]->Empty = true;
-					}
+				check_down_right = allahu_bobble_right(i);
+				
+				if (check_down_right == true){
+					boobbledown_right();
 
 				}
-
-				for (unsigned int i = 0; i < last_sphere_right; i++)
-				{
-					if (active_right[i] == nullptr)
-						continue;
-					if (active_right[i]->checked == true){
-						active_right[i]->checked = false;
-					}
-
-					if (active_right[i]->doomed == true)
-					{
-
-						active_right[i]->collider->to_delete = true;
-						AddExplosion(active_right[i]);
-						active_right[i]->collider = nullptr;
-						active_right[i] = nullptr;
-					}
-				}
-				allahu_list_right.clear();
-
-				if (check_down == true){
-					for (int i = 0; i < App->spheres->last_sphere_right; i++){
-						if (active_right[i] == nullptr)
-							continue;
-						if (App->spheres->active_right[i]->board_index < 8){
-							allahu_list_right.push_back(active_right[i]);
-						}
-					}
-
-					for (int i = 0; i < allahu_list_right.size(); i++){
-						if (allahu_list_right[i]->checked == false){
-							allahu_list_right[i]->checked = true;
-							allahu_list_right[i]->CheckBobbleDownRight();
-
-						}
-					}
-					for (int i = App->spheres->last_sphere_right; i > 0; i--){
-						if (active_right[i] == nullptr || active_right[i]->collider == nullptr)
-							continue;
-						if (App->spheres->active_right[i]->checked == false){
-							active_right[i]->collider->to_delete = true;
-							active_right[i]->collider = nullptr;
-							active_right[i]->speed.y = 7.0f;
-							App->board->board_right[active_right[i]->board_index]->Empty = true;
-
-						}
-					}
-					for (unsigned int i = 0; i < App->spheres->last_sphere_right; i++)
-					{
-						if (active_right[i] == nullptr)
-							continue;
-						if (active_right[i]->checked == true){
-							active_right[i]->checked = false;
-						}
-					}
-					allahu_list_right.clear();
-					check_down = false;
-				}
-
-				if (App->player->mystate == POSTUPDATE){
-					App->player->mystate = PREUPDATE;
+				if (App->player2->mystate == POSTUPDATE){
+					App->player2->mystate = PREUPDATE;
 					next_sphere_right = true;
 				}
 			}
 		}
 	}
 }
+bool ModuleSphere::allahu_bobble_left(int i){
 
+	allahu_list_left.push_back(active_left[i]);
+	active_left[i]->checked = true;
+	active_left[i]->CheckBobbleLeft();
+	if (allahu_list_left.n_elements >= 3)
+	{
+		
+		for (i = 0; i < allahu_list_left.n_elements; i++)
+		{
+			allahu_list_left[i]->doomed = true;
+
+			App->board->board_left[allahu_list_left[i]->board_index]->Empty = true;
+		}
+		for (unsigned int i = 0; i < last_sphere_left; i++)
+		{
+			if (active_left[i] == nullptr)
+				continue;
+			if (active_left[i]->checked == true){
+				active_left[i]->checked = false;
+			}
+
+			if (active_left[i]->doomed == true)
+			{
+
+				active_left[i]->collider->to_delete = true;
+				AddExplosion(active_left[i]);
+				active_left[i]->collider = nullptr;
+				active_left[i] = nullptr;
+			}
+		}
+		allahu_list_left.clear();
+		return true;
+	}
+	else{
+		allahu_list_left.clear();
+
+		return false;
+	}
+}
+void ModuleSphere::boobbledown_left(){
+
+		for (int i = 0; i < App->spheres->last_sphere_left; i++){
+			if (active_left[i] == nullptr)
+				continue;
+			if (App->spheres->active_left[i]->board_index < 8){
+				allahu_list_left.push_back(active_left[i]);
+			}
+		}
+
+		for (int i = 0; i < allahu_list_left.size(); i++){
+			if (allahu_list_left[i]->checked == false){
+				allahu_list_left[i]->checked = true;
+				allahu_list_left[i]->CheckBobbleDownLeft();
+
+			}
+		}
+		for (int i = App->spheres->last_sphere_left; i > 0; i--){
+			if (active_left[i] == nullptr || active_left[i]->collider == nullptr)
+				continue;
+			if (App->spheres->active_left[i]->checked == false){
+				active_left[i]->collider->to_delete = true;
+				active_left[i]->collider = nullptr;
+				active_left[i]->speed.y = 7.0f;
+				App->board->board_left[active_left[i]->board_index]->Empty = true;
+
+			}
+		}
+		for (unsigned int i = 0; i < App->spheres->last_sphere_left; i++)
+		{
+			if (active_left[i] == nullptr)
+				continue;
+			if (active_left[i]->checked == true){
+				active_left[i]->checked = false;
+			}
+		}
+		allahu_list_left.clear();
+		check_down_left = false;
+	
+}
+
+bool ModuleSphere::allahu_bobble_right(int i){
+
+	allahu_list_right.push_back(active_right[i]);
+	active_right[i]->checked = true;
+	active_right[i]->CheckBobbleLeft();
+	if (allahu_list_right.n_elements >= 3)
+	{
+
+		for (i = 0; i < allahu_list_right.n_elements; i++)
+		{
+			allahu_list_right[i]->doomed = true;
+
+			App->board->board_right[allahu_list_right[i]->board_index]->Empty = true;
+		}
+		for (unsigned int i = 0; i < last_sphere_right; i++)
+		{
+			if (active_right[i] == nullptr)
+				continue;
+			if (active_right[i]->checked == true){
+				active_right[i]->checked = false;
+			}
+
+			if (active_right[i]->doomed == true)
+			{
+
+				active_right[i]->collider->to_delete = true;
+				AddExplosion(active_right[i]);
+				active_right[i]->collider = nullptr;
+				active_right[i] = nullptr;
+			}
+		}
+		allahu_list_right.clear();
+		return true;
+	}
+	else{
+		allahu_list_left.clear();
+
+		return false;
+	}
+}
+void ModuleSphere::boobbledown_right(){
+
+	for (int i = 0; i < App->spheres->last_sphere_right; i++){
+		if (active_right[i] == nullptr)
+			continue;
+		if (App->spheres->active_right[i]->board_index < 8){
+			allahu_list_right.push_back(active_right[i]);
+		}
+	}
+
+	for (int i = 0; i < allahu_list_right.size(); i++){
+		if (allahu_list_right[i]->checked == false){
+			allahu_list_right[i]->checked = true;
+			allahu_list_right[i]->CheckBobbleDownRight();
+
+		}
+	}
+	for (int i = App->spheres->last_sphere_right; i > 0; i--){
+		if (active_right[i] == nullptr || active_right[i]->collider == nullptr)
+			continue;
+		if (App->spheres->active_right[i]->checked == false){
+			active_right[i]->collider->to_delete = true;
+			active_right[i]->collider = nullptr;
+			active_right[i]->speed.y = 7.0f;
+			App->board->board_right[active_right[i]->board_index]->Empty = true;
+
+		}
+	}
+	for (unsigned int i = 0; i < App->spheres->last_sphere_right; i++)
+	{
+		if (active_right[i] == nullptr)
+			continue;
+		if (active_right[i]->checked == true){
+			active_right[i]->checked = false;
+		}
+	}
+	allahu_list_right.clear();
+	check_down_right = false;
+
+
+}
 void Sphere::CheckBobbleLeft(){
 
 	unsigned int i;
