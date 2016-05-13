@@ -179,14 +179,7 @@ bool ModulePlayer::CheckLose(){
 			return true;
 		}
 	}
-	for (unsigned int i = App->spheres->last_sphere_right; i > 0; i--){
-		if (App->spheres->active_right[i] == nullptr)
-			continue;
-		if (App->spheres->active_right[i]->position.y > 170 * SCREEN_SIZE && App->spheres->active_right[i]->speed.y == 0)
-		{
-			return true;
-		}
-	}
+
 	return false;
 }
 

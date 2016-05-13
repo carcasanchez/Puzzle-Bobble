@@ -169,22 +169,15 @@ bool ModulePlayer2::CleanUp()
 }
 
 bool ModulePlayer2::CheckLose(){
-	for (unsigned int i = App->spheres->last_sphere_left; i > 0; i--){
-		if (App->spheres->active_left[i] == nullptr)
-			continue;
-		if (App->spheres->active_left[i]->position.y > 170 * SCREEN_SIZE && App->spheres->active_left[i]->speed.y == 0)
-		{
-			return true;
-		}
-	}
-	/*for (unsigned int i = App->spheres->last_sphere_right; i > 0; i--){
+
+	for (unsigned int i = App->spheres->last_sphere_right; i > 0; i--){
 	if (App->spheres->active_right[i] == nullptr)
 	continue;
 	if (App->spheres->active_right[i]->position.y > 170 * SCREEN_SIZE && App->spheres->active_right[i]->speed.y == 0)
 	{
 	return true;
 	}
-	}TODO PLAYER 2 LOSE*/
+	}
 	return false;
 }
 

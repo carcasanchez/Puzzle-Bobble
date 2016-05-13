@@ -39,7 +39,7 @@ ModuleBoard::ModuleBoard()
 	{
 		if (i % 2 == 0)
 		{
-			for (x = 24 * SCREEN_SIZE - 16 + 160; x < 136 * SCREEN_SIZE + 160; x += 16 * SCREEN_SIZE + 160)//112
+			for (x = 184 * SCREEN_SIZE - 16; x < 296 * SCREEN_SIZE; x += 16 * SCREEN_SIZE)//112
 			{
 				board_right.push_back(new iPoint(x, y));
 				//board[j]->x = x;
@@ -49,7 +49,7 @@ ModuleBoard::ModuleBoard()
 		}
 		else
 		{
-			for (x = 32 * SCREEN_SIZE - 16 + 160; x < 128 * SCREEN_SIZE + 160; x += 16 * SCREEN_SIZE + 160)//96
+			for (x = 192 * SCREEN_SIZE - 16 ; x < 288 * SCREEN_SIZE; x += 16 * SCREEN_SIZE)//96
 			{
 				board_right.push_back(new iPoint(x, y));
 				//board[j]->x = x;
