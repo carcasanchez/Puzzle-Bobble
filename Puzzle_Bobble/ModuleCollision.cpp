@@ -9,20 +9,25 @@ ModuleCollision::ModuleCollision()
 		colliders[i] = nullptr;
 
 	matrix[COLLIDER_WALL][COLLIDER_WALL] = false;
-	matrix[COLLIDER_WALL][COLLIDER_SPHERE] = true;
-	matrix[COLLIDER_WALL][COLLIDER_LATERAL_WALL] = true;
-	matrix[COLLIDER_WALL][COLLIDER_SPHERE] = false;
+	matrix[COLLIDER_WALL][COLLIDER_SPHERE_RIGHT] = true;
+	matrix[COLLIDER_WALL][COLLIDER_SPHERE_LEFT] = true;
+	matrix[COLLIDER_WALL][COLLIDER_LATERAL_WALL] = false;
 
-	matrix[COLLIDER_SPHERE][COLLIDER_WALL] = true;
-	matrix[COLLIDER_SPHERE][COLLIDER_SPHERE] = true;
-	matrix[COLLIDER_SPHERE][COLLIDER_LATERAL_WALL] = true;
-	matrix[COLLIDER_SPHERE][COLLIDER_SPHERE] = true;
 
-	matrix[COLLIDER_LATERAL_WALL][COLLIDER_WALL] = true;
-	matrix[COLLIDER_LATERAL_WALL][COLLIDER_SPHERE] = true;
+	matrix[COLLIDER_SPHERE_RIGHT][COLLIDER_WALL] = true;
+	matrix[COLLIDER_SPHERE_RIGHT][COLLIDER_SPHERE_RIGHT] = true;
+	matrix[COLLIDER_SPHERE_RIGHT][COLLIDER_LATERAL_WALL] = true;
+	matrix[COLLIDER_SPHERE_RIGHT][COLLIDER_SPHERE_LEFT] = true;
+
+	matrix[COLLIDER_LATERAL_WALL][COLLIDER_WALL] = false;
+	matrix[COLLIDER_LATERAL_WALL][COLLIDER_SPHERE_RIGHT] = true;
+	matrix[COLLIDER_LATERAL_WALL][COLLIDER_SPHERE_LEFT] = true;
 	matrix[COLLIDER_LATERAL_WALL][COLLIDER_LATERAL_WALL] = false;
-	matrix[COLLIDER_LATERAL_WALL][COLLIDER_SPHERE] = false;
 
+	matrix[COLLIDER_SPHERE_LEFT][COLLIDER_SPHERE_LEFT] = true;
+	matrix[COLLIDER_SPHERE_LEFT][COLLIDER_SPHERE_RIGHT] = false;
+	matrix[COLLIDER_SPHERE_LEFT][COLLIDER_WALL] = true;
+	matrix[COLLIDER_SPHERE_LEFT][COLLIDER_LATERAL_WALL] = true;
 
 }
 
@@ -110,7 +115,10 @@ void ModuleCollision::DebugDraw()
 		case COLLIDER_LATERAL_WALL: // green
 			App->render->DrawQuad(colliders[i]->rect, 0, 255, 0, alpha);
 			break;
-		case COLLIDER_SPHERE: // red
+		case COLLIDER_SPHERE_LEFT: // red
+			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
+			break;
+		case COLLIDER_SPHERE_RIGHT: // red
 			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
 			break;
 		}
@@ -197,7 +205,7 @@ bool ColliderRect::CheckCollision(const Collider* c) const
 bool ColliderCircle::CheckCollision(const Collider* c) const
 {
 
-	if (c->type==COLLIDER_SPHERE)
+	if (c->type==COLLIDER_SPHERE_LEFT)
 		return (circ.GetDistance(c->circ.center) < circ.radius + c->circ.radius);
 
 	else return (rect.x < c->rect.x + c->rect.w &&

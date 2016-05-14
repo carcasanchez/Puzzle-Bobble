@@ -189,7 +189,7 @@ update_status ModulePlayer::PreUpdate(){
 	if (mystate == PREUPDATE){	
 		LoseCondition = CheckLose();
 		
-		App->spheres->AddSphere(App->spheres->spheres[Random], 73 * SCREEN_SIZE, 184 * SCREEN_SIZE);
+		App->spheres->AddSphere(App->spheres->spheres[Random], 73 * SCREEN_SIZE, 184 * SCREEN_SIZE, COLLIDER_SPHERE_LEFT);
 		//App->spheres->AddSphere(App->spheres->spheres[Random], 120 * SCREEN_SIZE, 200 * SCREEN_SIZE);
 		
 		mystate = UPDATE;

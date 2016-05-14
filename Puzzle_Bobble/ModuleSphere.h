@@ -92,8 +92,8 @@ public:
 	update_status Update();
 	bool CleanUp();
 
-	void AddSphere(const Sphere& particle, int x, int y, COLLIDER_TYPE col_type= COLLIDER_SPHERE,  Uint32 delay = 0);
-	void SetSphere(const Sphere& particle, int x, int y, int b_index, COLLIDER_TYPE col_type = COLLIDER_SPHERE, Uint32 delay = 0);
+	void AddSphere(const Sphere& particle, int x, int y, COLLIDER_TYPE col_type,  Uint32 delay = 0);
+	void SetSphere(const Sphere& particle, int x, int y, int b_index, COLLIDER_TYPE col_type, Uint32 delay = 0);
 	bool allahu_bobble_left(int bobbleNumber);
 	bool allahu_bobble_right(int bobbleNumber);
 	void boobbledown_left();

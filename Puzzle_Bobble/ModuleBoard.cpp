@@ -14,8 +14,6 @@ ModuleBoard::ModuleBoard()
 			for (x = 24 * SCREEN_SIZE - 16; x < 136 * SCREEN_SIZE; x += 16 * SCREEN_SIZE)//112
 			{
 				board_left.push_back(new iPoint(x, y));
-				//board[j]->x = x;
-				//board[j]->y = y;
 				j++;
 			}
 		}
@@ -24,8 +22,6 @@ ModuleBoard::ModuleBoard()
 			for (x = 32 * SCREEN_SIZE - 16; x < 128 * SCREEN_SIZE; x += 16 * SCREEN_SIZE)//96
 			{
 				board_left.push_back(new iPoint(x, y));
-				//board[j]->x = x;
-				//board[j]->y = y;
 				j++;
 				
 			}
@@ -85,14 +81,7 @@ bool ModuleBoard::CleanUp()
 			board_right[i] = nullptr;
 
 		}
-		/*if (board_left[i]->Empty == false)
-		{
-			board_left[i]->Empty = true;
-		}
-		if (board_right[i]->Empty == false)
-		{
-			board_right[i]->Empty == true;
-		}*/
+	
 	}
 	
 	return true;
@@ -158,9 +147,9 @@ void ModuleBoard::CreateMap(int number[]){
 	for (i= 0 ; i < NUM_SQUARES;i++)
 	{
 		if (number[i] >= 0 && number[i] < 8){
-			App->spheres->SetSphere(App->spheres->spheres[number[i]], board_left[i]->x, board_left[i]->y, i);
+			App->spheres->SetSphere(App->spheres->spheres[number[i]], board_left[i]->x, board_left[i]->y, i, COLLIDER_SPHERE_LEFT);
 			board_left[i]->Empty = false;
-			App->spheres->SetSphere(App->spheres->spheres[number[i]], board_right[i]->x, board_right[i]->y, i);
+			App->spheres->SetSphere(App->spheres->spheres[number[i]], board_right[i]->x, board_right[i]->y, i, COLLIDER_SPHERE_RIGHT);
 			board_right[i]->Empty = false;
 			}				
 		}
@@ -187,7 +176,7 @@ void ModuleBoard::BoardDown(int &counter){
 		for (i = 0; i < 7; i++)
 		{
 			
-			App->spheres->SetSphere(App->spheres->spheres[5], board_left[i]->x, board_left[i]->y, i);
+			App->spheres->SetSphere(App->spheres->spheres[5], board_left[i]->x, board_left[i]->y, i, COLLIDER_SPHERE_LEFT);
 			board_left[i]->Empty = false;
 		}
 	}
@@ -200,7 +189,7 @@ void ModuleBoard::BoardDown(int &counter){
 		for (i = 0; i < 8; i++)
 		{
 
-			App->spheres->SetSphere(App->spheres->spheres[5], board_left[i]->x, board_left[i]->y, i);
+			App->spheres->SetSphere(App->spheres->spheres[5], board_left[i]->x, board_left[i]->y, i, COLLIDER_SPHERE_LEFT);
 			board_left[i]->Empty = false;
 		}
 	}

@@ -187,9 +187,8 @@ update_status ModulePlayer2::PreUpdate(){
 	if (mystate == PREUPDATE){	
 		LoseCondition = CheckLose();
 		
-		App->spheres->AddSphere(App->spheres->spheres[Random], 73 + 197 * SCREEN_SIZE, 184
-			* SCREEN_SIZE);
-		//App->spheres->AddSphere(App->spheres->spheres[Random], 120 * SCREEN_SIZE, 200 * SCREEN_SIZE);
+		App->spheres->AddSphere(App->spheres->spheres[Random], 73 + 197 * SCREEN_SIZE, 184* SCREEN_SIZE, COLLIDER_SPHERE_RIGHT);
+	
 		
 		mystate = UPDATE;
 	}
@@ -255,7 +254,7 @@ update_status ModulePlayer2::Update()
 	currentTime = SDL_GetTicks();
 
 	
-	if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_DOWN && App->spheres->next_sphere_left == true || currentTime - lastTime > 8000)
+	if (App->input->keyboard[SDL_SCANCODE_UP] == KEY_STATE::KEY_DOWN && App->spheres->next_sphere_right == true || currentTime - lastTime > 8000)
 	{
 
 		App->spheres->active_right[App->spheres->last_sphere_right - 1]->speed.x = (sin(angle*PI / 180)) * SPEED;
@@ -313,11 +312,11 @@ update_status ModulePlayer2::PostUpdate(){
 	if (mystate == FIRST){
 		while (succes != true){
 			Random = rand() % 8;
-			for (unsigned int i = 0; i < App->spheres->last_sphere_left; i++){
-				if (App->spheres->active_left[i] == nullptr){
+			for (unsigned int i = 0; i < App->spheres->last_sphere_right; i++){
+				if (App->spheres->active_right[i] == nullptr){
 					continue;
 				}
-				else if (App->spheres->spheres[Random].sphere_color == App->spheres->active_left[i]->sphere_color){
+				else if (App->spheres->spheres[Random].sphere_color == App->spheres->active_right[i]->sphere_color){
 					succes = true;
 				}
 			}
@@ -327,13 +326,13 @@ update_status ModulePlayer2::PostUpdate(){
 	}
 
 	 if (mystate == UPDATE){
-		while (succes != true){
+ 		while (succes != true){
 			Random = rand() % 8;
-			for (unsigned int i = 0; i < App->spheres->last_sphere_left; i++){
-				if (App->spheres->active_left[i] == nullptr){
+			for (unsigned int i = 0; i < App->spheres->last_sphere_right; i++){
+				if (App->spheres->active_right[i] == nullptr){
 					continue;
 				}
-				else if (App->spheres->spheres[Random].sphere_color == App->spheres->active_left[i]->sphere_color){
+				else if (App->spheres->spheres[Random].sphere_color == App->spheres->active_right[i]->sphere_color){
 					succes = true;
 				}
 			}

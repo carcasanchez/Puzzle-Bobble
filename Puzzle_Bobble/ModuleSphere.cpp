@@ -380,14 +380,12 @@ update_status ModuleSphere::Update()
 			Sphere* s_l = active_left[i];
 			Sphere* s_r = active_right[i];
 
-			if (s_l == nullptr)
-				continue;
-
-			if (s_l->Update() == false || (s_l->speed.y>0 && s_l->position.y>SCREEN_HEIGHT*SCREEN_SIZE))
-			{
-				delete s_l;
-				active_left[i] = nullptr;
-			}
+			if (s_l != nullptr)
+				if (s_l->Update() == false || (s_l->speed.y>0 && s_l->position.y>SCREEN_HEIGHT*SCREEN_SIZE))
+				{
+					delete s_l;
+					active_left[i] = nullptr;
+				}
 			else if (SDL_GetTicks() >= s_l->born)
 			{
 				App->render->Blit(graphics, s_l->position.x, s_l->position.y, &(s_l->idle.GetCurrentFrame()));
@@ -396,23 +394,22 @@ update_status ModuleSphere::Update()
 					s_l->fx_played = true;
 				}
 			}
+			
 
-			if (s_r == nullptr)
-				continue;
-
-			if (s_r->Update() == false || (s_r->speed.y > 0 && s_r->position.y > SCREEN_HEIGHT*SCREEN_SIZE))
-			{
-				delete s_r;
-				active_left[i] = nullptr;
-			}
-			else if (SDL_GetTicks() >= s_r->born)
-			{
-				App->render->Blit(graphics, s_r->position.x, s_r->position.y, &(s_r->idle.GetCurrentFrame()));
-				if (s_r->fx_played == false)
+			if (s_r != nullptr)
+				if (s_r->Update() == false || (s_r->speed.y > 0 && s_r->position.y > SCREEN_HEIGHT*SCREEN_SIZE))
 				{
-					s_r->fx_played = true;
+					delete s_r;
+					active_right[i] = nullptr;
 				}
-			}
+				else if (SDL_GetTicks() >= s_r->born)
+				{
+					App->render->Blit(graphics, s_r->position.x, s_r->position.y, &(s_r->idle.GetCurrentFrame()));
+					if (s_r->fx_played == false)
+					{
+						s_r->fx_played = true;
+					}
+				}
 		}
 
 
@@ -553,70 +550,267 @@ bool Sphere::Update()
 	if (collider != nullptr)
 		collider->SetPos(position.x / 2 + 2, position.y / 2 + 2);
 
-
+	
 	return ret;
 }
 void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 {
-	//LEFT
-	for (uint i = 0; i < MAX_ACTIVE_SPHERES; ++i)
-	{
-		if (active_left[i] != nullptr && active_left[i]->collider == c1)
+
+		/*for (uint i = 0; i < MAX_ACTIVE_SPHERES; ++i)
 		{
-
-			if (c2->type == COLLIDER_LATERAL_WALL)
-				active_left[i]->speed.x *= -1;
-
-			else if ((c2->type == COLLIDER_WALL || c2->type == COLLIDER_SPHERE) && active_left[i]->speed.y != 0)
+			if (active_left[i] != nullptr && active_left[i]->collider == c1)
 			{
-				active_left[i]->speed.x = 0;
-				active_left[i]->speed.y = 0;
-				App->board->CheckPositionLeft(active_left[last_sphere_left - 1]);
-				//todo
-				check_down_left = allahu_bobble_left(i);
 
-				if (check_down_left == true){
-					boobbledown_left();
+				if (c2->type == COLLIDER_LATERAL_WALL)
+					active_left[i]->speed.x *= -1;
 
+				else if ((c2->type == COLLIDER_WALL || c2->type == COLLIDER_SPHERE_LEFT) && active_left[i]->speed.y != 0)
+				{
+					active_left[i]->speed.x = 0;
+					active_left[i]->speed.y = 0;
+					App->board->CheckPositionLeft(active_left[last_sphere_left - 1]);
+					//todo
+					check_down_left = allahu_bobble_left(i);
+
+					if (check_down_left == true){
+						boobbledown_left();
+
+					}
+
+					if (App->player->mystate == POSTUPDATE){
+						App->player->mystate = PREUPDATE;
+						next_sphere_left = true;
+					}
+			//		App->board->BoardDown(App->board->counter);
+				
 				}
+			}
+		}
+	
+	*/
+//LEFT
+	if (c1->type == COLLIDER_SPHERE_LEFT)
+	{
+		for (uint i = 0; i < MAX_ACTIVE_SPHERES; ++i)
+		{
+			if (active_left[i] != nullptr && active_left[i]->collider == c1)
+			{
 
-				if (App->player->mystate == POSTUPDATE){
-					App->player->mystate = PREUPDATE;
-					next_sphere_left = true;
+				if (c2->type == COLLIDER_LATERAL_WALL)
+					active_left[i]->speed.x *= -1;
+
+				else if ((c2->type == COLLIDER_WALL || c2->type == COLLIDER_SPHERE_LEFT) && active_left[i]->speed.y != 0)
+				{
+					active_left[i]->speed.x = 0;
+					active_left[i]->speed.y = 0;
+					App->board->CheckPositionLeft(active_left[last_sphere_left - 1]);
+					//todo
+
+					allahu_list_left.push_back(active_left[i]);
+					active_left[i]->checked = true;
+					active_left[i]->CheckBobbleLeft();
+
+					if (allahu_list_left.n_elements >= 3)
+					{
+						check_down_left = true;
+						for (i = 0; i < allahu_list_left.n_elements; i++)
+						{
+							allahu_list_left[i]->doomed = true;
+
+							App->board->board_left[allahu_list_left[i]->board_index]->Empty = true;
+						}
+
+					}
+
+					for (unsigned int i = 0; i < last_sphere_left; i++)
+					{
+						if (active_left[i] == nullptr)
+							continue;
+						if (active_left[i]->checked == true){
+							active_left[i]->checked = false;
+						}
+
+						if (active_left[i]->doomed == true)
+						{
+
+							active_left[i]->collider->to_delete = true;
+							AddExplosion(active_left[i]);
+							active_left[i]->collider = nullptr;
+							active_left[i] = nullptr;
+						}
+					}
+					allahu_list_left.clear();
+
+					if (check_down_left == true){
+						for (int i = 0; i < App->spheres->last_sphere_left; i++){
+							if (active_left[i] == nullptr)
+								continue;
+							if (App->spheres->active_left[i]->board_index < 8){
+								allahu_list_left.push_back(active_left[i]);
+							}
+						}
+
+						for (int i = 0; i < allahu_list_left.size(); i++){
+							if (allahu_list_left[i]->checked == false){
+								allahu_list_left[i]->checked = true;
+								allahu_list_left[i]->CheckBobbleDownLeft();
+
+							}
+						}
+						for (int i = App->spheres->last_sphere_left; i > 0; i--){
+							if (active_left[i] == nullptr || active_left[i]->collider == nullptr)
+								continue;
+							if (App->spheres->active_left[i]->checked == false){
+								active_left[i]->collider->to_delete = true;
+								active_left[i]->collider = nullptr;
+								active_left[i]->speed.y = 7.0f;
+								App->board->board_left[active_left[i]->board_index]->Empty = true;
+
+							}
+						}
+						for (unsigned int i = 0; i < App->spheres->last_sphere_left; i++)
+						{
+							if (active_left[i] == nullptr)
+								continue;
+							if (active_left[i]->checked == true){
+								active_left[i]->checked = false;
+							}
+						}
+						allahu_list_left.clear();
+						check_down_left = false;
+					}
+
+					if (App->player->mystate == POSTUPDATE){
+						App->player->mystate = PREUPDATE;
+						next_sphere_left = true;
+					}
 				}
-				App->board->BoardDown(App->board->counter);
-
 			}
 		}
 	}
 
-	//RIGHT
-	for (uint i = 0; i < MAX_ACTIVE_SPHERES; ++i)
-	{
-		if (active_right[i] != nullptr && active_right[i]->collider == c1)
+	else if (c1->type == COLLIDER_SPHERE_RIGHT){
+		//RIGHT
+	/*	for (uint i = 0; i < MAX_ACTIVE_SPHERES; ++i)
 		{
-
-			if (c2->type == COLLIDER_LATERAL_WALL)
-				active_right[i]->speed.x *= -1;
-
-			else if ((c2->type == COLLIDER_WALL || c2->type == COLLIDER_SPHERE) && active_right[i]->speed.y != 0)
+			if (active_right[i] != nullptr && active_right[i]->collider == c1)
 			{
-				active_right[i]->speed.x = 0;
-				active_right[i]->speed.y = 0;
-				App->board->CheckPositionRight(active_right[last_sphere_right - 1]);
-				//todo
-				allahu_list_right.push_back(active_right[i]);
-				active_right[i]->checked = true;
-				active_right[i]->CheckBobbleRight();
-				check_down_right = allahu_bobble_right(i);
-				
-				if (check_down_right == true){
-					boobbledown_right();
 
+				if (c2->type == COLLIDER_LATERAL_WALL)
+					active_right[i]->speed.x *= -1;
+
+				else if ((c2->type == COLLIDER_WALL || c2->type == COLLIDER_SPHERE_RIGHT) && active_right[i]->speed.y != 0)
+				{
+					active_right[i]->speed.x = 0;
+					active_right[i]->speed.y = 0;
+
+					App->board->CheckPositionRight(active_right[last_sphere_right - 1]);
+					check_down_right = allahu_bobble_right(i);
+
+					if (check_down_right == true){
+						boobbledown_right();
+
+					}
+					if (App->player2->mystate == POSTUPDATE){
+						App->player2->mystate = PREUPDATE;
+						next_sphere_right = true;
+					}
 				}
-				if (App->player2->mystate == POSTUPDATE){
-					App->player2->mystate = PREUPDATE;
-					next_sphere_right = true;
+			}
+		}*/
+		for (uint i = 0; i < MAX_ACTIVE_SPHERES; ++i)
+		{
+			if (active_right[i] != nullptr && active_right[i]->collider == c1)
+			{
+
+				if (c2->type == COLLIDER_LATERAL_WALL)
+					active_right[i]->speed.x *= -1;
+
+				else if ((c2->type == COLLIDER_WALL || c2->type == COLLIDER_SPHERE_RIGHT) && active_right[i]->speed.y != 0)
+				{
+					active_right[i]->speed.x = 0;
+					active_right[i]->speed.y = 0;
+					App->board->CheckPositionRight(active_right[last_sphere_right - 1]);
+					//todo
+
+					allahu_list_right.push_back(active_right[i]);
+					active_right[i]->checked = true;
+					active_right[i]->CheckBobbleRight();
+
+					if (allahu_list_right.n_elements >= 3)
+					{
+						check_down_right = true;
+						for (i = 0; i < allahu_list_right.n_elements; i++)
+						{
+							allahu_list_right[i]->doomed = true;
+
+							App->board->board_right[allahu_list_right[i]->board_index]->Empty = true;
+						}
+
+					}
+
+					for (unsigned int i = 0; i < last_sphere_right; i++)
+					{
+						if (active_right[i] == nullptr)
+							continue;
+						if (active_right[i]->checked == true){
+							active_right[i]->checked = false;
+						}
+
+						if (active_right[i]->doomed == true)
+						{
+
+							active_right[i]->collider->to_delete = true;
+							AddExplosion(active_right[i]);
+							active_right[i]->collider = nullptr;
+							active_right[i] = nullptr;
+						}
+					}
+					allahu_list_right.clear();
+
+					if (check_down_right == true){
+						for (int i = 0; i < App->spheres->last_sphere_right; i++){
+							if (active_right[i] == nullptr)
+								continue;
+							if (App->spheres->active_right[i]->board_index < 8){
+								allahu_list_right.push_back(active_right[i]);
+							}
+						}
+
+						for (int i = 0; i < allahu_list_right.size(); i++){
+							if (allahu_list_right[i]->checked == false){
+								allahu_list_right[i]->checked = true;
+								allahu_list_right[i]->CheckBobbleDownRight();
+
+							}
+						}
+						for (int i = App->spheres->last_sphere_right; i > 0; i--){
+							if (active_right[i] == nullptr || active_right[i]->collider == nullptr)
+								continue;
+							if (App->spheres->active_right[i]->checked == false){
+								active_right[i]->collider->to_delete = true;
+								active_right[i]->collider = nullptr;
+								active_right[i]->speed.y = 7.0f;
+								App->board->board_right[active_right[i]->board_index]->Empty = true;
+
+							}
+						}
+						for (unsigned int i = 0; i < App->spheres->last_sphere_right; i++)
+						{
+							if (active_right[i] == nullptr)
+								continue;
+							if (active_right[i]->checked == true){
+								active_right[i]->checked = false;
+							}
+						}
+						allahu_list_right.clear();
+						check_down_right = false;
+					}
+
+					if (App->player->mystate == POSTUPDATE){
+						App->player->mystate = PREUPDATE;
+						next_sphere_right = true;
+					}
 				}
 			}
 		}
@@ -707,7 +901,7 @@ bool ModuleSphere::allahu_bobble_right(int i){
 
 	allahu_list_right.push_back(active_right[i]);
 	active_right[i]->checked = true;
-	active_right[i]->CheckBobbleLeft();
+	active_right[i]->CheckBobbleRight();
 	if (allahu_list_right.n_elements >= 3)
 	{
 
