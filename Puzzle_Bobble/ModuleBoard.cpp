@@ -162,16 +162,23 @@ void ModuleBoard::BoardDown(int &counter){
 	for (i = 0; i < board_left.size(); i++){
 		board_left[i]->y += 14 * SCREEN_SIZE;
 	}
+
 	for (i = 0; i < App->spheres->last_sphere_left; i++){
 		if (App->spheres->active_left[i] != nullptr){
 			App->spheres->active_left[i]->position.y += 14 * SCREEN_SIZE;
+			/*if (counter % 2 == 0){
+				App->spheres->active_left[i]->board_index += 7;
+			}
+			else{
+				App->spheres->active_left[i]->board_index += 8;
+			}*/
 		}
 	}
 	if (counter % 2 == 0){
-		x = 32 * SCREEN_SIZE - 16;
+		x = 128 * SCREEN_SIZE - 16;//96
 		for (i = 0; i < 7; i++){
 			board_left.push_front(new iPoint(x, y));
-			x += 16 * SCREEN_SIZE;
+			x -= 16 * SCREEN_SIZE;
 		}
 		for (i = 0; i < 7; i++)
 		{
@@ -181,10 +188,10 @@ void ModuleBoard::BoardDown(int &counter){
 		}
 	}
 	else{
-		x = 24 * SCREEN_SIZE - 16;
+		x = 136 * SCREEN_SIZE - 16;//112
 		for (i = 0; i < 8; i++){
 			board_left.push_front(new iPoint(x, y));
-			x += 16 * SCREEN_SIZE;
+			x -= 16 * SCREEN_SIZE;
 		}
 		for (i = 0; i < 8; i++)
 		{
@@ -194,7 +201,16 @@ void ModuleBoard::BoardDown(int &counter){
 		}
 	}
 	counter++;
+	for (i = 0; i < board_left.size(); i++){
 
+		if (board_left[i]->Empty == false){
+			for (int j = 0; j < App->spheres->last_sphere_left; j++){
+				if (App->spheres->active_left[j] != nullptr&& App->spheres->active_left[j]->position.x == board_left[i]->x&& App->spheres->active_left[j]->position.y == board_left[i]->y){
+					App->spheres->active_left[j]->board_index = i;
+				}
+			}
+		}
+	}
 	//TODO DOWN RIGHT
 
 }

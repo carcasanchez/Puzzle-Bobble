@@ -651,11 +651,17 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 						for (int i = 0; i < App->spheres->last_sphere_left; i++){
 							if (active_left[i] == nullptr)
 								continue;
-							if (App->spheres->active_left[i]->board_index < 8){
-								allahu_list_left.push_back(active_left[i]);
+							if (App->board->counter % 2 == 0){
+								if (App->spheres->active_left[i]->board_index < 8){
+									allahu_list_left.push_back(active_left[i]);
+								}
+							else{
+									if (App->spheres->active_left[i]->board_index < 7){
+										allahu_list_left.push_back(active_left[i]);
+									}
+								}
 							}
 						}
-
 						for (int i = 0; i < allahu_list_left.size(); i++){
 							if (allahu_list_left[i]->checked == false){
 								allahu_list_left[i]->checked = true;
@@ -689,6 +695,8 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 					if (App->player->mystate == POSTUPDATE){
 						App->player->mystate = PREUPDATE;
 						next_sphere_left = true;
+						App->board->BoardDown(App->board->counter);
+
 					}
 				}
 			}

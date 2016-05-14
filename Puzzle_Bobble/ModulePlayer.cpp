@@ -308,7 +308,7 @@ update_status ModulePlayer::Update()
 update_status ModulePlayer::PostUpdate(){
 	srand(time(NULL));
 	bool succes = false;
-
+	
 
 	if (mystate == FIRST){
 		while (succes != true){
