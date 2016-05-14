@@ -430,6 +430,10 @@ update_status ModuleSphere::Update()
 			App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
 		}
 
+		currentTime_left = SDL_GetTicks();
+		currentTime_right = SDL_GetTicks();
+
+
 		return UPDATE_CONTINUE;
 	}
 }
@@ -596,8 +600,10 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 			if (active_left[i] != nullptr && active_left[i]->collider == c1)
 			{
 
-				if (c2->type == COLLIDER_LATERAL_WALL)
+				if (c2->type == COLLIDER_LATERAL_WALL&& currentTime_left - lastTime_left > 200){
 					active_left[i]->speed.x *= -1;
+					lastTime_left = currentTime_left;
+				}
 
 				else if ((c2->type == COLLIDER_WALL || c2->type == COLLIDER_SPHERE_LEFT) && active_left[i]->speed.y != 0)
 				{
@@ -723,8 +729,10 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 			if (active_right[i] != nullptr && active_right[i]->collider == c1)
 			{
 
-				if (c2->type == COLLIDER_LATERAL_WALL)
+				if (c2->type == COLLIDER_LATERAL_WALL&& currentTime_right - lastTime_right > 1000){
 					active_right[i]->speed.x *= -1;
+					lastTime_right = currentTime_right;
+				}
 
 				else if ((c2->type == COLLIDER_WALL || c2->type == COLLIDER_SPHERE_RIGHT) && active_right[i]->speed.y != 0)
 				{
@@ -807,8 +815,8 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 						check_down_right = false;
 					}
 
-					if (App->player->mystate == POSTUPDATE){
-						App->player->mystate = PREUPDATE;
+					if (App->player2->mystate == POSTUPDATE){
+						App->player2->mystate = PREUPDATE;
 						next_sphere_right = true;
 					}
 				}

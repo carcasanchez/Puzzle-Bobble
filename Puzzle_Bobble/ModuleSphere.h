@@ -105,7 +105,9 @@ public:
 	Sphere* active_right[MAX_ACTIVE_SPHERES];
 	Sphere* active_left[MAX_ACTIVE_SPHERES];
 	
-	
+	unsigned int lastTime_left, currentTime_left;
+	unsigned int lastTime_right, currentTime_right;
+
 
 public:
 
