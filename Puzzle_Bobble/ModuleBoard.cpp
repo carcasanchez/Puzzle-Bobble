@@ -198,16 +198,30 @@ void ModuleBoard::BoardDown(int &counter){
 	//TODO DOWN RIGHT
 
 }
-bool ModuleBoard::CheckWin()
+bool ModuleBoard::CheckWinR()
 {
 	int i = 0;
 	for (i = 0; i < NUM_SQUARES; i++)
 	{
 		if (board_right[i]->Empty != true)
 			return false;
-		//TODO WIN LEFT
+	//TODO WIN LEFT
 	}
+
 
 	return true;
 }
 
+bool ModuleBoard::CheckWinL()
+{
+	int i = 0;
+	for (i = 0; i < NUM_SQUARES; i++)
+	{
+		if (board_left[i]->Empty != true)
+			return false;
+		//TODO WIN LEFT
+	}
+
+
+	return true;
+}

@@ -21,7 +21,8 @@ public:
 	void CheckPositionRight(Sphere* actual_sphere);
 	void CreateMap(int number[]);
 	bool CleanUp();
-	bool CheckWin();
+	bool CheckWinR();
+	bool CheckWinL();
 	void BoardDown(int &counter);
 	int counter = 0;
 public:

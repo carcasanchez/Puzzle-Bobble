@@ -67,13 +67,22 @@ update_status ModuleLevel_1::Update()
 {
 	App->render->Blit(graphics, 0, 0, &level1);
 
-	if (App->board->CheckWin())
+	if (App->board->CheckWinL())
+	{
+		App->fade->FadeToBlack(App->level_1, App->congratulations, 1);
+	}
+	else if (App->board->CheckWinR())
 	{
 		App->fade->FadeToBlack(App->level_1, App->congratulations, 1);
 	}
 	if (App->player->LoseCondition == true)
 	{
 		App->player->LoseCondition = false;
+		App->fade->FadeToBlack(App->level_1, App->game_over, 1);
+	}
+	else if (App->player2->LoseCondition == true)
+	{
+		App->player2->LoseCondition = false;
 		App->fade->FadeToBlack(App->level_1, App->game_over, 1);
 	}
 	return UPDATE_CONTINUE;

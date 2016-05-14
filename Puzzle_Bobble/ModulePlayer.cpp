@@ -179,7 +179,6 @@ bool ModulePlayer::CheckLose(){
 			return true;
 		}
 	}
-
 	return false;
 }
 
