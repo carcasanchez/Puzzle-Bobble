@@ -25,6 +25,7 @@ public:
 	bool CheckWinL();
 	void BoardDown(int &counter);
 	int counter = 0;
+	bool boardDone=false;
 public:
 	Vector<iPoint*> board_left;
 	Vector<iPoint*> board_right;

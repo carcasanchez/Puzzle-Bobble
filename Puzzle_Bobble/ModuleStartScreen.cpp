@@ -8,7 +8,7 @@
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleAudio.h"
-
+#include "ModuleBoard.h"
 ModuleStartScreen::ModuleStartScreen()
 {
 	background = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
@@ -27,7 +27,7 @@ bool ModuleStartScreen::Start()
 		LOG("Mix_PlayMusic: %s\n", Mix_GetError());
 
 	}
-
+	App->board->Enable();
 	return true;
 	
 }

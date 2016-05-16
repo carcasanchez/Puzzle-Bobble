@@ -56,34 +56,99 @@ ModuleBoard::ModuleBoard()
 		}
 		i++;
 	}
+	boardDone = true;
 }
 
 
 
 ModuleBoard::~ModuleBoard(){};
 
-bool ModuleBoard::Start(){ return true; };
+bool ModuleBoard::Start(){ 
+	
+
+ 	if (boardDone != true){
+		int x, y;
+		int i = 0;
+		int j = 0;
+		counter = 0;
+		//LEFT
+
+		for (y = 32 * SCREEN_SIZE - 16; j < NUM_SQUARES; y += 14 * SCREEN_SIZE)
+		{
+			if (i % 2 == 0)
+			{
+				for (x = 24 * SCREEN_SIZE - 16; x < 136 * SCREEN_SIZE; x += 16 * SCREEN_SIZE)//112
+				{
+					board_left.push_back(new iPoint(x, y));
+					j++;
+				}
+			}
+			else
+			{
+				for (x = 32 * SCREEN_SIZE - 16; x < 128 * SCREEN_SIZE; x += 16 * SCREEN_SIZE)//96
+				{
+					board_left.push_back(new iPoint(x, y));
+					j++;
+
+				}
+			}
+			i++;
+		}
+
+		j = 0;
+		//RIGHT
+		for (y = 32 * SCREEN_SIZE - 16; j < NUM_SQUARES; y += 14 * SCREEN_SIZE)
+		{
+			if (i % 2 == 0)
+			{
+				for (x = 184 * SCREEN_SIZE - 16; x < 296 * SCREEN_SIZE; x += 16 * SCREEN_SIZE)//112
+				{
+					board_right.push_back(new iPoint(x, y));
+					//board[j]->x = x;
+					//board[j]->y = y;
+					j++;
+				}
+			}
+			else
+			{
+				for (x = 192 * SCREEN_SIZE - 16; x < 288 * SCREEN_SIZE; x += 16 * SCREEN_SIZE)//96
+				{
+					board_right.push_back(new iPoint(x, y));
+					//board[j]->x = x;
+					//board[j]->y = y;
+					j++;
+
+				}
+			}
+			i++;
+		}
+		boardDone = true;
+	}
+	return true; };
 
 
 bool ModuleBoard::CleanUp()
 {
 	int i;
-	for (i = 0; i < NUM_SQUARES; i++)
+	
+	for (i = 0; i < board_left.size(); i++)
 	{
 		if (board_left[i] != nullptr){
 			delete board_left[i];
 			board_left[i] = nullptr;
 
-		}
-
+		}	
+	}
+	for (i = 0; i < board_right.size(); i++)
+	{
 		if (board_right[i] != nullptr){
 			delete board_right[i];
 			board_right[i] = nullptr;
-
 		}
-	
 	}
-	
+	boardDone = false;
+	board_left.clear();
+	board_right.clear();
 	return true;
 }
 
@@ -179,6 +244,7 @@ void ModuleBoard::BoardDown(int &counter){
 		for (i = 0; i < 7; i++){
 			board_left.push_front(new iPoint(x, y));
 			x -= 16 * SCREEN_SIZE;
+		//	board_left.pop_back();
 		}
 		for (i = 0; i < 7; i++)
 		{
@@ -192,6 +258,8 @@ void ModuleBoard::BoardDown(int &counter){
 		for (i = 0; i < 8; i++){
 			board_left.push_front(new iPoint(x, y));
 			x -= 16 * SCREEN_SIZE;
+			//	board_left.pop_back();
+
 		}
 		for (i = 0; i < 8; i++)
 		{

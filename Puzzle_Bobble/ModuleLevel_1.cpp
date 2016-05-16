@@ -117,20 +117,6 @@ bool ModuleLevel_1::CleanUp()
 		App->spheres->active_right[i]->collider = nullptr;
 		App->spheres->active_right[i] = nullptr;
 	}
-
-	App->spheres->last_sphere_left = 0;
-	App->spheres->last_sphere_right = 0;
-
-   for (unsigned int i = 0; i < NUM_SQUARES; i++)
-	{
-	   if (App->board->board_left[i] != nullptr){
-		   App->board->board_left[i]->Empty = true;
-	   }
-	   if (App->board->board_right[i] != nullptr){
-		   App->board->board_right[i]->Empty = true;
-	   }
-	}
-
 	while (!Mix_FadeOutMusic(1000) && Mix_PlayingMusic())
 		SDL_Delay(1000);
 
