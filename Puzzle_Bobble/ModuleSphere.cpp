@@ -655,12 +655,13 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 								if (App->spheres->active_left[i]->board_index < 8){
 									allahu_list_left.push_back(active_left[i]);
 								}
+							}
 							else{
 									if (App->spheres->active_left[i]->board_index < 7){
 										allahu_list_left.push_back(active_left[i]);
 									}
 								}
-							}
+							
 						}
 						for (int i = 0; i < allahu_list_left.size(); i++){
 							if (allahu_list_left[i]->checked == false){
@@ -669,7 +670,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 
 							}
 						}
-						for (int i = App->spheres->last_sphere_left; i > 0; i--){
+						for (int i = App->spheres->last_sphere_left; i >= 0; i--){
 							if (active_left[i] == nullptr || active_left[i]->collider == nullptr)
 								continue;
 							if (App->spheres->active_left[i]->checked == false){
