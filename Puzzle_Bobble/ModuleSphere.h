@@ -61,6 +61,7 @@ struct Particle
 	iPoint position;
 	Uint32 born = 0;
 	Uint32 life = 0;
+	iPoint speed;
 	const Sphere* to_sphere=nullptr;
 
 	Particle();
@@ -99,6 +100,7 @@ public:
 	void boobbledown_left();
 	void boobbledown_right();
 	void AddExplosion(const Sphere* sphere);
+	void AddMonster(const Sphere* sphere);
 
 
 	SDL_Texture* graphics = nullptr;
@@ -120,8 +122,19 @@ public:
 	Particle explosion_orange;
 	Particle explosion_violet;
 
+
+	Particle monster_blue;
+	Particle monster_gray;
+	Particle monster_red;
+	Particle monster_yellow;
+	Particle monster_green;
+	Particle monster_black;
+	Particle monster_orange;
+	Particle monster_violet;
+
 	Sphere spheres[NUMBER_OF_SPHERES];
 	Particle* active_explosion[MAX_EXPLOSIONS];
+	Particle* active_monsters[MAX_EXPLOSIONS];
 	
 	void OnCollision(Collider* c1, Collider* c2);
 };
