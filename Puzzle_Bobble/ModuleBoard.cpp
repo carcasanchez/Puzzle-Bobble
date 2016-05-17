@@ -210,7 +210,7 @@ void ModuleBoard::CheckPositionRight(Sphere* actual_sphere)
 	actual_sphere->board_index = square_index;
 }
 
-void ModuleBoard::CreateMap(int number[]){
+void ModuleBoard::CreateMap1_Left(int number[]){
 
 	int i = 0;
 	for (i= 0 ; i < NUM_SQUARES;i++)
@@ -218,10 +218,20 @@ void ModuleBoard::CreateMap(int number[]){
 		if (number[i] >= 0 && number[i] < 8){
 			App->spheres->SetSphere(App->spheres->spheres[number[i]], board_left[i]->x, board_left[i]->y, i, COLLIDER_SPHERE_LEFT);
 			board_left[i]->Empty = false;
-			App->spheres->SetSphere(App->spheres->spheres[number[i]], board_right[i]->x, board_right[i]->y, i, COLLIDER_SPHERE_RIGHT);
-			board_right[i]->Empty = false;
 			}				
 		}
+}
+
+void ModuleBoard::CreateMap1_Right(int number[]){
+
+	int i = 0;
+	for (i = 0; i < NUM_SQUARES; i++)
+	{
+		if (number[i] >= 0 && number[i] < 8){
+			App->spheres->SetSphere(App->spheres->spheres[number[i]], board_right[i]->x, board_right[i]->y, i, COLLIDER_SPHERE_RIGHT);
+			board_right[i]->Empty = false;
+		}
+	}
 }
 
 void ModuleBoard::BoardDownLeft(int &counter){

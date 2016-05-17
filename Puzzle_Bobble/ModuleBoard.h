@@ -19,7 +19,8 @@ public:
 	bool Start();
 	void CheckPositionLeft(Sphere* actual_sphere);
 	void CheckPositionRight(Sphere* actual_sphere);
-	void CreateMap(int number[]);
+	void CreateMap1_Left(int number[]);
+	void CreateMap1_Right(int number[]);
 	bool CleanUp();
 	bool CheckWinR();
 	bool CheckWinL();

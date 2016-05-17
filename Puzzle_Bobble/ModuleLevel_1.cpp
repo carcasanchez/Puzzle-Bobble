@@ -35,7 +35,7 @@ bool ModuleLevel_1::Start()
 	6 Orange
 	7 Violet
 	*/
-	int map[] = { 0, 2, 3, 3, 3, 6, 7, 4,
+	int map1_left[] = { 0, 2, 3, 3, 3, 6, 7, 4,
 				7, 2, 3, 5, 7, 7, 4,
 				2, 6, 3, 6, 7, 3, 2, 2,
 				3, 5, 4, 4, 7, 7, 2,
@@ -48,6 +48,19 @@ bool ModuleLevel_1::Start()
 				 9, 9, 9, 9, 9, 9, 9, 9,
 				 9, 9, 9, 9, 9, 9, 9};
 
+	int map1_right[] = { 4, 7, 6, 3, 3, 3, 2, 0,
+			4, 7, 7, 5, 3, 2, 7,
+			2, 2, 3, 7, 6, 3, 6, 2,
+			2, 7, 7, 4, 4, 5, 3,
+			7, 7, 0, 6, 7, 5, 5, 3,
+			9, 9, 9, 9, 9, 9, 9,
+			9, 9, 9, 9, 9, 9, 9, 9,
+			9, 9, 9, 9, 9, 9, 9,
+			9, 9, 9, 9, 9, 9, 9, 9,
+			9, 9, 9, 9, 9, 9, 9,
+			9, 9, 9, 9, 9, 9, 9, 9,
+			9, 9, 9, 9, 9, 9, 9 };
+
 	//int map[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 
@@ -56,7 +69,8 @@ bool ModuleLevel_1::Start()
 	
 	App->player->Enable();
 	App->player2->Enable();
-	App->board->CreateMap(map);
+	App->board->CreateMap1_Left(map1_left);
+	App->board->CreateMap1_Right(map1_right);
 	if (Mix_PlayMusic(level_music, -1) == -1) {
 		LOG("Mix_PlayMusic: %s\n", Mix_GetError());
 	}
