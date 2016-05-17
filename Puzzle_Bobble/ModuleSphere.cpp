@@ -37,8 +37,8 @@ bool ModuleSphere::Start()
 	//////////////////////////////////////Collision scenary/////////////////////////////////////////////
 
 	//RIGHT PLAYER
-	App->collision->AddCollider(SDL_Rect{ 160, 15, 8, 194 }, COLLIDER_LATERAL_WALL);	//Right
-	App->collision->AddCollider(SDL_Rect{ 304, 16, 8, 194 }, COLLIDER_LATERAL_WALL);	//Left
+	App->collision->AddCollider(SDL_Rect{ 162, 15, 12, 194 }, COLLIDER_LATERAL_WALL);	//Left
+	App->collision->AddCollider(SDL_Rect{ 303, 16, 8, 194 }, COLLIDER_LATERAL_WALL);	//Right 
 	App->collision->AddCollider(SDL_Rect{ 165, 16, 144, 8 }, COLLIDER_WALL);			//Top
 
 	//LEFT PLAYER
