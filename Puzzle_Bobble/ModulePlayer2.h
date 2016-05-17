@@ -57,6 +57,8 @@ public:
 	bool LoseCondition = false;
 	unsigned int lastTime, currentTime;
 
+	int booblesGoDown_right, booblesCounterDown_right;
+
 	States mystate;
 };
 

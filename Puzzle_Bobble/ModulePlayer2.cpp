@@ -154,6 +154,8 @@ bool ModulePlayer2::Start()
 	shoot = App->audio->Load_effects("Game/BubbleShot.wav");
 	//App->spheres->AddSphere(App->spheres->spheres[Random], 306, 368);
 	lastTime = SDL_GetTicks();
+	booblesGoDown_right = 16;
+	booblesCounterDown_right = 0;
 
 	return true;
 }
@@ -269,6 +271,8 @@ update_status ModulePlayer2::Update()
 		App->spheres->next_sphere_right = false;
 		lastTime = currentTime;
 		hurry_up.Reset();
+		booblesCounterDown_right++;
+
 	}
 
 	if (currentTime - lastTime > 3000)

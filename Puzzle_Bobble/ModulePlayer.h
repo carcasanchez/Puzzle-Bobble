@@ -55,7 +55,7 @@ public:
 	int Random;
 	bool LoseCondition = false;
 	unsigned int lastTime, currentTime;
-
+	int booblesGoDown_left, booblesCounterDown_left;
 	States mystate;
 };
 

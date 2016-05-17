@@ -35,11 +35,11 @@ bool ModuleLevel_1::Start()
 	6 Orange
 	7 Violet
 	*/
-	int map[] = { 2, 3, 0, 0, 0, 9, 9, 9,
-				9, 9, 9, 9, 9, 9, 9,
-				9, 9, 9, 9, 9, 9, 9, 9,
-				9, 9, 9, 9, 9, 9, 9,
-				 9, 9, 9, 9, 9, 9, 9, 9,
+	int map[] = { 0, 2, 3, 3, 3, 6, 7, 4,
+				7, 2, 3, 5, 7, 7, 4,
+				2, 6, 3, 6, 7, 3, 2, 2,
+				3, 5, 4, 4, 7, 7, 2,
+				3, 5, 5, 7, 6, 0, 7, 7,
 				 9, 9, 9, 9, 9, 9, 9, 
 				 9, 9, 9, 9, 9, 9, 9, 9,
 				 9, 9, 9, 9, 9, 9, 9,
@@ -117,6 +117,7 @@ bool ModuleLevel_1::CleanUp()
 		App->spheres->active_right[i]->collider = nullptr;
 		App->spheres->active_right[i] = nullptr;
 	}
+
 	while (!Mix_FadeOutMusic(1000) && Mix_PlayingMusic())
 		SDL_Delay(1000);
 
