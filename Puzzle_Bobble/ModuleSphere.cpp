@@ -10,7 +10,8 @@
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
 #include "SDL/include/SDL_timer.h"
-
+#include <time.h>
+#include <stdlib.h> 
 Particle::Particle()
 {};
 
@@ -37,8 +38,8 @@ bool ModuleSphere::Start()
 	//////////////////////////////////////Collision scenary/////////////////////////////////////////////
 
 	//RIGHT PLAYER
-	App->collision->AddCollider(SDL_Rect{ 160, 15, 8, 194 }, COLLIDER_LATERAL_WALL);	//Right
-	App->collision->AddCollider(SDL_Rect{ 304, 16, 8, 194 }, COLLIDER_LATERAL_WALL);	//Left
+	App->collision->AddCollider(SDL_Rect{ 162, 15, 12, 194 }, COLLIDER_LATERAL_WALL);	//Left
+	App->collision->AddCollider(SDL_Rect{ 303, 16, 8, 194 }, COLLIDER_LATERAL_WALL);	//Right 
 	App->collision->AddCollider(SDL_Rect{ 165, 16, 144, 8 }, COLLIDER_WALL);			//Top
 
 	//LEFT PLAYER
@@ -68,12 +69,13 @@ bool ModuleSphere::Start()
 	spheres[0].anim.loop = false;
 	spheres[0].anim.speed = 0.3f;
 
-	spheres[0].monster.PushBack({ 462, 195, 20, 19 });
-	spheres[0].monster.PushBack({ 486, 195, 20, 19 });
-	spheres[0].monster.PushBack({ 510, 195, 20, 19 });
-	spheres[0].monster.PushBack({ 534, 195, 20, 19 });
-	spheres[0].monster.PushBack({ 534, 195, 20, 19 });
-	spheres[0].monster.speed = 0.3f;
+	monster_blue.anim.PushBack({ 462, 195, 20, 19 });
+	monster_blue.anim.PushBack({ 486, 195, 20, 19 });
+	monster_blue.anim.PushBack({ 510, 195, 20, 19 });
+	monster_blue.anim.PushBack({ 534, 195, 20, 19 });
+	monster_blue.anim.PushBack({ 534, 195, 20, 19 });
+	monster_blue.anim.speed = 0.1f;
+	monster_blue.anim.loop = true;
 
 	explosion_blue.anim.PushBack({ 198, 188, 32, 31 });
 	explosion_blue.anim.PushBack({ 231, 188, 32, 31 });
@@ -115,11 +117,12 @@ bool ModuleSphere::Start()
 	explosion_gray.anim.speed = 0.3f;
 	explosion_gray.anim.loop = false;
 
-	spheres[1].monster.PushBack({ 462, 226, 20, 19 });
-	spheres[1].monster.PushBack({ 486, 226, 20, 19 });
-	spheres[1].monster.PushBack({ 510, 226, 20, 19 });
-	spheres[1].monster.PushBack({ 534, 226, 20, 19 });
-	spheres[1].monster.speed = 0.3f;
+	monster_gray.anim.PushBack({ 462, 226, 20, 19 });
+	monster_gray.anim.PushBack({ 486, 226, 20, 19 });
+	monster_gray.anim.PushBack({ 510, 226, 20, 19 });
+	monster_gray.anim.PushBack({ 534, 226, 20, 19 });
+	monster_gray.anim.speed = 0.1f;
+	monster_gray.anim.loop = true;
 
 	spheres[1].sphere_color = GRAY;
 
@@ -149,11 +152,12 @@ bool ModuleSphere::Start()
 	explosion_red.anim.speed = 0.3f;
 	explosion_red.anim.loop = false;
 
-	spheres[2].monster.PushBack({ 462, 256, 20, 19 });
-	spheres[2].monster.PushBack({ 486, 256, 20, 19 });
-	spheres[2].monster.PushBack({ 510, 256, 20, 19 });
-	spheres[2].monster.PushBack({ 534, 256, 20, 19 });
-	spheres[2].monster.speed = 0.3f;
+	monster_red.anim.PushBack({ 462, 256, 20, 19 });
+	monster_red.anim.PushBack({ 486, 256, 20, 19 });
+	monster_red.anim.PushBack({ 510, 256, 20, 19 });
+	monster_red.anim.PushBack({ 534, 256, 20, 19 });
+	monster_red.anim.speed = 0.1f;
+	monster_red.anim.loop = true;
 
 	spheres[2].sphere_color = RED;
 
@@ -184,11 +188,12 @@ bool ModuleSphere::Start()
 	explosion_yellow.anim.speed = 0.3f;
 	explosion_yellow.anim.loop = false;
 
-	spheres[3].monster.PushBack({ 462, 286, 20, 19 });
-	spheres[3].monster.PushBack({ 486, 286, 20, 19 });
-	spheres[3].monster.PushBack({ 510, 286, 20, 19 });
-	spheres[3].monster.PushBack({ 534, 286, 20, 19 });
-	spheres[3].monster.speed = 0.3f;
+	monster_yellow.anim.PushBack({ 462, 286, 20, 19 });
+	monster_yellow.anim.PushBack({ 486, 286, 20, 19 });
+	monster_yellow.anim.PushBack({ 510, 286, 20, 19 });
+	monster_yellow.anim.PushBack({ 534, 286, 20, 19 });
+	monster_yellow.anim.speed = 0.1f;
+	monster_yellow.anim.loop = true;
 
 	spheres[3].sphere_color = YELLOW;
 	///////////////////////////////////////////
@@ -220,11 +225,12 @@ bool ModuleSphere::Start()
 	explosion_green.anim.loop = false;
 	explosion_green.anim.speed = 0.3f;
 
-	spheres[4].monster.PushBack({ 462, 317, 20, 19 });
-	spheres[4].monster.PushBack({ 486, 317, 20, 19 });
-	spheres[4].monster.PushBack({ 510, 317, 20, 19 });
-	spheres[4].monster.PushBack({ 534, 317, 20, 19 });
-	spheres[4].monster.speed = 0.3f;
+	monster_green.anim.PushBack({ 462, 317, 20, 19 });
+	monster_green.anim.PushBack({ 486, 317, 20, 19 });
+	monster_green.anim.PushBack({ 510, 317, 20, 19 });
+	monster_green.anim.PushBack({ 534, 317, 20, 19 });
+	monster_green.anim.speed = 0.1f;
+	monster_green.anim.loop = true;
 
 	spheres[4].sphere_color = GREEN;
 
@@ -257,11 +263,12 @@ bool ModuleSphere::Start()
 	explosion_black.anim.loop = false;
 	explosion_black.anim.speed = 0.3f;
 
-	spheres[5].monster.PushBack({ 462, 349, 20, 19 });
-	spheres[5].monster.PushBack({ 486, 349, 20, 19 });
-	spheres[5].monster.PushBack({ 510, 349, 20, 19 });
-	spheres[5].monster.PushBack({ 534, 349, 20, 19 });
-	spheres[5].monster.speed = 0.3f;
+	monster_black.anim.PushBack({ 462, 349, 20, 19 });
+	monster_black.anim.PushBack({ 486, 349, 20, 19 });
+	monster_black.anim.PushBack({ 510, 349, 20, 19 });
+	monster_black.anim.PushBack({ 534, 349, 20, 19 });
+	monster_black.anim.speed = 0.1f;
+	monster_black.anim.loop = true;
 
 	spheres[5].sphere_color = BLACK;
 	/////////////////////
@@ -293,11 +300,12 @@ bool ModuleSphere::Start()
 	explosion_orange.anim.speed = 0.3f;
 	explosion_orange.anim.loop = false;
 
-	spheres[6].monster.PushBack({ 462, 380, 20, 19 });
-	spheres[6].monster.PushBack({ 486, 380, 20, 19 });
-	spheres[6].monster.PushBack({ 510, 380, 20, 19 });
-	spheres[6].monster.PushBack({ 534, 380, 20, 19 });
-	spheres[6].monster.speed = 0.3f;
+	monster_orange.anim.PushBack({ 462, 380, 20, 19 });
+	monster_orange.anim.PushBack({ 486, 380, 20, 19 });
+	monster_orange.anim.PushBack({ 510, 380, 20, 19 });
+	monster_orange.anim.PushBack({ 534, 380, 20, 19 });
+	monster_orange.anim.speed = 0.1f;
+	monster_orange.anim.loop = true;
 
 	spheres[6].sphere_color = ORANGE;
 
@@ -329,11 +337,12 @@ bool ModuleSphere::Start()
 	explosion_violet.anim.speed = 0.3f;
 	explosion_violet.anim.loop = false;
 
-	spheres[7].monster.PushBack({ 462, 410, 20, 19 });
-	spheres[7].monster.PushBack({ 486, 410, 20, 19 });
-	spheres[7].monster.PushBack({ 510, 410, 20, 19 });
-	spheres[7].monster.PushBack({ 534, 410, 20, 19 });
-	spheres[7].monster.speed = 0.3f;
+	monster_violet.anim.PushBack({ 462, 410, 20, 19 });
+	monster_violet.anim.PushBack({ 486, 410, 20, 19 });
+	monster_violet.anim.PushBack({ 510, 410, 20, 19 });
+	monster_violet.anim.PushBack({ 534, 410, 20, 19 });
+	monster_violet.anim.speed = 0.1f;
+	monster_violet.anim.loop = true;
 
 	spheres[7].sphere_color = VIOLET;
 
@@ -367,12 +376,20 @@ bool ModuleSphere::CleanUp()
 			active_right[i] = nullptr;
 		}
 	}
+
+
+
+
 	return true;
 }
 
 // Update: draw background
 update_status ModuleSphere::Update()
 {
+
+	
+
+
 	for (uint i = 0; i < MAX_ACTIVE_SPHERES; ++i)
 	{
 		for (uint i = 0; i < MAX_ACTIVE_SPHERES; ++i)
@@ -381,11 +398,11 @@ update_status ModuleSphere::Update()
 			Sphere* s_r = active_right[i];
 
 			if (s_l != nullptr)
-				if (s_l->Update() == false || (s_l->speed.y>0 && s_l->position.y>SCREEN_HEIGHT*SCREEN_SIZE))
-				{
-					delete s_l;
-					active_left[i] = nullptr;
-				}
+			if (s_l->Update() == false || (s_l->speed.y>0 && s_l->position.y>SCREEN_HEIGHT*SCREEN_SIZE))
+			{
+				delete s_l;
+				active_left[i] = nullptr;
+			}
 			else if (SDL_GetTicks() >= s_l->born)
 			{
 				App->render->Blit(graphics, s_l->position.x, s_l->position.y, &(s_l->idle.GetCurrentFrame()));
@@ -394,22 +411,22 @@ update_status ModuleSphere::Update()
 					s_l->fx_played = true;
 				}
 			}
-			
+
 
 			if (s_r != nullptr)
-				if (s_r->Update() == false || (s_r->speed.y > 0 && s_r->position.y > SCREEN_HEIGHT*SCREEN_SIZE))
+			if (s_r->Update() == false || (s_r->speed.y > 0 && s_r->position.y > SCREEN_HEIGHT*SCREEN_SIZE))
+			{
+				delete s_r;
+				active_right[i] = nullptr;
+			}
+			else if (SDL_GetTicks() >= s_r->born)
+			{
+				App->render->Blit(graphics, s_r->position.x, s_r->position.y, &(s_r->idle.GetCurrentFrame()));
+				if (s_r->fx_played == false)
 				{
-					delete s_r;
-					active_right[i] = nullptr;
+					s_r->fx_played = true;
 				}
-				else if (SDL_GetTicks() >= s_r->born)
-				{
-					App->render->Blit(graphics, s_r->position.x, s_r->position.y, &(s_r->idle.GetCurrentFrame()));
-					if (s_r->fx_played == false)
-					{
-						s_r->fx_played = true;
-					}
-				}
+			}
 		}
 
 
@@ -429,6 +446,30 @@ update_status ModuleSphere::Update()
 
 			App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
 		}
+
+		for (uint i = 0; i < MAX_EXPLOSIONS; ++i)
+		{
+			Particle* p = active_monsters[i];
+
+			if (p == nullptr)
+				continue;
+
+			if (p->position.y >SCREEN_WIDTH*SCREEN_SIZE)
+			{
+				delete p;
+				active_monsters[i] = nullptr;
+				continue;
+			}
+
+			p->speed.y += 1;
+
+
+			p->position.x += p->speed.x;
+			p->position.y += p->speed.y;
+
+			App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
+		}
+		
 
 		currentTime_left = SDL_GetTicks();
 		currentTime_right = SDL_GetTicks();
@@ -527,6 +568,69 @@ void ModuleSphere::AddExplosion(const Sphere* sphere)
 		}
 	}
 
+}
+
+
+void ModuleSphere::AddMonster(const Sphere* sphere)
+{
+
+	srand(time(NULL));
+	int random = 0;
+	random = rand() % 2;
+
+	for (uint i = 0; i < MAX_EXPLOSIONS; ++i)
+	{
+		if (active_monsters[i] == nullptr)
+		{
+			Particle* p = nullptr;
+
+			switch (sphere->sphere_color)
+			{
+			case BLUE:
+				p = new Particle(monster_blue);
+				break;
+
+			case RED:
+				p = new Particle(monster_red);
+				break;
+
+			case GREEN:
+				p = new Particle(monster_green);
+				break;
+
+			case ORANGE:
+				p = new Particle(monster_orange);
+				break;
+
+			case VIOLET:
+				p = new Particle(monster_violet);
+				break;
+
+			case BLACK:
+				p = new Particle(monster_black);
+				break;
+
+			case GRAY:
+				p = new Particle(monster_gray);
+				break;
+
+			case YELLOW:
+				p = new Particle(monster_yellow);
+				break;
+			}
+
+			if (random == 0)
+				p->speed.x = -1;
+			else p->speed.x = 1;
+
+			p->speed.y = -8;
+			p->position.x = sphere->position.x - 9;
+			p->position.y = sphere->position.y - 9;
+			p->to_sphere = sphere;
+			active_monsters[i] = p;
+			break;
+		}
+	}
 }
 
 // -------------------------------------------------------------
@@ -641,6 +745,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 
 							active_left[i]->collider->to_delete = true;
 							AddExplosion(active_left[i]);
+							AddMonster(active_left[i]);
 							active_left[i]->collider = nullptr;
 							active_left[i] = nullptr;
 						}
@@ -651,7 +756,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 						for (int i = 0; i < App->spheres->last_sphere_left; i++){
 							if (active_left[i] == nullptr)
 								continue;
-							if (App->board->counter % 2 == 0){
+							if (App->board->counter_left % 2 == 0){
 								if (App->spheres->active_left[i]->board_index < 8){
 									allahu_list_left.push_back(active_left[i]);
 								}
@@ -696,10 +801,12 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 					if (App->player->mystate == POSTUPDATE){
 						App->player->mystate = PREUPDATE;
 						next_sphere_left = true;
+
 						if (App->player->booblesGoDown_left == App->player->booblesCounterDown_left){
-							App->board->BoardDown(App->board->counter);
+							App->board->BoardDownLeft(App->board->counter_left);
 							App->player->booblesCounterDown_left = 0;
 						}
+
 
 					}
 				}
@@ -782,6 +889,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 
 							active_right[i]->collider->to_delete = true;
 							AddExplosion(active_right[i]);
+							AddMonster(active_right[i]);
 							active_right[i]->collider = nullptr;
 							active_right[i] = nullptr;
 						}
@@ -830,6 +938,11 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 					if (App->player2->mystate == POSTUPDATE){
 						App->player2->mystate = PREUPDATE;
 						next_sphere_right = true;
+						if (App->player2->booblesGoDown_right == App->player2->booblesCounterDown_right){
+							App->board->BoardDownRight(App->board->counter_right);
+							App->player2->booblesCounterDown_right = 0;
+
+						}
 					}
 				}
 			}
