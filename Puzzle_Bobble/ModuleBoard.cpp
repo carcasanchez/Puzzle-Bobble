@@ -1,5 +1,7 @@
 #include"ModuleBoard.h"
-
+#include <time.h>
+#include <stdlib.h> 
+#include <math.h>
 ModuleBoard::ModuleBoard()
 {
 	int x, y;
@@ -221,6 +223,8 @@ void ModuleBoard::CreateMap(int number[]){
 }
 
 void ModuleBoard::BoardDown(int &counter){
+	srand(time(NULL));
+	int random = 0;
 	int i;
 	int x, y;
 	y = 32 * SCREEN_SIZE - 16;
@@ -248,8 +252,9 @@ void ModuleBoard::BoardDown(int &counter){
 		}
 		for (i = 0; i < 7; i++)
 		{
-			
-			App->spheres->SetSphere(App->spheres->spheres[5], board_left[i]->x, board_left[i]->y, i, COLLIDER_SPHERE_LEFT);
+			 random = rand() % 8;
+
+			App->spheres->SetSphere(App->spheres->spheres[random], board_left[i]->x, board_left[i]->y, i, COLLIDER_SPHERE_LEFT);
 			board_left[i]->Empty = false;
 		}
 	}
@@ -263,8 +268,8 @@ void ModuleBoard::BoardDown(int &counter){
 		}
 		for (i = 0; i < 8; i++)
 		{
-
-			App->spheres->SetSphere(App->spheres->spheres[5], board_left[i]->x, board_left[i]->y, i, COLLIDER_SPHERE_LEFT);
+			 random = rand() % 8;
+			App->spheres->SetSphere(App->spheres->spheres[random], board_left[i]->x, board_left[i]->y, i, COLLIDER_SPHERE_LEFT);
 			board_left[i]->Empty = false;
 		}
 	}
