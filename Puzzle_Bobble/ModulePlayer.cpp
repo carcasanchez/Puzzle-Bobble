@@ -33,7 +33,7 @@ ModulePlayer::ModulePlayer()
 
 	arrow_src = { 15, 514, 22, 55 };
 	p_arrow_src = &arrow_src;
-	arrow_dst = { position.x - 104.845f * SCREEN_SIZE, position.y - 40.15f*SCREEN_SIZE, 22 * 2, 55 * 2 };
+	arrow_dst = { position.x - 104.845f*SCREEN_SIZE, position.y - 40.15f*SCREEN_SIZE, 22 * 2, 55 * 2 };
 	p_arrow_dst = &arrow_dst;
 	center = { 20, 64 };
 	p_center = &center;
@@ -138,15 +138,6 @@ ModulePlayer::ModulePlayer()
 
 	mystate = PREUPDATE;
 
-	//prev_bobbles array
-	prev_bobble[0] = { 71, 196, 16, 16 };
-	prev_bobble[1] = { 11, 222, 16, 16 };
-	prev_bobble[2] = { 71, 248, 16, 16 };
-	prev_bobble[3] = { 11, 274, 16, 16 };
-	prev_bobble[4] = { 11, 300, 16, 16 };
-	prev_bobble[5] = { 11, 326, 16, 16 };
-	prev_bobble[6] = { 11, 352, 16, 16 };
-	prev_bobble[7] = { 11, 378, 16, 16 };
 
 }
 
@@ -197,8 +188,7 @@ update_status ModulePlayer::PreUpdate(){
 
 	if (mystate == PREUPDATE){	
 		LoseCondition = CheckLose();
-		int Random_post = Random;
-	
+		
 		App->spheres->AddSphere(App->spheres->spheres[Random], 73 * SCREEN_SIZE, 184 * SCREEN_SIZE, COLLIDER_SPHERE_LEFT);
 		//App->spheres->AddSphere(App->spheres->spheres[Random], 120 * SCREEN_SIZE, 200 * SCREEN_SIZE);
 		
@@ -312,7 +302,7 @@ update_status ModulePlayer::Update()
 	App->render->Blit(graphics, position.x - 80 * SCREEN_SIZE, position.y - 2 * SCREEN_SIZE, &(current_animation1->GetCurrentFrame()));
 	App->render->Blit(graphics, position.x - 122 * SCREEN_SIZE, position.y - 10 * SCREEN_SIZE, &(current_animation2->GetCurrentFrame()));
 	//	App->render->Blit(graphics, position.x - 50, position.y - 80, &(current_animation_arrow->GetCurrentFrame()));
-	App->render->Blit(graphics, position.x - 140 * SCREEN_SIZE, position.y+1 * SCREEN_SIZE, &prev_bobble[Random]);
+
 
 	return update_status::UPDATE_CONTINUE;
 }
