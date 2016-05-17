@@ -117,6 +117,7 @@ bool ModuleLevel_1::CleanUp()
 		App->spheres->active_right[i]->collider = nullptr;
 		App->spheres->active_right[i] = nullptr;
 	}
+
 	while (!Mix_FadeOutMusic(1000) && Mix_PlayingMusic())
 		SDL_Delay(1000);
 
