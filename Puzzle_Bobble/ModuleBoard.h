@@ -23,8 +23,12 @@ public:
 	bool CleanUp();
 	bool CheckWinR();
 	bool CheckWinL();
-	void BoardDown(int &counter);
-	int counter = 0;
+	void BoardDownLeft(int &counter);
+	void BoardDownRight(int &counter);
+	int counter_left = 0;
+	int counter_right = 0;
+
+
 	bool boardDone=false;
 public:
 	Vector<iPoint*> board_left;

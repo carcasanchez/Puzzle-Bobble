@@ -7,7 +7,8 @@ ModuleBoard::ModuleBoard()
 	int x, y;
 	int i = 0;
 	int j = 0;
-	counter = 0; 
+	counter_left = 0;
+	counter_right = 0;
 	//LEFT
 	for (y = 32 * SCREEN_SIZE - 16; j < NUM_SQUARES; y += 14 * SCREEN_SIZE)
 	{
@@ -72,7 +73,8 @@ bool ModuleBoard::Start(){
 		int x, y;
 		int i = 0;
 		int j = 0;
-		counter = 0;
+		counter_left = 0;
+		counter_right = 0;
 		//LEFT
 
 		for (y = 32 * SCREEN_SIZE - 16; j < NUM_SQUARES; y += 14 * SCREEN_SIZE)
@@ -222,7 +224,7 @@ void ModuleBoard::CreateMap(int number[]){
 		}
 }
 
-void ModuleBoard::BoardDown(int &counter){
+void ModuleBoard::BoardDownLeft(int &counter){
 	srand(time(NULL));
 	int random = 0;
 	int i;
@@ -284,9 +286,77 @@ void ModuleBoard::BoardDown(int &counter){
 			}
 		}
 	}
-	//TODO DOWN RIGHT
+	
 
 }
+
+void ModuleBoard::BoardDownRight(int &counter){
+	srand(time(NULL));
+	int random = 0;
+	int i;
+	int x, y;
+	y = 32 * SCREEN_SIZE - 16;
+	for (i = 0; i < board_right.size(); i++){
+		board_right[i]->y += 14 * SCREEN_SIZE;
+	}
+
+	for (i = 0; i < App->spheres->last_sphere_right; i++){
+		if (App->spheres->active_right[i] != nullptr){
+			App->spheres->active_right[i]->position.y += 14 * SCREEN_SIZE;
+			/*if (counter % 2 == 0){
+			App->spheres->active_left[i]->board_index += 7;
+			}
+			else{
+			App->spheres->active_left[i]->board_index += 8;
+			}*/
+		}
+	}
+	if (counter % 2 == 0){
+		x = 128+224 * SCREEN_SIZE  - 16;//96
+		for (i = 0; i < 7; i++){
+			board_right.push_front(new iPoint(x, y));
+			x -= 16 * SCREEN_SIZE;
+			//	board_left.pop_back();
+		}
+		for (i = 0; i < 7; i++)
+		{
+			random = rand() % 8;
+
+			App->spheres->SetSphere(App->spheres->spheres[random], board_right[i]->x, board_right[i]->y, i, COLLIDER_SPHERE_RIGHT);
+			board_right[i]->Empty = false;
+		}
+	}
+	else{
+		x = 136+ 228 * SCREEN_SIZE  - 16;//112
+		for (i = 0; i < 8; i++){
+			board_right.push_front(new iPoint(x, y));
+			x -= 16 * SCREEN_SIZE;
+			//	board_left.pop_back();
+
+		}
+		for (i = 0; i < 8; i++)
+		{
+			random = rand() % 8;
+			App->spheres->SetSphere(App->spheres->spheres[random], board_right[i]->x, board_right[i]->y, i, COLLIDER_SPHERE_RIGHT);
+			board_right[i]->Empty = false;
+		}
+	}
+	counter++;
+	for (i = 0; i < board_right.size(); i++){
+
+		if (board_right[i]->Empty == false){
+			for (int j = 0; j < App->spheres->last_sphere_right; j++){
+				if (App->spheres->active_right[j] != nullptr&& App->spheres->active_right[j]->position.x == board_right[i]->x&& App->spheres->active_right[j]->position.y == board_right[i]->y){
+					App->spheres->active_right[j]->board_index = i;
+				}
+			}
+		}
+	}
+
+
+}
+
+
 bool ModuleBoard::CheckWinR()
 {
 	int i = 0;
