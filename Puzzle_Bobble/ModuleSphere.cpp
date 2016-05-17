@@ -376,20 +376,12 @@ bool ModuleSphere::CleanUp()
 			active_right[i] = nullptr;
 		}
 	}
-
-
-
-
 	return true;
 }
 
 // Update: draw background
 update_status ModuleSphere::Update()
 {
-
-	
-
-
 	for (uint i = 0; i < MAX_ACTIVE_SPHERES; ++i)
 	{
 		for (uint i = 0; i < MAX_ACTIVE_SPHERES; ++i)
@@ -463,17 +455,15 @@ update_status ModuleSphere::Update()
 
 			p->speed.y += 1;
 
-
 			p->position.x += p->speed.x;
 			p->position.y += p->speed.y;
 
 			App->render->Blit(graphics, p->position.x, p->position.y, &(p->anim.GetCurrentFrame()));
 		}
-		
 
 		currentTime_left = SDL_GetTicks();
 		currentTime_right = SDL_GetTicks();
-
+		current_time_right_extra_bobble = SDL_GetTicks();
 
 		return UPDATE_CONTINUE;
 	}
@@ -663,40 +653,7 @@ bool Sphere::Update()
 }
 void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 {
-
-		/*for (uint i = 0; i < MAX_ACTIVE_SPHERES; ++i)
-		{
-			if (active_left[i] != nullptr && active_left[i]->collider == c1)
-			{
-
-				if (c2->type == COLLIDER_LATERAL_WALL)
-					active_left[i]->speed.x *= -1;
-
-				else if ((c2->type == COLLIDER_WALL || c2->type == COLLIDER_SPHERE_LEFT) && active_left[i]->speed.y != 0)
-				{
-					active_left[i]->speed.x = 0;
-					active_left[i]->speed.y = 0;
-					App->board->CheckPositionLeft(active_left[last_sphere_left - 1]);
-					//todo
-					check_down_left = allahu_bobble_left(i);
-
-					if (check_down_left == true){
-						boobbledown_left();
-
-					}
-
-					if (App->player->mystate == POSTUPDATE){
-						App->player->mystate = PREUPDATE;
-						next_sphere_left = true;
-					}
-			//		App->board->BoardDown(App->board->counter);
-				
-				}
-			}
-		}
-	
-	*/
-//LEFT
+	//LEFT
 	if (c1->type == COLLIDER_SPHERE_LEFT)
 	{
 		for (uint i = 0; i < MAX_ACTIVE_SPHERES; ++i)
@@ -715,7 +672,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 					active_left[i]->speed.y = 0;
 					App->board->CheckPositionLeft(active_left[last_sphere_left - 1]);
 					//todo
-
+				//	App->spheres->ExtraBallsLeft(App->player2->b_destroyed_right);
 					allahu_list_left.push_back(active_left[i]);
 					active_left[i]->checked = true;
 					active_left[i]->CheckBobbleLeft();
@@ -723,6 +680,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 					if (allahu_list_left.n_elements >= 3)
 					{
 						check_down_left = true;
+						App->player->b_destroyed_left += allahu_list_left.n_elements - 3;
 						for (i = 0; i < allahu_list_left.n_elements; i++)
 						{
 							allahu_list_left[i]->doomed = true;
@@ -753,16 +711,20 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 					allahu_list_left.clear();
 
 					if (check_down_left == true){
-						for (int i = 0; i < App->spheres->last_sphere_left; i++){
+						for (int i = 0; i < App->spheres->last_sphere_left; i++)
+						{
 							if (active_left[i] == nullptr)
 								continue;
-							if (App->board->counter_left % 2 == 0){
-								if (App->spheres->active_left[i]->board_index < 8){
+							if (App->board->counter_left % 2 == 0)
+							{
+								if (App->spheres->active_left[i]->board_index < 8)
+								{
 									allahu_list_left.push_back(active_left[i]);
 								}
 							}
 							else{
-									if (App->spheres->active_left[i]->board_index < 7){
+									if (App->spheres->active_left[i]->board_index < 7)
+									{
 										allahu_list_left.push_back(active_left[i]);
 									}
 								}
@@ -783,7 +745,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 								active_left[i]->collider = nullptr;
 								active_left[i]->speed.y = 7.0f;
 								App->board->board_left[active_left[i]->board_index]->Empty = true;
-
+								App->player->b_destroyed_left++;
 							}
 						}
 						for (unsigned int i = 0; i < App->spheres->last_sphere_left; i++)
@@ -806,8 +768,6 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 							App->board->BoardDownLeft(App->board->counter_left);
 							App->player->booblesCounterDown_left = 0;
 						}
-
-
 					}
 				}
 			}
@@ -816,33 +776,6 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 
 	else if (c1->type == COLLIDER_SPHERE_RIGHT){
 		//RIGHT
-	/*	for (uint i = 0; i < MAX_ACTIVE_SPHERES; ++i)
-		{
-			if (active_right[i] != nullptr && active_right[i]->collider == c1)
-			{
-
-				if (c2->type == COLLIDER_LATERAL_WALL)
-					active_right[i]->speed.x *= -1;
-
-				else if ((c2->type == COLLIDER_WALL || c2->type == COLLIDER_SPHERE_RIGHT) && active_right[i]->speed.y != 0)
-				{
-					active_right[i]->speed.x = 0;
-					active_right[i]->speed.y = 0;
-
-					App->board->CheckPositionRight(active_right[last_sphere_right - 1]);
-					check_down_right = allahu_bobble_right(i);
-
-					if (check_down_right == true){
-						boobbledown_right();
-
-					}
-					if (App->player2->mystate == POSTUPDATE){
-						App->player2->mystate = PREUPDATE;
-						next_sphere_right = true;
-					}
-				}
-			}
-		}*/
 		for (uint i = 0; i < MAX_ACTIVE_SPHERES; ++i)
 		{
 			if (active_right[i] != nullptr && active_right[i]->collider == c1)
@@ -859,7 +792,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 					active_right[i]->speed.y = 0;
 					App->board->CheckPositionRight(active_right[last_sphere_right - 1]);
 					//todo
-
+					//App->spheres->ExtraBallsRight(App->player->b_destroyed_left);
 					allahu_list_right.push_back(active_right[i]);
 					active_right[i]->checked = true;
 					active_right[i]->CheckBobbleRight();
@@ -867,6 +800,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 					if (allahu_list_right.n_elements >= 3)
 					{
 						check_down_right = true;
+						App->player2->b_destroyed_right += allahu_list_right.n_elements - 3;
 						for (i = 0; i < allahu_list_right.n_elements; i++)
 						{
 							allahu_list_right[i]->doomed = true;
@@ -886,7 +820,6 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 
 						if (active_right[i]->doomed == true)
 						{
-
 							active_right[i]->collider->to_delete = true;
 							AddExplosion(active_right[i]);
 							AddMonster(active_right[i]);
@@ -896,26 +829,33 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 					}
 					allahu_list_right.clear();
 
-					if (check_down_right == true){
-						for (int i = 0; i < App->spheres->last_sphere_right; i++){
+					if (check_down_right == true)
+					{
+						for (int i = 0; i < App->spheres->last_sphere_right; i++)
+						{
 							if (active_right[i] == nullptr)
 								continue;
-							if (App->spheres->active_right[i]->board_index < 8){
+							if (App->spheres->active_right[i]->board_index < 8)
+							{
 								allahu_list_right.push_back(active_right[i]);
 							}
 						}
 
-						for (int i = 0; i < allahu_list_right.size(); i++){
-							if (allahu_list_right[i]->checked == false){
+						for (int i = 0; i < allahu_list_right.size(); i++)
+						{
+							if (allahu_list_right[i]->checked == false)
+							{
 								allahu_list_right[i]->checked = true;
 								allahu_list_right[i]->CheckBobbleDownRight();
 
 							}
 						}
-						for (int i = App->spheres->last_sphere_right; i > 0; i--){
+						for (int i = App->spheres->last_sphere_right; i > 0; i--)
+						{
 							if (active_right[i] == nullptr || active_right[i]->collider == nullptr)
 								continue;
-							if (App->spheres->active_right[i]->checked == false){
+							if (App->spheres->active_right[i]->checked == false)
+							{
 								active_right[i]->collider->to_delete = true;
 								active_right[i]->collider = nullptr;
 								active_right[i]->speed.y = 7.0f;
@@ -935,10 +875,12 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 						check_down_right = false;
 					}
 
-					if (App->player2->mystate == POSTUPDATE){
+					if (App->player2->mystate == POSTUPDATE)
+					{
 						App->player2->mystate = PREUPDATE;
 						next_sphere_right = true;
-						if (App->player2->booblesGoDown_right == App->player2->booblesCounterDown_right){
+						if (App->player2->booblesGoDown_right == App->player2->booblesCounterDown_right)
+						{
 							App->board->BoardDownRight(App->board->counter_right);
 							App->player2->booblesCounterDown_right = 0;
 
@@ -1013,6 +955,29 @@ void Sphere::CheckBobbleDownRight(){
 			App->spheres->active_right[i]->CheckBobbleDownRight();
 		}
 	}
+}
+
+void ModuleSphere::ExtraBallsLeft(int num_new_bobbles)
+{
+	while (num_new_bobbles != 0)
+	{
+		current_time_left_extra_bobble = SDL_GetTicks();
+		if (current_time_left_extra_bobble - last_time_left_extra_bobble > 100)
+		{
+			last_time_left_extra_bobble = current_time_left_extra_bobble;
+			int random = rand() % 8;
+			int random_x = (rand() % 100) + 28;
+			App->spheres->AddSphere(App->spheres->spheres[random], random_x * SCREEN_SIZE, 120 * SCREEN_SIZE, COLLIDER_SPHERE_LEFT);
+			App->spheres->active_left[App->spheres->last_sphere_left - 1]->speed.y = SPEED;
+			num_new_bobbles--;
+		}
+	}
+	num_new_bobbles = 0;
+}
+
+void ModuleSphere::ExtraBallsRight(int num_new_bobbles)
+{
+
 }
 
 bool Particle::Update()

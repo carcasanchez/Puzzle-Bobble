@@ -40,7 +40,6 @@ struct Sphere
 	void CheckBobbleRight();
 	void CheckBobbleDownLeft();
 	void CheckBobbleDownRight();
-
 	int board_index;
 };
 
@@ -101,7 +100,8 @@ public:
 	void boobbledown_right();
 	void AddExplosion(const Sphere* sphere);
 	void AddMonster(const Sphere* sphere);
-
+	void ExtraBallsLeft(int);
+	void ExtraBallsRight(int);
 
 	SDL_Texture* graphics = nullptr;
 	Sphere* active_right[MAX_ACTIVE_SPHERES];
@@ -109,6 +109,8 @@ public:
 	
 	unsigned int lastTime_left, currentTime_left;
 	unsigned int lastTime_right, currentTime_right;
+	unsigned int last_time_left_extra_bobble, current_time_left_extra_bobble;
+	unsigned int last_time_right_extra_bobble, current_time_right_extra_bobble;
 
 
 public:
