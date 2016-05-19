@@ -82,6 +82,7 @@ public:
 	bool next_sphere_right = true;
 	bool next_sphere_left = true;
 	bool check_down_right, check_down_left = false;
+
 	Vector <Sphere*> allahu_list_left;
 	Vector <Sphere*> allahu_list_right;
 	Vector <Sphere*> bobble_down;

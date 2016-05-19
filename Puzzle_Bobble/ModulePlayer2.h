@@ -47,6 +47,7 @@ public:
 	SDL_Point center;
 	iPoint position;
 	Mix_Chunk* shoot = nullptr;
+	Mix_Chunk* explosion = nullptr;
 	int b_destroyed_right = 0;
 	SDL_Rect bag_complete;
 	SDL_Rect bag_incomplete;

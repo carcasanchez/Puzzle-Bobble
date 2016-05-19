@@ -164,6 +164,7 @@ bool ModulePlayer::Start()
 	mystate = FIRST;
 	graphics = App->textures->Load("Game/Sprites.png");
 	shoot = App->audio->Load_effects("Game/BubbleShot.wav");
+	explosion = App->audio->Load_effects("Game/BallsElimination.wav");
 	//App->spheres->AddSphere(App->spheres->spheres[Random], 306, 368);
 	lastTime = SDL_GetTicks();
 	booblesGoDown_left = 16;

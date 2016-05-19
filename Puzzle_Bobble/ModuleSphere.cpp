@@ -9,6 +9,7 @@
 #include "ModuleSphere.h"
 #include "ModulePlayer.h"
 #include "ModulePlayer2.h"
+#include "ModuleAudio.h"
 #include "SDL/include/SDL_timer.h"
 #include <time.h>
 #include <stdlib.h> 
@@ -57,7 +58,7 @@ bool ModuleSphere::Start()
 	spheres[0].idle.PushBack({ 51, 196, 16, 16 });
 	spheres[0].idle.PushBack({ 11, 196, 16, 16 });
 
-	spheres[0].idle.loop = true;
+	spheres[0].idle.loop = false;
 	spheres[0].idle.speed = 0.3f;
 
 	spheres[0].anim.PushBack({ 71, 196, 16, 16 });
@@ -95,7 +96,8 @@ bool ModuleSphere::Start()
 	spheres[1].idle.PushBack({ 31, 222, 16, 16 });
 	spheres[1].idle.PushBack({ 51, 222, 16, 16 });
 	spheres[1].idle.PushBack({ 11, 222, 16, 16 });
-	spheres[1].idle.loop = true;
+
+	spheres[1].idle.loop = false;
 	spheres[1].idle.speed = 0.3f;
 
 	spheres[1].anim.PushBack({ 71, 222, 16, 16 });
@@ -166,8 +168,9 @@ bool ModuleSphere::Start()
 	spheres[3].idle.PushBack({ 31, 274, 16, 16 });
 	spheres[3].idle.PushBack({ 51, 274, 16, 16 });
 	spheres[3].idle.PushBack({ 11, 274, 16, 16 });
-	spheres[3].idle.loop = true;
-	spheres[3].idle.speed = 0.3f;
+
+	spheres[3].idle.loop = false;
+	spheres[3].idle.speed = 0.5f;
 
 	spheres[3].anim.PushBack({ 71, 274, 16, 16 });
 	spheres[3].anim.PushBack({ 92, 274, 16, 16 });
@@ -203,7 +206,7 @@ bool ModuleSphere::Start()
 	spheres[4].idle.PushBack({ 51, 300, 16, 16 });
 	spheres[4].idle.PushBack({ 11, 300, 16, 16 });
 
-	spheres[4].idle.loop = true;
+	spheres[4].idle.loop = false;
 	spheres[4].idle.speed = 0.3f;
 
 	spheres[4].anim.PushBack({ 71, 300, 16, 16 });
@@ -241,7 +244,7 @@ bool ModuleSphere::Start()
 	spheres[5].idle.PushBack({ 51, 326, 16, 16 });
 	spheres[5].idle.PushBack({ 11, 326, 16, 16 });
 
-	spheres[5].idle.loop = true;
+	spheres[5].idle.loop = false;
 	spheres[5].idle.speed = 0.3f;
 
 	spheres[5].anim.PushBack({ 71, 326, 16, 16 });
@@ -278,7 +281,7 @@ bool ModuleSphere::Start()
 	spheres[6].idle.PushBack({ 51, 352, 16, 16 });
 	spheres[6].idle.PushBack({ 11, 352, 16, 16 });
 
-	spheres[6].idle.loop = true;
+	spheres[6].idle.loop = false;
 	spheres[6].idle.speed = 0.3f;
 
 	spheres[6].anim.PushBack({ 71, 352, 16, 16 });
@@ -315,7 +318,8 @@ bool ModuleSphere::Start()
 	spheres[7].idle.PushBack({ 31, 378, 16, 16 });
 	spheres[7].idle.PushBack({ 51, 378, 16, 16 });
 	spheres[7].idle.PushBack({ 11, 378, 16, 16 });
-	spheres[7].idle.loop = true;
+
+	spheres[7].idle.loop = false;
 	spheres[7].idle.speed = 0.3f;
 
 	spheres[7].anim.PushBack({ 71, 378, 16, 16 });
@@ -397,6 +401,14 @@ update_status ModuleSphere::Update()
 			}
 			else if (SDL_GetTicks() >= s_l->born)
 			{
+				int random_time_l = rand() % 100;
+				if (random_time_l % 5 == 0)
+				{
+					if (s_l->idle.Finished())
+					{
+						s_l->idle.Reset();
+					}
+				}
 				App->render->Blit(graphics, s_l->position.x, s_l->position.y, &(s_l->idle.GetCurrentFrame()));
 				if (s_l->fx_played == false)
 				{
@@ -413,6 +425,14 @@ update_status ModuleSphere::Update()
 			}
 			else if (SDL_GetTicks() >= s_r->born)
 			{
+				int random_time_r = rand() % 100;
+				if (random_time_r % 5 == 0)
+				{
+					if (s_r->idle.Finished())
+					{
+						s_r->idle.Reset();
+					}
+				}
 				App->render->Blit(graphics, s_r->position.x, s_r->position.y, &(s_r->idle.GetCurrentFrame()));
 				if (s_r->fx_played == false)
 				{
@@ -471,7 +491,6 @@ update_status ModuleSphere::Update()
 
 void ModuleSphere::AddSphere(const Sphere& sphere, int x, int y, COLLIDER_TYPE col_type, Uint32 delay)
 {
-	//LEFT
 	Sphere* s = new Sphere(sphere);
 	s->born = SDL_GetTicks() + delay;
 	s->position.x = x;
@@ -679,6 +698,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 
 					if (allahu_list_left.n_elements >= 3)
 					{
+						Mix_PlayChannel(-1, App->player->explosion, 0);
 						check_down_left = true;
 						App->player->b_destroyed_left += allahu_list_left.n_elements - 3;
 						for (i = 0; i < allahu_list_left.n_elements; i++)
@@ -799,6 +819,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 
 					if (allahu_list_right.n_elements >= 3)
 					{
+						Mix_PlayChannel(-1, App->player2->explosion, 0);
 						check_down_right = true;
 						App->player2->b_destroyed_right += allahu_list_right.n_elements - 3;
 						for (i = 0; i < allahu_list_right.n_elements; i++)

@@ -65,7 +65,7 @@ bool ModuleLevel_1::Start()
 
 
 	graphics = App->textures->Load("Game/two_player_background.png");
-	level_music = App->audio->Load_music("Game/SinglePlayerMusic.ogg"); 
+	level_music = App->audio->Load_music("Game/2PlayersMusic.ogg"); 
 	
 	App->player->Enable();
 	App->player2->Enable();
