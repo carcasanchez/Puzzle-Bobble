@@ -57,7 +57,7 @@ bool ModuleSphere::Start()
 	spheres[0].idle.PushBack({ 51, 196, 16, 16 });
 	spheres[0].idle.PushBack({ 11, 196, 16, 16 });
 
-	spheres[0].idle.loop = false;
+	spheres[0].idle.loop = true;
 	spheres[0].idle.speed = 0.3f;
 
 	spheres[0].anim.PushBack({ 71, 196, 16, 16 });
@@ -95,7 +95,7 @@ bool ModuleSphere::Start()
 	spheres[1].idle.PushBack({ 31, 222, 16, 16 });
 	spheres[1].idle.PushBack({ 51, 222, 16, 16 });
 	spheres[1].idle.PushBack({ 11, 222, 16, 16 });
-	spheres[1].idle.loop = false;
+	spheres[1].idle.loop = true;
 	spheres[1].idle.speed = 0.3f;
 
 	spheres[1].anim.PushBack({ 71, 222, 16, 16 });
@@ -166,7 +166,7 @@ bool ModuleSphere::Start()
 	spheres[3].idle.PushBack({ 31, 274, 16, 16 });
 	spheres[3].idle.PushBack({ 51, 274, 16, 16 });
 	spheres[3].idle.PushBack({ 11, 274, 16, 16 });
-	spheres[3].idle.loop = false;
+	spheres[3].idle.loop = true;
 	spheres[3].idle.speed = 0.3f;
 
 	spheres[3].anim.PushBack({ 71, 274, 16, 16 });
@@ -203,7 +203,7 @@ bool ModuleSphere::Start()
 	spheres[4].idle.PushBack({ 51, 300, 16, 16 });
 	spheres[4].idle.PushBack({ 11, 300, 16, 16 });
 
-	spheres[4].idle.loop = false;
+	spheres[4].idle.loop = true;
 	spheres[4].idle.speed = 0.3f;
 
 	spheres[4].anim.PushBack({ 71, 300, 16, 16 });
@@ -278,7 +278,7 @@ bool ModuleSphere::Start()
 	spheres[6].idle.PushBack({ 51, 352, 16, 16 });
 	spheres[6].idle.PushBack({ 11, 352, 16, 16 });
 
-	spheres[6].idle.loop = false;
+	spheres[6].idle.loop = true;
 	spheres[6].idle.speed = 0.3f;
 
 	spheres[6].anim.PushBack({ 71, 352, 16, 16 });
@@ -315,7 +315,7 @@ bool ModuleSphere::Start()
 	spheres[7].idle.PushBack({ 31, 378, 16, 16 });
 	spheres[7].idle.PushBack({ 51, 378, 16, 16 });
 	spheres[7].idle.PushBack({ 11, 378, 16, 16 });
-	spheres[7].idle.loop = false;
+	spheres[7].idle.loop = true;
 	spheres[7].idle.speed = 0.3f;
 
 	spheres[7].anim.PushBack({ 71, 378, 16, 16 });

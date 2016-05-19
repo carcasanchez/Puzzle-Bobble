@@ -83,7 +83,7 @@ ModulePlayer2::ModulePlayer2()
 	//Dragon Hurry Up
 	hurry_up_dragon.PushBack({ 281, 42, 26, 28 });
 	hurry_up_dragon.PushBack({ 308, 42, 26, 28 });
-	hurry_up_dragon.speed = 0.2f;
+	hurry_up_dragon.speed = 0.15f;
 
 	//Base Mecanism Left
 	base_left.PushBack({ 87, 813, 56, 24 });
@@ -133,6 +133,16 @@ ModulePlayer2::ModulePlayer2()
 
 	hurry_up.loop = false;
 	hurry_up.speed = 0.04f;
+
+	//prev_bobbles array
+	prev_bobble[0] = { 71, 196, 16, 16 };
+	prev_bobble[1] = { 11, 222, 16, 16 };
+	prev_bobble[2] = { 71, 248, 16, 16 };
+	prev_bobble[3] = { 11, 274, 16, 16 };
+	prev_bobble[4] = { 11, 300, 16, 16 };
+	prev_bobble[5] = { 11, 326, 16, 16 };
+	prev_bobble[6] = { 11, 352, 16, 16 };
+	prev_bobble[7] = { 11, 378, 16, 16 };
 
 	mystate = PREUPDATE;
 
@@ -275,13 +285,7 @@ update_status ModulePlayer2::Update()
 
 	}
 
-	if (currentTime - lastTime > 3000)
-	{
-
-		current_animation3 = &hurry_up;
-		current_animation2 = &hurry_up_dragon;
-		App->render->Blit(graphics, position.x - 170 * SCREEN_SIZE, position.y - 35 * SCREEN_SIZE, &(current_animation3->GetCurrentFrame()));
-	}
+	
 
 
 	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_IDLE
@@ -301,11 +305,20 @@ update_status ModulePlayer2::Update()
 	App->render->Blit(graphics, position.x - 82 * SCREEN_SIZE, position.y + 1 * SCREEN_SIZE, &(current_animation_lever->GetCurrentFrame()));
 	SDL_RenderCopyEx(App->render->renderer, graphics, p_arrow_src, p_arrow_dst, angle, p_center, SDL_FLIP_NONE);
 	App->render->Blit(graphics, position.x - 102 * SCREEN_SIZE, position.y, &blow);
+
+	if (currentTime - lastTime > 3000)
+	{
+
+		current_animation3 = &hurry_up;
+		current_animation2 = &hurry_up_dragon;
+		App->render->Blit(graphics, position.x - 165 * SCREEN_SIZE, position.y - 20 * SCREEN_SIZE, &(current_animation3->GetCurrentFrame()));
+	}
+
 	App->render->Blit(graphics, position.x - 80 * SCREEN_SIZE, position.y - 2 * SCREEN_SIZE, &(current_animation1->GetCurrentFrame()));
 	App->render->Blit(graphics, position.x - 122 * SCREEN_SIZE, position.y - 10 * SCREEN_SIZE, &(current_animation2->GetCurrentFrame()));
 	//	App->render->Blit(graphics, position.x - 50, position.y - 80, &(current_animation_arrow->GetCurrentFrame()));
-
-
+	App->render->Blit(graphics, position.x - 135 * SCREEN_SIZE, position.y + 1 * SCREEN_SIZE, &prev_bobble[Random]);
+	
 	return update_status::UPDATE_CONTINUE;
 }
 

@@ -52,6 +52,7 @@ public:
 	SDL_Rect bag_incomplete;
 	SDL_Rect top_base;
 	SDL_Rect blow;
+	SDL_Rect prev_bobble[8];
 	float orientationx, orientationy;
 	int Random;
 	bool LoseCondition = false;

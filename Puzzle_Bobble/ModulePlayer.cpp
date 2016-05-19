@@ -85,7 +85,7 @@ ModulePlayer::ModulePlayer()
 	//Dragon Hurry Up
 	hurry_up_dragon.PushBack({ 281, 42, 26, 28 });
 	hurry_up_dragon.PushBack({ 308, 42, 26, 28 });
-	hurry_up_dragon.speed = 0.2f;
+	hurry_up_dragon.speed = 0.15f;
 
 	//Base Mecanism Left
 	base_left.PushBack({ 87, 813, 56, 24 });
@@ -283,13 +283,6 @@ update_status ModulePlayer::Update()
 		booblesCounterDown_left++;
 	}
 
-	if (currentTime - lastTime > 3000)
-	{
-
-		current_animation3 = &hurry_up;
-		current_animation2 = &hurry_up_dragon;
-		App->render->Blit(graphics, position.x - 170 * SCREEN_SIZE, position.y - 35 * SCREEN_SIZE, &(current_animation3->GetCurrentFrame()));
-	}
 
 
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE
@@ -309,10 +302,19 @@ update_status ModulePlayer::Update()
 	App->render->Blit(graphics, position.x - 82 * SCREEN_SIZE, position.y + 1 * SCREEN_SIZE, &(current_animation_lever->GetCurrentFrame()));
 	SDL_RenderCopyEx(App->render->renderer, graphics, p_arrow_src, p_arrow_dst, angle, p_center, SDL_FLIP_NONE);
 	App->render->Blit(graphics, position.x - 102 * SCREEN_SIZE, position.y, &blow);
+
+	if (currentTime - lastTime > 3000)
+	{
+
+		current_animation3 = &hurry_up;
+		current_animation2 = &hurry_up_dragon;
+		App->render->Blit(graphics, position.x - 165 * SCREEN_SIZE, position.y - 20 * SCREEN_SIZE, &(current_animation3->GetCurrentFrame()));
+	}
+
 	App->render->Blit(graphics, position.x - 80 * SCREEN_SIZE, position.y - 2 * SCREEN_SIZE, &(current_animation1->GetCurrentFrame()));
 	App->render->Blit(graphics, position.x - 122 * SCREEN_SIZE, position.y - 10 * SCREEN_SIZE, &(current_animation2->GetCurrentFrame()));
 	//	App->render->Blit(graphics, position.x - 50, position.y - 80, &(current_animation_arrow->GetCurrentFrame()));
-	App->render->Blit(graphics, position.x - 140 * SCREEN_SIZE, position.y + 1 * SCREEN_SIZE, &prev_bobble[Random]);
+	App->render->Blit(graphics, position.x - 135 * SCREEN_SIZE, position.y + 1 * SCREEN_SIZE, &prev_bobble[Random]);
 
 	return update_status::UPDATE_CONTINUE;
 }
