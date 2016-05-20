@@ -294,6 +294,58 @@ update_status ModulePlayer::Update()
 		lever.speed = 0.0f;
 	}
 
+	/*
+	0 Blue
+	1 Gray
+	2 Red
+	3 Yellow
+	4 Green
+	5 Black
+	6 Orange
+	7 Violet
+	*/
+
+	if (App->input->keyboard[SDL_SCANCODE_F1] == KEY_STATE::KEY_DOWN)
+	{
+		App->spheres->active_left[App->spheres->last_sphere_left-1]->ChangeColor(BLUE);
+	}
+	if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_DOWN)
+	{
+		App->spheres->active_left[App->spheres->last_sphere_left - 1]->ChangeColor(GRAY);
+	}
+	if (App->input->keyboard[SDL_SCANCODE_F3] == KEY_STATE::KEY_DOWN)
+	{
+		App->spheres->active_left[App->spheres->last_sphere_left - 1]->ChangeColor(RED);
+	}
+	if (App->input->keyboard[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN)
+	{
+		App->spheres->active_left[App->spheres->last_sphere_left - 1]->ChangeColor(YELLOW);
+	}
+	if (App->input->keyboard[SDL_SCANCODE_F5] == KEY_STATE::KEY_DOWN)
+	{
+		App->spheres->active_left[App->spheres->last_sphere_left - 1]->ChangeColor(GREEN);
+	}
+	if (App->input->keyboard[SDL_SCANCODE_F6] == KEY_STATE::KEY_DOWN)
+	{
+		App->spheres->active_left[App->spheres->last_sphere_left - 1]->ChangeColor(BLACK);
+	}
+	if (App->input->keyboard[SDL_SCANCODE_F7] == KEY_STATE::KEY_DOWN)
+	{
+		App->spheres->active_left[App->spheres->last_sphere_left - 1]->ChangeColor(ORANGE);
+	}
+	if (App->input->keyboard[SDL_SCANCODE_F8] == KEY_STATE::KEY_DOWN)
+	{
+		App->spheres->active_left[App->spheres->last_sphere_left - 1]->ChangeColor(VIOLET);
+	}
+
+	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_DOWN)
+	{
+		for (int i = 0; i < App->spheres->last_sphere_left - 1; i++)
+		{
+			App->spheres->active_left[i]->ChangeColor(App->spheres->active_left[App->spheres->last_sphere_left - 1]->sphere_color);
+		}
+	}
+
 
 	// Draw everything --------------------------------------
 	App->render->Blit(graphics, position.x - 172*SCREEN_SIZE, position.y - 7*SCREEN_SIZE, &bag_complete);

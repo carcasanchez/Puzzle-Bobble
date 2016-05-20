@@ -23,7 +23,6 @@ struct Sphere
 	Animation idle;
 	Animation lost;
 
-	Animation monster;
 	uint fx = 0;
 	iPoint position;
 	iPoint pos_board;
@@ -42,6 +41,7 @@ struct Sphere
 	void CheckBobbleRight();
 	void CheckBobbleDownLeft();
 	void CheckBobbleDownRight();
+	void ChangeColor(Color new_color);
 	int board_index;
 };
 

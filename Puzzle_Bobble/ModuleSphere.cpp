@@ -1049,3 +1049,66 @@ bool Particle::Update()
 
 	return ret;
 }
+
+void Sphere::ChangeColor(Color new_color)
+{
+	if (sphere_color == new_color)
+		return;
+	
+	sphere_color = new_color;
+
+
+
+	switch (new_color)
+	{
+	case BLUE:
+		idle = App->spheres->spheres[0].idle;
+		anim = App->spheres->spheres[0].anim;
+		lost = App->spheres->spheres[0].lost;
+		break;
+
+	case GRAY:
+		idle = App->spheres->spheres[1].idle;
+		anim = App->spheres->spheres[1].anim;
+		lost = App->spheres->spheres[1].lost;
+		break;
+
+	case RED:
+		idle = App->spheres->spheres[2].idle;
+		anim = App->spheres->spheres[2].anim;
+		lost = App->spheres->spheres[2].lost;
+		break;
+
+	case YELLOW:
+		idle = App->spheres->spheres[3].idle;
+		anim = App->spheres->spheres[3].anim;
+		lost = App->spheres->spheres[3].lost;
+		break;
+
+	case GREEN:
+		idle = App->spheres->spheres[4].idle;
+		anim = App->spheres->spheres[4].anim;
+		lost = App->spheres->spheres[4].lost;
+		break;
+
+	case BLACK:
+		idle = App->spheres->spheres[5].idle;
+		anim = App->spheres->spheres[5].anim;
+		lost = App->spheres->spheres[5].lost;
+		break;
+
+	case ORANGE:
+		idle = App->spheres->spheres[6].idle;
+		anim = App->spheres->spheres[6].anim;
+		lost = App->spheres->spheres[6].lost;
+		break;
+
+	case VIOLET:
+		idle = App->spheres->spheres[7].idle;
+		anim = App->spheres->spheres[7].anim;
+		lost = App->spheres->spheres[7].lost;
+		break;
+	}
+
+
+}
