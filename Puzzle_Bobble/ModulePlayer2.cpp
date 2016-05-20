@@ -177,7 +177,7 @@ bool ModulePlayer2::CleanUp()
 	LOG("Unloading player");
 	angle = 0;
 	App->textures->Unload(graphics);
-
+	App->spheres->next_sphere_right = true;
 	return true;
 }
 
@@ -334,6 +334,8 @@ update_status ModulePlayer2::Update()
 	{
 		for (int i = 0; i < App->spheres->last_sphere_right - 1; i++)
 		{
+			if (App->spheres->active_right[i] == nullptr)
+				continue;
 			App->spheres->active_right[i]->ChangeColor(App->spheres->active_right[App->spheres->last_sphere_right - 1]->sphere_color);
 		}
 	}
