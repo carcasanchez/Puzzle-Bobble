@@ -21,6 +21,8 @@ struct Sphere
 {
 	Animation anim;
 	Animation idle;
+	Animation lost;
+
 	Animation monster;
 	uint fx = 0;
 	iPoint position;

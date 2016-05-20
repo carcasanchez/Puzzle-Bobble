@@ -50,303 +50,343 @@ bool ModuleSphere::Start()
 
 	///////////////////////////////////////////////////////////////////////////////////
 	LOG("Loading particles");
-	graphics = App->textures->Load("Game/Sprites.png");
+	graphics = App->textures->Load("Game/Bobbles.png");
 
 
-	spheres[0].idle.PushBack({ 11, 196, 16, 16 });
-	spheres[0].idle.PushBack({ 31, 196, 16, 16 });
-	spheres[0].idle.PushBack({ 51, 196, 16, 16 });
-	spheres[0].idle.PushBack({ 11, 196, 16, 16 });
+	spheres[0].idle.PushBack({ 11, 16, 16, 16 });
+	spheres[0].idle.PushBack({ 31, 16, 16, 16 });
+	spheres[0].idle.PushBack({ 51, 16, 16, 16 });
+	spheres[0].idle.PushBack({ 11, 16, 16, 16 });
 
 	spheres[0].idle.loop = false;
 	spheres[0].idle.speed = 0.3f;
 
-	spheres[0].anim.PushBack({ 71, 196, 16, 16 });
-	spheres[0].anim.PushBack({ 92, 196, 16, 16 });
-	spheres[0].anim.PushBack({ 112, 196, 16, 16 });
-	spheres[0].anim.PushBack({ 132, 196, 16, 16 });
-	spheres[0].anim.PushBack({ 152, 196, 16, 16 });
-	spheres[0].anim.PushBack({ 172, 196, 16, 16 });
+	spheres[0].anim.PushBack({ 71, 16, 16, 16 });
+	spheres[0].anim.PushBack({ 92, 16, 16, 16 });
+	spheres[0].anim.PushBack({ 112, 16, 16, 16 });
+	spheres[0].anim.PushBack({ 132, 16, 16, 16 });
+	spheres[0].anim.PushBack({ 152, 16, 16, 16 });
+	spheres[0].anim.PushBack({ 172, 16, 16, 16 });
 	spheres[0].anim.loop = false;
 	spheres[0].anim.speed = 0.3f;
 
-	monster_blue.anim.PushBack({ 462, 195, 20, 19 });
-	monster_blue.anim.PushBack({ 486, 195, 20, 19 });
-	monster_blue.anim.PushBack({ 510, 195, 20, 19 });
-	monster_blue.anim.PushBack({ 534, 195, 20, 19 });
-	monster_blue.anim.PushBack({ 534, 195, 20, 19 });
+	monster_blue.anim.PushBack({ 462, 15, 20, 19 });
+	monster_blue.anim.PushBack({ 486, 15, 20, 19 });
+	monster_blue.anim.PushBack({ 510, 15, 20, 19 });
+	monster_blue.anim.PushBack({ 534, 15, 20, 19 });
+	monster_blue.anim.PushBack({ 534, 15, 20, 19 });
 	monster_blue.anim.speed = 0.1f;
 	monster_blue.anim.loop = true;
 
-	explosion_blue.anim.PushBack({ 198, 188, 32, 31 });
-	explosion_blue.anim.PushBack({ 231, 188, 32, 31 });
-	explosion_blue.anim.PushBack({ 264, 188, 32, 31 });
-	explosion_blue.anim.PushBack({ 297, 188, 32, 31 });
-	explosion_blue.anim.PushBack({ 330, 188, 32, 31 });
-	explosion_blue.anim.PushBack({ 363, 188, 32, 31 });
-	explosion_blue.anim.PushBack({ 396, 188, 32, 31 });
+	explosion_blue.anim.PushBack({ 198, 8, 32, 31 });
+	explosion_blue.anim.PushBack({ 231, 8, 32, 31 });
+	explosion_blue.anim.PushBack({ 264, 8, 32, 31 });
+	explosion_blue.anim.PushBack({ 297, 8, 32, 31 });
+	explosion_blue.anim.PushBack({ 330, 8, 32, 31 });
+	explosion_blue.anim.PushBack({ 363, 8, 32, 31 });
+	explosion_blue.anim.PushBack({ 396, 8, 32, 31 });
 	explosion_blue.anim.loop = false;
 	explosion_blue.anim.speed = 0.3f;
+
+	spheres[0].lost.PushBack({ 11, 224, 16, 16 });
+	spheres[0].lost.PushBack({ 31, 224, 16, 16 });
+	spheres[0].lost.PushBack({ 51, 224, 16, 16 });
+	spheres[0].lost.PushBack({ 11, 224, 16, 16 });
 
 	spheres[0].sphere_color = BLUE;
 
 	/////////////////////////////
 
-	spheres[1].idle.PushBack({ 11, 222, 16, 16 });
-	spheres[1].idle.PushBack({ 31, 222, 16, 16 });
-	spheres[1].idle.PushBack({ 51, 222, 16, 16 });
-	spheres[1].idle.PushBack({ 11, 222, 16, 16 });
+	spheres[1].idle.PushBack({ 11, 42, 16, 16 });
+	spheres[1].idle.PushBack({ 31, 42, 16, 16 });
+	spheres[1].idle.PushBack({ 51, 42, 16, 16 });
+	spheres[1].idle.PushBack({ 11, 42, 16, 16 });
 
 	spheres[1].idle.loop = false;
 	spheres[1].idle.speed = 0.3f;
 
-	spheres[1].anim.PushBack({ 71, 222, 16, 16 });
-	spheres[1].anim.PushBack({ 92, 222, 16, 16 });
-	spheres[1].anim.PushBack({ 112, 222, 16, 16 });
-	spheres[1].anim.PushBack({ 132, 222, 16, 16 });
-	spheres[1].anim.PushBack({ 152, 222, 16, 16 });
-	spheres[1].anim.PushBack({ 172, 222, 16, 16 });
+	spheres[1].anim.PushBack({ 71, 42, 16, 16 });
+	spheres[1].anim.PushBack({ 92, 42, 16, 16 });
+	spheres[1].anim.PushBack({ 112, 42, 16, 16 });
+	spheres[1].anim.PushBack({ 132, 42, 16, 16 });
+	spheres[1].anim.PushBack({ 152, 42, 16, 16 });
+	spheres[1].anim.PushBack({ 172, 42, 16, 16 });
 	spheres[1].anim.loop = false;
 	spheres[1].anim.speed = 0.3f;
 
-	explosion_gray.anim.PushBack({ 198, 220, 32, 31 });
-	explosion_gray.anim.PushBack({ 231, 220, 32, 31 });
-	explosion_gray.anim.PushBack({ 264, 220, 32, 31 });
-	explosion_gray.anim.PushBack({ 297, 220, 32, 31 });
-	explosion_gray.anim.PushBack({ 330, 220, 32, 31 });
-	explosion_gray.anim.PushBack({ 363, 220, 32, 31 });
-	explosion_gray.anim.PushBack({ 396, 220, 32, 31 });
+	explosion_gray.anim.PushBack({ 198, 40, 32, 31 });
+	explosion_gray.anim.PushBack({ 231, 40, 32, 31 });
+	explosion_gray.anim.PushBack({ 264, 40, 32, 31 });
+	explosion_gray.anim.PushBack({ 297, 40, 32, 31 });
+	explosion_gray.anim.PushBack({ 330, 40, 32, 31 });
+	explosion_gray.anim.PushBack({ 363, 40, 32, 31 });
+	explosion_gray.anim.PushBack({ 396, 40, 32, 31 });
 	explosion_gray.anim.speed = 0.3f;
 	explosion_gray.anim.loop = false;
 
-	monster_gray.anim.PushBack({ 462, 226, 20, 19 });
-	monster_gray.anim.PushBack({ 486, 226, 20, 19 });
-	monster_gray.anim.PushBack({ 510, 226, 20, 19 });
-	monster_gray.anim.PushBack({ 534, 226, 20, 19 });
+	monster_gray.anim.PushBack({ 462, 46, 20, 19 });
+	monster_gray.anim.PushBack({ 486, 46, 20, 19 });
+	monster_gray.anim.PushBack({ 510, 46, 20, 19 });
+	monster_gray.anim.PushBack({ 534, 46, 20, 19 });
 	monster_gray.anim.speed = 0.1f;
 	monster_gray.anim.loop = true;
+
+	spheres[1].lost.PushBack({ 71, 224, 16, 16 });
+	spheres[1].lost.PushBack({ 91, 224, 16, 16 });
+	spheres[1].lost.PushBack({ 111, 224, 16, 16 });
+	spheres[1].lost.PushBack({ 71, 224, 16, 16 });
 
 	spheres[1].sphere_color = GRAY;
 
 
 	//////////////////////////////
-	spheres[2].idle.PushBack({ 11, 248, 16, 16 });
+	spheres[2].idle.PushBack({ 11, 68, 16, 16 });
 
 	spheres[2].idle.loop = false;
 	spheres[2].idle.speed = 0.3f;
 
-	spheres[2].anim.PushBack({ 71, 248, 16, 16 });
-	spheres[2].anim.PushBack({ 92, 248, 16, 16 });
-	spheres[2].anim.PushBack({ 112, 248, 16, 16 });
-	spheres[2].anim.PushBack({ 132, 248, 16, 16 });
-	spheres[2].anim.PushBack({ 152, 248, 16, 16 });
-	spheres[2].anim.PushBack({ 172, 248, 16, 16 });
+	spheres[2].anim.PushBack({ 71, 68, 16, 16 });
+	spheres[2].anim.PushBack({ 92, 68, 16, 16 });
+	spheres[2].anim.PushBack({ 112, 68, 16, 16 });
+	spheres[2].anim.PushBack({ 132, 68, 16, 16 });
+	spheres[2].anim.PushBack({ 152, 68, 16, 16 });
+	spheres[2].anim.PushBack({ 172, 68, 16, 16 });
 	spheres[2].anim.loop = false;
 	spheres[2].anim.speed = 0.3f;
 
-	explosion_red.anim.PushBack({ 198, 252, 32, 31 });
-	explosion_red.anim.PushBack({ 231, 252, 32, 31 });
-	explosion_red.anim.PushBack({ 264, 252, 32, 31 });
-	explosion_red.anim.PushBack({ 297, 252, 32, 31 });
-	explosion_red.anim.PushBack({ 330, 252, 32, 31 });
-	explosion_red.anim.PushBack({ 363, 252, 32, 31 });
-	explosion_red.anim.PushBack({ 396, 252, 32, 31 });
+	explosion_red.anim.PushBack({ 198, 72, 32, 31 });
+	explosion_red.anim.PushBack({ 231, 72, 32, 31 });
+	explosion_red.anim.PushBack({ 264, 72, 32, 31 });
+	explosion_red.anim.PushBack({ 297, 72, 32, 31 });
+	explosion_red.anim.PushBack({ 330, 72, 32, 31 });
+	explosion_red.anim.PushBack({ 363, 72, 32, 31 });
+	explosion_red.anim.PushBack({ 396, 72, 32, 31 });
 	explosion_red.anim.speed = 0.3f;
 	explosion_red.anim.loop = false;
 
-	monster_red.anim.PushBack({ 462, 256, 20, 19 });
-	monster_red.anim.PushBack({ 486, 256, 20, 19 });
-	monster_red.anim.PushBack({ 510, 256, 20, 19 });
-	monster_red.anim.PushBack({ 534, 256, 20, 19 });
+	monster_red.anim.PushBack({ 462, 76, 20, 19 });
+	monster_red.anim.PushBack({ 486, 76, 20, 19 });
+	monster_red.anim.PushBack({ 510, 76, 20, 19 });
+	monster_red.anim.PushBack({ 534, 76, 20, 19 });
 	monster_red.anim.speed = 0.1f;
 	monster_red.anim.loop = true;
+
+
+	spheres[2].lost.PushBack({ 11, 250, 16, 16 });
+
 
 	spheres[2].sphere_color = RED;
 
 	////////////////////
-	spheres[3].idle.PushBack({ 11, 274, 16, 16 });
-	spheres[3].idle.PushBack({ 31, 274, 16, 16 });
-	spheres[3].idle.PushBack({ 51, 274, 16, 16 });
-	spheres[3].idle.PushBack({ 11, 274, 16, 16 });
+	spheres[3].idle.PushBack({ 11, 94, 16, 16 });
+	spheres[3].idle.PushBack({ 31, 94, 16, 16 });
+	spheres[3].idle.PushBack({ 51, 94, 16, 16 });
+	spheres[3].idle.PushBack({ 11, 94, 16, 16 });
 
 	spheres[3].idle.loop = false;
 	spheres[3].idle.speed = 0.5f;
 
-	spheres[3].anim.PushBack({ 71, 274, 16, 16 });
-	spheres[3].anim.PushBack({ 92, 274, 16, 16 });
-	spheres[3].anim.PushBack({ 112, 274, 16, 16 });
-	spheres[3].anim.PushBack({ 132, 274, 16, 16 });
-	spheres[3].anim.PushBack({ 152, 274, 16, 16 });
-	spheres[3].anim.PushBack({ 172, 274, 16, 16 });
+	spheres[3].anim.PushBack({ 71, 94, 16, 16 });
+	spheres[3].anim.PushBack({ 92, 94, 16, 16 });
+	spheres[3].anim.PushBack({ 112, 94, 16, 16 });
+	spheres[3].anim.PushBack({ 132, 94, 16, 16 });
+	spheres[3].anim.PushBack({ 152, 94, 16, 16 });
+	spheres[3].anim.PushBack({ 172, 94, 16, 16 });
 	spheres[3].anim.loop = false;
 	spheres[3].anim.speed = 0.3f;
 
-	explosion_yellow.anim.PushBack({ 198, 284, 32, 31 });
-	explosion_yellow.anim.PushBack({ 231, 284, 32, 31 });
-	explosion_yellow.anim.PushBack({ 264, 284, 32, 31 });
-	explosion_yellow.anim.PushBack({ 297, 284, 32, 31 });
-	explosion_yellow.anim.PushBack({ 330, 284, 32, 31 });
-	explosion_yellow.anim.PushBack({ 363, 284, 32, 31 });
-	explosion_yellow.anim.PushBack({ 396, 284, 32, 31 });
+	explosion_yellow.anim.PushBack({ 198, 104, 32, 31 });
+	explosion_yellow.anim.PushBack({ 231, 104, 32, 31 });
+	explosion_yellow.anim.PushBack({ 264, 104, 32, 31 });
+	explosion_yellow.anim.PushBack({ 297, 104, 32, 31 });
+	explosion_yellow.anim.PushBack({ 330, 104, 32, 31 });
+	explosion_yellow.anim.PushBack({ 363, 104, 32, 31 });
+	explosion_yellow.anim.PushBack({ 396, 104, 32, 31 });
 	explosion_yellow.anim.speed = 0.3f;
 	explosion_yellow.anim.loop = false;
 
-	monster_yellow.anim.PushBack({ 462, 286, 20, 19 });
-	monster_yellow.anim.PushBack({ 486, 286, 20, 19 });
-	monster_yellow.anim.PushBack({ 510, 286, 20, 19 });
-	monster_yellow.anim.PushBack({ 534, 286, 20, 19 });
+	monster_yellow.anim.PushBack({ 462, 106, 20, 19 });
+	monster_yellow.anim.PushBack({ 486, 106, 20, 19 });
+	monster_yellow.anim.PushBack({ 510, 106, 20, 19 });
+	monster_yellow.anim.PushBack({ 534, 106, 20, 19 });
 	monster_yellow.anim.speed = 0.1f;
 	monster_yellow.anim.loop = true;
+
+	spheres[3].lost.PushBack({ 71, 250, 16, 16 });
+	spheres[3].lost.PushBack({ 91, 250, 16, 16 });
+	spheres[3].lost.PushBack({ 111, 250, 16, 16 });
+	spheres[3].lost.PushBack({ 71, 250, 16, 16 });
 
 	spheres[3].sphere_color = YELLOW;
 	///////////////////////////////////////////
 
-	spheres[4].idle.PushBack({ 11, 300, 16, 16 });
-	spheres[4].idle.PushBack({ 31, 300, 16, 16 });
-	spheres[4].idle.PushBack({ 51, 300, 16, 16 });
-	spheres[4].idle.PushBack({ 11, 300, 16, 16 });
+	spheres[4].idle.PushBack({ 11, 120, 16, 16 });
+	spheres[4].idle.PushBack({ 31, 120, 16, 16 });
+	spheres[4].idle.PushBack({ 51, 120, 16, 16 });
+	spheres[4].idle.PushBack({ 11, 120, 16, 16 });
 
 	spheres[4].idle.loop = false;
 	spheres[4].idle.speed = 0.3f;
 
-	spheres[4].anim.PushBack({ 71, 300, 16, 16 });
-	spheres[4].anim.PushBack({ 92, 300, 16, 16 });
-	spheres[4].anim.PushBack({ 112, 300, 16, 16 });
-	spheres[4].anim.PushBack({ 132, 300, 16, 16 });
-	spheres[4].anim.PushBack({ 152, 300, 16, 16 });
-	spheres[4].anim.PushBack({ 172, 300, 16, 16 });
+	spheres[4].anim.PushBack({ 71, 120, 16, 16 });
+	spheres[4].anim.PushBack({ 92, 120, 16, 16 });
+	spheres[4].anim.PushBack({ 112, 120, 16, 16 });
+	spheres[4].anim.PushBack({ 132, 120, 16, 16 });
+	spheres[4].anim.PushBack({ 152, 120, 16, 16 });
+	spheres[4].anim.PushBack({ 172, 120, 16, 16 });
 	spheres[4].anim.loop = false;
 	spheres[4].anim.speed = 0.3f;
 
-	explosion_green.anim.PushBack({ 198, 316, 32, 31 });
-	explosion_green.anim.PushBack({ 231, 316, 32, 31 });
-	explosion_green.anim.PushBack({ 264, 316, 32, 31 });
-	explosion_green.anim.PushBack({ 297, 316, 32, 31 });
-	explosion_green.anim.PushBack({ 330, 316, 32, 31 });
-	explosion_green.anim.PushBack({ 363, 316, 32, 31 });
-	explosion_green.anim.PushBack({ 396, 316, 32, 31 });
+	explosion_green.anim.PushBack({ 198, 136, 32, 31 });
+	explosion_green.anim.PushBack({ 231, 136, 32, 31 });
+	explosion_green.anim.PushBack({ 264, 136, 32, 31 });
+	explosion_green.anim.PushBack({ 297, 136, 32, 31 });
+	explosion_green.anim.PushBack({ 330, 136, 32, 31 });
+	explosion_green.anim.PushBack({ 363, 136, 32, 31 });
+	explosion_green.anim.PushBack({ 396, 136, 32, 31 });
 	explosion_green.anim.loop = false;
 	explosion_green.anim.speed = 0.3f;
 
-	monster_green.anim.PushBack({ 462, 317, 20, 19 });
-	monster_green.anim.PushBack({ 486, 317, 20, 19 });
-	monster_green.anim.PushBack({ 510, 317, 20, 19 });
-	monster_green.anim.PushBack({ 534, 317, 20, 19 });
+	monster_green.anim.PushBack({ 462, 137, 20, 19 });
+	monster_green.anim.PushBack({ 486, 137, 20, 19 });
+	monster_green.anim.PushBack({ 510, 137, 20, 19 });
+	monster_green.anim.PushBack({ 534, 137, 20, 19 });
 	monster_green.anim.speed = 0.1f;
 	monster_green.anim.loop = true;
+
+	spheres[4].lost.PushBack({ 11, 224, 16, 16 });
+	spheres[4].lost.PushBack({ 31, 224, 16, 16 });
+	spheres[4].lost.PushBack({ 51, 224, 16, 16 });
+	spheres[4].lost.PushBack({ 11, 224, 16, 16 });
 
 	spheres[4].sphere_color = GREEN;
 
 	/////////////////////////////////
 
-	spheres[5].idle.PushBack({ 11, 326, 16, 16 });
-	spheres[5].idle.PushBack({ 31, 326, 16, 16 });
-	spheres[5].idle.PushBack({ 51, 326, 16, 16 });
-	spheres[5].idle.PushBack({ 11, 326, 16, 16 });
+	spheres[5].idle.PushBack({ 11, 276, 16, 16 });
+	spheres[5].idle.PushBack({ 31, 276, 16, 16 });
+	spheres[5].idle.PushBack({ 51, 276, 16, 16 });
+	spheres[5].idle.PushBack({ 11, 276, 16, 16 });
 
 	spheres[5].idle.loop = false;
 	spheres[5].idle.speed = 0.3f;
 
-	spheres[5].anim.PushBack({ 71, 326, 16, 16 });
-	spheres[5].anim.PushBack({ 92, 326, 16, 16 });
-	spheres[5].anim.PushBack({ 112, 326, 16, 16 });
-	spheres[5].anim.PushBack({ 132, 326, 16, 16 });
-	spheres[5].anim.PushBack({ 152, 326, 16, 16 });
-	spheres[5].anim.PushBack({ 172, 326, 16, 16 });
+	spheres[5].anim.PushBack({ 71, 146, 16, 16 });
+	spheres[5].anim.PushBack({ 92, 146, 16, 16 });
+	spheres[5].anim.PushBack({ 112, 146, 16, 16 });
+	spheres[5].anim.PushBack({ 132, 146, 16, 16 });
+	spheres[5].anim.PushBack({ 152, 146, 16, 16 });
+	spheres[5].anim.PushBack({ 172, 146, 16, 16 });
 	spheres[5].anim.loop = false;
 	spheres[5].anim.speed = 0.3f;
 
-	explosion_black.anim.PushBack({ 198, 348, 32, 31 });
-	explosion_black.anim.PushBack({ 231, 348, 32, 31 });
-	explosion_black.anim.PushBack({ 264, 348, 32, 31 });
-	explosion_black.anim.PushBack({ 297, 348, 32, 31 });
-	explosion_black.anim.PushBack({ 330, 348, 32, 31 });
-	explosion_black.anim.PushBack({ 363, 348, 32, 31 });
-	explosion_black.anim.PushBack({ 396, 348, 32, 31 });
+	explosion_black.anim.PushBack({ 198, 168, 32, 31 });
+	explosion_black.anim.PushBack({ 231, 168, 32, 31 });
+	explosion_black.anim.PushBack({ 264, 168, 32, 31 });
+	explosion_black.anim.PushBack({ 297, 168, 32, 31 });
+	explosion_black.anim.PushBack({ 330, 168, 32, 31 });
+	explosion_black.anim.PushBack({ 363, 168, 32, 31 });
+	explosion_black.anim.PushBack({ 396, 168, 32, 31 });
 	explosion_black.anim.loop = false;
 	explosion_black.anim.speed = 0.3f;
 
-	monster_black.anim.PushBack({ 462, 349, 20, 19 });
-	monster_black.anim.PushBack({ 486, 349, 20, 19 });
-	monster_black.anim.PushBack({ 510, 349, 20, 19 });
-	monster_black.anim.PushBack({ 534, 349, 20, 19 });
+	monster_black.anim.PushBack({ 462, 169, 20, 19 });
+	monster_black.anim.PushBack({ 486, 169, 20, 19 });
+	monster_black.anim.PushBack({ 510, 169, 20, 19 });
+	monster_black.anim.PushBack({ 534, 169, 20, 19 });
 	monster_black.anim.speed = 0.1f;
 	monster_black.anim.loop = true;
+
+	spheres[5].lost.PushBack({ 71, 276, 16, 16 });
+	spheres[5].lost.PushBack({ 91, 276, 16, 16 });
+	spheres[5].lost.PushBack({ 111, 276, 16, 16 });
+	spheres[5].lost.PushBack({ 71, 276, 16, 16 });
 
 	spheres[5].sphere_color = BLACK;
 	/////////////////////
 
-	spheres[6].idle.PushBack({ 11, 352, 16, 16 });
-	spheres[6].idle.PushBack({ 31, 352, 16, 16 });
-	spheres[6].idle.PushBack({ 51, 352, 16, 16 });
-	spheres[6].idle.PushBack({ 11, 352, 16, 16 });
+	spheres[6].idle.PushBack({ 11, 172, 16, 16 });
+	spheres[6].idle.PushBack({ 31, 172, 16, 16 });
+	spheres[6].idle.PushBack({ 51, 172, 16, 16 });
+	spheres[6].idle.PushBack({ 11, 172, 16, 16 });
 
 	spheres[6].idle.loop = false;
 	spheres[6].idle.speed = 0.3f;
 
-	spheres[6].anim.PushBack({ 71, 352, 16, 16 });
-	spheres[6].anim.PushBack({ 92, 352, 16, 16 });
-	spheres[6].anim.PushBack({ 112, 352, 16, 16 });
-	spheres[6].anim.PushBack({ 132, 352, 16, 16 });
-	spheres[6].anim.PushBack({ 152, 352, 16, 16 });
-	spheres[6].anim.PushBack({ 172, 352, 16, 16 });
+	spheres[6].anim.PushBack({ 71, 172, 16, 16 });
+	spheres[6].anim.PushBack({ 92, 172, 16, 16 });
+	spheres[6].anim.PushBack({ 112, 172, 16, 16 });
+	spheres[6].anim.PushBack({ 132, 172, 16, 16 });
+	spheres[6].anim.PushBack({ 152, 172, 16, 16 });
+	spheres[6].anim.PushBack({ 172, 172, 16, 16 });
 	spheres[6].anim.loop = false;
 	spheres[6].anim.speed = 0.3f;
 
-	explosion_orange.anim.PushBack({ 198, 380, 32, 31 });
-	explosion_orange.anim.PushBack({ 231, 380, 32, 31 });
-	explosion_orange.anim.PushBack({ 264, 380, 32, 31 });
-	explosion_orange.anim.PushBack({ 297, 380, 32, 31 });
-	explosion_orange.anim.PushBack({ 330, 380, 32, 31 });
-	explosion_orange.anim.PushBack({ 363, 380, 32, 31 });
-	explosion_orange.anim.PushBack({ 396, 380, 32, 31 });
+	explosion_orange.anim.PushBack({ 198, 200, 32, 31 });
+	explosion_orange.anim.PushBack({ 231, 200, 32, 31 });
+	explosion_orange.anim.PushBack({ 264, 200, 32, 31 });
+	explosion_orange.anim.PushBack({ 297, 200, 32, 31 });
+	explosion_orange.anim.PushBack({ 330, 200, 32, 31 });
+	explosion_orange.anim.PushBack({ 363, 200, 32, 31 });
+	explosion_orange.anim.PushBack({ 396, 200, 32, 31 });
 	explosion_orange.anim.speed = 0.3f;
 	explosion_orange.anim.loop = false;
 
-	monster_orange.anim.PushBack({ 462, 380, 20, 19 });
-	monster_orange.anim.PushBack({ 486, 380, 20, 19 });
-	monster_orange.anim.PushBack({ 510, 380, 20, 19 });
-	monster_orange.anim.PushBack({ 534, 380, 20, 19 });
+	monster_orange.anim.PushBack({ 462, 200, 20, 19 });
+	monster_orange.anim.PushBack({ 486, 200, 20, 19 });
+	monster_orange.anim.PushBack({ 510, 200, 20, 19 });
+	monster_orange.anim.PushBack({ 534, 200, 20, 19 });
 	monster_orange.anim.speed = 0.1f;
 	monster_orange.anim.loop = true;
+
+	spheres[6].lost.PushBack({ 11, 302, 16, 16 });
+	spheres[6].lost.PushBack({ 31, 302, 16, 16 });
+	spheres[6].lost.PushBack({ 51, 302, 16, 16 });
+	spheres[6].lost.PushBack({ 11, 302, 16, 16 });
+
 
 	spheres[6].sphere_color = ORANGE;
 
 	///////////////////////
 
-	spheres[7].idle.PushBack({ 11, 378, 16, 16 });
-	spheres[7].idle.PushBack({ 31, 378, 16, 16 });
-	spheres[7].idle.PushBack({ 51, 378, 16, 16 });
-	spheres[7].idle.PushBack({ 11, 378, 16, 16 });
+	spheres[7].idle.PushBack({ 11, 198, 16, 16 });
+	spheres[7].idle.PushBack({ 31, 198, 16, 16 });
+	spheres[7].idle.PushBack({ 51, 198, 16, 16 });
+	spheres[7].idle.PushBack({ 11, 198, 16, 16 });
 
 	spheres[7].idle.loop = false;
 	spheres[7].idle.speed = 0.3f;
 
-	spheres[7].anim.PushBack({ 71, 378, 16, 16 });
-	spheres[7].anim.PushBack({ 92, 378, 16, 16 });
-	spheres[7].anim.PushBack({ 112, 378, 16, 16 });
-	spheres[7].anim.PushBack({ 132, 378, 16, 16 });
-	spheres[7].anim.PushBack({ 152, 378, 16, 16 });
-	spheres[7].anim.PushBack({ 172, 378, 16, 16 });
+	spheres[7].anim.PushBack({ 71, 198, 16, 16 });
+	spheres[7].anim.PushBack({ 92, 198, 16, 16 });
+	spheres[7].anim.PushBack({ 112, 198, 16, 16 });
+	spheres[7].anim.PushBack({ 132, 198, 16, 16 });
+	spheres[7].anim.PushBack({ 152, 198, 16, 16 });
+	spheres[7].anim.PushBack({ 172, 198, 16, 16 });
 	spheres[7].anim.loop = false;
 	spheres[7].anim.speed = 0.3f;
 
-	explosion_violet.anim.PushBack({ 198, 412, 32, 31 });
-	explosion_violet.anim.PushBack({ 231, 412, 32, 31 });
-	explosion_violet.anim.PushBack({ 264, 412, 32, 31 });
-	explosion_violet.anim.PushBack({ 297, 412, 32, 31 });
-	explosion_violet.anim.PushBack({ 330, 412, 32, 31 });
-	explosion_violet.anim.PushBack({ 363, 412, 32, 31 });
-	explosion_violet.anim.PushBack({ 396, 412, 32, 31 });
+	explosion_violet.anim.PushBack({ 198, 232, 32, 31 });
+	explosion_violet.anim.PushBack({ 231, 232, 32, 31 });
+	explosion_violet.anim.PushBack({ 264, 232, 32, 31 });
+	explosion_violet.anim.PushBack({ 297, 232, 32, 31 });
+	explosion_violet.anim.PushBack({ 330, 232, 32, 31 });
+	explosion_violet.anim.PushBack({ 363, 232, 32, 31 });
+	explosion_violet.anim.PushBack({ 396, 232, 32, 31 });
 	explosion_violet.anim.speed = 0.3f;
 	explosion_violet.anim.loop = false;
 
-	monster_violet.anim.PushBack({ 462, 410, 20, 19 });
-	monster_violet.anim.PushBack({ 486, 410, 20, 19 });
-	monster_violet.anim.PushBack({ 510, 410, 20, 19 });
-	monster_violet.anim.PushBack({ 534, 410, 20, 19 });
+	monster_violet.anim.PushBack({ 462, 230, 20, 19 });
+	monster_violet.anim.PushBack({ 486, 230, 20, 19 });
+	monster_violet.anim.PushBack({ 510, 230, 20, 19 });
+	monster_violet.anim.PushBack({ 534, 230, 20, 19 });
 	monster_violet.anim.speed = 0.1f;
 	monster_violet.anim.loop = true;
+
+	spheres[7].lost.PushBack({ 71, 302, 16, 16 });
+	spheres[7].lost.PushBack({ 91, 302, 16, 16 });
+	spheres[7].lost.PushBack({ 111, 302, 16, 16 });
+	spheres[7].lost.PushBack({ 71, 302, 16, 16 });
 
 	spheres[7].sphere_color = VIOLET;
 
