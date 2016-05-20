@@ -737,7 +737,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 
 						if (allahu_list_left.n_elements >= 3)
 						{
-							Mix_PlayChannel(-1, App->player->explosion, 0);
+							Mix_PlayChannel(-1, App->audio->explosion, 0);
 							check_down_left = true;
 							App->player->b_destroyed_left += allahu_list_left.n_elements - 3;
 							for (i = 0; i < allahu_list_left.n_elements; i++)
@@ -869,7 +869,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 
 					if (allahu_list_right.n_elements >= 3)
 					{
-						Mix_PlayChannel(-1, App->player2->explosion, 0);
+						Mix_PlayChannel(-1, App->audio->explosion, 0);
 						check_down_right = true;
 						App->player2->b_destroyed_right += allahu_list_right.n_elements - 3;
 						for (i = 0; i < allahu_list_right.n_elements; i++)

@@ -162,11 +162,11 @@ ModulePlayer2::~ModulePlayer2()
 // Load assets
 bool ModulePlayer2::Start()
 {
+	b_destroyed_right = 0;
 	LOG("Loading player");
 	mystate = FIRST;
 	graphics = App->textures->Load("Game/SpritesP2.png");
-	shoot = App->audio->Load_effects("Game/BubbleShot.wav");
-	explosion = App->audio->Load_effects("Game/BallsElimination.wav");
+
 	//App->spheres->AddSphere(App->spheres->spheres[Random], 306, 368);
 	lastTime = SDL_GetTicks();
 	booblesGoDown_right = 16;
@@ -282,7 +282,7 @@ update_status ModulePlayer2::Update()
 		{
 			current_animation2 = &bobShot;
 		}
-		Mix_PlayChannel(-1, shoot, 0);
+		Mix_PlayChannel(-1, App->audio->shoot, 0);
 		App->spheres->next_sphere_right = false;
 		lastTime = currentTime;
 		hurry_up.Reset();

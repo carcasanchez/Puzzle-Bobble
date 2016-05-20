@@ -19,7 +19,8 @@ public:
 	Mix_Chunk* effects[MAX_FX];
 	uint last_audio = 0;
 	uint last_effect = 0;
-
+	Mix_Chunk* shoot = nullptr;
+	Mix_Chunk* explosion = nullptr;
 	bool Init();
 	bool CleanUp();
 	Mix_Music* const Load_music(const char* path);
