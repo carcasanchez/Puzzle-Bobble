@@ -49,6 +49,7 @@ public:
 	Mix_Chunk* shoot = nullptr;
 	Mix_Chunk* explosion = nullptr;
 	int b_destroyed_right = 0;
+	bool bobblesFromExtra = false;
 	SDL_Rect bag_complete;
 	SDL_Rect bag_incomplete;
 	SDL_Rect top_base;
