@@ -411,6 +411,14 @@ bool ModuleSphere::CleanUp()
 		}
 	}
 
+	for (uint i = 0; i < MAX_UNACTIVE_SPHERES; i++)
+	{
+		delete unactive_left[i];
+		unactive_left[i] = nullptr;
+		delete unactive_right[i];
+		unactive_right[i] = nullptr;
+	}
+
 	//RIGHT
 	for (uint i = 0; i < MAX_ACTIVE_SPHERES; ++i)
 	{
@@ -418,6 +426,7 @@ bool ModuleSphere::CleanUp()
 		{
 			delete active_right[i];
 			active_right[i] = nullptr;
+			
 		}
 	}
 	return true;
@@ -744,7 +753,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 							{
 								allahu_list_left[i]->doomed = true;
 								App->board->board_left[allahu_list_left[i]->board_index]->Empty = true;
-								//TODO bobbles that are destroyed -> no delete.
+								unactive_left[unactive_counter_left++] = allahu_list_left[i];
 							}
 
 						}
@@ -767,6 +776,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 								active_left[i] = nullptr;
 							}
 						}
+						
 						allahu_list_left.clear();
 
 						if (check_down_left == true){
@@ -875,8 +885,8 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 						for (i = 0; i < allahu_list_right.n_elements; i++)
 						{
 							allahu_list_right[i]->doomed = true;
-
 							App->board->board_right[allahu_list_right[i]->board_index]->Empty = true;
+							unactive_right[unactive_counter_right++] = allahu_list_right[i];
 						}
 
 					}

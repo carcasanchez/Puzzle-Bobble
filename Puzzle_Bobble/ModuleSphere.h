@@ -9,6 +9,7 @@
 #include "Vector.h"
 
 #define MAX_ACTIVE_SPHERES 1000
+#define MAX_UNACTIVE_SPHERES 5000
 #define NUMBER_OF_SPHERES 8
 
 struct SDL_Texture;
@@ -109,7 +110,11 @@ public:
 	SDL_Texture* graphics = nullptr;
 	Sphere* active_right[MAX_ACTIVE_SPHERES];
 	Sphere* active_left[MAX_ACTIVE_SPHERES];
-	
+	Sphere* unactive_left[MAX_UNACTIVE_SPHERES];
+	Sphere* unactive_right[MAX_UNACTIVE_SPHERES];
+	int unactive_counter_left = 0;
+	int unactive_counter_right = 0;
+
 	unsigned int lastTime_left, currentTime_left;
 	unsigned int lastTime_right, currentTime_right;
 
