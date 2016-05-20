@@ -86,7 +86,7 @@ bool ModuleSphere::Start()
 	explosion_blue.anim.PushBack({ 363, 8, 32, 31 });
 	explosion_blue.anim.PushBack({ 396, 8, 32, 31 });
 	explosion_blue.anim.loop = false;
-	explosion_blue.anim.speed = 0.3f;
+	explosion_blue.anim.speed = 0.2f;
 
 	spheres[0].lost.PushBack({ 11, 224, 16, 16 });
 	spheres[0].lost.PushBack({ 31, 224, 16, 16 });
@@ -121,7 +121,7 @@ bool ModuleSphere::Start()
 	explosion_gray.anim.PushBack({ 330, 40, 32, 31 });
 	explosion_gray.anim.PushBack({ 363, 40, 32, 31 });
 	explosion_gray.anim.PushBack({ 396, 40, 32, 31 });
-	explosion_gray.anim.speed = 0.3f;
+	explosion_gray.anim.speed = 0.2f;
 	explosion_gray.anim.loop = false;
 
 	monster_gray.anim.PushBack({ 462, 46, 20, 19 });
@@ -161,7 +161,7 @@ bool ModuleSphere::Start()
 	explosion_red.anim.PushBack({ 330, 72, 32, 31 });
 	explosion_red.anim.PushBack({ 363, 72, 32, 31 });
 	explosion_red.anim.PushBack({ 396, 72, 32, 31 });
-	explosion_red.anim.speed = 0.3f;
+	explosion_red.anim.speed = 0.2f;
 	explosion_red.anim.loop = false;
 
 	monster_red.anim.PushBack({ 462, 76, 20, 19 });
@@ -202,7 +202,7 @@ bool ModuleSphere::Start()
 	explosion_yellow.anim.PushBack({ 330, 104, 32, 31 });
 	explosion_yellow.anim.PushBack({ 363, 104, 32, 31 });
 	explosion_yellow.anim.PushBack({ 396, 104, 32, 31 });
-	explosion_yellow.anim.speed = 0.3f;
+	explosion_yellow.anim.speed = 0.2f;
 	explosion_yellow.anim.loop = false;
 
 	monster_yellow.anim.PushBack({ 462, 106, 20, 19 });
@@ -245,7 +245,7 @@ bool ModuleSphere::Start()
 	explosion_green.anim.PushBack({ 363, 136, 32, 31 });
 	explosion_green.anim.PushBack({ 396, 136, 32, 31 });
 	explosion_green.anim.loop = false;
-	explosion_green.anim.speed = 0.3f;
+	explosion_green.anim.speed = 0.2f;
 
 	monster_green.anim.PushBack({ 462, 137, 20, 19 });
 	monster_green.anim.PushBack({ 486, 137, 20, 19 });
@@ -263,10 +263,10 @@ bool ModuleSphere::Start()
 
 	/////////////////////////////////
 
-	spheres[5].idle.PushBack({ 11, 276, 16, 16 });
-	spheres[5].idle.PushBack({ 31, 276, 16, 16 });
-	spheres[5].idle.PushBack({ 51, 276, 16, 16 });
-	spheres[5].idle.PushBack({ 11, 276, 16, 16 });
+	spheres[5].idle.PushBack({ 11, 146, 16, 16 });
+	spheres[5].idle.PushBack({ 31, 146, 16, 16 });
+	spheres[5].idle.PushBack({ 51, 146, 16, 16 });
+	spheres[5].idle.PushBack({ 11, 146, 16, 16 });
 
 	spheres[5].idle.loop = false;
 	spheres[5].idle.speed = 0.3f;
@@ -288,7 +288,7 @@ bool ModuleSphere::Start()
 	explosion_black.anim.PushBack({ 363, 168, 32, 31 });
 	explosion_black.anim.PushBack({ 396, 168, 32, 31 });
 	explosion_black.anim.loop = false;
-	explosion_black.anim.speed = 0.3f;
+	explosion_black.anim.speed = 0.2f;
 
 	monster_black.anim.PushBack({ 462, 169, 20, 19 });
 	monster_black.anim.PushBack({ 486, 169, 20, 19 });
@@ -329,7 +329,7 @@ bool ModuleSphere::Start()
 	explosion_orange.anim.PushBack({ 330, 200, 32, 31 });
 	explosion_orange.anim.PushBack({ 363, 200, 32, 31 });
 	explosion_orange.anim.PushBack({ 396, 200, 32, 31 });
-	explosion_orange.anim.speed = 0.3f;
+	explosion_orange.anim.speed = 0.2f;
 	explosion_orange.anim.loop = false;
 
 	monster_orange.anim.PushBack({ 462, 200, 20, 19 });
@@ -373,7 +373,7 @@ bool ModuleSphere::Start()
 	explosion_violet.anim.PushBack({ 330, 232, 32, 31 });
 	explosion_violet.anim.PushBack({ 363, 232, 32, 31 });
 	explosion_violet.anim.PushBack({ 396, 232, 32, 31 });
-	explosion_violet.anim.speed = 0.3f;
+	explosion_violet.anim.speed = 0.2f;
 	explosion_violet.anim.loop = false;
 
 	monster_violet.anim.PushBack({ 462, 230, 20, 19 });
