@@ -31,7 +31,7 @@ ModulePlayer::ModulePlayer()
 
 	//initial position arrow
 
-	arrow_src = { 15, 514, 22, 55 };
+	arrow_src = { 15, 320, 22, 55 };
 	p_arrow_src = &arrow_src;
 	arrow_dst = { position.x - 104.845f*SCREEN_SIZE, position.y - 40.15f*SCREEN_SIZE, 22 * 2, 55 * 2 };
 	p_arrow_dst = &arrow_dst;
@@ -72,8 +72,8 @@ ModulePlayer::ModulePlayer()
 	idle_right.speed = 0.1f;
 
 	//Bags
-	bag_complete = { 358, 833, 56, 24 };
-	bag_incomplete = { 424, 834, 40, 23 };
+	bag_complete = { 358, 233, 56, 24 };
+	bag_incomplete = { 424, 234, 40, 23 };
 
 	//Bob Shot
 	bobShot.PushBack({ 200, 42, 26, 28 });
@@ -88,63 +88,63 @@ ModulePlayer::ModulePlayer()
 	hurry_up_dragon.speed = 0.15f;
 
 	//Base Mecanism Left
-	base_left.PushBack({ 87, 813, 56, 24 });
-	base_left.PushBack({ 153, 813, 56, 24 });
-	base_left.PushBack({ 219, 813, 56, 24 });
-	base_left.PushBack({ 285, 813, 56, 24 });
-	base_left.PushBack({ 87, 843, 56, 24 });
-	base_left.PushBack({ 153, 843, 56, 24 });
-	base_left.PushBack({ 219, 843, 56, 24 });
-	base_left.PushBack({ 285, 843, 56, 24 });
-	base_left.PushBack({ 87, 874, 56, 24 });
-	base_left.PushBack({ 153, 874, 56, 24 });
-	base_left.PushBack({ 219, 874, 56, 24 });
-	base_left.PushBack({ 285, 874, 56, 24 });
+	base_left.PushBack({ 87, 213, 56, 24 });
+	base_left.PushBack({ 153, 213, 56, 24 });
+	base_left.PushBack({ 219, 213, 56, 24 });
+	base_left.PushBack({ 285, 213, 56, 24 });
+	base_left.PushBack({ 87, 243, 56, 24 });
+	base_left.PushBack({ 153, 243, 56, 24 });
+	base_left.PushBack({ 219, 243, 56, 24 });
+	base_left.PushBack({ 285, 243, 56, 24 });
+	base_left.PushBack({ 87, 274, 56, 24 });
+	base_left.PushBack({ 153, 274, 56, 24 });
+	base_left.PushBack({ 219, 274, 56, 24 });
+	base_left.PushBack({ 285, 274, 56, 24 });
 	base_left.speed = 0.0f;
 
 	//Lever
-	lever.PushBack({ 280, 789, 16, 16 });
-	lever.PushBack({ 300, 789, 16, 16 });
-	lever.PushBack({ 320, 789, 16, 16 });
-	lever.PushBack({ 340, 789, 16, 16 });
-	lever.PushBack({ 360, 789, 16, 16 });
-	lever.PushBack({ 380, 789, 16, 16 });
-	lever.PushBack({ 400, 789, 16, 16 });
-	lever.PushBack({ 420, 789, 16, 16 });
+	lever.PushBack({ 280, 189, 16, 16 });
+	lever.PushBack({ 300, 189, 16, 16 });
+	lever.PushBack({ 320, 189, 16, 16 });
+	lever.PushBack({ 340, 189, 16, 16 });
+	lever.PushBack({ 360, 189, 16, 16 });
+	lever.PushBack({ 380, 189, 16, 16 });
+	lever.PushBack({ 400, 189, 16, 16 });
+	lever.PushBack({ 420, 189, 16, 16 });
 	lever.speed = 0.0f;
 
 	//Top base
-	top_base = { 27, 820, 34, 16 };
+	top_base = { 27, 220, 34, 16 };
 
 	//Blow tube
-	blow = { 37, 869, 13, 11 };
+	blow = { 37, 269, 13, 11 };
 
 	//hurry up
-	hurry_up.PushBack({ 212, 1439, 32, 28 });
-	hurry_up.PushBack({ 248, 1439, 32, 28 });
-	hurry_up.PushBack({ 212, 1439, 32, 28 });
-	hurry_up.PushBack({ 284, 1439, 32, 28 });
-	hurry_up.PushBack({ 212, 1439, 32, 28 });
-	hurry_up.PushBack({ 320, 1439, 32, 28 });
-	hurry_up.PushBack({ 212, 1439, 32, 28 });
-	hurry_up.PushBack({ 356, 1439, 32, 28 });
-	hurry_up.PushBack({ 212, 1439, 32, 28 });
-	hurry_up.PushBack({ 392, 1439, 32, 28 });
-	hurry_up.PushBack({ 212, 1439, 32, 28 });
-	hurry_up.PushBack({ 428, 1439, 32, 28 });
+	hurry_up.PushBack({ 212, 339, 32, 28 });
+	hurry_up.PushBack({ 248, 339, 32, 28 });
+	hurry_up.PushBack({ 212, 339, 32, 28 });
+	hurry_up.PushBack({ 284, 339, 32, 28 });
+	hurry_up.PushBack({ 212, 339, 32, 28 });
+	hurry_up.PushBack({ 320, 339, 32, 28 });
+	hurry_up.PushBack({ 212, 339, 32, 28 });
+	hurry_up.PushBack({ 356, 339, 32, 28 });
+	hurry_up.PushBack({ 212, 339, 32, 28 });
+	hurry_up.PushBack({ 392, 339, 32, 28 });
+	hurry_up.PushBack({ 212, 339, 32, 28 });
+	hurry_up.PushBack({ 428, 339, 32, 28 });
 
 	hurry_up.loop = false;
 	hurry_up.speed = 0.04f;
 
 	//prev_bobbles array
-	prev_bobble[0] = { 71, 196, 16, 16 };
-	prev_bobble[1] = { 11, 222, 16, 16 };
-	prev_bobble[2] = { 71, 248, 16, 16 };
-	prev_bobble[3] = { 11, 274, 16, 16 };
-	prev_bobble[4] = { 11, 300, 16, 16 };
-	prev_bobble[5] = { 11, 326, 16, 16 };
-	prev_bobble[6] = { 11, 352, 16, 16 };
-	prev_bobble[7] = { 11, 378, 16, 16 };
+	prev_bobble[0] = { 52, 286, 16, 16 };
+	prev_bobble[1] = { 52, 312, 16, 16 };
+	prev_bobble[2] = { 52, 338, 16, 16 };
+	prev_bobble[3] = { 52, 364, 16, 16 };
+	prev_bobble[4] = { 52, 390, 16, 16 };
+	prev_bobble[5] = { 52, 416, 16, 16 };
+	prev_bobble[6] = { 52, 442, 16, 16 };
+	prev_bobble[7] = { 52, 468, 16, 16 };
 
 	mystate = PREUPDATE;
 
@@ -162,7 +162,7 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player");
 	mystate = FIRST;
-	graphics = App->textures->Load("Game/Sprites.png");
+	graphics = App->textures->Load("Game/SpritesP1.png");
 	shoot = App->audio->Load_effects("Game/BubbleShot.wav");
 	explosion = App->audio->Load_effects("Game/BallsElimination.wav");
 	//App->spheres->AddSphere(App->spheres->spheres[Random], 306, 368);
