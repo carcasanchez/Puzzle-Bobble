@@ -5,6 +5,7 @@
 #include "Globals.h"
 #include "ModuleAudio.h"
 
+
 struct SDL_Texture;
 
 class ModuleLevel_1 : public Module
@@ -18,6 +19,7 @@ public:
 	bool CleanUp();
 
 public:
+	unsigned int currentTime;
 	SDL_Texture* graphics = nullptr;
 	Mix_Music* level_music = nullptr;
 	SDL_Rect level1;

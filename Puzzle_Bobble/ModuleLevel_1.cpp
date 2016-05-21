@@ -17,7 +17,6 @@
 ModuleLevel_1::ModuleLevel_1()
 {
 	level1 = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
-
 }
 
 ModuleLevel_1::~ModuleLevel_1()
@@ -87,17 +86,22 @@ update_status ModuleLevel_1::Update()
 	}
 	else if (App->board->CheckWinR())
 	{
+
 		App->fade->FadeToBlack(App->level_1, App->congratulations, 1);
 	}
+
 	if (App->player->LoseCondition == true)
 	{
+		App->player->Update();
 		App->player->LoseCondition = false;
-		App->fade->FadeToBlack(App->level_1, App->game_over, 1);
+
+		App->fade->FadeToBlack(App->level_1, App->menu_screen, 1);
 	}
 	else if (App->player2->LoseCondition == true)
 	{
+		App->player2->Update();
 		App->player2->LoseCondition = false;
-		App->fade->FadeToBlack(App->level_1, App->game_over, 1);
+		App->fade->FadeToBlack(App->level_1, App->menu_screen, 1);
 	}
 	return UPDATE_CONTINUE;
 }

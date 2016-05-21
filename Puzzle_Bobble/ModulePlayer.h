@@ -53,6 +53,9 @@ public:
 	SDL_Rect top_base;
 	SDL_Rect blow;
 	SDL_Rect prev_bobble[8];
+	SDL_Rect  win;
+	SDL_Rect  lose;
+	
 	float orientationx, orientationy;
 	int Random;
 	bool LoseCondition = false;

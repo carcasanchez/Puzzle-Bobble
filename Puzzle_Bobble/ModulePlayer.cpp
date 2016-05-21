@@ -146,6 +146,11 @@ ModulePlayer::ModulePlayer()
 	prev_bobble[6] = { 52, 442, 16, 16 };
 	prev_bobble[7] = { 52, 468, 16, 16 };
 
+	//Win / lose
+	win = { 81, 320, 110, 33 };
+	lose = { 84, 358, 125, 32 };
+
+	
 	mystate = PREUPDATE;
 
 
@@ -350,6 +355,7 @@ update_status ModulePlayer::Update()
 
 
 	// Draw everything --------------------------------------
+
 	App->render->Blit(graphics, position.x - 172*SCREEN_SIZE, position.y - 7*SCREEN_SIZE, &bag_complete);
 	App->render->Blit(graphics, position.x - 172 * SCREEN_SIZE, position.y - 7 * SCREEN_SIZE, &bag_incomplete);
 	App->render->Blit(graphics, position.x - 111 * SCREEN_SIZE, position.y - 23 * SCREEN_SIZE, &top_base);
@@ -370,6 +376,14 @@ update_status ModulePlayer::Update()
 	App->render->Blit(graphics, position.x - 122 * SCREEN_SIZE, position.y - 10 * SCREEN_SIZE, &(current_animation2->GetCurrentFrame()));
 	//	App->render->Blit(graphics, position.x - 50, position.y - 80, &(current_animation_arrow->GetCurrentFrame()));
 	App->render->Blit(graphics, position.x - 135 * SCREEN_SIZE, position.y + 1 * SCREEN_SIZE, &prev_bobble[Random]);
+
+
+	if (App->player->LoseCondition == true)
+	{
+		App->render->Blit(graphics, position.x + 10 * SCREEN_SIZE, position.y - 120 * SCREEN_SIZE, &win);
+		App->render->Blit(graphics, position.x - 157 * SCREEN_SIZE, position.y - 120 * SCREEN_SIZE, &lose);
+	}
+	
 
 	return update_status::UPDATE_CONTINUE;
 }
