@@ -6,6 +6,7 @@
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
 #include "ModuleAudio.h"
+#include "ModuleBoard.h"
 #include "ModuleCollision.h"
 #include "SDL\include\SDL_render.h"
 #include "SDL\include\SDL_timer.h"
@@ -377,15 +378,34 @@ update_status ModulePlayer::Update()
 	//	App->render->Blit(graphics, position.x - 50, position.y - 80, &(current_animation_arrow->GetCurrentFrame()));
 	App->render->Blit(graphics, position.x - 135 * SCREEN_SIZE, position.y + 1 * SCREEN_SIZE, &prev_bobble[Random]);
 
-
-	if (App->player->LoseCondition == true)
-	{
-		App->render->Blit(graphics, position.x + 10 * SCREEN_SIZE, position.y - 120 * SCREEN_SIZE, &win);
-		App->render->Blit(graphics, position.x - 157 * SCREEN_SIZE, position.y - 120 * SCREEN_SIZE, &lose);
-	}
+	
 	
 
 	return update_status::UPDATE_CONTINUE;
+}
+
+void ModulePlayer::BlitWinLose()
+{
+	bool done = false;
+	if (App->player->LoseCondition == true)
+	{
+		currentTime = SDL_GetTicks();
+
+		if (SDL_GetTicks() - currentTime < 3000)
+		{
+			App->render->Blit(graphics, position.x + 10 * SCREEN_SIZE, position.y - 120 * SCREEN_SIZE, &win);
+			App->render->Blit(graphics, position.x - 157 * SCREEN_SIZE, position.y - 120 * SCREEN_SIZE, &lose);
+		}
+	}
+
+	if (App->board->CheckWinL() && done == false)
+	{
+		App->render->Blit(graphics, position.x - 310 * SCREEN_SIZE, position.y - 120 * SCREEN_SIZE, &win);
+		App->render->Blit(graphics, position.x - 157.5 * SCREEN_SIZE, position.y - 120 * SCREEN_SIZE, &lose);
+		done = true;
+	}
+
+	
 }
 
 update_status ModulePlayer::PostUpdate(){

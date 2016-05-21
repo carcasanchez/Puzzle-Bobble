@@ -21,6 +21,7 @@ public:
 	update_status PreUpdate();
 	bool CheckLose();
 	bool CleanUp();
+	void BlitWinLose();
 
 public:
 

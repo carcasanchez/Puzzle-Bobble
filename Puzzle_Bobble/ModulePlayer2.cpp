@@ -6,6 +6,7 @@
 #include "ModuleRender.h"
 #include "ModulePlayer2.h"
 #include "ModuleAudio.h"
+#include "ModuleBoard.h"
 #include "ModuleCollision.h"
 #include "SDL\include\SDL_render.h"
 #include "SDL\include\SDL_timer.h"
@@ -368,14 +369,26 @@ update_status ModulePlayer2::Update()
 	App->render->Blit(graphics, position.x - 90 * SCREEN_SIZE, position.y - 10 * SCREEN_SIZE, &(current_animation2->GetCurrentFrame()));
 	//	App->render->Blit(graphics, position.x - 50, position.y - 80, &(current_animation_arrow->GetCurrentFrame()));
 	App->render->Blit(graphics, position.x - 70 * SCREEN_SIZE, position.y + 1 * SCREEN_SIZE, &prev_bobble[Random]);
-	
-	if (App->player2->LoseCondition == true)
+
+	return update_status::UPDATE_CONTINUE;
+}
+
+void ModulePlayer2::BlitWinLose()
+{
+	bool done = false;
+	if (App->player2->LoseCondition == true )
 	{
 		App->render->Blit(graphics, position.x - 310 * SCREEN_SIZE, position.y - 120 * SCREEN_SIZE, &win);
 		App->render->Blit(graphics, position.x - 157.5 * SCREEN_SIZE, position.y - 120 * SCREEN_SIZE, &lose);
+		done = true;
 	}
 
-	return update_status::UPDATE_CONTINUE;
+	if (App->board->CheckWinR() && done == false)
+	{
+		App->render->Blit(graphics, position.x + 10 * SCREEN_SIZE, position.y - 120 * SCREEN_SIZE, &win);
+		App->render->Blit(graphics, position.x - 157 * SCREEN_SIZE, position.y - 120 * SCREEN_SIZE, &lose);
+		done = true;
+	}
 }
 
 update_status ModulePlayer2::PostUpdate(){

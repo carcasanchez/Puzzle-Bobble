@@ -27,6 +27,7 @@ bool ModuleStartScreen::Start()
 		LOG("Mix_PlayMusic: %s\n", Mix_GetError());
 
 	}
+	App->board->Disable();
 	App->board->Enable();
 	return true;
 	

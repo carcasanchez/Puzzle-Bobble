@@ -82,24 +82,25 @@ update_status ModuleLevel_1::Update()
 
 	if (App->board->CheckWinL())
 	{
-		App->fade->FadeToBlack(App->level_1, App->congratulations, 1);
+		App->player->BlitWinLose();
+		App->fade->FadeToBlack(App->level_1, App->menu_screen, 1);
 	}
 	else if (App->board->CheckWinR())
 	{
-
-		App->fade->FadeToBlack(App->level_1, App->congratulations, 1);
+		App->player2->BlitWinLose();
+		App->fade->FadeToBlack(App->level_1, App->menu_screen, 1);
 	}
 
 	if (App->player->LoseCondition == true)
 	{
-		App->player->Update();
+		App->player->BlitWinLose();
 		App->player->LoseCondition = false;
 
 		App->fade->FadeToBlack(App->level_1, App->menu_screen, 1);
 	}
 	else if (App->player2->LoseCondition == true)
 	{
-		App->player2->Update();
+		App->player2->BlitWinLose();
 		App->player2->LoseCondition = false;
 		App->fade->FadeToBlack(App->level_1, App->menu_screen, 1);
 	}
