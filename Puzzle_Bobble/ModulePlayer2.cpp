@@ -334,7 +334,7 @@ update_status ModulePlayer2::Update()
 		App->spheres->active_right[App->spheres->last_sphere_right - 1]->ChangeColor(VIOLET);
 	}
 
-	if (App->input->keyboard[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_DOWN)
+	if (App->input->keyboard[SDL_SCANCODE_P] == KEY_STATE::KEY_DOWN)
 	{
 		for (int i = 0; i < App->spheres->last_sphere_right - 1; i++)
 		{
