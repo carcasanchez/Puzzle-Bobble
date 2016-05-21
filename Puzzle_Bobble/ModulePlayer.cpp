@@ -5,6 +5,7 @@
 #include "ModuleSphere.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
+#include "ModulePlayer2.h"
 #include "ModuleAudio.h"
 #include "ModuleBoard.h"
 #include "ModuleCollision.h"
@@ -273,7 +274,7 @@ update_status ModulePlayer::Update()
 	currentTime = SDL_GetTicks();
 
 	
-	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_DOWN && App->spheres->next_sphere_left == true || currentTime - lastTime > 8000)
+	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_DOWN && App->spheres->next_sphere_left == true || currentTime - lastTime > 8000 )
 	{
 
 		App->spheres->active_left[App->spheres->last_sphere_left - 1]->speed.x = (sin(angle*PI / 180)) * SPEED;

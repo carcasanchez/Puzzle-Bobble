@@ -83,27 +83,40 @@ update_status ModuleLevel_1::Update()
 	if (App->board->CheckWinL())
 	{
 		App->player->BlitWinLose();
-		App->fade->FadeToBlack(App->level_1, App->menu_screen, 1);
+		if(time==0)	time = SDL_GetTicks();
 	}
 	else if (App->board->CheckWinR())
 	{
 		App->player2->BlitWinLose();
-		App->fade->FadeToBlack(App->level_1, App->menu_screen, 1);
+		if (time == 0)time = SDL_GetTicks();
 	}
 
 	if (App->player->LoseCondition == true)
 	{
 		App->player->BlitWinLose();
 		App->player->LoseCondition = false;
+		if (time == 0)time = SDL_GetTicks();
 
-		App->fade->FadeToBlack(App->level_1, App->menu_screen, 1);
 	}
 	else if (App->player2->LoseCondition == true)
 	{
 		App->player2->BlitWinLose();
 		App->player2->LoseCondition = false;
-		App->fade->FadeToBlack(App->level_1, App->menu_screen, 1);
+		if (time == 0)time = SDL_GetTicks();
 	}
+
+	if (time != 0)
+	{
+
+		if (SDL_GetTicks() - time >= 2000)
+		{ 
+			time = 0;
+			App->fade->FadeToBlack(App->level_1, App->menu_screen, 1);
+		}
+
+	}
+
+
 	return UPDATE_CONTINUE;
 }
 
