@@ -370,6 +370,8 @@ update_status ModulePlayer2::Update()
 	//	App->render->Blit(graphics, position.x - 50, position.y - 80, &(current_animation_arrow->GetCurrentFrame()));
 	App->render->Blit(graphics, position.x - 70 * SCREEN_SIZE, position.y + 1 * SCREEN_SIZE, &prev_bobble[Random]);
 
+
+
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -379,14 +381,14 @@ void ModulePlayer2::BlitWinLose()
 	if (App->player2->LoseCondition == true )
 	{
 		App->render->Blit(graphics, position.x - 310 * SCREEN_SIZE, position.y - 120 * SCREEN_SIZE, &win);
-		App->render->Blit(graphics, position.x - 157.5 * SCREEN_SIZE, position.y - 120 * SCREEN_SIZE, &lose);
+		App->render->Blit(graphics, position.x - 100 * SCREEN_SIZE, position.y - 120 * SCREEN_SIZE, &lose);
 		done = true;
 	}
 
 	if (App->board->CheckWinR() && done == false)
 	{
-		App->render->Blit(graphics, position.x + 10 * SCREEN_SIZE, position.y - 120 * SCREEN_SIZE, &win);
-		App->render->Blit(graphics, position.x - 157 * SCREEN_SIZE, position.y - 120 * SCREEN_SIZE, &lose);
+		App->render->Blit(graphics, position.x - 150 * SCREEN_SIZE, position.y - 120 * SCREEN_SIZE, &win);
+		App->render->Blit(graphics, position.x - 317 * SCREEN_SIZE, position.y - 120 * SCREEN_SIZE, &lose);
 		done = true;
 	}
 }

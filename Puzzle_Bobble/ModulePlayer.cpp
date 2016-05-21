@@ -401,8 +401,8 @@ void ModulePlayer::BlitWinLose()
 
 	if (App->board->CheckWinL() && done == false)
 	{
-		App->render->Blit(graphics, position.x - 310 * SCREEN_SIZE, position.y - 120 * SCREEN_SIZE, &win);
-		App->render->Blit(graphics, position.x - 157.5 * SCREEN_SIZE, position.y - 120 * SCREEN_SIZE, &lose);
+		App->render->Blit(graphics, position.x - 150 * SCREEN_SIZE, position.y - 120 * SCREEN_SIZE, &win);
+		App->render->Blit(graphics, position.x + 2 * SCREEN_SIZE, position.y - 120 * SCREEN_SIZE, &lose);
 		done = true;
 	}
 
