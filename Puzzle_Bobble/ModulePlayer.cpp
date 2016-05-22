@@ -167,6 +167,7 @@ ModulePlayer::~ModulePlayer()
 // Load assets
 bool ModulePlayer::Start()
 {
+	LoseCondition = false;
 	b_destroyed_left = 0;
 	LOG("Loading player");
 	mystate = FIRST;
@@ -385,7 +386,7 @@ update_status ModulePlayer::Update()
 	return update_status::UPDATE_CONTINUE;
 }
 
-void ModulePlayer::BlitWinLose()
+/*void ModulePlayer::BlitWinLose()
 {
 	bool done = false;
 	if (App->player->LoseCondition == true)
@@ -405,9 +406,7 @@ void ModulePlayer::BlitWinLose()
 		App->render->Blit(graphics, position.x + 2 * SCREEN_SIZE, position.y - 120 * SCREEN_SIZE, &lose);
 		done = true;
 	}
-
-	
-}
+}*/
 
 update_status ModulePlayer::PostUpdate(){
 	srand(time(NULL));

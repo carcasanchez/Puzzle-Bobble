@@ -13,6 +13,7 @@
 #include "ModuleStartScreen.h"
 #include "ModuleBoard.h"
 #include "ModuleGameOver.h"
+#include "UserInterface.h"
 
 ModuleLevel_1::ModuleLevel_1()
 {
@@ -68,6 +69,7 @@ bool ModuleLevel_1::Start()
 	
 	App->player->Enable();
 	App->player2->Enable();
+	App-> UI->Enable();
 	App->board->CreateMap1_Left(map1_left);
 	App->board->CreateMap1_Right(map1_right);
 	if (Mix_PlayMusic(level_music, -1) == -1) {
@@ -80,7 +82,7 @@ update_status ModuleLevel_1::Update()
 {
 	App->render->Blit(graphics, 0, 0, &level1);
 
-	if (App->board->CheckWinL())
+/*	if (App->board->CheckWinL())
 	{
 		App->player->BlitWinLose();
 		if(time==0)	time = SDL_GetTicks();
@@ -114,7 +116,7 @@ update_status ModuleLevel_1::Update()
 			App->fade->FadeToBlack(App->level_1, App->menu_screen, 1);
 		}
 
-	}
+	}*/
 
 
 	return UPDATE_CONTINUE;

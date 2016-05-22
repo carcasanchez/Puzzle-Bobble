@@ -80,6 +80,9 @@
     <ClInclude Include="ModulePlayer2.h">
       <Filter>Modules</Filter>
     </ClInclude>
+    <ClInclude Include="UserInterface.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -134,6 +137,9 @@
       <Filter>Levels</Filter>
     </ClCompile>
     <ClCompile Include="ModulePlayer2.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterface.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>

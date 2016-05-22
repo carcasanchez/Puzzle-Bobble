@@ -160,12 +160,12 @@ ModulePlayer2::ModulePlayer2()
 ModulePlayer2::~ModulePlayer2()
 {
 	App->textures->Unload(graphics);
-
 }
 
 // Load assets
 bool ModulePlayer2::Start()
 {
+	LoseCondition = false;
 	b_destroyed_right = 0;
 	LOG("Loading player");
 	mystate = FIRST;
@@ -267,8 +267,6 @@ update_status ModulePlayer2::Update()
 
 		if (angle<70.0)
 			angle += 2.0;
-
-		//////
 	}
 
 	
@@ -375,7 +373,7 @@ update_status ModulePlayer2::Update()
 	return update_status::UPDATE_CONTINUE;
 }
 
-void ModulePlayer2::BlitWinLose()
+/*void ModulePlayer2::BlitWinLose()
 {
 	bool done = false;
 	if (App->player2->LoseCondition == true )
@@ -391,7 +389,7 @@ void ModulePlayer2::BlitWinLose()
 		App->render->Blit(graphics, position.x - 317 * SCREEN_SIZE, position.y - 120 * SCREEN_SIZE, &lose);
 		done = true;
 	}
-}
+}*/
 
 update_status ModulePlayer2::PostUpdate(){
 	srand(time(NULL));

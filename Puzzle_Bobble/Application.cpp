@@ -14,6 +14,7 @@
 #include "ModuleSphere.h"
 #include "ModuleBoard.h"
 #include "ModuleGameOver.h"
+#include "UserInterface.h"
 
 Application::Application()
 {
@@ -32,7 +33,9 @@ Application::Application()
 	modules[i++] = spheres = new ModuleSphere();
 	modules[i++] = collision = new ModuleCollision();
 	modules[i++] = board = new ModuleBoard();
+	modules[i++] = UI = new ModuleUserInterface();
 	modules[i++] = fade = new ModuleFadeToBlack();
+
 }	
 
 Application::~Application()
@@ -50,6 +53,7 @@ bool Application::Init()
 	App->player->Disable();
 	App->player2->Disable();
 	App->game_over->Disable();
+	App->UI->Disable();
 
 
 	for(int i = 0; i < NUM_MODULES && ret == true; ++i)
