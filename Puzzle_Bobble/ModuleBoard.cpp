@@ -247,12 +247,6 @@ void ModuleBoard::BoardDownLeft(int &counter){
 	for (i = 0; i < App->spheres->last_sphere_left; i++){
 		if (App->spheres->active_left[i] != nullptr){
 			App->spheres->active_left[i]->position.y += 14 * SCREEN_SIZE;
-			/*if (counter % 2 == 0){
-				App->spheres->active_left[i]->board_index += 7;
-			}
-			else{
-				App->spheres->active_left[i]->board_index += 8;
-			}*/
 		}
 	}
 	if (counter % 2 == 0){
@@ -313,12 +307,6 @@ void ModuleBoard::BoardDownRight(int &counter){
 	for (i = 0; i < App->spheres->last_sphere_right; i++){
 		if (App->spheres->active_right[i] != nullptr){
 			App->spheres->active_right[i]->position.y += 14 * SCREEN_SIZE;
-			/*if (counter % 2 == 0){
-			App->spheres->active_left[i]->board_index += 7;
-			}
-			else{
-			App->spheres->active_left[i]->board_index += 8;
-			}*/
 		}
 	}
 	if (counter % 2 == 0){
@@ -374,7 +362,6 @@ bool ModuleBoard::CheckWinR()
 	{
 		if (board_right[i]->Empty != true)
 			return false;
-	//TODO WIN LEFT
 	}
 
 
@@ -388,7 +375,6 @@ bool ModuleBoard::CheckWinL()
 	{
 		if (board_left[i]->Empty != true)
 			return false;
-		//TODO WIN LEFT
 	}
 
 

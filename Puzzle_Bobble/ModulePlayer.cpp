@@ -388,28 +388,6 @@ update_status ModulePlayer::Update()
 	return update_status::UPDATE_CONTINUE;
 }
 
-/*void ModulePlayer::BlitWinLose()
-{
-	bool done = false;
-	if (App->player->LoseCondition == true)
-	{
-		currentTime = SDL_GetTicks();
-
-		if (SDL_GetTicks() - currentTime < 3000)
-		{
-			App->render->Blit(graphics, position.x + 10 * SCREEN_SIZE, position.y - 120 * SCREEN_SIZE, &win);
-			App->render->Blit(graphics, position.x - 157 * SCREEN_SIZE, position.y - 120 * SCREEN_SIZE, &lose);
-		}
-	}
-
-	if (App->board->CheckWinL() && done == false)
-	{
-		App->render->Blit(graphics, position.x - 150 * SCREEN_SIZE, position.y - 120 * SCREEN_SIZE, &win);
-		App->render->Blit(graphics, position.x + 2 * SCREEN_SIZE, position.y - 120 * SCREEN_SIZE, &lose);
-		done = true;
-	}
-}*/
-
 update_status ModulePlayer::PostUpdate(){
 	srand(time(NULL));
 	bool succes = false;

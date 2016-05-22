@@ -376,24 +376,6 @@ update_status ModulePlayer2::Update()
 	return update_status::UPDATE_CONTINUE;
 }
 
-/*void ModulePlayer2::BlitWinLose()
-{
-	bool done = false;
-	if (App->player2->LoseCondition == true )
-	{
-		App->render->Blit(graphics, position.x - 310 * SCREEN_SIZE, position.y - 120 * SCREEN_SIZE, &win);
-		App->render->Blit(graphics, position.x - 100 * SCREEN_SIZE, position.y - 120 * SCREEN_SIZE, &lose);
-		done = true;
-	}
-
-	if (App->board->CheckWinR() && done == false)
-	{
-		App->render->Blit(graphics, position.x - 150 * SCREEN_SIZE, position.y - 120 * SCREEN_SIZE, &win);
-		App->render->Blit(graphics, position.x - 317 * SCREEN_SIZE, position.y - 120 * SCREEN_SIZE, &lose);
-		done = true;
-	}
-}*/
-
 update_status ModulePlayer2::PostUpdate(){
 	srand(time(NULL));
 	bool succes = false;

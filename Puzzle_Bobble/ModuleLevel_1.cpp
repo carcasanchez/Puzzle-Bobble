@@ -80,44 +80,6 @@ bool ModuleLevel_1::Start()
 update_status ModuleLevel_1::Update()
 {
 	App->render->Blit(graphics, 0, 0, &level1);
-
-/*	if (App->board->CheckWinL())
-	{
-		App->player->BlitWinLose();
-		if(time==0)	time = SDL_GetTicks();
-	}
-	else if (App->board->CheckWinR())
-	{
-		App->player2->BlitWinLose();
-		if (time == 0)time = SDL_GetTicks();
-	}
-
-	if (App->player->LoseCondition == true)
-	{
-		App->player->BlitWinLose();
-		App->player->LoseCondition = false;
-		if (time == 0)time = SDL_GetTicks();
-
-	}
-	else if (App->player2->LoseCondition == true)
-	{
-		App->player2->BlitWinLose();
-		App->player2->LoseCondition = false;
-		if (time == 0)time = SDL_GetTicks();
-	}
-
-	if (time != 0)
-	{
-
-		if (SDL_GetTicks() - time >= 2000)
-		{ 
-			time = 0;
-			App->fade->FadeToBlack(App->level_1, App->menu_screen, 1);
-		}
-
-	}*/
-
-
 	return UPDATE_CONTINUE;
 }
 

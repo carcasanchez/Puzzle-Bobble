@@ -413,10 +413,16 @@ bool ModuleSphere::CleanUp()
 
 	for (uint i = 0; i < MAX_UNACTIVE_SPHERES; i++)
 	{
-		delete unactive_left[i];
-		unactive_left[i] = nullptr;
-		delete unactive_right[i];
-		unactive_right[i] = nullptr;
+		if (unactive_left[i] != nullptr)
+		{
+			delete unactive_left[i];
+			unactive_left[i] = nullptr;
+		}
+		if (unactive_right[i] != nullptr)
+		{
+			delete unactive_right[i];
+			unactive_right[i] = nullptr;
+		}
 	}
 
 	//RIGHT
@@ -738,7 +744,6 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 					active_left[i]->speed.x = 0;
 					active_left[i]->speed.y = 0;
 					App->board->CheckPositionLeft(active_left[last_sphere_left - 1]);
-					//todo
 					if (App->player->bobblesFromExtra == false){
 						allahu_list_left.push_back(active_left[i]);
 						active_left[i]->checked = true;
