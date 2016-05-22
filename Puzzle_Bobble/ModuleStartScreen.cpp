@@ -21,9 +21,8 @@ bool ModuleStartScreen::Start()
 {
 
 	graphics = App->textures->Load("Game/Start_Screen.png");
-	level_music = App->audio->Load_music("Game/TitleDemonstration.ogg");
 	
-	if (Mix_PlayMusic(level_music, 0) == -1) {
+	if (Mix_PlayMusic(App->audio->start_music, 0) == -1) {
 		LOG("Mix_PlayMusic: %s\n", Mix_GetError());
 
 	}
@@ -47,6 +46,8 @@ update_status ModuleStartScreen::Update()
 
 bool ModuleStartScreen::CleanUp()
 {
+	App->textures->Unload(graphics);
+
 	while (!Mix_FadeOutMusic(1000) && Mix_PlayingMusic())
 		SDL_Delay(1000);
 

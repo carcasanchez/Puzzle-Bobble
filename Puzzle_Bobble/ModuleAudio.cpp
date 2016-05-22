@@ -26,8 +26,13 @@ bool ModuleAudio::Init()
 		LOG("Could not initialize Audio lib. Mix_Init: %s\n", Mix_GetError());
 		ret = false;
 	}
-	shoot = App->audio->Load_effects("Game/BubbleShot.wav");
-	explosion = App->audio->Load_effects("Game/BallsElimination.wav");
+	shoot = Load_effects("Game/BubbleShot.wav");
+	explosion = Load_effects("Game/BallsElimination.wav");
+	start_music = Load_music("Game/TitleDemonstration.ogg");
+	level_music = Load_music("Game/2PlayersMusic.ogg");
+	end_music = Load_music("Game/Game_Over.ogg");
+
+
 	return ret;
 }
 

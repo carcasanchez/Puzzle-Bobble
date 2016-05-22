@@ -22,7 +22,6 @@ public:
 public:
 	unsigned int currentTime;
 	SDL_Texture* graphics = nullptr;
-	Mix_Music* level_music = nullptr;
 	SDL_Rect level1;
 
 };

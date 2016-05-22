@@ -9,6 +9,7 @@
 #include "ModuleAudio.h"
 #include "ModuleBoard.h"
 #include "ModuleCollision.h"
+#include "UserInterface.h"
 #include "SDL\include\SDL_render.h"
 #include "SDL\include\SDL_timer.h"
 
@@ -218,145 +219,145 @@ update_status ModulePlayer::PreUpdate(){
 
 update_status ModulePlayer::Update()
 {
-	
-	int speed = 1;
-	current_animation1 = &idle_right;
-	if (current_animation2 == &bobShot){
-		if (bobShot.Finished()){
-			current_animation2 = &idle_left;
-			bobShot.Reset();
-		}
-	}
-	else{
-		current_animation2 = &idle_left;
-	}
-	current_animation_BaseLeft = &base_left;
-	current_animation_lever = &lever;
-
-
-	if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
-	{
-		if (current_animation1 != &right)
-		{
-			lever.speed = -0.4f;
-			base_left.speed = -0.4f;
-			right.speed=-0.4f;
-			current_animation1 = &right;
-		}
-
-		if (angle>-70.0)
-			angle -= 2.0;
-
-
-		/////
-
-
-	}
-
-	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
-	{
-		if (current_animation1 != &right)
-		{
-			lever.speed = 0.4f;
-			base_left.speed = 0.4f;
-			right.speed = 0.4f;
-			current_animation1 = &right;
-		}
-
-
-		if (angle<70.0)
-			angle += 2.0;
-
-		//////
-	}
-
-	
-
-	currentTime = SDL_GetTicks();
-
-	
-	if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_DOWN && App->spheres->next_sphere_left == true || currentTime - lastTime > 8000 )
-	{
-
-		App->spheres->active_left[App->spheres->last_sphere_left - 1]->speed.x = (sin(angle*PI / 180)) * SPEED;
-		App->spheres->active_left[App->spheres->last_sphere_left - 1]->speed.y = -(cos(angle*PI / 180)) * SPEED;
-
-		if (current_animation2 != &bobShot)
-		{
-			current_animation2 = &bobShot;
-		}
-		Mix_PlayChannel(-1, App->audio->shoot, 0);
-		App->spheres->next_sphere_left = false;
-		lastTime = currentTime;
-		hurry_up.Reset();
-		booblesCounterDown_left++;
-	}
-
-
-
-	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE
-		&& App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE){
-
+	if (App->UI->GameEnd == false){
+		int speed = 1;
 		current_animation1 = &idle_right;
-		base_left.speed = 0.0f;
-		lever.speed = 0.0f;
-	}
-
-	/*
-	0 Blue
-	1 Gray
-	2 Red
-	3 Yellow
-	4 Green
-	5 Black
-	6 Orange
-	7 Violet
-	*/
-
-	if (App->input->keyboard[SDL_SCANCODE_F1] == KEY_STATE::KEY_DOWN)
-	{
-		App->spheres->active_left[App->spheres->last_sphere_left-1]->ChangeColor(BLUE);
-	}
-	if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_DOWN)
-	{
-		App->spheres->active_left[App->spheres->last_sphere_left - 1]->ChangeColor(GRAY);
-	}
-	if (App->input->keyboard[SDL_SCANCODE_F3] == KEY_STATE::KEY_DOWN)
-	{
-		App->spheres->active_left[App->spheres->last_sphere_left - 1]->ChangeColor(RED);
-	}
-	if (App->input->keyboard[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN)
-	{
-		App->spheres->active_left[App->spheres->last_sphere_left - 1]->ChangeColor(YELLOW);
-	}
-	if (App->input->keyboard[SDL_SCANCODE_F5] == KEY_STATE::KEY_DOWN)
-	{
-		App->spheres->active_left[App->spheres->last_sphere_left - 1]->ChangeColor(GREEN);
-	}
-	if (App->input->keyboard[SDL_SCANCODE_F6] == KEY_STATE::KEY_DOWN)
-	{
-		App->spheres->active_left[App->spheres->last_sphere_left - 1]->ChangeColor(BLACK);
-	}
-	if (App->input->keyboard[SDL_SCANCODE_F7] == KEY_STATE::KEY_DOWN)
-	{
-		App->spheres->active_left[App->spheres->last_sphere_left - 1]->ChangeColor(ORANGE);
-	}
-	if (App->input->keyboard[SDL_SCANCODE_F8] == KEY_STATE::KEY_DOWN)
-	{
-		App->spheres->active_left[App->spheres->last_sphere_left - 1]->ChangeColor(VIOLET);
-	}
-
-	if (App->input->keyboard[SDL_SCANCODE_O] == KEY_STATE::KEY_DOWN)
-	{
-		for (int i = 0; i < App->spheres->last_sphere_left - 1; i++)
-		{
-			if (App->spheres->active_left[i] == nullptr)
-				continue;
-			App->spheres->active_left[i]->ChangeColor(App->spheres->active_left[App->spheres->last_sphere_left - 1]->sphere_color);
+		if (current_animation2 == &bobShot){
+			if (bobShot.Finished()){
+				current_animation2 = &idle_left;
+				bobShot.Reset();
+			}
 		}
+		else{
+			current_animation2 = &idle_left;
+		}
+		current_animation_BaseLeft = &base_left;
+		current_animation_lever = &lever;
+
+
+		if (App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
+		{
+			if (current_animation1 != &right)
+			{
+				lever.speed = -0.4f;
+				base_left.speed = -0.4f;
+				right.speed = -0.4f;
+				current_animation1 = &right;
+			}
+
+			if (angle > -70.0)
+				angle -= 2.0;
+
+
+			/////
+
+
+		}
+
+		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+		{
+			if (current_animation1 != &right)
+			{
+				lever.speed = 0.4f;
+				base_left.speed = 0.4f;
+				right.speed = 0.4f;
+				current_animation1 = &right;
+			}
+
+
+			if (angle < 70.0)
+				angle += 2.0;
+
+			//////
+		}
+
+
+
+		currentTime = SDL_GetTicks();
+
+
+		if (App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_DOWN && App->spheres->next_sphere_left == true || currentTime - lastTime > 8000)
+		{
+
+			App->spheres->active_left[App->spheres->last_sphere_left - 1]->speed.x = (sin(angle*PI / 180)) * SPEED;
+			App->spheres->active_left[App->spheres->last_sphere_left - 1]->speed.y = -(cos(angle*PI / 180)) * SPEED;
+
+			if (current_animation2 != &bobShot)
+			{
+				current_animation2 = &bobShot;
+			}
+			Mix_PlayChannel(-1, App->audio->shoot, 0);
+			App->spheres->next_sphere_left = false;
+			lastTime = currentTime;
+			hurry_up.Reset();
+			booblesCounterDown_left++;
+		}
+
+
+
+		if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE
+			&& App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE){
+
+			current_animation1 = &idle_right;
+			base_left.speed = 0.0f;
+			lever.speed = 0.0f;
+		}
+
+		/*
+		0 Blue
+		1 Gray
+		2 Red
+		3 Yellow
+		4 Green
+		5 Black
+		6 Orange
+		7 Violet
+		*/
+
+		if (App->input->keyboard[SDL_SCANCODE_F1] == KEY_STATE::KEY_DOWN)
+		{
+			App->spheres->active_left[App->spheres->last_sphere_left - 1]->ChangeColor(BLUE);
+		}
+		if (App->input->keyboard[SDL_SCANCODE_F2] == KEY_STATE::KEY_DOWN)
+		{
+			App->spheres->active_left[App->spheres->last_sphere_left - 1]->ChangeColor(GRAY);
+		}
+		if (App->input->keyboard[SDL_SCANCODE_F3] == KEY_STATE::KEY_DOWN)
+		{
+			App->spheres->active_left[App->spheres->last_sphere_left - 1]->ChangeColor(RED);
+		}
+		if (App->input->keyboard[SDL_SCANCODE_F4] == KEY_STATE::KEY_DOWN)
+		{
+			App->spheres->active_left[App->spheres->last_sphere_left - 1]->ChangeColor(YELLOW);
+		}
+		if (App->input->keyboard[SDL_SCANCODE_F5] == KEY_STATE::KEY_DOWN)
+		{
+			App->spheres->active_left[App->spheres->last_sphere_left - 1]->ChangeColor(GREEN);
+		}
+		if (App->input->keyboard[SDL_SCANCODE_F6] == KEY_STATE::KEY_DOWN)
+		{
+			App->spheres->active_left[App->spheres->last_sphere_left - 1]->ChangeColor(BLACK);
+		}
+		if (App->input->keyboard[SDL_SCANCODE_F7] == KEY_STATE::KEY_DOWN)
+		{
+			App->spheres->active_left[App->spheres->last_sphere_left - 1]->ChangeColor(ORANGE);
+		}
+		if (App->input->keyboard[SDL_SCANCODE_F8] == KEY_STATE::KEY_DOWN)
+		{
+			App->spheres->active_left[App->spheres->last_sphere_left - 1]->ChangeColor(VIOLET);
+		}
+
+		if (App->input->keyboard[SDL_SCANCODE_O] == KEY_STATE::KEY_DOWN)
+		{
+			for (int i = 0; i < App->spheres->last_sphere_left - 1; i++)
+			{
+				if (App->spheres->active_left[i] == nullptr)
+					continue;
+				App->spheres->active_left[i]->ChangeColor(App->spheres->active_left[App->spheres->last_sphere_left - 1]->sphere_color);
+			}
+		}
+
 	}
-
-
 	// Draw everything --------------------------------------
 
 	App->render->Blit(graphics, position.x - 172*SCREEN_SIZE, position.y - 7*SCREEN_SIZE, &bag_complete);
@@ -366,15 +367,16 @@ update_status ModulePlayer::Update()
 	App->render->Blit(graphics, position.x - 82 * SCREEN_SIZE, position.y + 1 * SCREEN_SIZE, &(current_animation_lever->GetCurrentFrame()));
 	SDL_RenderCopyEx(App->render->renderer, graphics, p_arrow_src, p_arrow_dst, angle, p_center, SDL_FLIP_NONE);
 	App->render->Blit(graphics, position.x - 102 * SCREEN_SIZE, position.y, &blow);
+	if (App->UI->GameEnd == false){
 
-	if (currentTime - lastTime > 3000)
-	{
+		if (currentTime - lastTime > 3000)
+		{
 
-		current_animation3 = &hurry_up;
-		current_animation2 = &hurry_up_dragon;
-		App->render->Blit(graphics, position.x - 165 * SCREEN_SIZE, position.y - 20 * SCREEN_SIZE, &(current_animation3->GetCurrentFrame()));
+			current_animation3 = &hurry_up;
+			current_animation2 = &hurry_up_dragon;
+			App->render->Blit(graphics, position.x - 165 * SCREEN_SIZE, position.y - 20 * SCREEN_SIZE, &(current_animation3->GetCurrentFrame()));
+		}
 	}
-
 	App->render->Blit(graphics, position.x - 80 * SCREEN_SIZE, position.y - 2 * SCREEN_SIZE, &(current_animation1->GetCurrentFrame()));
 	App->render->Blit(graphics, position.x - 122 * SCREEN_SIZE, position.y - 10 * SCREEN_SIZE, &(current_animation2->GetCurrentFrame()));
 	//	App->render->Blit(graphics, position.x - 50, position.y - 80, &(current_animation_arrow->GetCurrentFrame()));

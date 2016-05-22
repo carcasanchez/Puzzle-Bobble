@@ -21,7 +21,7 @@ public:
 	bool CleanUp();
 	void WinLose();
 	void LoseWin();
-
+	bool GameEnd;
 
 public:
 	SDL_Texture* graphics_UI = nullptr;

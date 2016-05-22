@@ -19,6 +19,11 @@ public:
 	Mix_Chunk* effects[MAX_FX];
 	uint last_audio = 0;
 	uint last_effect = 0;
+	Mix_Music* start_music = nullptr;
+
+	Mix_Music* level_music = nullptr;
+	Mix_Music* end_music = nullptr;
+
 	Mix_Chunk* shoot = nullptr;
 	Mix_Chunk* explosion = nullptr;
 	bool Init();

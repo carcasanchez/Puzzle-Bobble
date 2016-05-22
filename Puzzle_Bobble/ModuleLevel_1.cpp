@@ -65,14 +65,13 @@ bool ModuleLevel_1::Start()
 
 
 	graphics = App->textures->Load("Game/two_player_background.png");
-	level_music = App->audio->Load_music("Game/2PlayersMusic.ogg"); 
-	
+	App->UI->GameEnd = false;
 	App->player->Enable();
 	App->player2->Enable();
 	App-> UI->Enable();
 	App->board->CreateMap1_Left(map1_left);
 	App->board->CreateMap1_Right(map1_right);
-	if (Mix_PlayMusic(level_music, -1) == -1) {
+	if (Mix_PlayMusic(App->audio->level_music, -1) == -1) {
 		LOG("Mix_PlayMusic: %s\n", Mix_GetError());
 	}
 	return true;
@@ -124,6 +123,7 @@ update_status ModuleLevel_1::Update()
 
 bool ModuleLevel_1::CleanUp()
 {
+	App->textures->Unload(graphics);
 
 	App->player->Disable();
 	App->player2->Disable();

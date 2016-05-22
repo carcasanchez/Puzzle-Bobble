@@ -47,12 +47,14 @@ bool ModuleUserInterface::CleanUp()
 
 void ModuleUserInterface::LoseWin()
 {
+	GameEnd = true;
 	App->render->Blit(graphics_UI, 17 * SCREEN_SIZE, 80 * SCREEN_SIZE, &lose);
 	App->render->Blit(graphics_UI, 180 * SCREEN_SIZE, 80* SCREEN_SIZE, &win);
 }
 
 void ModuleUserInterface::WinLose()
 {
+	GameEnd = true;
 	App->render->Blit(graphics_UI, 17 * SCREEN_SIZE, 80 * SCREEN_SIZE, &win);
 	App->render->Blit(graphics_UI, 180 * SCREEN_SIZE, 80 * SCREEN_SIZE, &lose);
 }
