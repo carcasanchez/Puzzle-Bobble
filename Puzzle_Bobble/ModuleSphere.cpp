@@ -734,7 +734,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 			if (active_left[i] != nullptr && active_left[i]->collider == c1)
 			{
 
-				if (c2->type == COLLIDER_LATERAL_WALL&& currentTime_left - lastTime_left > 200){
+				if (c2->type == COLLIDER_LATERAL_WALL&& currentTime_left - lastTime_left > 100){
 					active_left[i]->speed.x *= -1;
 					lastTime_left = currentTime_left;
 				}
@@ -867,7 +867,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 			if (active_right[i] != nullptr && active_right[i]->collider == c1)
 			{
 
-				if (c2->type == COLLIDER_LATERAL_WALL&& currentTime_right - lastTime_right > 200){
+				if (c2->type == COLLIDER_LATERAL_WALL&& currentTime_right - lastTime_right > 100){
 					active_right[i]->speed.x *= -1;
 					lastTime_right = currentTime_right;
 				}
