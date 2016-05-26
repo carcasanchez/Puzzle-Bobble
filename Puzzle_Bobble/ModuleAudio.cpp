@@ -31,7 +31,9 @@ bool ModuleAudio::Init()
 	start_music = Load_music("Game/TitleDemonstration.ogg");
 	level_music = Load_music("Game/2PlayersMusic.ogg");
 	end_music = Load_music("Game/Game_Over.ogg");
-
+	bobble_bounce = Load_effects("Game/BallBounce.wav");
+	roof_fall = Load_effects("Game/RoofFall.wav");
+	start_button = Load_effects("Game/StartButton.wav");
 
 	return ret;
 }

@@ -35,7 +35,6 @@ update_status ModuleCongrats::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
 	{
-
 		App->fade->FadeToBlack(App->congratulations, App->menu_screen, 1);
 	}
 	return UPDATE_CONTINUE;

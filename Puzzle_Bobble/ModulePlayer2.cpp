@@ -171,9 +171,10 @@ bool ModulePlayer2::Start()
 	LOG("Loading player");
 	mystate = FIRST;
 	graphics = App->textures->Load("Game/SpritesP2.png");
-
-	//App->spheres->AddSphere(App->spheres->spheres[Random], 306, 368);
 	lastTime = SDL_GetTicks();
+	currentTime = lastTime;
+	hurry_up.Reset();
+	hurry_up_dragon.Reset();
 	booblesGoDown_right = 16;
 	booblesCounterDown_right = 0;
 

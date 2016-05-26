@@ -737,6 +737,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 				if (c2->type == COLLIDER_LATERAL_WALL&& currentTime_left - lastTime_left > 100){
 					active_left[i]->speed.x *= -1;
 					lastTime_left = currentTime_left;
+					Mix_PlayChannel(-1, App->audio->bobble_bounce, 0);
 				}
 
 				else if ((c2->type == COLLIDER_WALL || c2->type == COLLIDER_SPHERE_LEFT) && active_left[i]->speed.y != 0)
@@ -870,6 +871,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 				if (c2->type == COLLIDER_LATERAL_WALL&& currentTime_right - lastTime_right > 100){
 					active_right[i]->speed.x *= -1;
 					lastTime_right = currentTime_right;
+					Mix_PlayChannel(-1, App->audio->bobble_bounce, 0);
 				}
 
 				else if ((c2->type == COLLIDER_WALL || c2->type == COLLIDER_SPHERE_RIGHT) && active_right[i]->speed.y != 0)
@@ -946,7 +948,6 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 								active_right[i]->collider = nullptr;
 								active_right[i]->speed.y = 7.0f;
 								App->board->board_right[active_right[i]->board_index]->Empty = true;
-
 							}
 						}
 						for (unsigned int i = 0; i < App->spheres->last_sphere_right; i++)
@@ -958,7 +959,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 							}
 						}
 						allahu_list_right.clear();
-						check_down_right = false;
+						check_down_right = false;						
 					}
 				}
 					if (App->player2->mystate == POSTUPDATE && App->player->b_destroyed_left == 0)

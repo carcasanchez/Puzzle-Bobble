@@ -38,7 +38,7 @@ update_status ModuleStartScreen::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
 	{
-
+		Mix_PlayChannel(-1, App->audio->start_button, 0);
 		App->fade->FadeToBlack(App->menu_screen, App->level_1, 1);
 	}
 	return UPDATE_CONTINUE;

@@ -1,4 +1,5 @@
 #include"ModuleBoard.h"
+#include "ModuleAudio.h"
 #include <time.h>
 #include <stdlib.h> 
 #include <math.h>
@@ -235,6 +236,7 @@ void ModuleBoard::CreateMap1_Right(int number[]){
 }
 
 void ModuleBoard::BoardDownLeft(int &counter){
+	Mix_PlayChannel(-1, App->audio->roof_fall, 0);
 	srand(time(NULL));
 	int random = 0;
 	int i;
@@ -294,7 +296,9 @@ void ModuleBoard::BoardDownLeft(int &counter){
 
 }
 
-void ModuleBoard::BoardDownRight(int &counter){
+void ModuleBoard::BoardDownRight(int &counter)
+{
+	Mix_PlayChannel(-1, App->audio->roof_fall, 0);
 	srand(time(NULL));
 	int random = 0;
 	int i;
@@ -310,7 +314,7 @@ void ModuleBoard::BoardDownRight(int &counter){
 		}
 	}
 	if (counter % 2 == 0){
-		x = 128+224 * SCREEN_SIZE  - 16;//96
+		x = 128+224 * SCREEN_SIZE  - 16;	//96
 		for (i = 0; i < 7; i++){
 			board_right.push_front(new iPoint(x, y));
 			x -= 16 * SCREEN_SIZE;
@@ -350,8 +354,6 @@ void ModuleBoard::BoardDownRight(int &counter){
 			}
 		}
 	}
-
-
 }
 
 

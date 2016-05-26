@@ -20,10 +20,11 @@ public:
 	uint last_audio = 0;
 	uint last_effect = 0;
 	Mix_Music* start_music = nullptr;
-
+	Mix_Chunk* start_button = nullptr;
 	Mix_Music* level_music = nullptr;
 	Mix_Music* end_music = nullptr;
-
+	Mix_Chunk* bobble_bounce = nullptr;
+	Mix_Chunk* roof_fall = nullptr;
 	Mix_Chunk* shoot = nullptr;
 	Mix_Chunk* explosion = nullptr;
 	bool Init();
