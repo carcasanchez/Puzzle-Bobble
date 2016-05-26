@@ -19,7 +19,7 @@ public:
 	bool CleanUp();
 
 public:
-
+	bool play = false;
 	SDL_Texture* graphics = nullptr;
 	SDL_Rect background;
 	Mix_Music* level_music = nullptr;

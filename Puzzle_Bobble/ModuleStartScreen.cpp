@@ -35,10 +35,13 @@ bool ModuleStartScreen::Start()
 update_status ModuleStartScreen::Update()
 {
 	App->render->Blit(graphics, 0, 0, &background);
-
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
 	{
-		Mix_PlayChannel(-1, App->audio->start_button, 0);
+		if (play == false)
+		{
+			Mix_PlayChannel(-1, App->audio->start_button, 0);
+			play = true;
+		}
 		App->fade->FadeToBlack(App->menu_screen, App->level_1, 1);
 	}
 	return UPDATE_CONTINUE;
@@ -46,8 +49,8 @@ update_status ModuleStartScreen::Update()
 
 bool ModuleStartScreen::CleanUp()
 {
+	play = false;
 	App->textures->Unload(graphics);
-
 	while (!Mix_FadeOutMusic(1000) && Mix_PlayingMusic())
 		SDL_Delay(1000);
 

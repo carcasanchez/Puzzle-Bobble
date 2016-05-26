@@ -221,7 +221,8 @@ update_status ModulePlayer2::PreUpdate(){
 
 update_status ModulePlayer2::Update()
 {
-	if (App->UI->GameEnd == false){
+	if (App->UI->GameEnd == false)
+	{
 
 		int speed = 1;
 		current_animation1 = &idle_right;
@@ -349,14 +350,21 @@ update_status ModulePlayer2::Update()
 			}
 		}
 	}
+	else
+	{
+		current_animation1 = &idle_right;
+		current_animation2 = &idle_left;
+		base_left.speed = 0.0f;
+		lever.speed = 0.0f;
+	}
 	// Draw everything --------------------------------------
-	App->render->Blit(graphics, position.x - 70*SCREEN_SIZE, position.y - 7*SCREEN_SIZE, &bag_complete);
-	App->render->Blit(graphics, position.x - 54 * SCREEN_SIZE, position.y - 7 * SCREEN_SIZE, &bag_incomplete);
+	App->render->Blit(graphics, position.x - 72*SCREEN_SIZE, position.y - 7*SCREEN_SIZE, &bag_complete);
+	App->render->Blit(graphics, position.x - 56 * SCREEN_SIZE, position.y - 7 * SCREEN_SIZE, &bag_incomplete);
 	App->render->Blit(graphics, position.x - 111 * SCREEN_SIZE, position.y - 23 * SCREEN_SIZE, &top_base);
 	App->render->Blit(graphics, position.x - 118 * SCREEN_SIZE, position.y - 7 * SCREEN_SIZE, &(current_animation_BaseLeft->GetCurrentFrame()));
 	App->render->Blit(graphics, position.x - 119 * SCREEN_SIZE, position.y + 1 * SCREEN_SIZE, &(current_animation_lever->GetCurrentFrame()));
 	SDL_RenderCopyEx(App->render->renderer, graphics, p_arrow_src, p_arrow_dst, angle, p_center, SDL_FLIP_NONE);
-	App->render->Blit(graphics, position.x - 102 * SCREEN_SIZE, position.y, &blow);
+	App->render->Blit(graphics, position.x - 99 * SCREEN_SIZE, position.y, &blow);
 	if (App->UI->GameEnd == false){
 
 		if (currentTime - lastTime > 3000)
@@ -369,7 +377,6 @@ update_status ModulePlayer2::Update()
 	}
 	App->render->Blit(graphics, position.x - 135 * SCREEN_SIZE, position.y - 2 * SCREEN_SIZE, &(current_animation1->GetCurrentFrame()));
 	App->render->Blit(graphics, position.x - 90 * SCREEN_SIZE, position.y - 10 * SCREEN_SIZE, &(current_animation2->GetCurrentFrame()));
-	//	App->render->Blit(graphics, position.x - 50, position.y - 80, &(current_animation_arrow->GetCurrentFrame()));
 	App->render->Blit(graphics, position.x - 70 * SCREEN_SIZE, position.y + 1 * SCREEN_SIZE, &prev_bobble[Random]);
 
 

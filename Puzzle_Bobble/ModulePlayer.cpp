@@ -220,7 +220,8 @@ update_status ModulePlayer::PreUpdate(){
 
 update_status ModulePlayer::Update()
 {
-	if (App->UI->GameEnd == false){
+	if (App->UI->GameEnd == false)
+	{
 		int speed = 1;
 		current_animation1 = &idle_right;
 		if (current_animation2 == &bobShot){
@@ -359,6 +360,13 @@ update_status ModulePlayer::Update()
 		}
 
 	}
+		else
+		{
+			current_animation1 = &idle_right;
+			current_animation2 = &idle_left;
+			base_left.speed = 0.0f;
+			lever.speed = 0.0f;
+		}
 	// Draw everything --------------------------------------
 
 	App->render->Blit(graphics, position.x - 172*SCREEN_SIZE, position.y - 7*SCREEN_SIZE, &bag_complete);
@@ -380,7 +388,6 @@ update_status ModulePlayer::Update()
 	}
 	App->render->Blit(graphics, position.x - 80 * SCREEN_SIZE, position.y - 2 * SCREEN_SIZE, &(current_animation1->GetCurrentFrame()));
 	App->render->Blit(graphics, position.x - 122 * SCREEN_SIZE, position.y - 10 * SCREEN_SIZE, &(current_animation2->GetCurrentFrame()));
-	//	App->render->Blit(graphics, position.x - 50, position.y - 80, &(current_animation_arrow->GetCurrentFrame()));
 	App->render->Blit(graphics, position.x - 135 * SCREEN_SIZE, position.y + 1 * SCREEN_SIZE, &prev_bobble[Random]);
 
 	
