@@ -102,6 +102,8 @@ bool ModuleLevel_1::CleanUp()
 		App->spheres->active_left[i] = nullptr;
 	}
 
+	App->spheres->last_sphere_left = 0;
+
 	//RIGHT
 	for (unsigned int i = 0; i < App->spheres->last_sphere_right; i++)
 	{
@@ -113,6 +115,7 @@ bool ModuleLevel_1::CleanUp()
 		App->spheres->active_right[i]->collider = nullptr;
 		App->spheres->active_right[i] = nullptr;
 	}
+	App->spheres->last_sphere_left = 0;
 
 	while (!Mix_FadeOutMusic(1000) && Mix_PlayingMusic())
 		SDL_Delay(1000);
