@@ -6,18 +6,36 @@ The version we will do is the original one released in June 1994, also known as 
 
 Our team (Carlos Cabreira, Marc Latorre, Jordi Oña, Andreu Rojas and Fran Ruiz) is going to recreate this game.
 
-#Puzzle Bobble v.1.0 (Alpha!)
+#Puzzle Bobble v.1.0 (Beta!)
 ##Changelist:
 
+###Version 1.0
 - Puzzle Bobble is now multiplayer! The two player must fight to destroy all bubbles before the opponent. 
 - A new row of bubbles appears at the top of the level after 16 shots.
+- The bubbles drop when they are not connected to the roof.
 - If you destroy enough bubbles at once, they will appear in your opponent screen, difficulting him his goal.
 - Added animations to the bobbles, explosions, and little monsters that drops when the bubble is removed.
 - Added blue dragons for the second player. Polished animations. 
 - Improved behaviour of the arrow.
 - Added God Mode. 
 
+###Version 0.5 (prototype)
+- Added core gameplay: shoot system with the arrow and bubbles deletion
+  when three or more of the same colour.
+- Added animations to the player module.
+- Completed the two first levels.
+
+###Version 0.2
+-Added four different screens: start, level 1, level 2 and game over.
+-Added fade to black effect.
+-Added music for each screen.
+
+###Version 0.1
+-Added level 1 background and music
+
 ##Controls:
+
+- "Spacebar": jump from Menu screen to play.
 
  Player 1:
 
@@ -42,7 +60,6 @@ Our team (Carlos Cabreira, Marc Latorre, Jordi Oña, Andreu Rojas and Fran Ruiz)
 - F10: show colliders.
 
 
-- "Spacebar": jump from Menu screen to play.
 
 ##Conditions Victory / Defeat:
  Destroy all bubbles of your screen before your opponent! Hit three or more of the same color to destroy them.
