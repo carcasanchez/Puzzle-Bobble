@@ -17,7 +17,6 @@ public:
 	bool Start();
 	update_status Update();
 	bool CleanUp();
-	//Uint32 time = 0;
 
 public:
 	unsigned int currentTime;

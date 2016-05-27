@@ -61,8 +61,6 @@ bool ModuleLevel_1::Start()
 			9, 9, 9, 9, 9, 9, 9, 9,
 			9, 9, 9, 9, 9, 9, 9 };
 
-	//int map[] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-
 
 	graphics = App->textures->Load("Game/two_player_background.png");
 	App->UI->GameEnd = false;

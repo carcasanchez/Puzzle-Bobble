@@ -253,8 +253,6 @@ update_status ModulePlayer2::Update()
 				angle -= 2.0;
 
 
-			/////
-
 
 		}
 

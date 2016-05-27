@@ -38,7 +38,7 @@ public:
 
 	}
 
-	Vector(uint number_elements) //tipus base NO ha de ser const (és una còpia i no modifica res)
+	Vector(uint number_elements)
 	{
 		max_size = number_elements;
 		vector = new TYPE[max_size];
