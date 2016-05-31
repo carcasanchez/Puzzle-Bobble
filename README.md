@@ -5,6 +5,8 @@ His name comes from Bub and Bob, the two dinosaurs who manage the bubble cannon 
 The version we will do is the original one released in June 1994, also known as Bust-a-Move.
 
 Our team (Carlos Cabreira, Marc Latorre, Jordi Oña, Andreu Rojas and Fran Ruiz) is going to recreate this game.
+Every member of the team had worked on each part of the game, however we had to delegate responsibilities 
+for a better organisation.
 
 #Puzzle Bobble v.1.0 (Beta!)
 ##Changelist:

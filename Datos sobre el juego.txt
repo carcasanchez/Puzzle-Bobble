@@ -1,6 +1,0 @@
-El juego te obliga a lanzar tras pasar 10 segundos, a partir de los 5 te avisa, una vez lanzas este tiempo se reinicia.
-
-El mapa puede llenarse de bolas hasta la once lineas de bolas, la linea 12 es morir, la primera linea esta formada por 8 bolas y la segunda por 7, tercera por 8 y vuelta a empezar (es decir 8-7-8-7-8-7 etc)
-tras X lanzamientos el juego empuja todas las bolas una linea hacia abajo (dependiendo de el nivel son más o menos lanzamientos, aun tengo que ver si existe una razon matematica)
-https://www.youtube.com/watch?v=F1I0lzM_UZI <----longplay de todo el juego pasado en una NEO GEO ATENCION: todos los niveles son iguales al de la maquina arcade PEROOO los colores de las bolas cambian
-con esto quiero decir que nose si los niveles son siempre iguales o varian segun los vas jugando
